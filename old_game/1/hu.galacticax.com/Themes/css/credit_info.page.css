@@ -1,0 +1,53 @@
+
+#credit_purchase_content {
+	width: 480px;
+	margin: 10px auto;
+}
+#credit_purchase .entry {
+	width: 140px;
+	float: left;
+	margin: 0px 10px 10px;
+	background-color: #212121;
+	text-align: center;
+	padding: 0px 0px 10px;
+}
+#credit_purchase .entry h4 {
+	font-size: 11px;
+	margin: 4px;
+}
+#credit_purchase .entry img {
+	width: 140px;
+	height: 60px;
+	border: none;
+	display: block;
+}
+#credit_purchase .entry .oldvalue {
+	text-decoration: line-through;
+	color: #797979;
+}
+#credit_purchase .entry .value {
+	font-weight: bold;
+}
+#credit_purchase .entry .value,
+#credit_purchase .entry .eur-price,
+#credit_purchase .entry .price {
+	margin: 5px;
+}
+#credit_purchase .entry .exchange-price {
+	color: orange;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+#credit_purchase .entry sup {
+	color: orange;
+	font-size: 8px;
+	vertical-align: 4px;
+}
+#credit_purchase .entry.footnotes {
+	width: 440px;
+	color: orange;
+	background-color: #212121;
+	padding: 3px 10px;
+	text-align: left;
+}
+

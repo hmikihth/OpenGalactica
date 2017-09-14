@@ -1,0 +1,26 @@
+
+#player_profile_content {
+	width: 50%;
+	margin: 10px auto;
+}
+#player_profile .col1 {
+	width: 50%;
+	text-align: right;
+}
+#player_profile th {
+	text-align: left;
+}
+
+
+#player_language select {
+	width: 147px;
+}
+
+
+#allocation_mode_flag {
+	margin-left: 5px;
+}
+#allocation_region_input {
+	width: 200px;
+}
+

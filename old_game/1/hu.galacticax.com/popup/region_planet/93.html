@@ -1,0 +1,1530 @@
+<link type="text/css" rel="stylesheet" href="/Themes/css/tables_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/basic_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/button.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/panels_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/forms_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/portal_top6_456.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/toplist_boxes_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/portal_top6_123.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/planet_seeker.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/portal_pager.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/panel_message.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/columns_css.widget.css">
+<link type="text/css" rel="stylesheet" href="/Themes/css/toplist_planets.page.css">
+
+		<SCRIPT language="JavaScript"> function submitSearch(val)
+		{
+			document.planet_seeker_form.SUBMIT.value=val;
+			document.planet_seeker_form.submit();
+		}
+
+    function LoadContract() {
+      $.ajax({
+          type: 'POST',
+          url: '/gateway/json.php/LocatorService.getContractStatus/',
+          data: 'allist=',
+          success: function(msg){
+             alert( "Data Saved: " + msg );
+           }
+        });
+    }
+
+    </SCRIPT>
+        <div id="contents">
+		
+          <!-- WIDGET [panel_nohelp] STRT -->
+            <div class="panel panel-nohelp " id="toplist_planets">
+              <h2>Planéták: Haiti</h2>
+              <div class="content" id="toplist_planets_content">
+                <div class="ie-display-correct">HIDE</div>
+
+                <!-- WIDGET [planet_seeker] STRT -->
+                  <div class="planet_seeker ">
+                    <form class="oneliner" name="planet_seeker_form" id="planet_seeker_form" method="post" action="">
+                      <div class="field">
+<!--                        <label for="tick" onclick="LoadContract();">&nbsp;<img src="/Themes/images/time_1.png" />&nbsp;Kör:</label>
+                        <div class="control">
+                          <input type="text" class="text" value="" id="tick" name="tick" size="10"><!-- WIDGET [button] STRT -->
+<!--						  <a class="button width80" href="#" onclick="javascript: submitSearch('TICK_SEARCH')"><span class="lft"> </span><span class="txt">Ugrás</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+<!--                        </div>-->
+                      <div class="field">
+                        <label for="planet_name">&nbsp;<img src="/Themes/images/planeta.png" />&nbsp;Planétanév</label>
+                        <div class="control">
+                          <input type="text" class="text" value="" id="planet_name" name="planet_name" size="16"><!-- WIDGET [button] STRT --><a class="button width80" href="#" onclick="javascript: submitSearch('NAME_SEARCH')"><span class="lft"> </span><span class="txt">Keresés</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+                        </div>
+                      </div>
+                      <div class="field" id="field_coords">
+                        <label for="coord1">Koordináta:</label>
+                        <div class="control">
+                          <input type="text" class="text" id="coord1" name="coordr" value="" size="3"><span class="punct">:</span><input type="text" class="text" id="coord2" name="coordx" value="" size="3"><span class="punct">:</span><input type="text" class="text" id="coord3" name="coordy" value="" size="3"><span class="punct">:</span><input type="text" class="text" id="coord4" name="coordz" value="" size="3"><!-- WIDGET [button] STRT --><a class="button width80" href="#" onclick="javascript: submitSearch('COORD_SEARCH')"><span class="lft"> </span><span class="txt">Keresés</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+						  <input type="hidden" class="text" value="" name="SUBMIT">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                <!-- WIDGET [planet_seeker] STOP -->
+                <!-- WIDGET [portal_pager] STRT -->
+				<SCRIPT language="JavaScript"> function submitSelectTop6FormUp() { document.selectUp.submit(); }</SCRIPT>
+                  <div class="portal_pager ">
+                    <form name="selectUp" method="post" action="" class="oneliner">
+                      <div class="control">
+                        <a class="button width40" href="93.html?offset=0"><span class="lft"> </span><span class="txt">&lt;&lt;</span><span class="rgt"> </span></a><select name="selectOffsetUp" onChange="javascript: submitSelectTop6FormUp()">
+						<option value="0" selected>1 - 47</option>
+						</select><a class="button width40" href="93.html?offset=0"><span class="lft"> </span><span class="txt">&gt;&gt;</span><span class="rgt"> </span></a>
+                      </div>
+                    </form>
+                  </div>
+                <!-- WIDGET [portal_pager] STOP -->
+                <script language="JavaScript">
+                	var tmp_img_name;
+                	var tmp_img_alliance;
+
+                	function rep_img(number, type)
+                	{
+										if (type == 'on') {
+                			var takaro_name = document.getElementById('name_takaro_'+number);
+                			var takaro_alliance = document.getElementById('alliance_takaro_'+number);
+                			tmp_img_name = takaro_name.src;
+                			tmp_img_alliance = takaro_alliance.src;
+											takaro_name.src = '/Themes/images/gal6_takaro_over.png';
+											takaro_alliance.src = '/Themes/images/gal6_takaro_over.png';
+                		}
+                		else {
+											var takaro_name = document.getElementById('name_takaro_'+number);
+											var takaro_alliance = document.getElementById('alliance_takaro_'+number);
+                			takaro_name.src = tmp_img_name;
+                			takaro_alliance.src = tmp_img_alliance;
+                			tmp_img_name = '';
+                			tmp_img_alliance
+                		}
+                	}
+								</script>
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="col-toplist-index">#</th>
+                      <th>Faj</th>
+                      <th>Rang</th>
+                      <th class="col-planetname">&nbsp;<img src="/Themes/images/planeta.png" />&nbsp;Planéta</th>
+                      <th class="col-nation">R</th>
+                      <th class="col-alliance" style="width:95px">&nbsp;<img src="/Themes/images/szovetseg.png" />&nbsp;Szövetség</th>
+                      <th class="col-coord">Koordináta</th>
+                      <th class="col-arrows"><img src="http://galacticax.com/Themes/images/arrow_double.gif"></th>
+                      <th class="col-num">Változás</th>
+                      <th class="">Dipl.</th>
+                      <th class="col-num">&nbsp;<img src="/Themes/images/all_p.png" />&nbsp;Plasmator</th>
+                      <th class="col-num">&nbsp;<img src="/Themes/images/tp.png" />&nbsp;Tp</th>
+                      <th class="col-num">&nbsp;<img src="/Themes/images/point.png" />&nbsp;Pontok</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+				  
+                    <tr onmouseover="rep_img('1', 'on');" onmouseout="rep_img('1', 'off');">
+					  <td style="color:white">1</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g1.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Parancsnok, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Parancsnok, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_1" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-1.html" rel="popup" style="font-weight: normal;">Dunqareee</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_1" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/73857.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:1)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>4 995</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>704</td>
+                      <td>37 756</td>
+                      <td>58 156 580</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('2', 'on');" onmouseout="rep_img('2', 'off');">
+					  <td style="color:white">2</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz11_tp2_g1.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Parancsnok, Szövetség rang: Főparancsnok" alt="Planéta rang: Hadnagy, Galaxis rang: Parancsnok, Szövetség rang: Főparancsnok"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_2" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-1.html" rel="popup" style="font-weight: normal;">zugor</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_2" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/35936.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:1)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 981</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>412</td>
+                      <td>277 991</td>
+                      <td>46 418 203</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('3', 'on');" onmouseout="rep_img('3', 'off');">
+					  <td style="color:white">3</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp3_g1.png" width="49" height="19" valign="top" title="Planéta rang: Kapitány, Galaxis rang: Parancsnok, Szövetség rang: Tag" alt="Planéta rang: Kapitány, Galaxis rang: Parancsnok, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_3" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-1.html" rel="popup" style="font-weight: normal;">Scourge</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_3" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/49987.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:1)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 911</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>395</td>
+                      <td>459 228</td>
+                      <td>45 094 364</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('4', 'on');" onmouseout="rep_img('4', 'off');">
+					  <td style="color:white">4</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g3.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_4" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-2.html" rel="popup" style="font-weight: normal;">gugu0826</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_4" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/934.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:2)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 967</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>409</td>
+                      <td>195 524</td>
+                      <td>41 181 121</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('5', 'on');" onmouseout="rep_img('5', 'off');">
+					  <td style="color:white">5</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g3.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_5" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-2.html" rel="popup" style="font-weight: normal;">Apafej</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_5" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/2916.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:2)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 196</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>283</td>
+                      <td>63 565</td>
+                      <td>40 245 783</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('6', 'on');" onmouseout="rep_img('6', 'off');">
+					  <td style="color:white">6</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g1.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Parancsnok, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Parancsnok, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_6" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-1.html" rel="popup" style="font-weight: normal;">Sehol</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_6" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/30824.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:1)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 308</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>254</td>
+                      <td>189 637</td>
+                      <td>36 936 030</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('7', 'on');" onmouseout="rep_img('7', 'off');">
+					  <td style="color:white">7</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_7" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-6.html" rel="popup" style="font-weight: normal;">.Bambi.</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_7" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70422.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:6)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 473</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>326</td>
+                      <td>229 510</td>
+                      <td>35 828 415</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('8', 'on');" onmouseout="rep_img('8', 'off');">
+					  <td style="color:white">8</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_8" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-5.html" rel="popup" style="font-weight: normal;">Uthred</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_8" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74608.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:5)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 927</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>262</td>
+                      <td>18 742</td>
+                      <td>30 048 570</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('9', 'on');" onmouseout="rep_img('9', 'off');">
+					  <td style="color:white">9</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_9" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-9.html" rel="popup" style="font-weight: normal;">kOtOri</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_9" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70789.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:9)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>1 479</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>458</td>
+                      <td>90 515</td>
+                      <td>29 907 402</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('10', 'on');" onmouseout="rep_img('10', 'off');">
+					  <td style="color:white">10</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz2_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Fórum adminisztrátor" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Fórum adminisztrátor"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_10" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-6.html" rel="popup" style="font-weight: normal;">-FREYA-</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_10" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/69852.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:6)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>1 171</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>313</td>
+                      <td>77 837</td>
+                      <td>28 884 860</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('11', 'on');" onmouseout="rep_img('11', 'off');">
+					  <td style="color:white">11</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz3_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter" alt="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_11" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-3.html" rel="popup" style="font-weight: normal;">Diiva</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_11" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/68410.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:3)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 971</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>224</td>
+                      <td>137 228</td>
+                      <td>28 147 337</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('12', 'on');" onmouseout="rep_img('12', 'off');">
+					  <td style="color:white">12</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g3.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_12" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-5.html" rel="popup" style="font-weight: normal;">Hakuna&nbsp;Matata</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_12" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/71781.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:5)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 047</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>223</td>
+                      <td>127 129</td>
+                      <td>26 897 813</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('13', 'on');" onmouseout="rep_img('13', 'off');">
+					  <td style="color:white">13</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_13" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-3.html" rel="popup" style="font-weight: normal;">enet</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_13" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/56006.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:3)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 995</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>285</td>
+                      <td>33 069</td>
+                      <td>24 003 914</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('14', 'on');" onmouseout="rep_img('14', 'off');">
+					  <td style="color:white">14</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g3.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_14" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-5.html" rel="popup" style="font-weight: normal;">.A.N.S.W.E.R.</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_14" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/73855.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:5)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>925</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>234</td>
+                      <td>94 005</td>
+                      <td>23 632 304</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('15', 'on');" onmouseout="rep_img('15', 'off');">
+					  <td style="color:white">15</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp5_g2.png" width="49" height="19" valign="top" title="Planéta rang: Admirális, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Admirális, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_15" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-9.html" rel="popup" style="font-weight: normal;">Senator&nbsp;Binks</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_15" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/30482.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:9)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>489 019</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>2 463</td>
+                      <td>978 102</td>
+                      <td>23 296 096</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('16', 'on');" onmouseout="rep_img('16', 'off');">
+					  <td style="color:white">16</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp5_g2.png" width="49" height="19" valign="top" title="Planéta rang: Admirális, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Admirális, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_16" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-8.html" rel="popup" style="font-weight: normal;">pitetomi</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_16" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/58910.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:8)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>10 152</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>1 858</td>
+                      <td>976 390</td>
+                      <td>23 154 527</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('17', 'on');" onmouseout="rep_img('17', 'off');">
+					  <td style="color:white">17</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_17" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-7.html" rel="popup" style="font-weight: normal;">fendt</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_17" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/39452.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:7)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>562</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>145</td>
+                      <td>24 181</td>
+                      <td>19 018 708</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('18', 'on');" onmouseout="rep_img('18', 'off');">
+					  <td style="color:white">18</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_18" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-4.html" rel="popup" style="font-weight: normal;">--&nbsp;Doom&nbsp;and&nbsp;Death&nbsp;--</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_18" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70713.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:4)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>7 882</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>847</td>
+                      <td>295 297</td>
+                      <td>17 260 027</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('19', 'on');" onmouseout="rep_img('19', 'off');">
+					  <td style="color:white">19</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_19" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-8.html" rel="popup" style="font-weight: normal;">Cobra</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_19" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/73843.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:8)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 028</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>323</td>
+                      <td>94 489</td>
+                      <td>15 176 407</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('20', 'on');" onmouseout="rep_img('20', 'off');">
+					  <td style="color:white">20</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp3_g2.png" width="49" height="19" valign="top" title="Planéta rang: Kapitány, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Kapitány, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_20" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-10.html" rel="popup" style="font-weight: normal;">Fundamenta</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_20" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/61845.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:10)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_down.gif"></td>
+                      <td>-9 910</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>1 360</td>
+                      <td>580 993</td>
+                      <td>13 975 626</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('21', 'on');" onmouseout="rep_img('21', 'off');">
+					  <td style="color:white">21</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_21" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-10.html" rel="popup" style="font-weight: normal;">X&nbsp;Birodalom</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_21" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/72175.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:10)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>4 112</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>330</td>
+                      <td>47 269</td>
+                      <td>12 721 768</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('22', 'on');" onmouseout="rep_img('22', 'off');">
+					  <td style="color:white">22</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_22" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-8.html" rel="popup" style="font-weight: normal;">.:&nbsp;Kovalsky&nbsp;:.</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_22" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70047.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:8)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 470</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>141</td>
+                      <td>52 374</td>
+                      <td>11 933 831</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('23', 'on');" onmouseout="rep_img('23', 'off');">
+					  <td style="color:white">23</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz2_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Fórum adminisztrátor" alt="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Fórum adminisztrátor"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_23" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-3.html" rel="popup" style="font-weight: normal;">Tantalusz</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_23" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/39236.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:3)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>7 694</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>671</td>
+                      <td>155 253</td>
+                      <td>11 782 097</td>
+                    </tr>
+					<tr><td colspan='11'><!-- JavaScript tag: 1578595 -->
+<div style="margin: 10px 0px; text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7994681609626320";
+/* 728x90 */
+google_ad_slot = "0095448402";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></td></tr>
+                    <tr onmouseover="rep_img('24', 'on');" onmouseout="rep_img('24', 'off');">
+					  <td style="color:white">24</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_24" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-8.html" rel="popup" style="font-weight: normal;">Mache-X41</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_24" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74890.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:8)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 682</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>198</td>
+                      <td>5 460</td>
+                      <td>10 631 725</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('25', 'on');" onmouseout="rep_img('25', 'off');">
+					  <td style="color:white">25</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz3_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Kapitány, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter" alt="Planéta rang: Kapitány, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_25" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-4.html" rel="popup" style="font-weight: normal;">.O.l.d.&nbsp;&nbsp;.W.a.r.r.i.o.r.</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_25" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70739.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:4)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>698 157</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>1 325</td>
+                      <td>434 004</td>
+                      <td>10 499 301</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('26', 'on');" onmouseout="rep_img('26', 'off');">
+					  <td style="color:white">26</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_26" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-7.html" rel="popup" style="font-weight: normal;">joci56</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_26" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/16220.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:7)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>791</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>218</td>
+                      <td>35 159</td>
+                      <td>9 781 068</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('27', 'on');" onmouseout="rep_img('27', 'off');">
+					  <td style="color:white">27</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_digitrox.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_27" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-5.html" rel="popup" style="font-weight: normal;">Dodoplanetreloaded</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_27" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74564.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:5)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 869</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>243</td>
+                      <td>9 559</td>
+                      <td>9 577 413</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('28', 'on');" onmouseout="rep_img('28', 'off');">
+					  <td style="color:white">28</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_28" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-6.html" rel="popup" style="font-weight: normal;">OrloN</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_28" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/62707.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:6)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>7 216</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>528</td>
+                      <td>117 658</td>
+                      <td>9 208 223</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('29', 'on');" onmouseout="rep_img('29', 'off');">
+					  <td style="color:white">29</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz3_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Hadügyminiszter"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_29" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-7.html" rel="popup" style="font-weight: normal;">*TheCrow*</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_29" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/8654.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:7)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>8 000</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>770</td>
+                      <td>294 098</td>
+                      <td>9 055 597</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('30', 'on');" onmouseout="rep_img('30', 'off');">
+					  <td style="color:white">30</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_30" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-7.html" rel="popup" style="font-weight: normal;">reznor</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_30" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74584.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:7)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 897</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>491</td>
+                      <td>125 433</td>
+                      <td>8 061 834</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('31', 'on');" onmouseout="rep_img('31', 'off');">
+					  <td style="color:white">31</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g3.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Hadászati miniszter, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_31" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-3.html" rel="popup" style="font-weight: normal;">Narn</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_31" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/7114.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:3)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>8 548</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>855</td>
+                      <td>252 712</td>
+                      <td>7 084 515</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('32', 'on');" onmouseout="rep_img('32', 'off');">
+					  <td style="color:white">32</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_32" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-7.html" rel="popup" style="font-weight: normal;">-SzekelyFold-</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_32" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74635.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:7)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>7 865</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>820</td>
+                      <td>261 904</td>
+                      <td>5 996 385</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('33', 'on');" onmouseout="rep_img('33', 'off');">
+					  <td style="color:white">33</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_33" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-5-4.html" rel="popup" style="font-weight: normal;">new&nbsp;nemesis</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_33" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/64217.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:5:4)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_down.gif"></td>
+                      <td>-503 061</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>842</td>
+                      <td>276 544</td>
+                      <td>5 885 450</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('34', 'on');" onmouseout="rep_img('34', 'off');">
+					  <td style="color:white">34</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_pirate.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_34" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-4.html" rel="popup" style="font-weight: normal;">Jerrry</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_34" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/71684.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:4)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>8 724</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>1 128</td>
+                      <td>347 824</td>
+                      <td>5 882 622</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('35', 'on');" onmouseout="rep_img('35', 'off');">
+					  <td style="color:white">35</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_35" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-2.html" rel="popup" style="font-weight: normal;">Sirkan</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_35" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/71693.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:2)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>2 721</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>768</td>
+                      <td>210 419</td>
+                      <td>5 742 802</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('36', 'on');" onmouseout="rep_img('36', 'off');">
+					  <td style="color:white">36</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_36" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-4.html" rel="popup" style="font-weight: normal;">imbolyogazigazi</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_36" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/67526.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:4)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>8 190</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>950</td>
+                      <td>292 009</td>
+                      <td>5 677 847</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('37', 'on');" onmouseout="rep_img('37', 'off');">
+					  <td style="color:white">37</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_37" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-10.html" rel="popup" style="font-weight: normal;">Winterfell</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_37" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74095.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:10)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 149</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>337</td>
+                      <td>85 841</td>
+                      <td>5 553 897</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('38', 'on');" onmouseout="rep_img('38', 'off');">
+					  <td style="color:white">38</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_38" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-2.html" rel="popup" style="font-weight: normal;">Plut0Utodja</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_38" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/70678.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:2)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>2 424</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>886</td>
+                      <td>63 275</td>
+                      <td>5 333 132</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('39', 'on');" onmouseout="rep_img('39', 'off');">
+					  <td style="color:white">39</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_39" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-9.html" rel="popup" style="font-weight: normal;">geos</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_39" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/56090.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:9)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>7 559</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>709</td>
+                      <td>250 321</td>
+                      <td>5 147 713</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('40', 'on');" onmouseout="rep_img('40', 'off');">
+					  <td style="color:white">40</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz10_tp0_g1.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Parancsnok, Szövetség rang: Parancsnok" alt="Planéta rang: Közlegény, Galaxis rang: Parancsnok, Szövetség rang: Parancsnok"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_40" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-1.html" rel="popup" style="font-weight: normal;">wolf2</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_40" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/8951.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:1)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>118 767</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>247</td>
+                      <td>43 187</td>
+                      <td>4 963 331</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('41', 'on');" onmouseout="rep_img('41', 'off');">
+					  <td style="color:white">41</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp1_g2.png" width="49" height="19" valign="top" title="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Örmester, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_41" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-2.html" rel="popup" style="font-weight: normal;">NorthrnRebels</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_41" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/4250.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:2)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 585</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>355</td>
+                      <td>110 269</td>
+                      <td>4 796 676</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('42', 'on');" onmouseout="rep_img('42', 'off');">
+					  <td style="color:white">42</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_khaduuii.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_42" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-9.html" rel="popup" style="font-weight: normal;">Sensas</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_42" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74862.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:9)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>6 455</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>445</td>
+                      <td>66 073</td>
+                      <td>4 178 433</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('43', 'on');" onmouseout="rep_img('43', 'off');">
+					  <td style="color:white">43</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_43" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-6.html" rel="popup" style="font-weight: normal;">nabinia</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_43" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/57698.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:6)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>1 428</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>389</td>
+                      <td>97 435</td>
+                      <td>3 438 106</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('44', 'on');" onmouseout="rep_img('44', 'off');">
+					  <td style="color:white">44</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp2_g2.png" width="49" height="19" valign="top" title="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Hadnagy, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_44" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-2-3.html" rel="popup" style="font-weight: normal;">-=Csingiling=-</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_44" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/71689.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:2:3)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>20 649</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>933</td>
+                      <td>259 990</td>
+                      <td>3 307 245</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('45', 'on');" onmouseout="rep_img('45', 'off');">
+					  <td style="color:white">45</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_phantom.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_45" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-4-10.html" rel="popup" style="font-weight: normal;">Farkas</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_45" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74882.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:4:10)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>1 009</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>290</td>
+                      <td>18 385</td>
+                      <td>2 984 734</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('46', 'on');" onmouseout="rep_img('46', 'off');">
+					  <td style="color:white">46</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_xchysch.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_46" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-3-5.html" rel="popup" style="font-weight: normal;">HitForYou</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_46" align="right" valign="top" src="/Themes/images/gal6_takaro_1C.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/74646.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:3:5)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>948</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>269</td>
+                      <td>44 119</td>
+                      <td>2 885 169</td>
+                    </tr>
+					
+                    <tr onmouseover="rep_img('47', 'on');" onmouseout="rep_img('47', 'off');">
+					  <td style="color:white">47</td>
+                      <td style="width: 15px; margin-left: 0px; padding-left: 0px; padding-top: 0px; padding-right:0px; vertical-align: middle;" width="15" align="center" valign="top"><img src="http://galacticax.com/Themes/images/races/kicsi_human.gif"></td>
+<td style="background-color:; padding-left: 0px; padding-top: 0px; width: 49px; padding-right:3px;" width="49"><img src="/Themes/images/rang/sz1_tp0_g2.png" width="49" height="19" valign="top" title="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag" alt="Planéta rang: Közlegény, Galaxis rang: Tag, Szövetség rang: Tag"/></td>
+		<td style="background-color:; vertical-align: middle; padding-top: 0px; width: 92px; padding-left: 0px;" align="left" width="92" valign="top">
+			<div id="takaro" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 85px;"><img id="name_takaro_47" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px; margin-right: 2px;"></div>
+				<div style="margin-left: 0em; width: 92px; overflow: hidden; text-align: left; padding-left: 3px; font-weight: normal;">
+					<a href="/popup/planet/93-1-1-6.html" rel="popup" style="font-weight: normal;">Event&nbsp;Horizon</a>
+				</div>
+			</div>
+		</td>
+<td style="background-color:; width: 15px; padding-left: 0px; padding-right:0px; vertical-align: middle;" valign="middle" width="15"><a class="flag" href="/popup/region/93.html" rel="popup"
+			title="Haiti (Haïti)"><img src="http://galacticax.com/Themes/images/flags/flag_HT.gif"></a></td>
+<td style="background-color:; width: 85px; padding-left: 2px; vertical-align: middle;" valign="top" width="85" align="left">
+			<div id="takaro_alliance" style="overflow: hidden; height: 21px; width: 17px; margin-top: -4px; position: absolute; margin-left: 43px;"><img id="alliance_takaro_47" align="right" valign="top" src="/Themes/images/gal6_takaro_21.png" style="padding-top: 1px;"></div>
+				<div style="margin-left: 0em; width: 50px; overflow: hidden; font-weight: normal;">
+					<a href="/popup/alliance/30882.html" rel="popup" style="font-weight: normal;">#AHA</a>
+				</div>
+			</div>
+		</td>
+                      <td>(93:1:1:6)</td>
+                      <td><img src="http://galacticax.com/Themes/images/arrow_up.gif"></td>
+                      <td>5 562</td>
+                      <td align="center"><img src="/Themes/images/contracts/0.png" alt="" title="" /></td>
+                      <td>158</td>
+                      <td>1 408</td>
+                      <td>2 778 661</td>
+                    </tr>
+					
+                  </tbody>
+                </table>
+<!-- JavaScript tag: 1578596 -->
+<div style="margin: 10px 0px; text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7994681609626320";
+/* 728x90 */
+google_ad_slot = "0095448402";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+                <!-- WIDGET [portal_pager] STRT -->
+				<SCRIPT language="JavaScript"> function submitSelectTop6FormDown() { document.selectDown.submit(); }</SCRIPT>
+                  <div class="portal_pager ">
+                    <form name="selectDown" method="post" action="" class="oneliner">
+                      <div class="control">
+                        <a class="button width40" href="93.html?offset=0"><span class="lft"> </span><span class="txt">&lt;&lt;</span><span class="rgt"> </span></a><select name="selectOffsetDown" onChange="javascript: submitSelectTop6FormDown()">
+						<option value="0" selected>1 - 47</option>
+						</select><a class="button width40" href="93.html?offset=0"><span class="lft"> </span><span class="txt">&gt;&gt;</span><span class="rgt"> </span></a>
+                      </div>
+                    </form>
+                  </div>
+                <!-- WIDGET [portal_pager] STOP -->
+                <div class="clearing panel-clearing"></div>
+              </div>
+            </div>
+          <!-- WIDGET [panel_nohelp] STOP -->
+        </div>

@@ -1,0 +1,98 @@
+
+
+.layout {
+	display: block;
+	position: relative;
+	clear: both;
+}
+.layout .layout-wrapper {
+	display: block;
+}
+.layout .ie-display-correct {
+	height: 0px;
+	overflow: hidden;
+}
+.layout .column {
+	display: block;
+	position: relative;
+	float: left;
+	width: 100%;
+}
+.layout .column-wrapper {
+	display: block;
+	width: auto;
+}
+.layout .contents {
+	margin: 0px 10px;
+	padding: 10px 0px;
+}
+.gap10 {
+	margin: -10px -5px 0px -5px;
+	/* margin-bottom: -15px!ie; */
+}
+.gap10 .layout-wrapper {
+	margin-bottom: -10px;
+}
+.gap10 .column-wrapper {
+	margin: 10px 5px 0px 5px;
+}
+.gap10 .gap-correction {
+	display: block;
+}
+.column2 .column {
+	width: 49.9%;
+}
+.column3 .column {
+	width: 33.3%;
+}
+.column5 .column {
+	width: 20%;
+}
+.layout .columnextra {
+	display: block;
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.column3 .columnextra {
+	width: 66.5%;
+}
+
+/*
+.layout {
+	display: block;
+	position: relative;
+	clear: both;
+	margin-top: -20px;
+}
+.layout span {
+	display: block;
+}
+.layout span .column {
+	display: block;
+	position: relative;
+	float: left;
+	width: 20%;
+}
+.layout span .column span {
+	background-color: #212121;
+	width: auto;
+}
+.layout span .column span .contents {
+	margin: 0px 10px;
+	padding: 10px 0px;
+}
+.gap10 {
+	margin: 0px -5px 0px -5px;
+	top: -5px!ie;
+	margin-bottom: -15px!ie;
+}
+.gap10 span {
+	magin-bottom: -10px;
+}
+.gap10 .column span {
+	margin: 0px 5px 10px 5px;
+}
+*/
+

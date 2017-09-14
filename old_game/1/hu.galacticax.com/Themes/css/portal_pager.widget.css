@@ -1,0 +1,16 @@
+
+.portal_pager {
+	width: 280px;
+  margin: 10px auto;
+}
+.portal_pager form .selectbox,
+.portal_pager form select {
+	width: 120px;
+	text-align: center;
+	margin: 0px 5px;
+}
+.portal_pager form .button {
+	margin: 0px 5px!important;
+}
+
+

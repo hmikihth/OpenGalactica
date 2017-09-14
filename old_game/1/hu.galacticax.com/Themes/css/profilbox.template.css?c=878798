@@ -1,0 +1,22 @@
+
+#profilbox {
+	float: right;
+	width: 192px;
+	/*height: 520px;  */
+	margin-top: 10px;
+	/*background-color: #30302f;*/
+        background: url(/Themes/images/hatter.png);
+	border: 1px solid #464646;
+	overflow: hidden;
+}
+.ie #profilbox {
+	height: 535px;
+}
+#page.profilbox #contents {
+	width: 964px;
+	float: left;
+}
+#page.profilbox #contents .panel {
+	width: 959px;
+}
+

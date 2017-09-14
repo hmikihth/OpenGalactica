@@ -1,0 +1,33 @@
+
+#ships .panel-imagebar-left {
+	background-image: url(http://galacticax.com/Themes/images/bars/altalanosship_bal.jpg);
+    top:165px;
+}
+#ships .panel-imagebar-right {
+	background-image: url(http://galacticax.com/Themes/images/bars/altalanosship_jobb.jpg);
+
+        top:165px;
+
+}
+.shipbox {
+	display: block;
+	float: left;
+	width: 24.9%;
+	text-align: center;
+	margin: 10px 0px;
+}
+.portal-typo .content .shipbox a.shipimage:hover {
+	background-color: transparent;
+}
+.shipbox a {
+	margin: 0px auto;
+	clear: both;
+}
+.shipbox a.shipimage {
+	display: block;
+	margin-bottom: 10px;
+}
+.shipbox a img {
+	border: none;
+}
+

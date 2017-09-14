@@ -1,0 +1,22 @@
+
+#email_notification table,
+#sms_notification table {
+	margin: 10px auto;
+	width: 70%;
+}
+#email_notification .col2,
+#sms_notification .col2 {
+	text-align: center;
+	width: 40px;
+}
+#email_notification p {
+	text-align: center;
+}
+#sms_notification #country {
+	width: 140px;
+}
+#sms_notification #phone_prefix,
+#sms_notification #credits_per_sms {
+	text-align: right;
+}
+

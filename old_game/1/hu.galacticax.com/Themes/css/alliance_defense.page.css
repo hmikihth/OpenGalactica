@@ -1,0 +1,26 @@
+
+#defense_lend_content table {
+	margin-top: 10px;
+}
+
+
+#defense_list .col2,
+#defense_list .col3 {
+	width: 120px;
+}
+#defense_list .col4 {
+	width: 40px;
+}
+#defense_list .col5 {
+	width: 150px;
+}
+#defense_list .col2,
+#defense_list .col3,
+#defense_list .col4,
+#defense_list .col5 {
+	text-align: center;
+}
+table#defense_list {
+	margin-top: 10px;
+}
+

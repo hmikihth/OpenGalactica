@@ -1,0 +1,61 @@
+
+#commander_election table {
+	width: 480px;
+}
+#commander_election .combobar {
+	margin: 10px 0px;
+}
+#commander_election #vote,
+#secretary_of_war_select #vote {
+	width: 200px;
+}
+
+
+#galaxy_invite .col4 {
+	width: 160px;
+	text-align: center;
+	color: white;
+}
+#galaxy_invite .col5 {
+	width: 90px;
+	text-align: center;
+}
+#galaxy_invite table {
+	margin-top: 10px;
+}
+#galaxy_invite input.text {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+
+#galaxy_invitation_accept form,
+#galaxy_application_accept form {
+	width: 480px;
+}
+#galaxy_invitation_accept .col4,
+#galaxy_application_accept .col4 {
+	text-align: center;
+	width: 90px;
+}
+
+
+#outvoting .col5,
+#outvoting .col6 {
+	text-align: center;
+}
+#outvoting .col3 {
+	width: 80px;
+}
+#outvoting .col4,
+#outvoting .col5 {
+	width: 120px;
+}
+#outvoting .col6 {
+	width: 90px;
+	background-color: transparent;
+}
+#outvoting .combobar {
+	margin: 10px; 0px;
+}
+

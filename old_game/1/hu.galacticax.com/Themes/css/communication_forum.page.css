@@ -1,0 +1,26 @@
+
+.tabs a.disabled {
+	color: #808080;
+}
+#forum_collect table {
+	margin-top: 10px;
+}
+#forum_collect .col3,
+#forum_collect .col4 {
+	text-align: center;
+}
+#forum_collect .col2 {
+	width: 250px;
+}
+#forum_collect .col3 {
+	width: 60px;
+}
+#forum_collect .col4 {
+	width: 80px;
+}
+#forum_collect .combobar .tabs
+{
+margin-right: 0px;
+margin-left: 0px;
+}
+

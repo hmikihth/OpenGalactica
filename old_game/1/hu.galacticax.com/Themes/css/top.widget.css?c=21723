@@ -1,0 +1,239 @@
+
+#logo1 {
+	/*position: absolute;
+	left: 926px;
+	top: 12px;
+	width: 39px;
+	height: 34px;
+	background: url(http://galacticax.com/Themes/images/gal6logo1.png) no-repeat;*/
+	position: absolute;
+  left: 873px;
+	top: 5px;
+	width: 57px;
+	height: 50px;
+}
+#logo2 {
+	position: absolute;
+	left: 872px;
+	top: 59px;
+	width: 89px;
+	height: 21px;
+	/*background: url(http://galacticax.com/Themes/images/gal6logo2.png) no-repeat;*/
+}
+#infobox {
+	position: absolute;
+	top: 20px;
+	/*width: 199px;*/
+	height: 131px;
+  background: url(/Themes/images/hatter.png);
+	/*background-color: #101010;*/
+	border: 1px solid #464646;
+	/*opacity: 0.7;*/
+	/*filter: alpha(opacity=70);  */
+	font-size: 10px;
+	font-weight: bold;
+	overflow: hidden;
+}
+#line1,
+#line2{
+	position: absolute;
+	left: 10px;
+	width: 275px;
+	height: 0px;
+	border-bottom: 1px solid #464646;
+	top: 55px;
+}
+#line3 {
+	position: absolute;
+	left: 150px;
+	width: 0px;
+	height: 54px;
+	border-left: 1px solid #464646;
+	top: 34px;
+}
+.ie6 #line1 {
+	top: 22px;
+}
+#line2 {
+	top: 108px;
+}
+.ie6 #line2 {
+	top: 96px;
+}
+#line3 {
+	top: 55px;
+}
+.ie6 #line3 {
+	top: 77px;
+}
+#planeta_l {
+	position: absolute;
+	left: 11px;
+	top: 7px;
+	color: white;
+}
+#planeta_r {
+	position: absolute;
+	right: 11px;
+	top: 7px;
+	color: #ffe4a6;
+	text-align: right;
+}
+
+#planeta_name {
+    position: absolute;
+    font-weight: bold;
+    font-size: 10px;
+    left: 92px;
+    top: 11px;
+    max-width: 90px;
+    color: #ffe4a6;
+    text-align: center;
+    overflow: hidden;
+}
+#planeta_name_koordi {
+	position: absolute;
+	font-weight: bold;
+	font-size: 9px;
+	left: 89px;
+	top: 29px;
+	color: #ffe4a6;
+	text-align: center;
+	overflow: hidden;
+}
+#pontok_l {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	left: 11px;
+	top: 64px;
+	color: #fffbd5;
+}
+#pontok_r {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	right: 155px;
+	top: 64px;
+	text-align: right;
+}
+#tp_l {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	left: 155px;
+	top: 64px;
+	color: #fffbd5;
+}
+#tp_r {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	right: 18px;
+	top: 64px;
+	text-align: right;
+}
+#rang_l {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	left: 155px;
+	top: 85px;
+	color: #fffbd5;
+}
+#rang_r {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	right: 18px;
+	top: 85px;
+	text-align: right;
+}
+#credit_l {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	left: 11px;
+	top: 113px;
+	height: 20px;
+	color: #fffbd5;
+}
+#credit_r {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	right: 18px;
+	top: 113px;
+	text-align: right;
+}
+#toplist_l {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	left: 11px;
+	top: 85px;
+}
+#toplist_r {
+	position: absolute;
+	font-weight: bold;
+	font-size: 10px;
+	right: 155px;
+	top: 85px;
+	color: #fffbd5;
+	text-align: right;
+}
+#toplist_r img {
+	vertical-align: -2px;
+}
+#tippbox {
+	background: transparent url(/Themes/images/tips/smalltip_bg_general.png) top left no-repeat;
+	position: absolute;
+	top: 50px;
+	right: 0px;
+	width: 403px;
+	height: 113px;
+	overflow: hidden;
+}
+.ie6 #tippbox {
+	padding-top: 0px;
+	height: 57px;
+}
+#tippnav {
+	position: absolute;
+	width: 40px;
+	left: 0px;
+}
+#tippInfo,
+#tippNext {
+	background: transparent;
+	border: none;
+	position: absolute;
+	top: 11px;
+	left: 224px;
+	width: 26px;
+	height: 26px;
+	text-indent: -100px;
+}
+#tippInfo:hover {
+	background: transparent url(Themes/images/tips/smalltip_info_on.png) top left no-repeat;
+}
+#tippInfo {
+	left: 2px;
+	top: 12px;
+}
+#tippNext:hover {
+	background: transparent url(Themes/images/tips/smalltip_arrow_on.png) top left no-repeat;
+}
+#tippText {
+	position: absolute;
+	top: 33px;
+	left: 68px;
+	height: 61px;
+	width: 321px;
+	padding: 7px 6px;
+	font-size: 11px;
+	font-family: Tahoma,Arial,Helvetica;
+	line-height: 15px;
+	overflow: hidden;
+}
+

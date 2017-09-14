@@ -1,0 +1,48 @@
+
+html, body {
+	height: auto;
+}
+#container {
+	min-height: 0px;
+	width: 975px;
+	margin: 0px auto;
+}
+* html #container {
+	height: auto;
+}
+#page.general #contents {
+	width: 975px;
+	float: left;
+	margin-top: -10px;
+}
+#page.general {
+	padding-bottom: 35px;
+	position: relative;
+}
+#foot {
+	border: none;
+	padding: 0px;
+	margin: -30px auto 0px auto;
+}
+#foot a {
+	color: #464646;
+	text-decoration: none;
+}
+#foot a:hover {
+	color: white;
+	background-color: #464646;
+}
+#foot .combobar {
+	margin: 0px;
+}
+#foot .combobar .floatright {
+	padding-top: 5px;
+}
+#foot .combobar .pager {
+	margin: 0px 220px;
+	z-index: 1;
+}
+#foot .combobar .pager a {
+	font-size: 11px;
+}
+	

@@ -1,0 +1,62 @@
+
+#galaxy_profile_content {
+	width: 929px;
+	margin: 10px auto;
+}
+#galaxy_profile .profile {
+	margin-top: 10px;
+}
+#galaxy_profile .profile td.col-planetname a.flag img {
+	margin-left: 5px;
+	vertical-align: -1px;
+}
+#galaxy_profile .profile .col3 {
+	text-align: center;
+}
+#alliances .col3 img {
+	margin-right: 5px;
+	vertical-align: -5px;
+}
+#alliances .col7 img {
+	margin: 0px 1px 0px 0px;
+}
+#alliances .col7 {
+	text-align: center;
+}
+#galaxy_temp hr {
+	border: none;
+	clear: both;
+	margin: 10px 0px;
+	border-top: 1px solid #797979;
+}
+#region_input {
+	width: 200px;
+	margin-right: 10px;
+}
+#cast_input {
+	width: 120px;
+	margin-right: 10px;
+}
+#name {
+	width: 100px;
+}
+#field_name .button {
+	margin-right: 0px;
+	float: right;
+}
+
+
+
+#galaxy_profile_modify #name,
+#galaxy_profile_modify #slogan {
+	width: 400px;
+}
+#galaxy_profile_modify #avatar {
+	width: 290px;
+}
+#field_avatar p {
+	padding-top: 10px;
+	margin-left: 190px;
+	clear: both;
+}
+

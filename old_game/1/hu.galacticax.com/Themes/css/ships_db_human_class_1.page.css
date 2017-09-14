@@ -1,0 +1,38 @@
+
+table tbody tr td.vr,
+table thead tr th.vr {
+	padding: 0px;
+	width: 1px;
+	background-color: #464646;
+}
+.prerequisites .col1,
+.prerequisites .col2 {
+	background-color: #212121;
+	white-space: nowrap;
+}
+.prerequisites .col3 {
+	padding: 0px;
+}
+.prerequisites .col3,
+.prerequisites .col4 {
+	background-color: transparent;
+}
+.prerequisites .col4 {
+	text-align: right;
+}
+.properties {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.prerequisites {
+	margin-top: 5px;
+}
+div#killmatrix_link {
+	margin: 10px;
+}
+div#killmatrix_link img {
+	vertical-align: -6px;
+	border: none;
+	margin-right: 10px;
+}
+

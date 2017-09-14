@@ -1,0 +1,28 @@
+
+#region_profile_content {
+	width: 680px;
+	margin: 10px auto;
+}
+#region_profile .profile {
+	margin-top: 10px;
+}
+#region_profile .profile td a.flag img {
+	margin-left: 5px;
+	vertical-align: -1px;
+}
+#region_profile .profile td.col3,
+#region_profile .profile td.col5,
+#region_profile .profile td.col6 {
+	vertical-align: top;
+	color: white;
+}
+#region_profile .profile th {
+	text-align: center;
+}
+.popup_general #alliance_navigator {
+	display: none;
+}
+.popup_general #region_profile .combobar {
+	display: none;
+}
+

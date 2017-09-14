@@ -1,0 +1,23 @@
+
+#planet_profile_content {
+	/*width: 980px;
+	margin: 10px auto;*/
+}
+#planet_profile .profile {
+	margin-top: 10px;
+}
+#planet_profile .profile .col3 {
+	text-align: center;
+	width: 290px;
+}
+#planet_profile .profile a.flag img {
+	margin-left: 5px;
+	vertical-align: -1px;
+}
+.popup_general #planet_navigator {
+	display: block;
+}
+.popup_general #planet_profile .combobar {
+	display: block;
+}
+

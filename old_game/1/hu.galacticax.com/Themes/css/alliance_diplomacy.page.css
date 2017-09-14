@@ -1,0 +1,81 @@
+
+#new_alliance_contract #alliance_search_result {
+	margin-top: 10px;
+}
+#new_alliance_contract #alliance_search_result table {
+	width: 420px;
+	margin: 0px auto;
+}
+#new_alliance_contract #alliance_search_result .col3 {
+	width: 40px;
+	text-align: center;
+}
+#contractType_input {
+	width: 200px;
+}
+
+
+#field_contract_opp_alliance_id a {
+	vertical-align: -17px;
+}
+
+
+#alliance_contracts .col1 {
+	width: 18px;
+}
+#alliance_contracts .col2 {
+	width: 60px;
+}
+#alliance_contracts .col5,
+#alliance_contracts .col6 {
+	width: 60px;
+}
+#alliance_contracts .col4 {
+	width: 120px;
+}
+#alliance_contracts .col7 {
+	width: 40px;
+}
+#alliance_contracts .col8 {
+	width: 120px;
+}
+#alliance_contracts .col4,
+#alliance_contracts .col5,
+#alliance_contracts .col6,
+#alliance_contracts .col7,
+#alliance_contracts .col8 {
+	text-align: center;
+}
+#alliance_contracts .contract-info img.icon {
+	cursor: pointer;
+}
+#alliance_contracts .contract-details td {
+	padding: 5px 10px;
+}
+#alliance_contracts .contract-details {
+	display: none;
+}
+#alliance_contracts tr.odd-odd td,
+#alliance_contracts tr.odd-even td {
+	background-color: #212121;
+}
+#alliance_contracts tr.even-odd td,
+#alliance_contracts tr.even-even td {
+	background-color: #1c1c1c;
+}
+#alliance_contracts tr.contract-state-3 td {
+	background-color: #861818;
+}
+#alliance_contracts div.contract-properties {
+	display: block;
+}
+#alliance_contracts span.contract-flag {
+	color: white;
+}
+#alliance_contracts .contract-details h3 {
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+

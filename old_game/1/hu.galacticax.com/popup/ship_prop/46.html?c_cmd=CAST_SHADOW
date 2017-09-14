@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+	<link rel="SHORTCUT ICON" href="http://galacticax.com/Themes/images/favicon.gif">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Galacticax - Shin - Lidérc - Vadász - osztályú hajó adatai</title>
+    <!--[if lt IE 7]>
+    <script src="/Themes/Scripts/IE7.js" type="text/javascript"></script>
+    <![endif]-->
+    <script language="javascript" src="/Themes/Scripts/jquery.js" type="text/javascript"></script>
+	<script src="/Themes/Scripts/css_browser_selector.js" type="text/javascript"></script>
+    <script language="javascript" src="/Themes/Scripts/panel.js" type="text/javascript"></script>
+    <script language="javascript" src="/Themes/Scripts/popup.js" type="text/javascript"></script>
+    <script language="javascript" src="/Themes/Scripts/checkboxes.js" type="text/javascript"></script>
+    <script language="javascript" src="/Themes/Scripts/table_decorator.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="/Themes/css/blank_tiny.template.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/forms_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/columns_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/tables_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/basic_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/panels_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/panel_nohelp.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/portal_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="/Themes/css/ships_db_human_class_1.page.css">
+   <link type="text/css" rel="stylesheet" href="/new/web/css/min-cast_no.css?h=bb8b4d85d2461b4e3b4cc690ff68dd78">
+  </head>
+  <body class="popup-tiny">
+    <div id="container">
+      <div id="page" class="popup">
+        <div id="contents">
+          <!-- WIDGET [panel_nohelp] STRT -->
+		   
+            <div class="panel panel-nohelp portal-typo ships-db phantom" id="ships_db_properties">
+              <h2>Shin / Lidérc&nbsp;- Vadász -&nbsp;osztályú hajó adatai</h2>
+              <div class="content" id="ships_db_human_content">
+                <div class="ie-display-correct">HIDE</div>
+                <table class="properties">
+                  <tbody>
+
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_human.gif"></td><th style="text-align:right">Faj</th><td style="color:white">Shin</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_oszt.gif"></td><th style="text-align:right">Osztály</th><td style="color:white">Vadász</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_cel.gif"></td><th style="text-align:right">Célpont sorrend</th><td style="color:white">1. Csh 2. Ro 3. Össz..</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_tipus.gif"></td><th style="text-align:right">Osztály</th><td style="color:white">shadow</td>
+                    </tr>
+				  </tbody>
+				</table>
+				<table class="properties" style="width:250px">
+                  <tbody>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_kezd.gif"></td><th style="text-align:right">Kezdemény</th><td style="color:white; text-align:right">180</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_elker.gif"></td><th style="text-align:right">Elkerülés</th><td style="color:white; text-align:right">45</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_fegyv.gif"></td><th style="text-align:right">Fegyverszám</th><td style="color:white; text-align:right">7</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_talal.gif"></td><th style="text-align:right">Találati Pontok</th><td style="color:white; text-align:right">66</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_sebz.gif"></td><th style="text-align:right">Sebzés</th><td style="color:white; text-align:right">6</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_hp.gif"></td><th style="text-align:right">Hp</th><td style="color:white; text-align:right">95</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="/Themes/images/metal.png"></td><th style="text-align:right">Fém</th><td style="color:white; text-align:right">1 600</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="/Themes/images/crystal.png"></td><th style="text-align:right">Kristály</th><td style="color:white; text-align:right">1 000</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="/Themes/images/narion.png"></td><th style="text-align:right">Narion</th><td style="color:white; text-align:right">400</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_uzema.gif"></td><th style="text-align:right">Üzemanyag</th><td style="color:white; text-align:right">10</td>
+                    </tr>
+				  </tbody>
+				</table>
+				<table class="properties" style="width:223px">
+                  <tbody>
+                    <tr>
+                      <td style="text-align:center"><img src="/Themes/images/time_1.png"></td><th style="text-align:right">Gyártási idő</th><td style="color:#0A952B; text-align:center">5</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_utaz_gal.gif"></td><th style="text-align:right">Utazási idő: Galaxis</th><td style="color:#0A952B; text-align:center">5</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_utaz_clus.gif"></td><th style="text-align:right">Utazási idő: Rendszer</th><td style="color:#0A952B; text-align:center">8</td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center"><img src="http://galacticax.com/Themes/images/ships/db/mini_utaz_univ.gif"></td><th style="text-align:right">Utazási idő: Univerzum</th><td style="color:#0A952B; text-align:center">11</td>
+                    </tr>
+                  </tbody>
+                </table>
+				<h3>Hatékonysági mátrix adatok</h3>
+                <div id="killmatrix_link"><a href="/popup/killmatrix.html?action=46"><img src="http://galacticax.com/Themes/images/portal_icon_killmatrix.gif">Hatékonysági mátrix adatok elérése</a></div>
+			    
+				
+                <p><p class='lead'>A Szellem nevű vadász kísérőhajója, mely biztosítja, hogy a nagyobb hajók ellen is hatékonyan támadhasson. Vadásznak tökéletes, a Szellemmel együtt pedig tekintélyes erőt képvisel. </p><p></p><p><h3>Tulajdonságai</h3>Zömök, vaskos hajótestét tíz fegyver teszi változatossá. Nem is beszélve arról, hogy fedélzetén két Mentalmage is helyet kaphat. Ez azt jelenti, hogy ez a hajó gondot okozhat a legnagyobb űrhadigépeknek is. Amíg a Mentalmage-ek a gondolataikkal élve megnyúzzák a legénységet, a plazmaágyúk szétlövik az ellenség hajóit.</p><p><h3>Gyártásához szükséges technológia</h3></p>
+				
+                
+				<!--REMOVE-->
+				<table class="prerequisites">
+                  <tbody>
+                    <tr>
+                      <td><img src="/Themes/images/epites.png" title="szükséges építés"></td><td>Vadász összeszerelő üzem</td>
+                      <td rowspan="2"><img src="http://galacticax.com/Themes/images/ships/db/hangvilla.gif"></td>
+                      <td rowspan="2"><img src="http://galacticax.com/Themes/images/ships/large/va_phantom.gif" title="Lidérc"></td>
+                    </tr>
+                    <tr>
+                      <td><img src="/Themes/images/fejlesztes.png" title="Szükséges fejlesztés"></td><td>Vadász-technológia</td>
+                    </tr>
+                  </tbody>
+                </table>
+				<!--/REMOVE-->
+				
+                <div class="clearing panel-clearing"></div>
+              </div> <div id="fb-root" style="position:relative; top:0px; left:10px; height:120px">
+<head>
+<meta property="og:title" content="Galacticax">
+<meta property="og:type" content="game">
+<meta property="og:url" content="http://galacticax.com/">
+<meta property="og:image_src" content="http://galacticax.com/Themes/images/favicon.gif;">
+<meta property="og:site_name" content="Galacticax.com">
+<meta property="fb:admins" content="100000425876831">
+<meta property="fb:app_id" content="182773575096700">
+<link rel="image_src" href="http://galacticax.com/Themes/images/favicon.gif">
+</head>
+<p><fb:like layout="button_count" show_faces="false" width="450" height="60" action="like" colorscheme="dark" v="wall"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"></fb:like></p></div>
+
+ <script>
+      window.fbAsyncInit = function() {
+        FB.init({appId: '182773575096700', status: true, cookie: true,
+                 xfbml: true});
+      };
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol +
+          '//connect.facebook.net/hu_HU/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+    </script>
+
+            </div>
+          <!-- WIDGET [panel_nohelp] STOP -->
+        </div>
+        <div class="clearing"></div>
+      </div>
+<div id="foot">
+	<div class="combobar">
+		<div class="floatright">&copy; 2002-2013 Online Rights Keeper Ltd.</div>
+		<div class="pager"><a href="/main.html">Gal6 Univerzum</a></div>
+	</div>
+</div>
+    </div>
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30500229-1']);
+  _gaq.push(['_setDomainName', '.galacticax.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>

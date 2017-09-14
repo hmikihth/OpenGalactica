@@ -1,0 +1,123 @@
+
+
+.panel_facebox_wrapper {
+	position: absolute;
+	max-width: 450px;
+	min-width: 320px;
+	left: 100px;
+	top: 100px;
+	z-index: 999;
+}
+
+.panel_facebox_wrapper .panel {
+	margin-top: 0px;
+}
+
+.panel_facebox {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.panel_facebox h2 {
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-radius: 5px;
+}
+
+.panel_facebox_wrapper .content-backplane {
+	position: absolute;
+	display: block;
+	background: #fff;
+	border: solid 5px #fff;
+	color: #000;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	opacity: 0.2;
+	left: -10px;
+	top: -10px;
+	right: -10px;
+	bottom: -10px;
+	z-index: -1;
+}
+
+/* Galacticax BENASAG */
+
+.panel_facebox_wrapper {
+	border: none;
+	max-width: none;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	text-align: center;
+}
+
+.panel_facebox_wrapper .content-backplane {
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: none;
+	background: #414141;
+	opacity: 0.5;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+}
+
+.panel_facebox_wrapper .panel {
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: none;
+	background: transparent url(http://galacticax.com/Themes/images/tips/infobox_general_bg.png) no-repeat;
+	width: 580px!important;
+	height: 406px;
+	margin: 120px auto 0px;
+}
+.panel_facebox_wrapper .panel .content {
+	height: 249px;
+	margin: 20px 20px 0px 117px;
+  position: relative;
+}
+.panel_facebox_wrapper .panel h2 {
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	background: none;
+	margin: 35px 0px 0px 97px;
+	width: 481px;
+	height: 30px;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 14px;
+	text-align: left;
+	text-indent: 70px;
+	padding-top: 12px;
+}
+.panel_facebox_wrapper .panel h2 a.close {
+	display: block;
+	text-indent: -100px;
+	overflow: hidden;
+	position: absolute;
+	top: 45px;
+	right: 20px;
+	height: 16px;
+	width: 16px;
+}
+.panel_facebox_wrapper .combobar {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+.panel_facebox .content p a {
+	font-weight: bold;
+}
+
+

@@ -1,0 +1,28 @@
+
+#offensive_schedule .col4 {
+	width: 80px;
+	text-align: center;
+}
+#offensive_schedule .col5 {
+	width: 120px;
+	text-align: center;
+}
+#offensive_schedule .col6 {
+	text-align: center;
+	width: 150px;
+}
+#offensive_schedule .col6 .button {
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+#offensive_schedule .col1 {
+	width: 32px;
+	text-align: center;
+}
+#offensive_schedule .col1 img {
+	margin-top: 1px;
+}
+#offensive_schedule table {
+	margin-top: 10px;
+}
+

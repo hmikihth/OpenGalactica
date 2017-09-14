@@ -1,0 +1,21 @@
+
+#credit_history table,
+#transfers table,
+#purchased_extras table {
+	width: 620px;
+	margin: 0px auto;
+}
+#credit_history .col3,
+#credit_history .col4,
+#transfers .col3,
+#purchased_extras .col3,
+#purchased_extras .col4 {
+	width: 80px;
+}
+#credit_history .col5,
+#transfers .col4,
+#purchased_extras .col5 {
+	width: 120px;
+	text-align: center;
+}
+

@@ -1,0 +1,21 @@
+
+#applicants table {
+	width: 70%;
+	margin-bottom: 10px;
+}
+#applicants .col3 {
+	width: 100px;
+}
+#applicants .col4 {
+	width: 140px;
+}
+
+
+#pupils table {
+	margin-bottom: 10px;
+}
+#pupils .col6 {
+	width: 40px;
+	text-align: center;
+}
+

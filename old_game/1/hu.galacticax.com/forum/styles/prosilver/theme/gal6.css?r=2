@@ -1,0 +1,392 @@
+body#phpbb{
+    font-size: 11px;
+}
+a.button:hover{
+    text-decoration: none;
+}
+div p.rules{
+    background-color: #5F1717;
+}
+#tabs li a{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+    margin-bottom: 5px;
+    height: auto;
+}
+#tabs li a:hover{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+}
+#tabs li a:hover span{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+}
+#tabs li.activetab a{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+    border: 0;
+}
+#tabs li.activetab a span{
+    padding-bottom: 6px;
+}
+#tabs li.activetab a:hover{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+}
+#tabs li.activetab a:hover span{
+    background: none repeat scroll 0 0 transparent;
+    background-color: #222222;
+}
+div#cp-main{
+    width: 100%;
+}
+
+div#postingbox h3{
+    border: 0;
+    text-align: center;
+}
+div#postingbox dt{
+    padding-top: 8px;
+}
+div .panel{
+    background-color: #1c1c1c;
+}
+div#cp-main .panel{
+    background-color: #1c1c1c;
+}
+div blockquote{
+    border: 1px solid #666666;
+    background: none no-repeat scroll 6px 8px #282828;
+}
+div blockquote blockquote{
+    border: 1px solid #666666;
+    background: none no-repeat scroll 6px 8px #282828;
+}
+div.bg1{
+    background-color: #1c1c1c;
+}
+div.bg2{
+    background-color: #1c1c1c;
+}
+div.lapozo{
+    margin-right: 10px;
+}
+div.lapozo input{
+    margin: 0;
+    width: 30px;
+    cursor: auto;
+}
+div.lapozo div.page-number{
+    margin: 4px;
+}
+
+.post_row{
+    padding: 0 10px;
+}
+
+.post_row .inner{
+    padding: 10px;
+}
+
+.post_row .post_right{
+    width: 793px;
+    margin-left: 10px;
+    float: right;
+}
+
+.post_row .post_left{
+    width: 90px;
+    float: right;
+}
+
+.post_row .author{
+    margin-bottom: 5px;
+}
+
+.post_row .cont{
+    min-height: 54px;
+    margin-bottom: 5px;
+}
+
+#g6_list_table a.forumtitle{
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#g6_list_table a.topictitle{
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#g6_list_table .post0{
+    display: none;
+}
+
+blockquote 
+{
+    background-color: #101010;
+}
+
+p.top-gal6time{
+    margin-bottom: 5px;
+    font-size: inherit;
+    
+}
+p.top-gal6time span{
+    margin-bottom: 5px;
+    font-size: inherit;
+    color:#07B836;
+}
+
+#g6_list_table{
+    margin: 10px 10px 0;
+    border:0px solid black;
+    overflow:hidden;
+    width: 913px;
+}
+
+#g6_list_table th{
+    padding: 0 2px 5px 2px;
+}
+
+#g6_list_table td{
+    border-top: 1px solid black;
+    border-bottom: 0;
+    padding: 5px;
+}
+
+#g6_list_table td.col1{
+    border-left: 1px solid black;
+    padding: 2px 2px 2px 7px;
+}
+
+#g6_list_table td.col2{
+    
+}
+
+#g6_list_table td.col3{
+    border-left: 1px solid black;
+}
+
+#g6_list_table td.col4{
+    border-left: 1px solid black;
+}
+
+#g6_list_table td.col5{
+    width:300px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#g6_list_table td.col-bottom{
+    border-top: 1px solid black;
+}
+
+#tab{
+    margin-left: 10px;   
+}
+#tab ul, #tab li{
+    list-style-type: none;
+}
+#tab li{
+    float: left;
+    background-color: #444444;
+    padding: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* TABOK */
+.clr{
+	clear: both;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#fTabs{
+        width: 933px;
+        margin-left: 10px;
+}
+#fTabs #ftTop{
+	font-family:'Verdana';
+	font-size:11px;
+	color:#FFFFFF;
+}
+#fTabs #ftTop .left{
+	float: left;
+	width: 660px;
+}
+#fTabs #ftTop .right{
+	float: right;
+	width: 80px;
+}
+#fTabs #ftTop ul,
+#fTabs #ftTop li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#fTabs #ftTop li{
+	float: left;
+	height: 36px;
+	padding-right: 5px;
+	margin-right: 2px;
+}
+#fTabs #ftTop li.right-tab{
+    margin-right: 0px;
+}
+#fTabs .default li a{
+        outline: none;
+	text-decoration: none;
+	color:#FFFFFF;
+	display: block;
+	padding: 11px 5px;
+}
+:focus {
+  -moz-outline-style: none;
+}
+#fTabs .default li{
+	background: url(../imageset/tabs/button1_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .default li div{
+	background: url(../imageset/tabs/button1_left.png) center left no-repeat;
+	float: left;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .default li div div{
+	background: url(../imageset/tabs/button1_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+#fTabs .default .active{
+	background: url(../imageset/tabs/on_button1_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .default .active div{
+	background: url(../imageset/tabs/on_button1_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .default .active div div{
+	background: url(../imageset/tabs/on_button1_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Digtrox */
+#fTabs .digitrox .hover{
+	background: url(../imageset/tabs/button1_cast_digtrox_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .digitrox .hover div{
+	background: url(../imageset/tabs/button1_cast_digtrox_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .digitrox .hover div div{
+	background: url(../imageset/tabs/button1_cast_digtrox_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Human */
+#fTabs .human .hover{
+	background: url(../imageset/tabs/button1_cast_human_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .human .hover div{
+	background: url(../imageset/tabs/button1_cast_human_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .human .hover div div{
+	background: url(../imageset/tabs/button1_cast_human_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Pirate */
+#fTabs .pirate .hover{
+	background: url(../imageset/tabs/button1_cast_pirate_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .pirate .hover div{
+	background: url(../imageset/tabs/button1_cast_pirate_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .pirate .hover div div{
+	background: url(../imageset/tabs/button1_cast_pirate_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Rovar */
+#fTabs .rovar .hover{
+	background: url(../imageset/tabs/button1_cast_rovar_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .rovar .hover div{
+	background: url(../imageset/tabs/button1_cast_rovar_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .rovar .hover div div{
+	background: url(../imageset/tabs/button1_cast_rovar_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Techtro */
+#fTabs .techtro .hover{
+	background: url(../imageset/tabs/button1_cast_techtro_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .techtro .hover div{
+	background: url(../imageset/tabs/button1_cast_techtro_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .techtro .hover div div{
+	background: url(../imageset/tabs/button1_cast_techtro_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}
+
+/* Shin */
+#fTabs .shin .hover{
+	background: url(../imageset/tabs/button1_cast_shadow_right.png) center right no-repeat;
+	padding: 0 5px;
+}
+#fTabs .shin .hover div{
+	background: url(../imageset/tabs/button1_cast_shadow_left.png) center left no-repeat;
+	height: 36px;
+	display: block;
+	padding-left: 5px;
+}
+#fTabs .shin .hover div div{
+	background: url(../imageset/tabs/button1_cast_shadow_bg.png) center top repeat-x;
+	height: 36px;
+	display: block;
+	padding: 0;
+}

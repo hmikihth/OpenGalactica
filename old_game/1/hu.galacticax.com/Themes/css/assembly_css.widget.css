@@ -1,0 +1,85 @@
+
+table.assembly_entries .col-shipclass-target {
+	width: 30px;
+}
+table.assembly_entries .col-assembly-cost {
+	width: 40px;
+}	
+#sat_production table.assembly_entries .col-assembly-cost {
+	width: 85px;
+}	
+table.assembly_entries .col-assembly-produced {
+	width: 60px;
+}
+table.assembly_entries .col-assembly-to-produce {
+	width: 90px;
+}
+table.assembly_entries tr.disabled td,
+table.assembly_entries tr.disabled td img {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+}
+table.assembly_control {
+	margin-top: 10px;
+}
+table.assembly_control tbody tr {
+	height: 25px;
+}
+table.assembly_control tbody th {
+	text-align: left;
+}
+table.assembly_control .col2,
+table.assembly_control .col3,
+table.assembly_control .col4 {
+	text-align: right;
+	width: 85px;
+}
+table.assembly_control .col5 {
+	padding: 0px;
+	width: 120px;
+	text-align: center;
+}
+table.assembly_control tbody .col6 {
+	text-align: right;
+	padding: 0px;
+	width: 100px;
+}
+table.assembly_control .col5,
+table.assembly_control .col6 {
+	background-color: transparent;
+}
+table.assembly_line td {
+	text-align: right;
+	width: 33px;
+}
+table.assembly_line td.col-shipname {
+	text-align: left;
+	width: auto;
+}
+table.assembly_line td.col1 {
+	text-align: left;
+	width: auto;
+}
+table.disassembling .col2,
+table.disassembling .col3,
+table.disassembling .col4,
+table.disassembling .col5 {
+	width: 60px;
+}
+table.disassembling .col6 {
+	padding: 0px;
+	text-align: center;
+	width: 120px;
+}
+table.disassembling .col7 {
+	text-align: right;
+	padding: 0px;
+	width: 100px;
+}
+table.disassembling .col6,
+table.disassembling .col7 {
+	background-color: transparent;
+}
+
+

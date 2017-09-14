@@ -1,0 +1,60 @@
+#landing-facebook { 
+    background: url('../images/registration/landing_facebook.jpg') no-repeat;
+    width: 760px;
+    height: 801px;
+    position: relative;
+}
+
+#landing-facebook input{
+    width: 155px;
+}
+
+#landing-facebook #region_input{
+    width: 127px;
+}
+
+#landing-facebook #captcha_code{
+    margin-bottom: 15px;
+}
+
+#landing-facebook a.button_small{
+    margin-top: 35px;
+    width: 100px;
+}
+
+#landing-facebook a.popup_alliance{
+    color: #F0F0B0;
+    text-decoration: none;
+}
+
+#landing-facebook a.popup_alliance:hover{
+    text-decoration: underline;
+}
+
+#landing-facebook .landing-box{
+    position: absolute;
+    left: 224px;
+    top: 150px;
+    width: 300px;
+    color: white;
+    text-align: center;
+}
+
+#landing-facebook .toptext{
+    width: 230px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+#landing-facebook #captcha_img{
+    height: 35px;
+    vertical-align: bottom;
+}
+
+#landing-facebook table{
+    width: 100%;
+}
+
+#landing-facebook td{
+    padding: 2px 0;
+}

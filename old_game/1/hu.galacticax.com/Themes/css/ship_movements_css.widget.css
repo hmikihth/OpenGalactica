@@ -1,0 +1,22 @@
+
+table.ship_movements .col5 {
+	width: 60px;
+}
+table.ship_movements tr.sum td.col4 {
+	text-align: right;
+}
+table.ship_movements tr.offense td {
+	background-color: #861818;
+}
+table.ship_movements tr.alliance-offense td {
+	background-color: #404080;
+}
+table.ship_movements tr.defense td {
+	background-color: #2c6f2c;
+}
+table.ship_movements tbody td.col-status {
+	color: white;
+	text-align: center;
+	width: 50px;
+}
+

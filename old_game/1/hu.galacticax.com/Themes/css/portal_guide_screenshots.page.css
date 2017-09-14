@@ -1,0 +1,26 @@
+
+#screenshots h2 {
+	display: none;
+}
+#screenshots_content {
+	width: 942px;
+	margin: 15px auto;
+}
+.screenshot {
+	margin: 0px 15px 10px 15px;
+	float: left;
+	display: block;
+	text-align: center;
+	color: #ffe3a5;
+}
+.screenshot a {
+	display: block;
+	margin: 0px auto;
+}
+.screenshot a img {
+	width: 282px;
+	height: 195px;
+	border: 1px solid #464646;
+	margin-bottom: 10px;
+}
+

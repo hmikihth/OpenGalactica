@@ -1,0 +1,73 @@
+
+#fleet td.col3,
+#fleet td.col4,
+#fleet td.col5 {
+	width: 30px;
+}
+#fleet .col6,
+#fleet .col7,
+#fleet .col8,
+#fleet .col9,
+#fleet .col10 {
+	width: 70px;
+}
+#fleet tfoot .col1 {
+	background-color: transparent;
+}
+
+
+#ship_relocations table {
+	width: 600px;
+	margin: 0px auto;
+}
+#ship_relocations .col1,
+#ship_relocations .col3,
+#ship_relocations .col4 {
+	width: 170px;
+}
+#ship_relocations .col2 .text {
+	text-align: right;
+}
+
+
+#fleet_relocations .col1 {
+	text-align: center;
+	width: 35px;
+}
+#fleet_relocations .standy .col2 {
+	text-align: center;
+}
+#fleet_relocations tr {
+	height: 36px;
+}
+#fleet_relocations tr.disabled th,
+#fleet_relocations tr.disabled td {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+}
+#fleet_relocations .offense th,
+#fleet_relocations .offense td {
+	background-color: #861818;
+}
+#fleet_relocations .defense th,
+#fleet_relocations .defense td {
+	background-color: #2c6f2c;
+}
+
+#fleet_relocations .col3 {
+	width: 125px;
+}
+#fleet_relocations .col8 {
+	width: 100px;
+}
+
+
+#battle_behavior table {
+	width: 700px;
+	margin: 0px auto;
+}
+#battle_behavior td {
+	width: 150px;
+}
+

@@ -1,0 +1,80 @@
+
+
+
+#payment_options_content {
+	width: 600px;
+	margin: 10px auto;
+}
+#payment_options .column .label,
+#payment_options .column .description,
+#credit_purchase .column .eur-price,
+#payment_options .column .value {
+	text-align: center;
+	display: block;
+	margin: 10px 0px;
+}
+#payment_options .column .value {
+	font-weight: bold;
+}
+#payment_options .content,
+#payment_options .content p {
+	text-align: center;
+}
+#payment_options .description {
+	display: block;
+	line-height: 14px;
+	font-size: 11px;
+	margin: 10px 0px;
+}
+#page.profilbox #contents #payment_options .panel,
+#contents #payment_options .panel_nohelp {
+	width: 80%;
+	margin: 0px auto;
+}
+#payment_options .column-wrapper {
+	background-color: #212121;
+}
+#payment_options .layout #first {
+	width: 30%;
+}
+#payment_options .layout #second {
+	width: 70%;
+}
+#payment_options .layout #second .description {
+	margin: 0px 0px 10px 0px;
+}
+#payment_options img#accepted_cards,
+#payment_options img#paypal {
+	margin: 10px auto;
+	display: block;
+}
+#payment_options #money_transfer #second .contents,
+#payment_options #wire_transfer #second .contents {
+	padding: 28px 0px;
+}
+#payment_options #card_transfer #first .contents,
+#payment_options #paypal_transfer #first .contents,
+#payment_options #moneybookers_transfer #first .contents {
+	padding: 2px 0px;
+}
+
+#payment_options .column .exchange-price {
+	color: orange;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+#payment_options .column .exchange-price sup {
+	color: orange;
+	font-size: 8px;
+	vertical-align: 4px;
+}
+#payment_options .footnotes {
+	width: 77%;
+	margin: 10px auto;
+	color: orange;
+	background-color: #212121;
+	padding: 3px 10px;
+	text-align: left;
+}
+
+

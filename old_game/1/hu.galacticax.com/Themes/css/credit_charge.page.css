@@ -1,0 +1,40 @@
+
+#game_refer {
+	margin-right: 9px;
+}
+#page.profilbox #contents #game_refer,
+#page.profilbox #contents #game_invite {
+	width: 474px;
+	float: left;
+}
+#game_refer .description {
+	height: 154px;
+}
+#game_invite .description {
+	height: 170px;
+}
+#game_refer h4 {
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+}
+p#game_refer_url {
+	display: block;
+	text-align: center;
+	background-color: #212121;
+	margin-top: 10px;
+	padding: 5px;
+	font-size: 12px;
+}
+
+
+#players_personal_refers_content {
+	width: 480px;
+	margin: 10px auto;
+}
+#players_personal_refers .col1 {
+	text-align: center;
+	color: white;
+	width: 60px;
+}
+

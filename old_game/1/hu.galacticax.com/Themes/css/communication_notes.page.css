@@ -1,0 +1,13 @@
+
+#record_notes #subject {
+	width: 460px;
+}
+
+
+#notes table {
+	margin-top: 10px;
+}
+#notes tr.odd .col2 {
+	color: #ffe3a5;
+}
+

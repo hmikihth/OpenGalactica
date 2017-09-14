@@ -1,0 +1,761 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Galacticax - HÍRARCHÍVUM - VESSETEK SZELET! ARASSATOK VIHART!</title>
+    <meta name="Description" content="játék, stratégia, harc, küzdelem, politika, sci-fi, fantasy, chat, klánok, emberek, játékosok, bolygók, csillagok, csillagrandszerek, game, strategy, online, free, battle, boats, stars" />
+	<meta name="keywords" content="játék, stratégia, harc, küzdelem, politika, sci-fi, fantasy, chat, klánok, emberek, játékosok, bolygók, csillagok, csillagrandszerek, game, strategy, online, free, battle, boats, stars, sci-fi, scifi, scifi játék, scifi stratégia, sci fi, scifi game, battlestar, scifi online, ingyen scifi">
+	<meta name="google-site-verification" content="YHlHIPzQu3mx5gTywTUsCv5bED9lIUCu-rD6mXTSwRc" />
+	<link rel="SHORTCUT ICON" href="http://galacticax.com/Themes/images/favicon.gif">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--[if lt IE 7]>
+    <script src="/Themes/Scripts/IE7.js" type="text/javascript"></script>
+    <![endif]-->
+	
+    <script src="../Themes/Scripts/css_browser_selector.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery_1_4_2.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/gal6.login.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.superfish.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.flash.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/gal6time.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.easing.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.color.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/gal6.sideBarContent.js"></script>
+    <script language="javascript" src="../Themes/Scripts/popup.js" type="text/javascript"></script>
+    <script language="javascript" src="../Themes/Scripts/checkboxes.js" type="text/javascript"></script>
+    <script language="javascript" src="../Themes/Scripts/table_decorator.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../Themes/Scripts/jquery.dimensions.js"></script>
+    <script type="text/javascript" src="../Themes/Scripts/selectbox/jquery.selectbox-0.3.js"></script>
+    <script language="javascript" src="../Themes/Scripts/jquery.pngFix.js" type="text/javascript"></script>
+	<script language="javascript" src="../Themes/Scripts/jquery.qtip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    if(self!=top){
+      window.parent.location.href="http://"+document.domain;
+    }
+
+      $(document).ready(function()
+	  {
+		if ( typeof($('select').selectbox) == "function"  )
+	        $('select').selectbox();
+	    $('body').pngFix();
+      });
+    </script>
+<!--[if IE 6]>
+	<script language="javascript">
+$(document).ready(function()
+{
+	var panelHeight = $('.panel-imagebars').height();
+	panelHeight -= 58;
+	$(".panel-imagebar-left, .panel-imagebar-right").height(panelHeight);
+});
+	</script>
+<![endif]-->
+    <script type="text/javascript">
+<!--
+    $(document).ready(function()
+    {
+		$('.notickzero #flash').flash( { src: '/Themes/flash/flash04_hu.swf', width: 592, height: 252, wmode: 'transparent',
+			allowscriptaccess: 'sameDomain' }, { version: '9,0,115', expressInstall: true });
+
+		$('.tickzero #flash').flash( { src: '/Themes/flash/szamlalo/counter_hu.swf', width: 592, height: 252, wmode: 'transparent',
+			allowscriptaccess: 'sameDomain'	}, { version: '9,0,115', expressInstall: true });
+
+		$("#menu-main").superfish( { autoArrows: false, speed: 'fast' });
+	});
+-->
+    </script>
+	<link type="text/css" rel="stylesheet" href="../Themes/css/portal_top.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/portal_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/forms_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/columns_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/tables_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/basic_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/portal.template.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/button.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/panels_css.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/panel_nohelp.widget.css">
+    <link type="text/css" rel="stylesheet" href="../Themes/css/portal_news_searchbox_and_banner.widget.css?h=453840">
+<link type="text/css" rel="stylesheet" href="../Themes/css/portal_top6_456.widget.css">
+<link type="text/css" rel="stylesheet" href="../Themes/css/toplist_boxes_css.widget.css">
+<link type="text/css" rel="stylesheet" href="../Themes/css/portal_top6_123.widget.css">
+<link type="text/css" rel="stylesheet" href="../Themes/css/news_css.widget.css">
+
+  </head>
+<body>
+  <div id="container" class="lang-hu">
+    <div id="page" class="general">
+	<!-- WIDGET [portal_top] STRT -->
+  <div id="portal_top">
+          <!--<div><a href="/main.html" style="position:relative; top:20px; left:30px; height:100px; border-width:0px; "><img src="/Themes/images/bigyo.png" width="180" height="100" style="border-width:0px"></a></div>-->
+		   <!--<div id="top" style="background-repeat: no-repeat;">
+            <div id="logo1" style="color: transparent;border-width:0px;width: 57px; height: 50px; position:relative; left:820px; top:15px;"><a href="/main.html"><img src="/Themes/images/logo_a.png"> </a></div>
+            <div id="logo2" style="top:30px;color: transparent;border-width:0px;position:relative; left:820px;"><a href="/main.html"><img src="/Themes/images/logo_v.png"></a></div></div>-->
+          <!--<div id="infobox" style="width:300px;">-->
+
+<!--NOT_LOGGED_IN-->
+	<div id="login_section"  >
+	  <div id="loginbox_backplane"></div>
+	  <div id="loginbox_failure">
+		<p></p>
+		<!-- WIDGET [button] STRT --><a class="button width100" id="login_retry"><span class="lft"> </span><span class="txt">Újra</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+	  </div>
+	  <form id="loginbox" name="loginbox" method="post" action="548.html?offset=3">
+		<div class="field">
+		  <div class="control">
+			<input type="text" class="input_style_kezd_belep" id="login_username" name="login[username]" value="Felhasználónév">
+			<input id="login_remember" name="login_remember" type="checkbox" class="checkbox" VALUE='0'>Megjegyzés
+		  </div>
+		</div>
+		<div class="field">
+		  <div class="control">
+			<input type="text" class="input_style_kezd_belep" id="login_password_fake" value="Jelszó">
+			<input type="password" style="display: none;" class="input_style_kezd_belep" id="login_password" name="login[password]" value="" autocomplete="off">
+			<!--LOGIN_ENABLED--><a class="button width100" href="548.html?offset=3#" id="login_submit"><span class="lft"> </span><span class="txt">Belépés</span><span class="rgt"> </span></a><!--/LOGIN_ENABLED-->
+			<script type="text/javascript">
+				/*$(document).ready(function() 
+				{
+					color = '#151515';
+					style = {
+						//tip: true,
+						border: {
+						  width: 1,
+						  color: '#FFE3A5',
+						  radius: 3
+						},
+						classes: {
+						  title: 'tooltip-title',
+						  content: 'tooltip-content'
+						},
+						width: {
+						  min: 0,
+						  max: 400
+						},
+						title: {
+						  'font-size': 13,
+						  'font-weight': 'bold',
+						  'background': color,
+						  'color': '#FFFFFF',
+						  'padding' : '3px 12px',
+						  'border' : '1px solid #FFE3A5'
+						},
+						tip: {
+						  size: {x: 20, y: 30},
+						  color: '#FFE3A5',
+						  corner: 'topMiddle'
+						},
+						'background' : color,
+						'color': '#FFE3A5',
+						'padding' : '9px 10px'
+					}
+				
+					$('#login_password').qtip(
+					{
+					    content: 'Biztonsági okokból megváltoztattuk a jelszavad.<br />Az ideiglenes jelszót nemsokára megkapod emailben,<br />vagy kattints a jelszóemlékeztetőre!',
+						style: style,
+						show:{
+							delay: 0,
+							when: {
+								event: 'focus'
+							}
+						},
+						hide: {
+							delay: 1,
+							when: {
+								event: 'blur'
+							},
+							effect: {
+								type: 'fade',
+								length: 500
+							}
+						},
+						position: {
+							corner: {
+							    target: 'leftMiddle', // Position the tooltip above the link
+							    tooltip: 'rightMiddle'
+							},
+							adjust: {
+							    screen: true
+							}
+						},
+						adjust: {
+							screen: true // Keep the tooltip on-screen at all times
+						}
+					});
+				});*/
+			</script>
+		  </div>
+		</div>
+		<div class="combobar">
+		  <div class="pager">
+			<a class="first" href="../registration.html" target="_blank">Regisztráció</a><a href="http://support.galacticax.com" target="_blank">Support</a><a href="../registration/reminder.html" target="_blank">Elfelejtett jelszó</a>
+		  </div>
+		</div>
+	  </form>
+	</div>
+<!--NOT_LOGGED_IN_END-->
+    <script type="text/javascript">
+    $("#login_username").focus(function() {
+        if ($("#login_username").val() == 'Felhasználónév')
+        {
+            $("#login_username").val('');
+        }
+    });
+    $("#login_username").focusout(function() {
+        if (!$("#login_username").val())
+        {
+            $("#login_username").val('Felhasználónév');
+        }
+    });
+    $(document).ready(function()
+    {
+        G6Time.init(25, 1611, 41);
+    });
+</script>
+	<div id="gal6time" alt="25:1611:41">
+	</div>
+  </div>
+
+	          <div id="nav_background">
+          	<!-- COUNTRYFLAG -->
+    <script type="text/javascript">
+<!--
+    $(document).ready(function()
+    {
+		$('#languages ul li a').each(function(i)
+		{
+			$(this).css('background-image', 'url(' + $(this).attr("icon") + ')');
+		});
+	});
+-->
+</script>
+            <div id="languages" style="left:-200px;">
+            	<div>Nyelv:</div>
+				<ul>
+            	<li class="active"><a href="548.html?offset=3" icon="http://galacticax.com/Themes/images/flags/flag_hu.gif">Magyar</a></li><li ><a href="http://en.galacticax.com/news/548.html?offset=3" icon="http://galacticax.com/Themes/images/flags/flag_eng.gif">English</a></li><li ><a href="http://ro.galacticax.com/news/548.html?offset=3" icon="http://galacticax.com/Themes/images/flags/flag_ro.gif">Română</a></li><li ><a href="http://sk.galacticax.com/news/548.html?offset=3" icon="http://galacticax.com/Themes/images/flags/flag_sk.gif">Slovensky</a></li>
+            		<li><a href="http://other.galacticax.com">Egyéb&hellip;</a></li>
+				</ul>
+			</div>
+          </div>
+            <ul class="sf-menu" id="menu-main">
+              <li><a href="../index.html">Kezdőlap</a></li>
+              <li><a href="548.html?offset=3#">Háttér</a>
+                <ul>
+                  <li><a href="../species.html">Fajok</a></li>
+                  <li><a href="../ships.html">Hajók</a></li>
+				  <li><a href="../history.html">Történet</a></li>
+				  <li><a href="../enciklopedia.html">Enciklopédia</a></li>
+                </ul>
+              </li>
+              <li><a href="548.html?offset=3#">Útmutató</a>
+                <ul>
+                  <!--<li><a href="/guide.html">Bevezető</a></li>-->
+                  <li><a href="../rules.html">Rendeletek</a></li>
+                  <li><a href="../dictionary.html">Rövidítések</a></li>
+                  <li><a href="../screens.html">Képernyők</a></li>
+                  <li><a href="http://hu.galacticax.com/popup/reference/general/1.html#current" rel="popup">Tudástár</a></li>
+                </ul>
+              </li>
+              <li><a href="548.html?offset=3#">Toplisták</a>
+                <ul>
+                  <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50">Planéták</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50">Galaxisok</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50">Szövetségek</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50">Fajok</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50">Plasmatorok</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50">TP</a></li>
+                  <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50">Régiók</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="548.html?offset=3#">Korábbi toplisták</a>
+                <ul>
+                  <li>
+                    <a href="548.html?offset=3#">13. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=13">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=13">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=13">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=13">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=13">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=13">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=13">Régiók</a></li>
+                      <li><a href="548.html?offset=3#">----------</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?action=finalgame&amp;offset=3&amp;max=50&amp;round=13">Univerziádé</a></li>
+                    </ul>
+                  </li>
+
+
+                  <li>
+                    <a href="548.html?offset=3#">14. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=14">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=14">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=14">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=14">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=14">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=14">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=14">Régiók</a></li>
+                      <li><a href="548.html?offset=3#">----------</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?action=armageddon&amp;offset=3&amp;max=50&amp;round=14">Armageddon</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="548.html?offset=3#">15. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=15">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=15">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=15">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=15">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=15">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=15">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=15">Régiók</a></li>
+                      <li><a href="548.html?offset=3#">----------</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?action=newfinalgame&amp;offset=3&amp;max=50&amp;round=15">Rajzás</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="548.html?offset=3#">16. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=16">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=16">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=16">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=16">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=16">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=16">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=16">Régiók</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="548.html?offset=3#">17. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=17">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=17">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=17">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=17">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=17">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=17">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=17">Régiók</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="548.html?offset=3#">18. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=18">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=18">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=18">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=18">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=18">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=18">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=18">Régiók</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="548.html?offset=3#">19. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                    <ul>
+                      <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=19">Planéták</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=19">Galaxisok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=19">Szövetségek</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=19">Fajok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=19">Plasmatorok</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=19">TP</a></li>
+                      <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=19">Régiók</a></li>
+                    </ul>
+                  </li>
+
+
+                    <li>
+                        <a href="548.html?offset=3#">20. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                        <ul>
+                            <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=20">Planéták</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=20">Galaxisok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=20">Szövetségek</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=20">Fajok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=20">Plasmatorok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=20">TP</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=20">Régiók</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="548.html?offset=3#">21. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                        <ul>
+                            <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=21">Planéták</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=21">Galaxisok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=21">Szövetségek</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=21">Fajok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=21">Plasmatorok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=21">TP</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=21">Régiók</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="548.html?offset=3#">22. forduló<span class="sf-sub-indicator"> &#187;</span></a>
+                        <ul>
+                            <li><a href="http://hu.galacticax.com/toplists/planet.html?offset=3&amp;max=50&amp;round=22">Planéták</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/galaxy.html?offset=3&amp;max=50&amp;round=22">Galaxisok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/alliance.html?offset=&amp;max=50&amp;round=22">Szövetségek</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/species.html?offset=3&amp;max=50&amp;round=22">Fajok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/plasmator.html?offset=3&amp;max=50&amp;round=22">Plasmatorok</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/xperience.html?offset=3&amp;max=50&amp;round=22">TP</a></li>
+                            <li><a href="http://hu.galacticax.com/toplists/regions.html?offset=3&amp;max=50&amp;round=22">Régiók</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+              </li>
+
+              <li><a href="../news.html">Hí­rek</a></li>
+
+                <li>
+                    <a href="548.html?offset=3#">Partnerek</a>
+                    <ul>
+                        <li><a href="http://black-crows.info/" target="_blank">BlackCrows Tracker</a></li>
+                        <li><a href="../xtendlogin.html">XtendTracker</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+	<!--PORTAL_TOPLISTPAGE-->
+	
+        <div id="contents">
+          <!-- WIDGET [panel_nohelp] STRT -->
+            <div class="panel panel-nohelp portal-typo cleared news-2-column" id="news">
+              <h2>Hírek</h2>
+              <div class="content" id="news_content">
+                <div class="ie-display-correct">HIDE</div>
+                <div id="news_column_3">
+		          <!-- WIDGET [panel_nohelp] STRT -->
+				  <SCRIPT language="JavaScript"> function searchtxt() {document.news_search_form.submit();}</SCRIPT>
+                    <div class="greybox">
+                      <form name="news_search_form" id="news_search_form" method="post" action="548.html?offset=3">
+                        <div class="field" id="field_search_term">
+                          <div class="control">
+                            <input type="text" class="text" id="search_term" name="search" size="30"><!-- WIDGET [button] STRT --><a class="button width100" href="548.html?offset=3#" onclick="javascript: searchtxt()"><span class="lft"> </span><span class="txt">Keresés</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+                          </div>
+                        </div>
+                      </form>
+                      <div class="clearing"></div>
+                    </div>
+		          <!-- WIDGET [panel_nohelp] STOP -->
+ <!--      <div class="rsslayer">
+					<a href="/news.html?rss=1"><img src="/Themes/images/rss.png">RSS hírfolyam</a><a class="help" tabindex="-1" href="/popup/reference/home/gal6_news.html#current-chapter" rel="help"> ?</a>
+				 </div>-->
+                  <div class="articlelist">
+                  	<h3>Legfrissebb híreink</h3>
+                  <ul class="article">
+				
+                    <li><a href="1120.html">A TP-ért jutalom jár</a></li>
+				
+                    <li><a href="1119.html">Közeledik a 24. forduló vége</a></li>
+				
+                    <li><a href="1118.html">GalX-es sátrazás</a></li>
+				
+                    <li><a href="1117.html">#Mese – Pumukli-interjú</a></li>
+				
+                    <li><a href="1116.html">EGO Reload</a></li>
+				
+                    <li><a href="1115.html">#SBBG – Blokker-men-interjú</a></li>
+				
+                    <li><a href="1114.html">#BDL – Grospapa-interjú</a></li>
+				
+                    <li><a href="1113.html">#CSK1 – Csillagkapu-interjú</a></li>
+				
+                    <li><a href="1112.html">#PH – dölf-interjú</a></li>
+				
+                    <li><a href="1111.html">#Vi – bulldog-interjú</a></li>
+				
+                  </ul>
+                  <!-- WIDGET [button] STRT --><a class="button width100 floatright" href="../news.html?archive=1"><span class="lft"> </span><span class="txt">Még több hír</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+                 </div>
+                <div class="combobar">
+                  <!-- WIDGET [button] STRT --><a class="button width136" href="../registration.html" target="gal6registration" id="imagebar-registration-button"><span class="lft"> </span><span class="txt">Harcba szállok</span><span class="rgt"> </span></a><!-- WIDGET [button] STOP -->
+                </div>
+<!-- JavaScript tag: 1578763 -->
+<div style="margin: 10px 0px; text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7994681609626320";
+/* 250x250 */
+google_ad_slot = "1334988934";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+               </div>
+                <div id="news_column_12">
+			<!--SCROLLER_TOP-->
+                  <form class="oneliner floatright" name="news_pager" id="news_pager" method="post" action="548.html?offset=3">
+                    <div class="field" id="field_coords">
+                      <!--<div style="float:left;">
+                      <a class="button" href="http://iwiw.hu/pages/share/share.jsp?u=http://hu.galacticax.com/news/548.html?offset=3" target="_blank" style="width: auto;"><img src="/Themes/images/share_iwiw.png" style="border: 0px;"/></a>
+                      <a class="button" href="http://www.facebook.com/share.php?u=http://hu.galacticax.com/news/548.html?offset=3&h=galacticax.com%20news" target="_blank" style="width: auto;"><img src="/Themes/images/share_facebook.png" style="border: 0px;" /></a>
+                      <a class="button" href="http://twitter.com/home/?status=galacticax.com%20news%20http://hu.galacticax.com/news/548.html?offset=3 (@galacticaxen)" target="_blank" style="width: auto;"><img src="/Themes/images/share_twitter.png" style="border: 0px;" /></a>
+                      <a class="button" href="http://digg.com/submit?url=http://hu.galacticax.com/news/548.html?offset=3&title=VESSETEK SZELET! ARASSATOK VIHART!&topic=playable_web_games" target="_blank" style="width: auto;"><img src="/Themes/images/share_digg.png" style="border: 0px; margin-right: 5px" /></a></div>-->
+                      <div class="control">
+
+                        <!-- WIDGET [button] STRT -->
+            <a class="button width40 prevpage" href="http://iwiw.hu/pages/share/share.jsp?u=http://hu.galacticax.com/news/548.html?offset=3" target="_blank" style="width: 23px; height: 19px; background: url(../Themes/images/share_iwiw.png); margin-right: 5px"></a>
+            <a class="button width40 prevpage" href="http://www.facebook.com/share.php?u=http://hu.galacticax.com/news/548.html?offset=3&h=galacticax.com%20news" target="_blank" style="width: 43px; height: 19px; background: url(../Themes/images/share_facebook.png); margin-right: 5px"></a>
+            <a class="button width40 prevpage" href="http://twitter.com/home/?status=galacticax.com%20news%20http://hu.galacticax.com/news/548.html?offset=3 (@galacticaxen)" target="_blank" style="width: 43px; height: 19px; background: url(../Themes/images/share_twitter.png); margin-right: 5px"></a>
+            <a class="button width40 prevpage" href="http://digg.com/submit?url=http://hu.galacticax.com/news/548.html?offset=3&title=VESSETEK SZELET! ARASSATOK VIHART!&topic=playable_web_games" target="_blank" style="width: 23px; height: 19px; background: url(../Themes/images/share_digg.png); margin-right: 5px"></a>
+						<a class="button width40 prevpage" href="548.html?offset=3#" onclick="document.news_pager.news_pager_jump.value-=1;document.news_pager.submit()">
+							<span class="lft"> </span>
+							<span class="txt">&lt;&lt;</span>
+							<span class="rgt"> </span>
+						</a>
+						<div class="pagenum"><input type="text" name="news_pager_jump" id="news_pager_jump" size="2" value="1"> / 820</div>
+						<a class="button width40 nextpage" href="548.html?offset=3#" onclick="document.news_pager.news_pager_jump.value=parseInt(document.news_pager.news_pager_jump.value)+1;document.news_pager.submit()">
+							<span class="lft"> </span>
+							<span class="txt">&gt;&gt;</span>
+							<span class="rgt"> </span>
+						</a>
+						<!-- WIDGET [button] STOP -->
+                      </div>
+                    </div>
+					<input type="hidden" name="PageNum" value="" />
+					<input type="hidden" name="PageNum72" value="" />
+					<input type="hidden" name="NextPageNum" value="" >
+					<input type="hidden" name="NextPageNum72" value="0" >
+                  </form>
+			<!--SCROLLER_TOP_END-->
+                  <div class="article">
+                    <div class="g6t"><span class="g6t">13:1337:10</span></div>    
+                    <h3>VESSETEK SZELET! ARASSATOK VIHART! </h3>
+                    <p class="lead">A VIHAR nem akart kétpólusú háborúban részt venni. Viharosan törekedtek változtatni, s épp ilyen tomboló tűz gyúlt körülöttük, mely kényszerítette a Vihart a szándékaitól eltérő útra. </p></p>
+					<div class="middlepic"><img src="http://galacticax.com/Themes/images/avatars/news/battle.jpg" width="84" height="63"></div>
+					<p class="content"><p style='text-align: justify;'>A <strong>Viharosok </strong>bizony&iacute;tott&aacute;k sz&aacute;nd&eacute;kukat, sőt erej&uuml;ket &eacute;s r&aacute;termetts&eacute;g&uuml;ket is a sokr&eacute;tű sz&ouml;vets&eacute;gek alak&iacute;t&aacute;s&aacute;ra, t&ouml;bbp&oacute;lus&uacute; harcokban val&oacute; r&eacute;szv&eacute;telre.&nbsp; Kor&aacute;bbi hib&aacute;kb&oacute;l tanulva ebben a fordul&oacute;ban ki akartak maradni a legnagyobb Sz&ouml;vets&eacute;gek h&aacute;bor&uacute;j&aacute;b&oacute;l. Nem k&iacute;v&aacute;ntak egyik f&eacute;l mellett sem &aacute;ll&aacute;st foglalni. Ezt <strong>AMO</strong>-val &eacute;s a <strong>SOA</strong>-val val&oacute; bont&aacute;sig tudt&aacute;k tartani. <br />
+Ahogy <strong>Vulpion </strong>fogalmazott annak idej&eacute;n, nem akartak sem dzsihadot, sem valamelyik oldalra &aacute;llni. A dzsihad l&aacute;togatott el hozz&aacute;juk.<br />
+Es&eacute;lyeik latolgat&aacute;s&aacute;ra kev&eacute;s idő jutott, mert kem&eacute;ny t&aacute;mad&aacute;ssorozatok r&aacute;zt&aacute;k a <strong>VIHAR </strong>eg&eacute;t. Az <strong>NSR</strong>-rel &eacute;s csatl&oacute;saikkal v&iacute;vott harcok sor&aacute;n messze vil&aacute;gokban h&iacute;res v&eacute;delm&uuml;k ism&eacute;t bizony&iacute;tott. Keresztt&aacute;mad&aacute;saik alatt pedig ezr&eacute;vel vitt&eacute;k haza az akt&iacute;v plasmatorokat a <strong>VIHAR</strong> birodalm&aacute;ba. Eredm&eacute;nyeiket pontok mutatj&aacute;k.</p>
+<p style='text-align: justify;'>Visszafogott &uuml;nnepl&eacute;sre adott okot, hogy k&eacute;sz&uuml;ltek az e fordul&oacute; minden sz&aacute;m&iacute;t&aacute;s szerint sz&aacute;mukra esed&eacute;kes legnagyobb h&aacute;bor&uacute;j&aacute;ra. D&ouml;nt&eacute;s&uuml;kben k&ouml;zrej&aacute;tszott, hogy ezekben a napokban t&eacute;rt vissza <strong>LEGO </strong>magja a szabads&aacute;g&aacute;r&oacute;l, &eacute;s <strong>SPQR </strong>is bontott az <strong>AMO</strong>-val.&nbsp; R&ouml;videsen kialakult, hogy kiknek az oldal&aacute;n sz&aacute;ll harcba a <strong>VIHAR</strong>.<br />
+Visszatekintve l&aacute;thatjuk, hogy a <strong>LEGO </strong>&eacute;s az <strong>SPQR </strong>mell&eacute; m&eacute;lt&oacute; partnerk&eacute;nt szegőd&ouml;tt. A v&eacute;delemben gyakorlatlan <strong>AMO </strong>ennek az &ouml;sszefog&aacute;snak k&aacute;r&aacute;t l&aacute;tta, b&aacute;rmilyen erőt is vonultatott fel plan&eacute;t&aacute;i k&ouml;r&uuml;l. Az <strong>AMO </strong>jelentős r&eacute;sze szabizott a komolyabb vesztes&eacute;gek elker&uuml;l&eacute;se v&eacute;gett.&nbsp; V&eacute;g&uuml;l is <strong>NSR </strong>&aacute;ll&iacute;tott mell&eacute;j&uuml;k egy &aacute;tt&ouml;rhetetlennek tetsző v&eacute;delmi pajzsot.&nbsp; A <strong>VIHAR </strong>&eacute;s sz&ouml;vets&eacute;gesei csapatainak j&oacute;l &ouml;sszehangolt, &eacute;s kitart&oacute; ostrom&aacute;ra ledőlt az <strong>AMO </strong>vaskos alapokon nyugv&oacute; v&aacute;ra. E csat&aacute;k k&ouml;vetkezm&eacute;nye a Pont-, Plasmator-, &eacute;s Tapasztalati pontsz&aacute;mok v&aacute;ltoz&aacute;s&aacute;val m&eacute;rhetően a Sz&ouml;vets&eacute;gek toplist&aacute;j&aacute;nak imm&aacute;r t&ouml;bbsz&ouml;ri &aacute;talakul&aacute;s&aacute;val j&aacute;rt. Az <strong>AMO </strong>a h&aacute;bor&uacute; kezdetekor kb. 54 ezer plasmatorral rendelkezett, mostanra 39 ezer k&ouml;r&uuml;li mennyis&eacute;g maradt. Igaz, ebből nagyj&aacute;b&oacute;l 5 ezret akkor vesz&iacute;tettek el, amikor kidobt&aacute;k az inakt&iacute;vakat tagjaik sor&aacute;b&oacute;l.<br />
+Figyelemre m&eacute;lt&oacute;, hogy a h&aacute;bor&uacute; kezdete &oacute;ta nagyj&aacute;b&oacute;l azonos pontsz&aacute;mot k&eacute;pesek tartani, m&iacute;g <strong>VIHAR </strong>nagyj&aacute;b&oacute;l 3-400 milli&oacute; pontot n&ouml;vekedett. M&aacute;ra finoman sz&oacute;lva is letasz&iacute;totta a <strong>VIHAR </strong>az <strong>AMO</strong>-t a dobog&oacute; 2. hely&eacute;ről. Rem&eacute;lhetőleg meg&eacute;rdemelten meg is tartja azt. Sz&ouml;vets&eacute;geseik helyzet&eacute;ről&nbsp; sz&oacute;lva pedig a <strong>SOA </strong>nagyj&aacute;b&oacute;l 43 ezer plasmatorr&oacute;l esett vissza 36 ezerre, pontban stagn&aacute;l az&oacute;ta is.</p>
+<p style='text-align: justify;'>A szakad&eacute;k &oacute;ri&aacute;si a k&eacute;t toplista vezető sz&ouml;vets&eacute;g k&ouml;z&ouml;tt. <strong>NSR </strong>lett a nagy riv&aacute;lis. Folyamatosan n&ouml;vekszik, gyakorlatilag zavartalanul, a fel&eacute;j&uuml;k menő t&aacute;mad&aacute;sokat marad&eacute;ktalanul le tudj&aacute;k v&eacute;deni. Az elm&uacute;lt h&eacute;t sor&aacute;n kb. 400 milli&oacute; ponttal, s t&ouml;bb mint 10 ezer plasmatorral gyarapodtak. Tegnap is gazdagodtak vagy 2 ezer plasmatorral, s &uacute;gy tűnik, hogy tartal&eacute;kolnak rendesen.&nbsp; Ők azok, akiket időnk&eacute;nt meg tudnak a <strong>Viharosok </strong>fogni, időnk&eacute;nt viszont nem.&nbsp; Valljuk be, t&ouml;bbnyire nem. &Uacute;gy tűnik, <strong>NSR </strong>igazi kih&iacute;v&aacute;st jelenthet <strong>VIHAR </strong>sz&aacute;m&aacute;ra.<br />
+<br />
+<strong><em>Kr&oacute;nik&aacute;s</em></strong></p></p>
+                    <!-- WIDGET [button] STRT --><!--<a class="button width80 floatright" href="/news.html"><span class="lft"> </span><span class="txt">Vissza</span><span class="rgt"> </span></a>--><!-- WIDGET [button] STOP -->
+                  </div>
+
+         
+		 <div class="panel panel-nohelp" id="news_comments">
+<!--NEWS_BOTTOM_BUTTONS-->
+			<div style="text-align:center;">
+				<!--CommentButtonStart-->
+				<a class="button width136" href="548.html?newMessage=1#NEWS_COMMENTS" style="margin-right:60px"><span class="lft"> </span><span class="txt">Új hozzászólás</span><span class="rgt"></span></a>
+				<!--CommentButtonEnd-->
+				<a class="button width136" href="../news.html" style="margin-left:60px"><span class="lft"> </span><span class="txt">Vissza</span><span class="rgt"> </span></a>
+				<!--<a class="button floatright width100" href="/news/548.html?offset=3#NEWS_COMMENTS"><span class="lft"> </span><span class="txt">Frissítés</span><span class="rgt"> </span></a>-->
+			</div>
+			<br />
+<!--NEWS_BOTTOM_BUTTONS_END-->
+
+
+		  <!--USER_REQUIRED_NOCACHE-->
+		  
+
+
+		
+		<!--USER_REQUIRED_END_NOCACHE-->
+
+<a name="NEWS_COMMENTS"></a>
+		  <h2 style="margin:0;padding:0;border-bottom: grey 1px solid;margin-bottom:12px">Hozzászólások <span style="text-transform: uppercase;font-weight: normal;right: 0px; position: absolute;">A hírhez eddig <b style="color: yellow">165</b> hozzászólás érkezett</span></h2>
+<script language="javascript" src="../Themes/Scripts/jquery.gal6Textarea.js" type="text/javascript"></script>
+	  <!--NO_NEW_MESSAGE-->
+	  <SCRIPT language="JavaScript"> function submitDelTopic() { document.delTopic.submit(); }</SCRIPT>
+		  <!--NO_NEW_MESSAGE_END-->
+		  <div class="bullettin-board bullettin-board-with-avatars">
+			
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1445:47</span></span> <span class="news_comment_title"><s>Castro</s> (Deleted)</span>
+				  <div class="comment">Nekem hiányzik a történet ami félbemaradt!!Egy humi Véső-ről szól!!Azt jó lenne folytatni:)!</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1443:08</span></span> <span class="news_comment_title"><s>hangar</s> (Deleted)</span>
+				  <div class="comment">Ahogy a programozásnak, úgy a cikkírásnak is megvannak a maga szabályai. Attól, hogy valaki megteheti, hogy cikket ír, még nem lesz az a cikk sem jó, sem korrekt.<br />
+A cikk még jelen állapotban is hemzseg a szemiotikai és szintaktikai hibáktól.<br />
+De ezt megszokhattuk már a krónikástól.<br />
+Műkedvelőktől sokkal jobb írásokat is olvastunk már.<br />
+<br />
+Nem tudom lenne-e rá igény, de össze lehetne hozni a színvonalasabb írásokból, versekből egy gal6 antologiát, sőt ha van aki rajzol, fest, CGI-zik képeket is rakhatnánk bele.<br />
+Én szívesen összerakom, ha egy szerkesztőcsapat átrostálja az anyagot.</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1439:40</span></span> <span class="news_comment_title"><s>- Cassiopeia -</s> (Deleted)</span>
+				  <div class="comment">A háború soha nem a korrektségről szól (semelyik fél részéről sem). Tépd le a tökét, verd le a veséjét, köpd le, khmm..meg a nőjét, aztán fogd rá, hogy etikátlan, esetleg náci. Min csodálkoztok??? :)))<br />
+<br />
+(ööö, remélem senki nem vette magára, teljesen pártatlan, álatlános igazságokat megvilágítani szándékozó szösszenetem  <img src='http://galacticax.com/Themes/images/smiles/tongue2.gif'>)<br />
+<br />
+---------------------------------------------!!!Moderálva!!!---------------------------------------------</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1431:12</span></span> <span class="news_comment_title"><s>globo-again</s> (Deleted)</span>
+				  <div class="comment">Diabolis-Again (180:99:2:10)- arra még nem válaszoltam, hogy van e tagfelvétel. Van, de againból elég egy. <img src='http://galacticax.com/Themes/images/smiles/happy.gif'> Jó helyed van Neked Cassus oldalán! Innen is üdvözlet Neki is.<br />
+<br />
+<br />
+ImmuntiyIV (214:1:3:1)- őt ne bántsátok, Ő a jellem(!) bajnoka. Csak épp egyik okozója az NSR rossz hírének. Most elérte, hogy ezután AVR hajó oda nem megy ahol NSR van.<br />
+<br />
+A kultúra nemes és tanult bajnoka:<br />
+<br />
+&quot;Feladó:	<br />
+Planéta rang: Kapitány, Galaxis rang: Parancsnok, Szövetség rang: Tag<br />
+ImmuntiyIV<br />
+#NSR<br />
+Címzett:	<br />
+Planéta rang: Kapitány, Galaxis rang: Parancsnok, Szövetség rang: Főparancsnok<br />
+globo-again<br />
+#AVR<br />
+13:1431:54	RE[5]: diplomácia<br />
+[ImmuntiyIV] 	<br />
+1edül több pontom van minta szövetségednek ülj le magadnak és kuss... igy jártatok ne támadjatok NSR galaxist... &quot;</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1431:01</span></span> <span class="news_comment_title"><s>globo-again</s> (Deleted)</span>
+				  <div class="comment">Elsőre köszönet a válaszért. Akkor mit jelent, hogy a támadónál a kezdeményezés?<br />
+<br />
+A Caniz témához: az a lépése, hogy nem aktív hadviselő még nem 100%- os garancia a semlegességre, de mindenesetre nem vetíti előre az elfogultságot. Különben pedig nem vagyok egy PC bubus, idegen tőlem. De ebben a fordulóban még mindig korrekt választ adott és segített ha probléma merült fel.<br />
+Ha nincs ok, feleslegesen nem piszkálok senkit. Ez meg legyen a dicséret!<br />
+<br />
+Lenne néhány gondolatom egyes hadurakról, akik viselkedése most az NSR ellen hangolja a népet, de kihagyom. <img src='http://galacticax.com/Themes/images/smiles/idea2.gif'></div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1418:37</span></span> <span class="news_comment_title"><s>Robiland</s> (Deleted)</span>
+				  <div class="comment">Egy időben lőnek az ugyan olyan típusú hajók.. ha alaposabban megnézed a táblázatos vagy szöveges csata leírást látni fogod, hogy ugyan olyan lépés szám alatt tüzelnek. <br />
+Az már mellékes, hogy lépésen belül melyiket irják elöre....</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1418:31</span></span> <span class="news_comment_title"><s>Imperator</s> (Deleted)</span>
+				  <div class="comment">globo:<br />
+Alapvetően jó a hsz-ed :)<br />
+Végre valaki nem cseszteti Canizt  <img src='http://galacticax.com/Themes/images/smiles/tongue2.gif'><br />
+<br />
+Am nekem úgy tűnt, hogy egyidőben lőnek...<br />
+Legalábbis a szöveges leírásban úgy van feltüntetve.</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1417:52</span></span> <span class="news_comment_title"><s>globo-again</s> (Deleted)</span>
+				  <div class="comment">Ha valaki, én aztán rendesen piszkatúráztam Canizt! Lehet, hogy sokszor alaptalanul.<br />
+Volt olyan reakciója amit túlzásnak tartottam, de végül is megbékéltünk. Amióta nem aktív, nem is szóltam egy rossz szót sem.<br />
+<br />
+De engedtessék meg egy javaslat itt: át kellene nézni a programot, mert a csatajelentésekben kijönnek hibák. Pl.: ugyanazon hajó esetén, hamarabb lő a védő, mint a támadó.<br />
+<br />
+ Diabolis-Again (180:99:2:10)- no- no!! Koppintunk?? <img src='http://galacticax.com/Themes/images/smiles/happy.gif'> <img src='http://galacticax.com/Themes/images/smiles/tongue2.gif'></div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1412:08</span></span> <span class="news_comment_title"><s>Flash Gordon</s> (Deleted)</span>
+				  <div class="comment">Jogos, egyébként más hasonló játékokban is külön van választva a fórum és a játékszabály megsértése miatti bannolás, azaz pontosabban csak a legvégső esetben alkalmazható büntetési forma az, hogy a fórumbeli magatartás miatt bannra kerülhet a játékban is valaki. Szvsz semmi köze egyébként a kettőnek egymáshoz.</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+			  <div class="news_comment_block">
+				  <div class="news_comment_avatar"><img class="avatar" src="../planet_pictures/planeta_forum_general.jpg" title=""></div>
+				  <span class="g6t"><span class="g6t">13:1410:57</span></span> <span class="news_comment_title"><s>thorn</s> (Deleted)</span>
+				  <div class="comment">Játsszon csak játsszon,de mint Exe is írta....néha indokolni is kellene.ha van mellé megfelelő indoklás egyből nem támadható a dolog.Persze akkor is lesz pár &quot;emberke&quot; akinek lételeme belekötni mindenbe,de ha már 100bol 80 nem ugat feleslegesen marhaságokat már megérte.A másik amit én is &quot;javasolnék&quot;a forumon való parádézásért a büntetés ne a játékot akadályozza.némitás,forumoktol eltiltás,stb....ha privben folytatja akkor mehet  a szabi..bár én közzétenném,hogy lássák,miért kapta.+1 forum sztem még elfér..</div>
+<!--USER_REQUIRED_NOCACHE--><!--USER_REQUIRED_END_NOCACHE-->
+			  </div>
+			  
+		  </div>
+
+		  <!--SCROLLER_BOTTOM_BEGIN-->
+                 <form class="oneliner floatright" name="comments_pager" id="comments_pager" method="get" action="548.html?offset=3">
+					<input type="hidden" name="offset" id="offset" value="4">
+                    <div class="field" id="comments_pager_controls">
+                      <div class="control">
+                        <!-- WIDGET [button] STRT -->
+						<a class="button width40 prevpage" href="548.html?offset=2#NEWS_COMMENTS">
+							<span class="lft"> </span>
+							<span class="txt">&lt;&lt;</span>
+							<span class="rgt"> </span>
+						</a>
+						<div class="pagenum"><input type="text" name="offset_input" id="offset_input" size="2" value="4" onchange="if (value.match(/^[1-9][0-9]*$/) && value<=17) form.offset.value=value-1;else form.offset.value=value=0"> / 17</div>
+						<a class="button width40 nextpage" href="http://hu.galacticax.com/news/548.html?offset=4#NEWS_COMMENTS">
+							<span class="lft"> </span>
+							<span class="txt">&gt;&gt;</span>
+							<span class="rgt"> </span>
+						</a>
+						<!-- WIDGET [button] STOP -->
+                      </div>
+                    </div>
+                  </form>
+		  <!--SCROLLER_BOTTOM_END-->
+		  <div class="clearing panel-clearing"></div>
+                  <div style="height: 20px; display: block;"></div>
+		</div>
+		</div>
+         
+
+                </div>
+                <div class="clearing panel-clearing"></div>
+              </div>
+            </div>
+          <!-- WIDGET [panel_nohelp] STOP -->
+        </div>
+
+	<!--PORTAL_MAIN_PAGE-->
+	  <div class="clearing"></div>
+  	</div>
+	<!-- _kezd_bottom5.html STRT -->
+<div id="foot">
+      <div class="combobar">
+        <div class="floatright">&copy; 2002-2013 Online Rights Keeper Ltd.</div>
+        <div class="pager">
+          <a class="first" href="../terms.html">Felhasználási feltételek</a><a href="../impressum.html">Impresszum</a><a href="http://support.galacticax.com">Support</a><a href="../jobs.html">Karrier</a>
+        </div>
+      </div>
+    </div>
+<!-- _kezd_bottom5.html STOP -->
+
+    </div>
+
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30500229-1']);
+  _gaq.push(['_setDomainName', '.galacticax.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>
