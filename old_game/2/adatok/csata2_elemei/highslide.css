@@ -1,0 +1,61 @@
+
+
+DIV#highslideBackground {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	background-color: #101010;
+	opacity: 0;
+	display: none;
+}
+DIV#highslideClose {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: 3;
+	display: none;
+}
+DIV#highslideClose img {
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+a.highslide {
+	display: block;
+	position: relative;
+	margin-bottom: 10px;
+	clear: both;
+}
+a.highslide img {
+	border: none;
+}
+a.highslide img.highslideLoaderIcon,
+a.highslide img.highslideFullScreenIcon {
+	visibility: hidden;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+a.highslide img.thumb {
+	margin: 0px auto;
+}
+a.highslide img.highslideLoaderIcon {
+	top: 22px;
+	left: 26px;
+}
+.portal-typo .content  a.highslide:hover {
+	background-color: transparent;
+}
+a.highslide:hover img.highslideFullScreenIcon {
+	visibility: visible;
+}
+a.highslide:hover img.thumb {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+}
+

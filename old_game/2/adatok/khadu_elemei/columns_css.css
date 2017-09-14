@@ -1,0 +1,117 @@
+
+table tbody td.col-shipclass {
+	width: 55px;
+	padding: 0px 5px;
+	padding-top: 3px;
+	padding-top: 0px!ie;
+	text-align: left;
+}
+table tbody td.col-shipclass img {
+	position: relative;
+	top: -2px;
+	top: 0px!ie;
+	vertical-align: 2px!ie;
+	float: right;
+}
+table tbody td.col-shipname {
+	color: #ffe3a5;
+}
+table tr td.col-planetname {
+	text-align: left!important;
+}
+table td.col-planetname img {
+	margin-right: 5px;
+	vertical-align: -5px;
+}
+table tr.mow td.col-planetname {
+	background-image: url(http://static.gal6.com/Themes/images/vallap_red.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+table tr.gc td.col-planetname {
+	background-image: url(http://static.gal6.com/Themes/images/vallap_blue.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+}
+table tr.hilighted td {
+	background-color: #303030;
+}
+table tbody td.col-clocks {
+	width: 20px;
+	text-align: center;
+	color: white;
+}
+table thead td.col-computed-num,
+table tbody td.col-computed-num {
+	background-color: #454545;
+	text-align: right;
+	color: white;
+}
+table tbody td.col-text {
+	color: #ffe3a5;
+}
+table tfoot td.col-num,
+table tbody td.col-num {
+	text-align: right;
+	color: white;
+}
+table tbody td.col-datetime {
+	width: 140px;
+	text-align: center;
+}
+table tbody td.col-index {
+	width: 20px;
+	text-align: center;
+}
+table tbody td.col-g6t {
+	width: 70px;
+	text-align: center;
+	color: white;
+}
+table tbody td.col-input-coord {
+	width: 30px;
+	text-align: center;
+}
+table tbody td.col-input-num .text {
+	text-align: right;
+}
+table tbody td.col-coord {
+	width: 100px;
+	text-align: center;
+	color: white;
+}
+table tbody td.col-toplist-index {
+	text-align: center;
+	width: 50px;
+}
+table tbody td.col-alliance {
+	width: 50px;
+}
+table tbody td.col-arrows {
+	text-align: center;
+	 overflow:hidden;
+}
+table tbody td.col-arrows img {
+	vertical-align: -2px;
+}
+.col-arrows {
+	 overflow:hidden;
+}
+table tbody td.col-nation {
+	text-align: center;
+	 overflow:hidden;
+}
+table thead th.col-feature-disabled,
+table tbody th.col-feature-disabled,
+table tfoot td.col-feature-disabled,
+table tbody td.col-feature-disabled {
+	opacity: 0.6;
+	filter: alpha(opacity=60);	
+}
+/*
+table tbody td.col-feature-disabled img {
+	opacity: 0.6;
+	filter: alpha(opacity=60);	
+}
+*/
+
