@@ -1,138 +1,138 @@
-+++DISCLAIMER+++
-A dokumentum -work in progress-, még sokat fog változni, blablabla. A "Lehetséges változtatások / fejlesztések:" címszónál minden alkalommal LEHETSÉGES módosításokról, puszta ÖTLETEKRÕL van szó, ezek implementálása csak megbeszélés után történik. Minden visszajelzésért hálásak vagyunk.
+ï»¿+++DISCLAIMER+++
+A dokumentum -work in progress-, mÃ©g sokat fog vÃ¡ltozni, blablabla. A "LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:" cÃ­mszÃ³nÃ¡l minden alkalommal LEHETSÃ‰GES mÃ³dosÃ­tÃ¡sokrÃ³l, puszta Ã–TLETEKRÅL van szÃ³, ezek implementÃ¡lÃ¡sa csak megbeszÃ©lÃ©s utÃ¡n tÃ¶rtÃ©nik. Minden visszajelzÃ©sÃ©rt hÃ¡lÃ¡sak vagyunk.
 
 
 +++ALAPOK+++
-Fõ célkitûzés nem az eredeti játék teljes lemásolása, hanem annak hangulatának, játékélményének újraalkotása, ahol csak lehetséges, ott javítva az eredeti koncepción.
+FÅ‘ cÃ©lkitÅ±zÃ©s nem az eredeti jÃ¡tÃ©k teljes lemÃ¡solÃ¡sa, hanem annak hangulatÃ¡nak, jÃ¡tÃ©kÃ©lmÃ©nyÃ©nek ÃºjraalkotÃ¡sa, ahol csak lehetsÃ©ges, ott javÃ­tva az eredeti koncepciÃ³n.
 
-A játék alapjai változatlanok:
-> A játék fordulókból áll.
-> A játékosok pontszámmal rendelkeznek, melynek túlnyomó részét a flottájuk teszi ki.
-> A flották nyersanyagból vásárolhatóak.
-> A nyersanyagot roidok (plazmatorok) fejlesztik, körönként.
-> Plazmator nyersanyagból lõhetõ fel, vagy lopható más játékosoktól.
-> 1 óra 1 kör, körváltó egészkor van.
-> A játékosok szövetségekbe szervezõdhetnek.
-> A játék fõ célja a szövetségek pontszám alapján történõ versenye.
+A jÃ¡tÃ©k alapjai vÃ¡ltozatlanok:
+> A jÃ¡tÃ©k fordulÃ³kbÃ³l Ã¡ll.
+> A jÃ¡tÃ©kosok pontszÃ¡mmal rendelkeznek, melynek tÃºlnyomÃ³ rÃ©szÃ©t a flottÃ¡juk teszi ki.
+> A flottÃ¡k nyersanyagbÃ³l vÃ¡sÃ¡rolhatÃ³ak.
+> A nyersanyagot roidok (plazmatorok) fejlesztik, kÃ¶rÃ¶nkÃ©nt.
+> Plazmator nyersanyagbÃ³l lÅ‘hetÅ‘ fel, vagy lophatÃ³ mÃ¡s jÃ¡tÃ©kosoktÃ³l.
+> 1 Ã³ra 1 kÃ¶r, kÃ¶rvÃ¡ltÃ³ egÃ©szkor van.
+> A jÃ¡tÃ©kosok szÃ¶vetsÃ©gekbe szervezÅ‘dhetnek.
+> A jÃ¡tÃ©k fÅ‘ cÃ©lja a szÃ¶vetsÃ©gek pontszÃ¡m alapjÃ¡n tÃ¶rtÃ©nÅ‘ versenye.
 
 
-+++JÁTÉKTÉR FELÉPÍTÉSE+++
-A játék képzelt univerzuma rendszerekbõl, azon belül galaxisokból, azon belül planétákból áll.
-> Az univerzumon belül gyakorlatilag végtelen rendszer van.
++++JÃTÃ‰KTÃ‰R FELÃ‰PÃTÃ‰SE+++
+A jÃ¡tÃ©k kÃ©pzelt univerzuma rendszerekbÅ‘l, azon belÃ¼l galaxisokbÃ³l, azon belÃ¼l planÃ©tÃ¡kbÃ³l Ã¡ll.
+> Az univerzumon belÃ¼l gyakorlatilag vÃ©gtelen rendszer van.
 > Egy rendszer 10 galaxist tartalmaz.
-> Egy galaxis 10 planétát tartalmaz.
+> Egy galaxis 10 planÃ©tÃ¡t tartalmaz.
 
-___Lehetséges változtatások / fejlesztések:
-> Mivel nonprofit játék, a korábban kreditért vásárolható funkciók (szövetségi galaxis vásárlása, planéta áthelyezése) megvásárolhatóak a saját, vagy szövetségi kincstárból, nyersanyagból.
-> Rendszerek bõvítése plusz galaxisokkal
->> Az árak exponenciálisan növekednének, így az elsõ néhány után abszolút nem érné meg.
->> Cél a 100 fõ feletti szövetségek ellátása galaxissal. Így a kezdeti idõkben tudnának mondjuk 12-13 galaxissal rendelkezni, késõbb, amikor már életképessé válik a 100 fõ feletti rész, akkor el tudnak költözni egy új rendszerbe. Így a 100-as határ elérése nem jelentene akkora hátrányt.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> Mivel nonprofit jÃ¡tÃ©k, a korÃ¡bban kreditÃ©rt vÃ¡sÃ¡rolhatÃ³ funkciÃ³k (szÃ¶vetsÃ©gi galaxis vÃ¡sÃ¡rlÃ¡sa, planÃ©ta Ã¡thelyezÃ©se) megvÃ¡sÃ¡rolhatÃ³ak a sajÃ¡t, vagy szÃ¶vetsÃ©gi kincstÃ¡rbÃ³l, nyersanyagbÃ³l.
+> Rendszerek bÅ‘vÃ­tÃ©se plusz galaxisokkal
+>> Az Ã¡rak exponenciÃ¡lisan nÃ¶vekednÃ©nek, Ã­gy az elsÅ‘ nÃ©hÃ¡ny utÃ¡n abszolÃºt nem Ã©rnÃ© meg.
+>> CÃ©l a 100 fÅ‘ feletti szÃ¶vetsÃ©gek ellÃ¡tÃ¡sa galaxissal. Ãgy a kezdeti idÅ‘kben tudnÃ¡nak mondjuk 12-13 galaxissal rendelkezni, kÃ©sÅ‘bb, amikor mÃ¡r Ã©letkÃ©pessÃ© vÃ¡lik a 100 fÅ‘ feletti rÃ©sz, akkor el tudnak kÃ¶ltÃ¶zni egy Ãºj rendszerbe. Ãgy a 100-as hatÃ¡r elÃ©rÃ©se nem jelentene akkora hÃ¡trÃ¡nyt.
 
 
-+++NYERSANYAG ÉS PLAZMATOROK+++
-> Három nyersanyag létezik, fém - kristály - narion.
++++NYERSANYAG Ã‰S PLAZMATOROK+++
+> HÃ¡rom nyersanyag lÃ©tezik, fÃ©m - kristÃ¡ly - narion.
 > Ezeket plazmatorok (roidok) termelik.
->> Hivatalos elnevezésnek a plazmatort ajánlanám.
-> Plazmatort fellõni minden planéta tud, 99-esével.
-> A planéta aktuális plazmatormennyiségétõl függ, hogy a fellõtt 99 plazmatorból hány aktivizálódik (hányat talál).
->> Ez a szám exponenciálisan csökken, így rövid idõn belül jobban megéri plazmatort lopni, mint újat fellõni.
-> A fellövés nem kerül pénzbe, csak le kell gyártani a plazmatorokat (szondák), és a hordozórakétát.
-> A plazmator fellövés után inaktív állapotba kerül.
-> Az aktivizálás (behúzás) fémbe kerül.
->> A fémköltség exponenciálisan nõ, minél több plazmatorral rendelkezik a planéta.
+>> Hivatalos elnevezÃ©snek a plazmatort ajÃ¡nlanÃ¡m.
+> Plazmatort fellÅ‘ni minden planÃ©ta tud, 99-esÃ©vel.
+> A planÃ©ta aktuÃ¡lis plazmatormennyisÃ©gÃ©tÅ‘l fÃ¼gg, hogy a fellÅ‘tt 99 plazmatorbÃ³l hÃ¡ny aktivizÃ¡lÃ³dik (hÃ¡nyat talÃ¡l).
+>> Ez a szÃ¡m exponenciÃ¡lisan csÃ¶kken, Ã­gy rÃ¶vid idÅ‘n belÃ¼l jobban megÃ©ri plazmatort lopni, mint Ãºjat fellÅ‘ni.
+> A fellÃ¶vÃ©s nem kerÃ¼l pÃ©nzbe, csak le kell gyÃ¡rtani a plazmatorokat (szondÃ¡k), Ã©s a hordozÃ³rakÃ©tÃ¡t.
+> A plazmator fellÃ¶vÃ©s utÃ¡n inaktÃ­v Ã¡llapotba kerÃ¼l.
+> Az aktivizÃ¡lÃ¡s (behÃºzÃ¡s) fÃ©mbe kerÃ¼l.
+>> A fÃ©mkÃ¶ltsÃ©g exponenciÃ¡lisan nÅ‘, minÃ©l tÃ¶bb plazmatorral rendelkezik a planÃ©ta.
 
-___Lehetséges változtatások / fejlesztések:
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
 
 
 +++FAJOK+++
-A faj hajóinak jellemzése minden esetben ár / érték arányban történik. A változtatások / fejlesztések részben szereplõ dolgok megvalósulhatnak akár planétafejlesztés hatására is (lásd: teljesen újragondolt fejlesztési rendszer valamikor késõbb a doksiban).
+A faj hajÃ³inak jellemzÃ©se minden esetben Ã¡r / Ã©rtÃ©k arÃ¡nyban tÃ¶rtÃ©nik. A vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek rÃ©szben szereplÅ‘ dolgok megvalÃ³sulhatnak akÃ¡r planÃ©tafejlesztÃ©s hatÃ¡sÃ¡ra is (lÃ¡sd: teljesen Ãºjragondolt fejlesztÃ©si rendszer valamikor kÃ©sÅ‘bb a doksiban).
 
 HUMAN:
-> Masszív hajók, nagy sebzés, jó célpont kiosztás.
-> Lopó osztály: cirkáló.
-> Alapból kölünlegességgel nem rendelkezett a faj, zúzott, és kész, ennyit tudott.
-___Lehetséges változtatások / fejlesztések:
-> Gyorsabb TP gyûjtés.
-> A plazmator fellövés és behúzás görbéje enyébb, könnyebb plazmatort behúzni mint a többi fajjal.
+> MasszÃ­v hajÃ³k, nagy sebzÃ©s, jÃ³ cÃ©lpont kiosztÃ¡s.
+> LopÃ³ osztÃ¡ly: cirkÃ¡lÃ³.
+> AlapbÃ³l kÃ¶lÃ¼nlegessÃ©ggel nem rendelkezett a faj, zÃºzott, Ã©s kÃ©sz, ennyit tudott.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> Gyorsabb TP gyÅ±jtÃ©s.
+> A plazmator fellÃ¶vÃ©s Ã©s behÃºzÃ¡s gÃ¶rbÃ©je enyÃ©bb, kÃ¶nnyebb plazmatort behÃºzni mint a tÃ¶bbi fajjal.
 
 SHIN:
-> Sebezhetõ, de vállalható sebzéssel rendelkezõ hajók, rossz célpontkiosztással.
-> Másodlagosan gyegébb hajók összlövéssel.
-> Lopó osztály: romboló.
-> Különlegesség: a flották létszáma nem olvasható az ellenfél számára, 0-t jelez az állapotjelzõn (láthatatlanság). A szondák pontatlan flottaadatokat adnak vissza.
-___Lehetséges változtatások / fejlesztések:
-> Alternatív lopóosztály: naszád.
->> Ez rengeteg érdekes trükkre adna lehetõséget a shin fajjal. Romboló idejû flottát indítani, naszádokkal telerakva, vagy a flottacserés taktika továbbfejlesztésére.
->> TP-limitált fejlesztésként valósítanám meg, egy igen késõi és drága fejlesztésként. Cél az lenne, hogy forduló végére a shin játékosok 10-15 százaléka rendelkezzen a fejlesztéssel.
+> SebezhetÅ‘, de vÃ¡llalhatÃ³ sebzÃ©ssel rendelkezÅ‘ hajÃ³k, rossz cÃ©lpontkiosztÃ¡ssal.
+> MÃ¡sodlagosan gyegÃ©bb hajÃ³k Ã¶sszlÃ¶vÃ©ssel.
+> LopÃ³ osztÃ¡ly: rombolÃ³.
+> KÃ¼lÃ¶nlegessÃ©g: a flottÃ¡k lÃ©tszÃ¡ma nem olvashatÃ³ az ellenfÃ©l szÃ¡mÃ¡ra, 0-t jelez az Ã¡llapotjelzÅ‘n (lÃ¡thatatlansÃ¡g). A szondÃ¡k pontatlan flottaadatokat adnak vissza.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> AlternatÃ­v lopÃ³osztÃ¡ly: naszÃ¡d.
+>> Ez rengeteg Ã©rdekes trÃ¼kkre adna lehetÅ‘sÃ©get a shin fajjal. RombolÃ³ idejÅ± flottÃ¡t indÃ­tani, naszÃ¡dokkal telerakva, vagy a flottacserÃ©s taktika tovÃ¡bbfejlesztÃ©sÃ©re.
+>> TP-limitÃ¡lt fejlesztÃ©skÃ©nt valÃ³sÃ­tanÃ¡m meg, egy igen kÃ©sÅ‘i Ã©s drÃ¡ga fejlesztÃ©skÃ©nt. CÃ©l az lenne, hogy fordulÃ³ vÃ©gÃ©re a shin jÃ¡tÃ©kosok 10-15 szÃ¡zalÃ©ka rendelkezzen a fejlesztÃ©ssel.
 
 DIGITROX:
-> 1 körrel lassabb hajók, mint a többi faj.
-> Gyenge sebzés, masszív, de drága hajók. Közel használhatatlan célpontkiosztás.
-> Lopó osztály: romboló.
-> Különlegesség: Extra erõs PVR rendszer.
-___Lehetséges változtatások / fejlesztések:
-> Lopó osztály megváltoztatása csatahajóra (fejlesztés nélkül, az egész fajt érintené).
-> Lopóhajó és nyersanyag lopó hajó kombinálása egy hajóba.
-> Másodlagos hajók, melyek nem lõnek, hanem gyógyítanak.
->> Nagyon rossz célpontkiosztással a lelõtt saját hajókból következõ körre újraépítenek néhányat.
+> 1 kÃ¶rrel lassabb hajÃ³k, mint a tÃ¶bbi faj.
+> Gyenge sebzÃ©s, masszÃ­v, de drÃ¡ga hajÃ³k. KÃ¶zel hasznÃ¡lhatatlan cÃ©lpontkiosztÃ¡s.
+> LopÃ³ osztÃ¡ly: rombolÃ³.
+> KÃ¼lÃ¶nlegessÃ©g: Extra erÅ‘s PVR rendszer.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> LopÃ³ osztÃ¡ly megvÃ¡ltoztatÃ¡sa csatahajÃ³ra (fejlesztÃ©s nÃ©lkÃ¼l, az egÃ©sz fajt Ã©rintenÃ©).
+> LopÃ³hajÃ³ Ã©s nyersanyag lopÃ³ hajÃ³ kombinÃ¡lÃ¡sa egy hajÃ³ba.
+> MÃ¡sodlagos hajÃ³k, melyek nem lÅ‘nek, hanem gyÃ³gyÃ­tanak.
+>> Nagyon rossz cÃ©lpontkiosztÃ¡ssal a lelÅ‘tt sajÃ¡t hajÃ³kbÃ³l kÃ¶vetkezÅ‘ kÃ¶rre ÃºjraÃ©pÃ­tenek nÃ©hÃ¡nyat.
 
 KHADUUI:
-> Gyenge, törékeny hajók.
-> Lopó osztály: naszád.
-> Különlegesség: Blokkoló hajók, melyek sebzést nem okoznak, de kiblokkolják a csatából az ellenséget. Nagyon hatékony, de nem tesz kárt a másikban. 
-___Lehetséges változtatások / fejlesztések:
-> Roidblokk: A lopóhajó a megmaradt roidok termelését blokkolja az adott planétán, a csata után még néhány körig. Kb. másfélszer annyi roid blokkolása lehetséges, mint amennyi ellopott a játékos.
+> Gyenge, tÃ¶rÃ©keny hajÃ³k.
+> LopÃ³ osztÃ¡ly: naszÃ¡d.
+> KÃ¼lÃ¶nlegessÃ©g: BlokkolÃ³ hajÃ³k, melyek sebzÃ©st nem okoznak, de kiblokkoljÃ¡k a csatÃ¡bÃ³l az ellensÃ©get. Nagyon hatÃ©kony, de nem tesz kÃ¡rt a mÃ¡sikban. 
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> Roidblokk: A lopÃ³hajÃ³ a megmaradt roidok termelÃ©sÃ©t blokkolja az adott planÃ©tÃ¡n, a csata utÃ¡n mÃ©g nÃ©hÃ¡ny kÃ¶rig. Kb. mÃ¡sfÃ©lszer annyi roid blokkolÃ¡sa lehetsÃ©ges, mint amennyi ellopott a jÃ¡tÃ©kos.
 
 PIRAATI:
-> Törékeny, de jó sebzésû hajók.
-> Lopó osztály: naszád.
-> Az átlagosnál 1 körrel gyorsabb flották.
-> Különlegesség: A lelõtt hajók bizonyos százalékát ellopják, ami a csata után a saját flottályukba kerül.
-___Lehetséges változtatások / fejlesztések:
-> A hajólopáshoz egy fajspecifikus formációt hoznék létre. Ez lenne a csáklyázó formáció. Ha a kalóz megcsáklyázza az ellenséges flottát, akkor minden lelõtt hajót el tud lopni tõle, de cserébe sérülékenyebb, hajói pedig utolsónak lõnek.
->> Ez stratégiailag erõsítene a kalóz védõk helyzetén, ami az eredeti játékban a 15.-16. fordulótól kezdve már igen gyengének számított, jelentõsége eltörpült a khaduui és humán kombó mellett.
->> Lenne értelme ész nélkül túlvédeni mindenhol kalózzal.
->> A "high risk high reward" játékstílust jutalmazná, ami szerintem a faj lényege. Sokkal veszélyesebb, könnyû égni, nagyon könnyû lezúzni (hazakísérni) az ilyen formációban repülõ flottákat, de cserébe ha sikeres a taktika, akkor gyorsan meg tudja szedni magát a kalóz védõ.
+> TÃ¶rÃ©keny, de jÃ³ sebzÃ©sÅ± hajÃ³k.
+> LopÃ³ osztÃ¡ly: naszÃ¡d.
+> Az Ã¡tlagosnÃ¡l 1 kÃ¶rrel gyorsabb flottÃ¡k.
+> KÃ¼lÃ¶nlegessÃ©g: A lelÅ‘tt hajÃ³k bizonyos szÃ¡zalÃ©kÃ¡t ellopjÃ¡k, ami a csata utÃ¡n a sajÃ¡t flottÃ¡lyukba kerÃ¼l.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> A hajÃ³lopÃ¡shoz egy fajspecifikus formÃ¡ciÃ³t hoznÃ©k lÃ©tre. Ez lenne a csÃ¡klyÃ¡zÃ³ formÃ¡ciÃ³. Ha a kalÃ³z megcsÃ¡klyÃ¡zza az ellensÃ©ges flottÃ¡t, akkor minden lelÅ‘tt hajÃ³t el tud lopni tÅ‘le, de cserÃ©be sÃ©rÃ¼lÃ©kenyebb, hajÃ³i pedig utolsÃ³nak lÅ‘nek.
+>> Ez stratÃ©giailag erÅ‘sÃ­tene a kalÃ³z vÃ©dÅ‘k helyzetÃ©n, ami az eredeti jÃ¡tÃ©kban a 15.-16. fordulÃ³tÃ³l kezdve mÃ¡r igen gyengÃ©nek szÃ¡mÃ­tott, jelentÅ‘sÃ©ge eltÃ¶rpÃ¼lt a khaduui Ã©s humÃ¡n kombÃ³ mellett.
+>> Lenne Ã©rtelme Ã©sz nÃ©lkÃ¼l tÃºlvÃ©deni mindenhol kalÃ³zzal.
+>> A "high risk high reward" jÃ¡tÃ©kstÃ­lust jutalmaznÃ¡, ami szerintem a faj lÃ©nyege. Sokkal veszÃ©lyesebb, kÃ¶nnyÅ± Ã©gni, nagyon kÃ¶nnyÅ± lezÃºzni (hazakÃ­sÃ©rni) az ilyen formÃ¡ciÃ³ban repÃ¼lÅ‘ flottÃ¡kat, de cserÃ©be ha sikeres a taktika, akkor gyorsan meg tudja szedni magÃ¡t a kalÃ³z vÃ©dÅ‘.
 
 ZYK:
-> Rengeteg, nagyon olcsó, nagyon gyenge hajó. Jó célpontkiosztás, ár / érték arányban néhány nagyon erõs hajó.
-> Lopó osztály: fregatt.
-___Lehetséges változtatások / fejlesztések:
-> A faj mechanikáját a fajspecifikus fejlesztésekkel bõvíteném.
->> A zyk fejlesztések nagy része "specializáció" lenne. 
->> Ez azt jelenti, hogy bizonyos hajóosztályok, vagy bizonyos fajok ellen fejleszthetnék magukat a zyk játékosok. A fejlesztések között választani kéne, nem lehetne "kimaxolni" az összes fejlesztést egyszerre.
->> Egyszerû példa: kiválasztott faj ellen +5% sebzést kapnak a zyk hajók. Ebbõl csak 1 faj lehet aktív egyszerre.
->> Így a zyk játékosok specializálódhatnak 1-1 játékostípus ellen.
-> Lehetséges specializációk: faj ellen, hajótípus ellen, bizonyos pontszám ellen (sajátnál kisebb / nagyobb), esetleg szövetségi ranggal / galaxis ranggal rendelkezõk ellen, idegen / baráti planétán?
+> Rengeteg, nagyon olcsÃ³, nagyon gyenge hajÃ³. JÃ³ cÃ©lpontkiosztÃ¡s, Ã¡r / Ã©rtÃ©k arÃ¡nyban nÃ©hÃ¡ny nagyon erÅ‘s hajÃ³.
+> LopÃ³ osztÃ¡ly: fregatt.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> A faj mechanikÃ¡jÃ¡t a fajspecifikus fejlesztÃ©sekkel bÅ‘vÃ­tenÃ©m.
+>> A zyk fejlesztÃ©sek nagy rÃ©sze "specializÃ¡ciÃ³" lenne. 
+>> Ez azt jelenti, hogy bizonyos hajÃ³osztÃ¡lyok, vagy bizonyos fajok ellen fejleszthetnÃ©k magukat a zyk jÃ¡tÃ©kosok. A fejlesztÃ©sek kÃ¶zÃ¶tt vÃ¡lasztani kÃ©ne, nem lehetne "kimaxolni" az Ã¶sszes fejlesztÃ©st egyszerre.
+>> EgyszerÅ± pÃ©lda: kivÃ¡lasztott faj ellen +5% sebzÃ©st kapnak a zyk hajÃ³k. EbbÅ‘l csak 1 faj lehet aktÃ­v egyszerre.
+>> Ãgy a zyk jÃ¡tÃ©kosok specializÃ¡lÃ³dhatnak 1-1 jÃ¡tÃ©kostÃ­pus ellen.
+> LehetsÃ©ges specializÃ¡ciÃ³k: faj ellen, hajÃ³tÃ­pus ellen, bizonyos pontszÃ¡m ellen (sajÃ¡tnÃ¡l kisebb / nagyobb), esetleg szÃ¶vetsÃ©gi ranggal / galaxis ranggal rendelkezÅ‘k ellen, idegen / barÃ¡ti planÃ©tÃ¡n?
 
 
-+++SZÖVETSÉGEK RENDSZERE+++
-> Szövetséget alapítani bárki tud.
-> Szövetségi létszámlimit nincs, és soha nem is lesz.
-> A szövetségek despotikus rendszerûek, a fõparancsnok teljhatalommal rendelkezik, teljes hozzáférése van mind a tagság kezeléséhez, mind a kincstárhoz, mind a belsõ fórum moderálásához.
-> A szövetség kincstárral rendelkezik, melybe adó, vagy beutalások útján kerül a nyersanyag. 
-> A szövetség belsõ fórummal rendelkezik, melyet csak a szövetség tagjai láthatnak.
++++SZÃ–VETSÃ‰GEK RENDSZERE+++
+> SzÃ¶vetsÃ©get alapÃ­tani bÃ¡rki tud.
+> SzÃ¶vetsÃ©gi lÃ©tszÃ¡mlimit nincs, Ã©s soha nem is lesz.
+> A szÃ¶vetsÃ©gek despotikus rendszerÅ±ek, a fÅ‘parancsnok teljhatalommal rendelkezik, teljes hozzÃ¡fÃ©rÃ©se van mind a tagsÃ¡g kezelÃ©sÃ©hez, mind a kincstÃ¡rhoz, mind a belsÅ‘ fÃ³rum moderÃ¡lÃ¡sÃ¡hoz.
+> A szÃ¶vetsÃ©g kincstÃ¡rral rendelkezik, melybe adÃ³, vagy beutalÃ¡sok ÃºtjÃ¡n kerÃ¼l a nyersanyag. 
+> A szÃ¶vetsÃ©g belsÅ‘ fÃ³rummal rendelkezik, melyet csak a szÃ¶vetsÃ©g tagjai lÃ¡thatnak.
 
-SZÖVETSÉGI RANGOK (régiek, és újak egyben, mögöttük zárójelben, hogy egy szövetségben hány lehet belõlük):
-> Fõparancsnok(1): Superuser, minden jogosultsággal.
-> Parancsnok(3): Tagokat vehet fel, illetve távolíthat el, tagság rangját változtathatja. Támadást, védelmet tud szervezni, és diplomáciát tud kezelni.
-> Hadügyminiszter(3): Támadást és védelmet tud kezelni, ezek szervezése a feladata.
-> Propagandaminiszter(3): A régi fórumadminisztrátor. A fórumon kívül a szövetség propaganda felületének a kezelése, szerkesztése is feladata, s van hozzá jogosultsága (propagandáról késõbb).
-> Diplomata(1): Diplomáciát tud kezelni, s ebben merül ki a feladata is.
-> Kincstárnok(3): A kincstárat tudja kezelni.
-> Tárca nélküli miniszter(3): Külön jogokkal nem rendelkezõ tag, akit mégis valami miatt az fpk ki akar emelni az egyszerû szövetségi tagok közül. Egyfajta jelzés értékû rang, mindenféle kiváltság nélkül.
+SZÃ–VETSÃ‰GI RANGOK (rÃ©giek, Ã©s Ãºjak egyben, mÃ¶gÃ¶ttÃ¼k zÃ¡rÃ³jelben, hogy egy szÃ¶vetsÃ©gben hÃ¡ny lehet belÅ‘lÃ¼k):
+> FÅ‘parancsnok(1): Superuser, minden jogosultsÃ¡ggal.
+> Parancsnok(3): Tagokat vehet fel, illetve tÃ¡volÃ­that el, tagsÃ¡g rangjÃ¡t vÃ¡ltoztathatja. TÃ¡madÃ¡st, vÃ©delmet tud szervezni, Ã©s diplomÃ¡ciÃ¡t tud kezelni.
+> HadÃ¼gyminiszter(3): TÃ¡madÃ¡st Ã©s vÃ©delmet tud kezelni, ezek szervezÃ©se a feladata.
+> Propagandaminiszter(3): A rÃ©gi fÃ³rumadminisztrÃ¡tor. A fÃ³rumon kÃ­vÃ¼l a szÃ¶vetsÃ©g propaganda felÃ¼letÃ©nek a kezelÃ©se, szerkesztÃ©se is feladata, s van hozzÃ¡ jogosultsÃ¡ga (propagandÃ¡rÃ³l kÃ©sÅ‘bb).
+> Diplomata(1): DiplomÃ¡ciÃ¡t tud kezelni, s ebben merÃ¼l ki a feladata is.
+> KincstÃ¡rnok(3): A kincstÃ¡rat tudja kezelni.
+> TÃ¡rca nÃ©lkÃ¼li miniszter(3): KÃ¼lÃ¶n jogokkal nem rendelkezÅ‘ tag, akit mÃ©gis valami miatt az fpk ki akar emelni az egyszerÅ± szÃ¶vetsÃ©gi tagok kÃ¶zÃ¼l. Egyfajta jelzÃ©s Ã©rtÃ©kÅ± rang, mindenfÃ©le kivÃ¡ltsÃ¡g nÃ©lkÃ¼l.
 
-___Lehetséges változtatások / fejlesztések:
-> Látható, hogy az új rangokkal 17-re nõ a szövetségen belül tisztséget betöltõ játékosok száma. Erre a növelésre a játékélmény növelése érdekében volt szükség. Emellett galaxison belül is betölthetnek a játékosok galpk illetve galhm szerepeket, a szövetségen belül pedig vannak kiemelt védõk, támadók, szondászok, stb. Ezt arra a design döntésre alapozom, hogy a játékosok számára unalmas lehet egyszerû mezei szövetségi tagnak lenni, 140 másik szövetségi taggal egyetemben. Mindenki szeretne egy kicsikét különleges lenni, egy kicsit több lenni, mint az átlag bokorugró. A szövetségi rangok számának növelésével több játékos elégedettségét növelhetjük (konkrétan ez a célja a tárca nélküli miniszter pozíciónak) - de szükséges is volt szerintem pár új tisztség bevezetése.
->> 100 fõ fölötti szövetségnél szívem szerint még tovább növelném a rangokat, az összes rangot további +1-el bõvíteném. És ezt megismételném minden újabb 100 szövetségi tagnál.
+___LehetsÃ©ges vÃ¡ltoztatÃ¡sok / fejlesztÃ©sek:
+> LÃ¡thatÃ³, hogy az Ãºj rangokkal 17-re nÅ‘ a szÃ¶vetsÃ©gen belÃ¼l tisztsÃ©get betÃ¶ltÅ‘ jÃ¡tÃ©kosok szÃ¡ma. Erre a nÃ¶velÃ©sre a jÃ¡tÃ©kÃ©lmÃ©ny nÃ¶velÃ©se Ã©rdekÃ©ben volt szÃ¼ksÃ©g. Emellett galaxison belÃ¼l is betÃ¶lthetnek a jÃ¡tÃ©kosok galpk illetve galhm szerepeket, a szÃ¶vetsÃ©gen belÃ¼l pedig vannak kiemelt vÃ©dÅ‘k, tÃ¡madÃ³k, szondÃ¡szok, stb. Ezt arra a design dÃ¶ntÃ©sre alapozom, hogy a jÃ¡tÃ©kosok szÃ¡mÃ¡ra unalmas lehet egyszerÅ± mezei szÃ¶vetsÃ©gi tagnak lenni, 140 mÃ¡sik szÃ¶vetsÃ©gi taggal egyetemben. Mindenki szeretne egy kicsikÃ©t kÃ¼lÃ¶nleges lenni, egy kicsit tÃ¶bb lenni, mint az Ã¡tlag bokorugrÃ³. A szÃ¶vetsÃ©gi rangok szÃ¡mÃ¡nak nÃ¶velÃ©sÃ©vel tÃ¶bb jÃ¡tÃ©kos elÃ©gedettsÃ©gÃ©t nÃ¶velhetjÃ¼k (konkrÃ©tan ez a cÃ©lja a tÃ¡rca nÃ©lkÃ¼li miniszter pozÃ­ciÃ³nak) - de szÃ¼ksÃ©ges is volt szerintem pÃ¡r Ãºj tisztsÃ©g bevezetÃ©se.
+>> 100 fÅ‘ fÃ¶lÃ¶tti szÃ¶vetsÃ©gnÃ©l szÃ­vem szerint mÃ©g tovÃ¡bb nÃ¶velnÃ©m a rangokat, az Ã¶sszes rangot tovÃ¡bbi +1-el bÅ‘vÃ­tenÃ©m. Ã‰s ezt megismÃ©telnÃ©m minden Ãºjabb 100 szÃ¶vetsÃ©gi tagnÃ¡l.
 
 
-+++DIPLOMÁCIA+++
-A diplomácia képernyõ, és a teljes rendszer átdolgozása elengedhetetlen szerintem. Az eredeti rendszer legjobb eleme az volt, hogy a kötött egyezségeket egyáltalán nem volt kötelezõ betartani - csak hát aki diplót szegett, azt épp ezért mélyen lenézte a teljes univerzum. A rendszer ezen alapja változatlan lenne, viszont néhány felhasználóbarát újítás szükséges.
-Két szövetség között a következõ állapotok állhatnak fenn (régi és új lehetõségek egyben kerülnek felsorolásra):
-> Nemezis: Az elmúlt 168 órában folyamatosan, legalább 6 óránként volt ellenséges flottacsapódás a két szövetség között. Az ilyen állapotban lévõ szövetségek képtelenek módosítani a szövetségi állapotukon 168 órán keresztül (tehát ha megszûnik az ellenségeskedés, onnantól számítva 168 óráig). A nemeziseik ellen a szövetségek (szövetségi fejlesztés elvégzése után) bónuszokat kaphatnak! Az egyetlen szövetségi típus, amit a szövetségi vezetõk nem módosíthatnak, és a rendszer magától állítja be.
-> Háború: Azon szövetségek közötti állapot, amik háborúban állnak egymással, de még nem érték el a nemezis szintet. A nemezis szint ide vált vissza automatikusan, ha nincs ellenséges flottacsapódás a két szövetség között. Ez a szint már szabadon módosítható a szövetségi vezetõk által.
-> Tûzszünet: Ideiglenes tûzszünet, melyet nem illik(!) megszegni. Csak bizonyos idõközre állítható be, maximum 168 órára. Utána - ha a szövetségi vezetõk nem egyeztek meg másban - automatikusan háborúra áll vissza.
-> Semlegesség: A két szövetség között semmiféle diplomáciai kapcsolat nincs.
++++DIPLOMÃCIA+++
+A diplomÃ¡cia kÃ©pernyÅ‘, Ã©s a teljes rendszer Ã¡tdolgozÃ¡sa elengedhetetlen szerintem. Az eredeti rendszer legjobb eleme az volt, hogy a kÃ¶tÃ¶tt egyezsÃ©geket egyÃ¡ltalÃ¡n nem volt kÃ¶telezÅ‘ betartani - csak hÃ¡t aki diplÃ³t szegett, azt Ã©pp ezÃ©rt mÃ©lyen lenÃ©zte a teljes univerzum. A rendszer ezen alapja vÃ¡ltozatlan lenne, viszont nÃ©hÃ¡ny felhasznÃ¡lÃ³barÃ¡t ÃºjÃ­tÃ¡s szÃ¼ksÃ©ges.
+KÃ©t szÃ¶vetsÃ©g kÃ¶zÃ¶tt a kÃ¶vetkezÅ‘ Ã¡llapotok Ã¡llhatnak fenn (rÃ©gi Ã©s Ãºj lehetÅ‘sÃ©gek egyben kerÃ¼lnek felsorolÃ¡sra):
+> Nemezis: Az elmÃºlt 168 Ã³rÃ¡ban folyamatosan, legalÃ¡bb 6 Ã³rÃ¡nkÃ©nt volt ellensÃ©ges flottacsapÃ³dÃ¡s a kÃ©t szÃ¶vetsÃ©g kÃ¶zÃ¶tt. Az ilyen Ã¡llapotban lÃ©vÅ‘ szÃ¶vetsÃ©gek kÃ©ptelenek mÃ³dosÃ­tani a szÃ¶vetsÃ©gi Ã¡llapotukon 168 Ã³rÃ¡n keresztÃ¼l (tehÃ¡t ha megszÅ±nik az ellensÃ©geskedÃ©s, onnantÃ³l szÃ¡mÃ­tva 168 Ã³rÃ¡ig). A nemeziseik ellen a szÃ¶vetsÃ©gek (szÃ¶vetsÃ©gi fejlesztÃ©s elvÃ©gzÃ©se utÃ¡n) bÃ³nuszokat kaphatnak! Az egyetlen szÃ¶vetsÃ©gi tÃ­pus, amit a szÃ¶vetsÃ©gi vezetÅ‘k nem mÃ³dosÃ­thatnak, Ã©s a rendszer magÃ¡tÃ³l Ã¡llÃ­tja be.
+> HÃ¡borÃº: Azon szÃ¶vetsÃ©gek kÃ¶zÃ¶tti Ã¡llapot, amik hÃ¡borÃºban Ã¡llnak egymÃ¡ssal, de mÃ©g nem Ã©rtÃ©k el a nemezis szintet. A nemezis szint ide vÃ¡lt vissza automatikusan, ha nincs ellensÃ©ges flottacsapÃ³dÃ¡s a kÃ©t szÃ¶vetsÃ©g kÃ¶zÃ¶tt. Ez a szint mÃ¡r szabadon mÃ³dosÃ­thatÃ³ a szÃ¶vetsÃ©gi vezetÅ‘k Ã¡ltal.
+> TÅ±zszÃ¼net: Ideiglenes tÅ±zszÃ¼net, melyet nem illik(!) megszegni. Csak bizonyos idÅ‘kÃ¶zre Ã¡llÃ­thatÃ³ be, maximum 168 Ã³rÃ¡ra. UtÃ¡na - ha a szÃ¶vetsÃ©gi vezetÅ‘k nem egyeztek meg mÃ¡sban - automatikusan hÃ¡borÃºra Ã¡ll vissza.
+> SemlegessÃ©g: A kÃ©t szÃ¶vetsÃ©g kÃ¶zÃ¶tt semmifÃ©le diplomÃ¡ciai kapcsolat nincs.
 > 
 > 
