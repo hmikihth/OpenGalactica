@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .common import ROLES
+from common import ROLES
 
 class Battle:
     def __init__(self, attacking_fleets, defending_fleets):
