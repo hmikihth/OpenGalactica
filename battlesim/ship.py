@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import random
-from .common import FORMATIONS
+from common import FORMATIONS
 
 class Ship:
     def __init__(self, name, species, ship_class, target_order, weapon_type, initiative, evasion, weapon_count, 
