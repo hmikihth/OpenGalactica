@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from .ship import Ship
-from .fleet import Fleet
-from .battle import Battle
+from ship import Ship
+from fleet import Fleet
+from battle import Battle
 
 # Ship definitions
 laser_torony = Ship("Lézer lövegtorony", "Khaduuii", "Na", "Va Na All", "pvr", 20, 25, 18, 72, 12, 270, 2000, 3000, 1000)
