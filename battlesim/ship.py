@@ -102,7 +102,7 @@ class Ship:
         if not ratio:
             return total_damage
             
-        evasion_points = self.evasion * (100 + TIONS[self.fleet.formation][0]) / 100
+        evasion_points = self.evasion * (100 + FORMATIONS[self.fleet.formation][0]) / 100
 
         accuracy_bonus = FORMATIONS[firing_ship.fleet.formation][1]
         accuracy_points = firing_ship.accuracy_points * (100 + accuracy_bonus + firing_ship.fleet.rank) / 100 
