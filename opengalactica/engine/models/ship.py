@@ -41,11 +41,20 @@ class ShipProto():
     new_stolen = 0
     remaining = 0
     combat_ready = 0
+    
+    @property
+    def target_order(self):
+        return (self.target1, self.target2, self.target3)
 
-    def set_quantity(self, quantity):
-        self.quantity = quantity
-        self.remaining = quantity
-        self.combat_ready = quantity
+    @property
+    def quantity(self):
+        return self._quantity
+
+    @property.setter
+    def quantity(self, value):
+        self._quantity = value
+        self.remaining = value
+        self.combat_ready = value
         
     def hit_standard(self, damage, accuracy):
         loss = min(self.remaining, int(damage*accuracy // self.hp))
