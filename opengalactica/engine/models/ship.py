@@ -50,7 +50,7 @@ class ShipProto():
     def quantity(self):
         return self._quantity
 
-    @property.setter
+    @quantity.setter
     def quantity(self, value):
         self._quantity = value
         self.remaining = value
