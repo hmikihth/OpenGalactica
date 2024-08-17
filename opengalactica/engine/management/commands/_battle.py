@@ -53,7 +53,7 @@ class Battle:
             ship.apply_steal()
             ship.apply_block()
             
-    def battle(self):
+    def calculate(self):
         self.get_all_ships()
         self.get_initiatives()
 

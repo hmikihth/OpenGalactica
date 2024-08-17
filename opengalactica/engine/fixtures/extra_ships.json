@@ -1,0 +1,163 @@
+[
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Hélium",
+        "species" : "Extra",
+        "ship_class" :  "Va",
+        "target1" : "Va",
+        "target2" : "Na",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 120,
+        "evasion" : 40,
+        "weapon_count" : 14,
+        "accuracy_points" : 61,
+        "damage" : 3,
+        "hp" : 93,
+        "metal" : 1300,
+        "crystal" : 1000,
+        "narion" : 100,
+        "fuel" : 10,
+        "production_time" : 3,
+        "travel_g" : 5,
+        "travel_s" : 8,
+        "travel_u" : 11
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Neon",
+        "species" : "Extra",
+        "ship_class" :  "Na",
+        "target1" : "Na",
+        "target2" : "Fr",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 310,
+        "evasion" : 25,
+        "weapon_count" : 25,
+        "accuracy_points" : 60,
+        "damage" : 3,
+        "hp" : 245,
+        "metal" : 2600,
+        "crystal" : 2000,
+        "narion" : 200,
+        "fuel" : 30,
+        "production_time" : 5,
+        "travel_g" : 6,
+        "travel_s" : 9,
+        "travel_u" : 12
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Argon",
+        "species" : "Extra",
+        "ship_class" :  "Fr",
+        "target1" : "Fr",
+        "target2" : "Ro",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 430,
+        "evasion" : 17,
+        "weapon_count" : 10,
+        "accuracy_points" : 58,
+        "damage" : 27,
+        "hp" : 587,
+        "metal" : 5200,
+        "crystal" : 4000,
+        "narion" : 400,
+        "fuel" : 100,
+        "production_time" : 6,
+        "travel_g" : 7,
+        "travel_s" : 10,
+        "travel_u" : 13
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Kripton",
+        "species" : "Extra",
+        "ship_class" :  "Ro",
+        "target1" : "Ro",
+        "target2" : "Cir",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 580,
+        "evasion" : 10,
+        "weapon_count" : 37,
+        "accuracy_points" : 56,
+        "damage" : 20,
+        "hp" : 1373,
+        "metal" : 10400,
+        "crystal" : 8000,
+        "narion" : 800,
+        "fuel" : 300,
+        "production_time" : 7,
+        "travel_g" : 8,
+        "travel_s" : 11,
+        "travel_u" : 14
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Xenon",
+        "species" : "Extra",
+        "ship_class" :  "Cir",
+        "target1" : "Cir",
+        "target2" : "Csh",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 730,
+        "evasion" : 5,
+        "weapon_count" : 53,
+        "accuracy_points" : 54,
+        "damage" : 38,
+        "hp" : 3105,
+        "metal" : 20800,
+        "crystal" : 16000,
+        "narion" : 1600,
+        "fuel" : 800,
+        "production_time" : 9,
+        "travel_g" : 9,
+        "travel_s" : 12,
+        "travel_u" : 15
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Radon",
+        "species" : "Extra",
+        "ship_class" :  "Csh",
+        "target1" : "Csh",
+        "target2" : "Va",
+        "target3" : "All",
+        "weapon_type" : "standard",
+        "initiative" : 900,
+        "evasion" : 0,
+        "weapon_count" : 105,
+        "accuracy_points" : 61,
+        "damage" : 43,
+        "hp" : 6822,
+        "metal" : 41600,
+        "crystal" : 32000,
+        "narion" : 3200,
+        "fuel" : 1500,
+        "production_time" : 13,
+        "travel_g" : 10,
+        "travel_s" : 13,
+        "travel_u" : 16
+    }
+  }
+]

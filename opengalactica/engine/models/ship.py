@@ -7,15 +7,11 @@ class Species(models.Model):
     name = models.CharField(max_length=128)
 
 
-class ShipClass(models.Model):
-    name = models.CharField(max_length=128)
-    identifier = models.CharField(max_length=6)
-
-
 class ShipModel(models.Model):
     name = models.CharField(max_length=128)
-    species =  models.ForeignKey("Species", on_delete=models.SET_NULL, null=True)
-    ship_class =  models.ForeignKey("ShipClass", on_delete=models.SET_NULL, null=True)
+    pds = models.BooleanField(default=False)
+    species =  models.CharField(max_length=32)
+    ship_class =  models.CharField(max_length=8)
     target1 = models.CharField(max_length=8, default="-")
     target2 = models.CharField(max_length=8, default="-")
     target3 = models.CharField(max_length=8, default="-")
@@ -29,7 +25,11 @@ class ShipModel(models.Model):
     metal = models.IntegerField(default=0)
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
-    cost = models.IntegerField(default=0)
+    fuel = models.IntegerField(default=0)
+    production_time = models.IntegerField(default=0)
+    travel_g = models.IntegerField(default=0)
+    travel_s = models.IntegerField(default=0)
+    travel_u = models.IntegerField(default=0)
     
 
 class ShipProto():
@@ -41,6 +41,66 @@ class ShipProto():
     new_stolen = 0
     remaining = 0
     combat_ready = 0
+    
+    @property
+    def name(self):
+        return self.ship_model.name
+    
+    @property
+    def species(self):
+        return self.ship_model.species
+    
+    @property
+    def ship_class(self):
+        return self.ship_model.ship_class
+    
+    @property
+    def target1(self):
+        return self.ship_model.target1
+    
+    @property
+    def target2(self):
+        return self.ship_model.target2
+    
+    @property
+    def target3(self):
+        return self.ship_model.target3
+    
+    @property
+    def initiative(self):
+        return self.ship_model.initiative
+    
+    @property
+    def weapon_type(self):
+        return self.ship_model.weapon_type
+    @property
+    def evasion(self):
+        return self.ship_model.evasion
+    @property
+    def weapon_count(self):
+        return self.ship_model.weapon_count
+    @property
+    def accuracy_points(self):
+        return self.ship_model.accuracy_points
+    @property
+    def damage(self):
+        return self.ship_model.damage
+    @property
+    def hp(self):
+        return self.ship_model.hp
+    @property
+    def metal(self):
+        return self.ship_model.metal
+    @property
+    def crystal(self):
+        return self.ship_model.crystal
+    @property
+    def narion(self):
+        return self.ship_model.narion
+
+    @property
+    def cost(self):
+        return self.ship_model.metal + self.ship_model.crystal + self.ship_model.narion
     
     @property
     def target_order(self):
@@ -151,7 +211,7 @@ class ShipProto():
         return total_damage
 
 
-class Ship(ShipClass, ShipProto):
+class Ship(ShipProto):
     ship_model = models.ForeignKey("ShipModel", on_delete=models.CASCADE)
     fleet =  models.ForeignKey("Fleet", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)

@@ -1,0 +1,82 @@
+[
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Spion",
+        "species" : "Global",
+        "ship_class" :  "Va",
+        "target1" : "Plan",
+        "target2" : "-",
+        "target3" : "-",
+        "weapon_type" : "detector",
+        "initiative" : 1,
+        "evasion" : 40,
+        "weapon_count" : 0,
+        "accuracy_points" : 0,
+        "damage" : 0,
+        "hp" : 90,
+        "metal" : 500,
+        "crystal" : 2400,
+        "narion" : 100,
+        "fuel" : 10,
+        "production_time" : 4,
+        "travel_g" : 6,
+        "travel_s" : 7,
+        "travel_u" : 8
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Pusztító",
+        "species" : "Global",
+        "ship_class" :  "Va",
+        "target1" : "Pvr",
+        "target2" : "-",
+        "target3" : "-",
+        "weapon_type" : "standard",
+        "initiative" : 5,
+        "evasion" : 35,
+        "weapon_count" : 2,
+        "accuracy_points" : 50,
+        "damage" : 400,
+        "hp" : 151,
+        "metal" : 3200,
+        "crystal" : 2200,
+        "narion" : 600,
+        "fuel" : 10,
+        "production_time" : 5,
+        "travel_g" : 5,
+        "travel_s" : 8,
+        "travel_u" : 11
+    }
+  },
+
+  {
+    "model": "engine.ShipModel",
+    "fields": {
+        "name" : "Fosztogató",
+        "species" : "Global",
+        "ship_class" :  "Csh",
+        "target1" : "-",
+        "target2" : "-",
+        "target3" : "-",
+        "weapon_type" : "material_collector",
+        "initiative" : 1000,
+        "evasion" : 0,
+        "weapon_count" : 1,
+        "accuracy_points" : 0,
+        "damage" : 0,
+        "hp" : 6202,
+        "metal" : 32500,
+        "crystal" : 23000,
+        "narion" : 7500,
+        "fuel" : 1500,
+        "production_time" : 14,
+        "travel_g" : 10,
+        "travel_s" : 13,
+        "travel_u" : 16
+    }
+  }
+]

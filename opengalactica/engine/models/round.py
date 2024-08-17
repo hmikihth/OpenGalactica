@@ -6,7 +6,10 @@ class Round(models.Model):
     
     def tick(self):
         self.turn += 1
+        self.save()
+        return self.turn
         
     def new_round(self):
         self.number += 1
         self.turn = 1
+        self.save()
