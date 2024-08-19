@@ -31,6 +31,9 @@ class ShipModel(models.Model):
     travel_s = models.IntegerField(default=0)
     travel_u = models.IntegerField(default=0)
     
+    def __str__(self):
+        return self.name
+    
 
 class ShipProto():
     loss = 0

@@ -14,5 +14,12 @@ class Planet(models.Model):
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
     credit = models.IntegerField(default=0)
-    alliance = models.ForeignKey("Alliance", on_delete=models.SET_NULL, null=True)
+    alliance = models.ForeignKey("Alliance", on_delete=models.SET_NULL, null=True, blank=True)
     protection = models.IntegerField(default=72)
+
+    @property
+    def coordinates(self):
+        return f"{self.x}:{self.y}:{self.z}:{self.w}"
+        
+    def __str__(self):
+        return f"{self.name} ({self.coordinates})"
