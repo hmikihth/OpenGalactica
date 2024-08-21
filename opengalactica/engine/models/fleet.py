@@ -26,6 +26,8 @@ class Fleet(models.Model):
             ship, created = Ship.objects.get_or_create(ship_model=ship_model, fleet=self)
             ship.quantity += quantity
             ship.save()
+        else:
+            raise ValueError("Quantity must be positive")
 
     def swap_ship(self, other_fleet, quantity):
         pass

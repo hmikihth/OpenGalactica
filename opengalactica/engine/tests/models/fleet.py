@@ -13,19 +13,15 @@ class FleetTestCase(TestCase):
 
         fleet.add_ship(ships.ship_model, 10)
 
-        ships = Ship.objects.filter(fleet=fleet).first()
+        ships.refresh_from_db()
         new = ships.quantity
         
         self.assertEqual(original+10, new,
             """The quantity should increase"""
         )
         
-        fleet.add_ship(ships.ship_model, -1)
-        ships = Ship.objects.filter(fleet=fleet).first()
-
-        self.assertEqual(ships.quantity, new, 
-            """The method should accept only positive numbers"""
-        )
+        with self.assertRaises(ValueError):
+            fleet.add_ship(ships.ship_model, -1)
         
         
     def test_swap_ship(self):
