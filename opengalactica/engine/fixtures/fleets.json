@@ -50,5 +50,32 @@
         "fleet": 2, 
         "quantity": 100
     }
+  },
+  
+  
+  {
+    "model": "engine.fleet", 
+    "pk": 3, 
+    "fields": {
+        "name": "Fleet 2", 
+        "base": false, 
+        "owner": 2, 
+        "formation": "wall", 
+        "target": null, 
+        "distance": null, 
+        "turns": null, 
+        "task": "null", 
+        "role": "Defenders"
+    }
+  },
+
+  {
+    "model": "engine.ship", 
+    "pk": 3, 
+    "fields": {
+        "ship_model": 604, 
+        "fleet": 3, 
+        "quantity": 100
+    }
   }
 ]

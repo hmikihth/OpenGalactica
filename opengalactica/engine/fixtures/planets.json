@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "name": "Test Planet 1", 
-        "user": 1, 
+        "user": null, 
         "x": 0, 
         "y": 0, 
         "z": 0, 
@@ -24,7 +24,7 @@
     "pk": 2, 
     "fields": {
         "name": "Test Planet 2", 
-        "user": 1, 
+        "user": null, 
         "x": 0, 
         "y": 0, 
         "z": 0, 

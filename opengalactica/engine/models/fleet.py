@@ -17,9 +17,27 @@ class Fleet(models.Model):
     @property
     def ships(self):
         return Ships.objects.filter(fleet=self)
-    
-    def add_ship(self, ship_model, quantity):
-        Ship.objects.create(ship_model=ship_model, fleet=self, quantity=quantity)
-        
+
     def __str__(self):
         return f"{self.name} - {self.owner.name} ({self.owner.coordinates})"
+    
+    def add_ship(self, ship_model, quantity):
+        if quantity > 0:
+            ship, created = Ship.objects.get_or_create(ship_model=ship_model, fleet=self)
+            ship.quantity += quantity
+            ship.save()
+
+    def swap_ship(self, other_fleet, quantity):
+        pass
+        
+    def attack(self, turns):
+        pass
+        
+    def defend(self, turns):
+        pass
+        
+    def callback(self):
+        pass
+
+    def tick(self):
+        pass
