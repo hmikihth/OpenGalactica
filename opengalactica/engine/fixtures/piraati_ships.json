@@ -1,6 +1,7 @@
 [
   {
     "model": "engine.ShipModel",
+    "pk" : 601,
     "fields": {
         "name" : "Tolvaj",
         "species" : "Piraati",
@@ -27,6 +28,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 602,
     "fields": {
         "name" : "Zsivány",
         "species" : "Piraati",
@@ -53,6 +55,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 603,
     "fields": {
         "name" : "Haramia",
         "species" : "Piraati",
@@ -79,6 +82,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 604,
     "fields": {
         "name" : "Bandita",
         "species" : "Piraati",
@@ -105,6 +109,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 605,
     "fields": {
         "name" : "Hóhér",
         "species" : "Piraati",
@@ -131,6 +136,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 606,
     "fields": {
         "name" : "Gyilkos",
         "species" : "Piraati",
@@ -157,6 +163,7 @@
   },
   {
     "model": "engine.ShipModel",
+    "pk" : 607,
     "fields": {
         "name" : "Rabló",
         "species" : "Piraati",

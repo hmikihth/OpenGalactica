@@ -1,0 +1,44 @@
+[
+  {
+    "model": "engine.Species",
+    "pk" : 1,
+    "fields": {
+        "name" : "Human"
+    }
+  },
+  {
+    "model": "engine.Species",
+    "pk" : 2,
+    "fields": {
+        "name" : "Khaduuii"
+    }
+  },
+  {
+    "model": "engine.Species",
+    "pk" : 3,
+    "fields": {
+        "name" : "Shin"
+    }
+  },
+  {
+    "model": "engine.Species",
+    "pk" : 4,
+    "fields": {
+        "name" : "Zyk"
+    }
+  },
+  {
+    "model": "engine.Species",
+    "pk" : 5,
+    "fields": {
+        "name" : "Digitrox"
+    }
+  },
+  {
+    "model": "engine.Species",
+    "pk" : 6,
+    "fields": {
+        "name" : "Piraati"
+    }
+  }
+]

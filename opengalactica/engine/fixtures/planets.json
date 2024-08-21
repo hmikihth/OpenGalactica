@@ -1,0 +1,42 @@
+[
+  {
+    "model": "engine.planet", 
+    "pk": 1,
+    "fields": {
+        "name": "Test Planet 1", 
+        "user": 1, 
+        "x": 0, 
+        "y": 0, 
+        "z": 0, 
+        "w": 1, 
+        "tp": 0, 
+        "point": 0, 
+        "metal": 0, 
+        "crystal": 0, 
+        "narion": 0, 
+        "credit": 0, 
+        "alliance": null, 
+        "protection": 72
+    }
+  }, 
+  {
+    "model": "engine.planet", 
+    "pk": 2, 
+    "fields": {
+        "name": "Test Planet 2", 
+        "user": 1, 
+        "x": 0, 
+        "y": 0, 
+        "z": 0, 
+        "w": 2, 
+        "tp": 0, 
+        "point": 0, 
+        "metal": 0, 
+        "crystal": 0, 
+        "narion": 0, 
+        "credit": 0, 
+        "alliance": null, 
+        "protection": 72
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "model": "engine.fleet", 
+    "pk": 1, 
+    "fields": {
+        "name": "Base", 
+        "base": true, 
+        "owner": 1, 
+        "formation": "wall", 
+        "target": null, 
+        "distance": null, 
+        "turns": null, 
+        "task": null, 
+        "role": "Defenders"
+    }
+  }, 
+  
+  {
+    "model": "engine.ship", 
+    "pk": 1, 
+    "fields": {
+        "ship_model": 604, 
+        "fleet": 1, 
+        "quantity": 100
+    }
+  }, 
+  
+  
+  {
+    "model": "engine.fleet", 
+    "pk": 2, 
+    "fields": {
+        "name": "Fleet 1", 
+        "base": false, 
+        "owner": 2, 
+        "formation": "wall", 
+        "target": 1, 
+        "distance": 10, 
+        "turns": 3, 
+        "task": "move", 
+        "role": "Attackers"
+    }
+  },
+
+  {
+    "model": "engine.ship", 
+    "pk": 2, 
+    "fields": {
+        "ship_model": 604, 
+        "fleet": 2, 
+        "quantity": 100
+    }
+  }
+]

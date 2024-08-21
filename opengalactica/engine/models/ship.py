@@ -214,7 +214,7 @@ class ShipProto():
         return total_damage
 
 
-class Ship(ShipProto):
+class Ship(models.Model, ShipProto):
     ship_model = models.ForeignKey("ShipModel", on_delete=models.CASCADE)
     fleet =  models.ForeignKey("Fleet", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)

@@ -20,3 +20,6 @@ class Fleet(models.Model):
     
     def add_ship(self, ship_model, quantity):
         Ship.objects.create(ship_model=ship_model, fleet=self, quantity=quantity)
+        
+    def __str__(self):
+        return f"{self.name} - {self.owner.name} ({self.owner.coordinates})"
