@@ -1,0 +1,12 @@
+[
+  {
+    "model": "engine.Round",
+    "pk" : 1,
+    "fields": {
+        "number" : 1,
+        "turn" : 1,
+        "active" : true,
+        "calculate" : false
+    }
+  }
+]

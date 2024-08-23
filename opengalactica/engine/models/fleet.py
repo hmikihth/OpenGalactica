@@ -1,6 +1,7 @@
 from django.db import models
 
 from .ship import Ship
+from .round import Round
 
 
 class Fleet(models.Model):
@@ -22,6 +23,11 @@ class Fleet(models.Model):
         return f"{self.name} - {self.owner.name} ({self.owner.coordinates})"
     
     def add_ship(self, ship_model, quantity):
+        # Must raise ValueError when the turn calculations are running
+        round = Round.objects.last()
+        if round.calculate:
+            raise ValueError("Turn calculation is running")
+
         if quantity > 0:
             ship, created = Ship.objects.get_or_create(ship_model=ship_model, fleet=self)
             ship.quantity += quantity
@@ -29,8 +35,45 @@ class Fleet(models.Model):
         else:
             raise ValueError("Quantity must be positive")
 
-    def swap_ship(self, other_fleet, quantity):
-        pass
+
+    def swap_ship(self, other_fleet, ship_model, quantity):
+        # Must raise ValueError when the turn calculations are running
+        round = Round.objects.last()
+        if round.calculate:
+            raise ValueError("Turn calculation is running")
+        
+        # Check the owners
+        if self.owner != other_fleet.owner:
+            raise ValueError("Fleets must have the same owner")
+        
+        # Check if the quantity is positive
+        if quantity <= 0:
+            raise ValueError("Quantity must be a positive integer")
+
+        # Check if the current fleet is moving
+        if self.task == "move":
+            raise ValueError("Cannot swap ships from a moving fleet")
+
+        # Check if the other fleet is moving
+        if other_fleet.task == "move":
+            raise ValueError("Cannot swap ships to a moving fleet")
+
+        # Get the ship from the current fleet
+        ship = Ship.objects.filter(fleet=self, ship_model=ship_model).first()
+        if not ship or ship.quantity < quantity:
+            raise ValueError("Not enough ships to swap")
+
+        # Deduct the quantity from the current fleet
+        ship.quantity -= quantity
+        if ship.quantity == 0:
+            ship.delete()
+        else:
+            ship.save()
+
+        # Add the quantity to the other fleet
+        other_ship, created = Ship.objects.get_or_create(fleet=other_fleet, ship_model=ship_model)
+        other_ship.quantity += quantity
+        other_ship.save()
         
     def attack(self, turns):
         pass
