@@ -8,7 +8,6 @@
         "x": 0, 
         "y": 0, 
         "z": 0, 
-        "w": 1, 
         "tp": 0, 
         "point": 0, 
         "metal": 0, 
@@ -16,7 +15,7 @@
         "narion": 0, 
         "credit": 0, 
         "alliance": null, 
-        "protection": 72
+        "protection": 0
     }
   }, 
   {
@@ -25,10 +24,10 @@
     "fields": {
         "name": "Test Planet 2", 
         "user": null, 
+        "r": 1, 
         "x": 0, 
         "y": 0, 
         "z": 0, 
-        "w": 2, 
         "tp": 0, 
         "point": 0, 
         "metal": 0, 
@@ -36,7 +35,7 @@
         "narion": 0, 
         "credit": 0, 
         "alliance": null, 
-        "protection": 72
+        "protection": 0
     }
   }
 ]

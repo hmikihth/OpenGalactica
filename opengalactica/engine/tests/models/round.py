@@ -65,3 +65,15 @@ class RoundTestCase(TestCase):
         self.assertEqual(round.turn, 1, 
             "The new turn has to be  exactly 1"
         )
+
+    def test_start_calculations(self):
+        round = Round.objects.first()
+        round.end_calculations()
+        round.start_calculations()
+        self.assertTrue(round.calculate, "The calculate variable has be True")
+
+    def test_start_calculations(self):
+        round = Round.objects.first()
+        round.start_calculations()
+        round.end_calculations()
+        self.assertFalse(round.calculate, "The calculate variable has to be False")

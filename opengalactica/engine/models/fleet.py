@@ -17,7 +17,7 @@ class Fleet(models.Model):
 
     @property
     def ships(self):
-        return Ships.objects.filter(fleet=self)
+        return Ship.objects.filter(fleet=self)
 
     def __str__(self):
         return f"{self.name} - {self.owner.name} ({self.owner.coordinates})"
@@ -51,11 +51,11 @@ class Fleet(models.Model):
             raise ValueError("Quantity must be a positive integer")
 
         # Check if the current fleet is moving
-        if self.task == "move":
+        if self.task != "stand":
             raise ValueError("Cannot swap ships from a moving fleet")
 
         # Check if the other fleet is moving
-        if other_fleet.task == "move":
+        if other_fleet.task == "stand":
             raise ValueError("Cannot swap ships to a moving fleet")
 
         # Get the ship from the current fleet
@@ -75,14 +75,61 @@ class Fleet(models.Model):
         other_ship.quantity += quantity
         other_ship.save()
         
-    def attack(self, turns):
-        pass
+    def attack(self, turns, target):
+        # Must raise ValueError when the turn calculations are running
+        round = Round.objects.last()
+        if round.calculate:
+            raise ValueError("Turn calculation is running")
         
-    def defend(self, turns):
-        pass
+        # The fleet must contain ships
+        if not self.ships.exists():
+            raise ValueError("Fleet has no ships")
+        
+        # The target must be unprotected (define your logic here)
+        if target.is_protected():
+            raise ValueError("Target is protected and cannot be attacked")
+
+        # The target cannot be an ally
+        if target.is_ally(self.owner):
+            raise ValueError("Target cannot be ally")
+
+        # Set the fleet's task to attack and assign the target
+        self.task = "attack"
+        self.distance = target.get_distance(self)
+        self.turns = turns
+        self.target = target
+        self.save()
+        
+    def defend(self, turns, target):
+        # Must raise ValueError when the turn calculations are running
+        round = Round.objects.last()
+        if round.calculate:
+            raise ValueError("Turn calculation is running")
+
+        # The fleet must contain ships
+        if not self.ships.exists():
+            raise ValueError("Fleet has no ships")
+        
+        # Set the fleet's task to defend and assign the target
+        self.task = "defend"
+        self.distance = target.get_distance(self)
+        self.turns = turns
+        self.target = target
+        self.save()
         
     def callback(self):
-        pass
+        # Must raise ValueError if the fleet is already at home
+        if not self.target and self.task == "stand":
+            raise ValueError("Fleet is already at home")
+        
+        # Must raise ValueError if the fleet is a base
+        if self.base:
+            raise ValueError("Base fleets cannot move or have a target")
+        
+        # Set the fleet's task to "return" and recount the distance
+        self.task = "return"
+        self.distance = self.target.get_distance(self) - self.distance
+        self.save()
 
     def tick(self):
         pass

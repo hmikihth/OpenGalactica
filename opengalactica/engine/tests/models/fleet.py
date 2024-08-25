@@ -1,5 +1,5 @@
 from django.test import TestCase
-from engine.models import Fleet, Ship, Planet, Round
+from engine.models import Fleet, Ship, ShipModel, Planet, Round
 
 class FleetTestCase(TestCase):
     fixtures = ["planets", "fleets", "piraati_ships", "round"]
@@ -31,26 +31,17 @@ class FleetTestCase(TestCase):
         
         
     def test_swap_ship(self):
-        """ Test swap_ship() method """
-        pass
-
-        # The method must remove ships from the fleet
-        
-        # The method must add the ships to the fleet
-        
-        # The method must not add ships to a moving fleet
-        
-        # The method must not remove ships from a moving fleet
-        
-        # The quantity must be a positive integer number
-        
-        # The quantity must be less or equal with the number of ships in the original fleet
-        
         """Test swap_ship() method"""
         fleet1 = Fleet.objects.get(name="Empty Fleet 1")
         fleet2 = Fleet.objects.get(name="Empty Fleet 2")
+        
 
-        ship_model = Ship.objects.filter(fleet=fleet1).first().ship_model
+        # To make sure fleet is empty and standing
+        fleet1.task = "stand"
+        fleet1.save()
+        Ship.objects.filter(fleet=fleet1).delete()
+
+        ship_model = ShipModel.objects.first()
 
         # Add ships to both fleets
         fleet1.add_ship(ship_model, 10)
@@ -76,6 +67,15 @@ class FleetTestCase(TestCase):
         with self.assertRaises(ValueError, msg="Should raise ValueError when swapping with negative quantity"):
             fleet1.swap_ship(fleet2, ship_model, -5)
 
+        # Start calculation to validate that swap is prevented if turn calculation is running
+        round = Round.objects.last()
+        round.start_calculations()
+
+        with self.assertRaises(ValueError, msg="Must fail when the turn calculations are running"):
+            fleet1.swap_ship(fleet2, ship_model, 1)        
+
+        round.end_calculations()
+
         # Set fleet1 to move and validate that the swap is prevented
         fleet1.task = "move"
         fleet1.save()
@@ -90,34 +90,102 @@ class FleetTestCase(TestCase):
         with self.assertRaises(ValueError, msg="Should raise ValueError when swapping to a moving fleet"):
             fleet1.swap_ship(fleet2, ship_model, 1)        
         
-        round = Round.objects.last()
-        round.start_calculations()
-        with self.assertRaises(ValueError, msg="Must fail when the turn calculations are running"):
-            fleet1.swap_ship(fleet2, ship_model, 1)        
-        round.end_calculations()
-
         
     def test_attack(self):
-        """ Test attack() method """
-        pass
-        # Must fail when the turn calculations are running
-
-        # The fleet must contain ships
-
-        # The target must be unprotected
+        fleet = Fleet.objects.get(name="Fleet 1")
+        target_planet = Planet.objects.get(name="Test Planet 1")
         
+        # Ensure attack fails when no ships
+        Ship.objects.filter(fleet=fleet).delete()
+        with self.assertRaises(ValueError, msg="Fleet has no ships"):
+            fleet.attack(2, target_planet)
+
+        # Add ships and ensure attack succeeds
+        ship_model = Ship.objects.first().ship_model
+        fleet.add_ship(ship_model, 10)
+        
+        # Start calculation to prevent attack
+        round = Round.objects.last()
+        round.start_calculations()
+        
+        with self.assertRaises(ValueError, msg="Turn calculation is running"):
+            fleet.attack(2, target_planet)
+        
+        round.end_calculations()
+
+        # Set the distance to 0 to check the method will set a new value
+        fleet.distance = 0
+        fleet.save()
+
+        # Verify attack
+        fleet.attack(2, target_planet)
+        self.assertEqual(fleet.task, "attack")
+        self.assertEqual(fleet.target, target_planet)
+        self.assertEqual(fleet.distance, target_planet.get_distance(fleet), "Must set the distance")
+        
+        # Must fail if they fleet's owner planet and the target are in the same galaxy or in the same alliance
+
     def test_defend(self):
-        """ Test defend() method """
-        pass
-        # Must fail when the turn calculations are running
-
-        # The fleet must contain ships
+        fleet = Fleet.objects.get(name="Fleet 1")
+        target_planet = Planet.objects.get(name="Test Planet 1")
         
-    def test_callback(self):
-        """ Test callback() method """
-        pass
-        # Must fail when the turn calculations are running
+        # Ensure defense fails when no ships
+        Ship.objects.filter(fleet=fleet).delete()
+        with self.assertRaises(ValueError, msg="Fleet has no ships"):
+            fleet.defend(2, target_planet)
 
+        # Add ships and ensure defend succeeds
+        ship_model = Ship.objects.first().ship_model
+        fleet.add_ship(ship_model, 10)
+        
+        # Start calculation to prevent defend
+        round = Round.objects.last()
+        round.start_calculations()
+        
+        with self.assertRaises(ValueError, msg="Turn calculation is running"):
+            fleet.defend(2, target_planet)
+        
+        round.end_calculations()
+
+        # Set the distance to 0 to check the method will set a new value
+        fleet.distance = 0
+        fleet.save()
+
+        # Verify defend
+        fleet.defend(2, target_planet)
+        self.assertEqual(fleet.task, "defend")
+        self.assertEqual(fleet.target, target_planet)
+        self.assertEqual(fleet.distance, target_planet.get_distance(fleet), "Must set the distance")
+
+    def test_callback(self):
+        fleet = Fleet.objects.get(name="Fleet 1")
+        
+        # Ensure callback fails when fleet is already at home
+        fleet.task = "stand"
+        fleet.target = None
+        fleet.save()
+
+        with self.assertRaises(ValueError, msg="Must fail if the fleet is already at home"):
+            fleet.callback()
+        
+        # Simulate fleet moving and callback to return home
+        fleet.task = "move"
+        target_planet = Planet.objects.get(name="Test Planet 1")
+        fleet.target = target_planet
+        fleet.distance = target_planet.get_distance(fleet)
+        fleet.save()
+
+        old_distance = fleet.distance
+        fleet.distance -= 1
+        fleet.save()
+
+        fleet.callback()
+        fleet.refresh_from_db()
+
+        self.assertEqual(fleet.task, "return", "Fleet should be in return mode after callback")
+        self.assertEqual(fleet.target, target_planet, "Fleet should keep the target after callback")
+        self.assertEqual(fleet.distance, 1, "Must recount the distance")
+        
     def test_tick(self):
         """ Test tick() method """
         pass
