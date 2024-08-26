@@ -131,5 +131,45 @@ class Fleet(models.Model):
         self.distance = self.target.get_distance(self) - self.distance
         self.save()
 
+#    def tick(self):
+#        # Must raise ValueError if the fleet is a base
+#        if self.base:
+#            raise ValueError("Base fleets cannot move")
+            
     def tick(self):
-        pass
+        # Ensure the turn calculation is running
+        round = Round.objects.last()
+        if not round.calculate:
+            raise ValueError("Turn calculation is not running")
+        
+        # Ensure the fleet is not a base
+        if self.base:
+            raise ValueError("Base fleets cannot move")
+
+        # If no ships remain, return home instantly
+        if not self.ships:
+            self.task = "stand"
+            self.target = None
+            self.distance = 0
+            self.role = "Defenders"
+        
+        # Decrease distance by 1
+        if self.distance is not None:
+            self.distance = max(0, self.distance - 1)
+        
+        if self.task == "move":
+            if self.distance == 0:
+                if self.turns is not None and self.turns > 0:
+                    self.turns -= 1
+                if self.turns == 0:
+                    self.task = "return"
+                    self.distance = self.target.get_distance(self)
+
+        if self.task == "return":
+            if self.distance == 0:
+                # The fleet returns home
+                self.task = "stand"
+                self.target = None
+                self.role = "Defenders"
+                
+        self.save()

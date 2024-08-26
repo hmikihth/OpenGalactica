@@ -186,6 +186,94 @@ class FleetTestCase(TestCase):
         self.assertEqual(fleet.target, target_planet, "Fleet should keep the target after callback")
         self.assertEqual(fleet.distance, 1, "Must recount the distance")
         
+#    def test_tick(self):
+#        """ Test tick() method """
+        # Must decrease the distance by 1
+        
+        # Distance cannot be a negative number
+
+        # Must raise ValueError when the turn calculations are not running
+
+        # Must raise ValueError if the fleet is a base
+
+        # If the distance is 0 and the turn is greater than whan 1 then it must decrease turn by one
+        
+        # It must set task to return if turn is 0
+        
+        # It must recount the distance if turn is 0
+        
+        # It must set the role to "Defenders" if the fleet returns home (when task is "return" and distance is 0)
+        
+        # It must set the target to None if the fleet returns home
+        
+        # It must set the task to "stand" when a fleet returns home
+        
+        # Fleet instantly needs to return home if there is no more ship in the fleet
+        
     def test_tick(self):
         """ Test tick() method """
-        pass
+
+        fleet = Fleet.objects.get(name="Fleet 1")
+  
+        # Test error when calculations are not running
+        round = Round.objects.last()
+        round.end_calculations()
+        
+        with self.assertRaises(ValueError, msg="Turn calculation is not running"):
+            fleet.tick()
+        
+        round.start_calculations()
+        
+        # Test error for base fleet
+        fleet.base = True
+        fleet.save()
+        
+        with self.assertRaises(ValueError, msg="Base fleets cannot move"):
+            fleet.tick()
+        
+        fleet.base = False
+        fleet.save()
+        
+        # Test distance decrement
+        fleet.distance = 3
+        fleet.tick()
+        self.assertEqual(fleet.distance, 2, "Distance should decrease by 1")
+        
+        # Test turn decrement when distance reaches zero
+        fleet.distance = 1
+        fleet.task = "move"
+        fleet.tick()
+        fleet.refresh_from_db()
+        self.assertEqual(fleet.distance, 0, "Distance should be zero")
+
+
+        fleet.distance = 0
+        fleet.task = "move"
+        fleet.turns = 2
+        fleet.tick()
+        fleet.refresh_from_db()
+        self.assertEqual(fleet.turns, 1, "Turns should decrease by 1")
+        
+        fleet.tick()
+        fleet.refresh_from_db()
+        self.assertEqual(fleet.task, "return", "Fleet should switch to return mode")
+        
+        # Test returning home
+        fleet.distance = 1
+        fleet.task = "return"
+        fleet.tick()
+        fleet.refresh_from_db()
+        self.assertEqual(fleet.distance, 0, "Fleet should be home")
+        self.assertEqual(fleet.task, "stand", "Task should be set to stand")
+        self.assertIsNone(fleet.target, "Target should be reset")
+        self.assertEqual(fleet.role, "Defenders", "Role should be set to Defenders")
+        
+        # Test instant return home if no ships remain
+        Ship.objects.filter(fleet=fleet).delete()
+        fleet.task = "move"
+        fleet.distance = 2
+        fleet.tick()
+        fleet.refresh_from_db()
+        self.assertEqual(fleet.distance, 0, "Fleet should return home instantly if no ships remain")
+        self.assertEqual(fleet.task, "stand", "Task should be set to stand")
+        self.assertIsNone(fleet.target, "Target should be reset")
