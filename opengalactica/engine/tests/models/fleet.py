@@ -186,30 +186,6 @@ class FleetTestCase(TestCase):
         self.assertEqual(fleet.target, target_planet, "Fleet should keep the target after callback")
         self.assertEqual(fleet.distance, 1, "Must recount the distance")
         
-#    def test_tick(self):
-#        """ Test tick() method """
-        # Must decrease the distance by 1
-        
-        # Distance cannot be a negative number
-
-        # Must raise ValueError when the turn calculations are not running
-
-        # Must raise ValueError if the fleet is a base
-
-        # If the distance is 0 and the turn is greater than whan 1 then it must decrease turn by one
-        
-        # It must set task to return if turn is 0
-        
-        # It must recount the distance if turn is 0
-        
-        # It must set the role to "Defenders" if the fleet returns home (when task is "return" and distance is 0)
-        
-        # It must set the target to None if the fleet returns home
-        
-        # It must set the task to "stand" when a fleet returns home
-        
-        # Fleet instantly needs to return home if there is no more ship in the fleet
-        
     def test_tick(self):
         """ Test tick() method """
 
