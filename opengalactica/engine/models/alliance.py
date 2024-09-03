@@ -29,6 +29,7 @@ class Alliance(models.Model):
             alliance=self, 
             planet=planet, 
             turn=turn,
+            type="tax",
             metal=metal, 
             crystal=crystal, 
             narion=narion
