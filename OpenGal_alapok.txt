@@ -25,8 +25,13 @@ A játék képzelt univerzuma rendszerekből, azon belül galaxisokból, azon be
 ___Lehetséges változtatások / fejlesztések:
 > Mivel nonprofit játék, a korábban kreditért vásárolható funkciók (szövetségi galaxis vásárlása, planéta áthelyezése) megvásárolhatóak a saját, vagy szövetségi kincstárból, nyersanyagból.
 > Rendszerek bővítése plusz galaxisokkal
+> A galaxis és a rendszer elnevezés megcserélése. Ez lehetővé tenné azt hogy a játékba bekerüljenek csillagok is amik befolyásolhatnák a csatákat és a termelést. (Neutroncsillag: szondázás, szondázhatóság. Fekete lyuk: flották sebessége, plasmatorszondák hatékonysága. Vörös óriás: Hatékonyabb fémplasmatorok, viszont a csillag nem él a forduló végéig, a csillag pusztulásakor elpusztít minden otthon tartózkodó hajót, PVR-t. A játékos láthatja hány kör van a csillag pusztulásáig)
 >> Az árak exponenciálisan növekednének, így az első néhány után abszolút nem érné meg.
 >> Cél a 100 fő feletti szövetségek ellátása galaxissal. Így a kezdeti időkben tudnának mondjuk 12-13 galaxissal rendelkezni, később, amikor már életképessé válik a 100 fő feletti rész, akkor el tudnak költözni egy új rendszerbe. Így a 100-as határ elérése nem jelentene akkora hátrányt.
+> Később egy starblast.io-hoz hasonló real time játékmód. A real time harcc mindig az adott kör végéig tartana. Az ott szerzettnyersanyag és gyártott hajók a kör végén hozzáadódnának a játékos profiljához.
+> A csataszámításnál egy új változó hozzáadása a túlzott farmolás és a kezdők elnyomásának ellensúlyozására. Ha egy játékos vagy egy szövetség túl gyakran támad egy adott célpontot akkor elkezd leromlani a találati pontosság és a roidlopás hatékonysága.
+> IP-ből és böngésző adatokból hash készítés, amelyet a szövetségek vezetői használhatnak a kémek, multik kiszűrésére.
+> AI vezérelt bolygók. Ezek száma a multi és farm gyanús esetekkel arányosan automatikusan nőne. És nagyobb valószínűséggel támadnák az ilyen gyanús bolygókat.
 
 
 +++NYERSANYAG ÉS PLAZMATOROK+++
@@ -75,6 +80,7 @@ ___Lehetséges változtatások / fejlesztések:
 > Lopóhajó és nyersanyag lopó hajó kombinálása egy hajóba.
 > Másodlagos hajók, melyek nem lőnek, hanem gyógyítanak.
 >> Nagyon rossz célpontkiosztással a lelőtt saját hajókból következő körre újraépítenek néhányat.
+> Hajógyilkos szondák (egyaránt pusztítanák a védőket és támadókat is a célpont bolygón)
 
 KHADUUI:
 > Gyenge, törékeny hajók.
@@ -93,6 +99,7 @@ ___Lehetséges változtatások / fejlesztések:
 >> Ez stratégiailag erősítene a kalóz védők helyzetén, ami az eredeti játékban a 15.-16. fordulótól kezdve már igen gyengének számított, jelentősége eltörpült a khaduui és humán kombó mellett.
 >> Lenne értelme ész nélkül túlvédeni mindenhol kalózzal.
 >> A "high risk high reward" játékstílust jutalmazná, ami szerintem a faj lényege. Sokkal veszélyesebb, könnyű égni, nagyon könnyű lezúzni (hazakísérni) az ilyen formációban repülő flottákat, de cserébe ha sikeres a taktika, akkor gyorsan meg tudja szedni magát a kalóz védő.
+> Képes lenne félúton a mélyürben is csatázni, ha két játékos kölcsönösen betámadja egymást. Erre a mélyűri csatára a shin immunis lenne azaz a flottái észrevétlenül elhaladhatnak a piraati flották mellett.
 
 ZYK:
 > Rengeteg, nagyon olcsó, nagyon gyenge hajó. Jó célpontkiosztás, ár / érték arányban néhány nagyon erős hajó.
@@ -105,6 +112,21 @@ ___Lehetséges változtatások / fejlesztések:
 >> Így a zyk játékosok specializálódhatnak 1-1 játékostípus ellen.
 > Lehetséges specializációk: faj ellen, hajótípus ellen, bizonyos pontszám ellen (sajátnál kisebb / nagyobb), esetleg szövetségi ranggal / galaxis ranggal rendelkezők ellen, idegen / baráti planétán?
 
+Nomád:
+> Űrállomások építése. Önmagában saját hajóosztály így csak az összlövők sebezhetik. Tartósabb időre telepítheti őket egy tetszőleges csillag körül, a galaxis profilban ezek 100-nál mindig nagyobb sorszámmal jelennének meg mint egy önálló bolygó, a bolygónév helyett az anyabolygó neve és a flotta neve jelenik meg. A csatahajóknál is lassabban mozognak, de cserébe nehéz őket elpusztítani és helyben gyárthat hajókat is. A kilőtt űrállomáshoz tartozó maradék flotta visszavonul, az űrállomás gyártósorán lévőhajók megsemmisülnek, de a nyersanyagot a játékos visszakapja.
+> Plasmatorvontatók. A játékos tetszőleges koordinátákra vontathatja a plasmatorait. A vontatás lassú és utazás közben nem termelnek a plasmatorok. Ha a plasmatorvontatókat egy csatában lelövik akkor az el nem lopott plasmatorok haza katapultálnak, ez idő alatt nem termelnek.
+> A játékos nagyobb mennyiségű nyersanyagért cserébe akár az egész bolygóját is áthelyezheti az univerzum egy tetszőleges pontjára.
+> A fajnak gyakorlatilag csak vadászai lennének harcra, minden más osztályból csak plasmatorlopásra, plasmatorok áttelepítésére esetleg gyenge blokkolásra lennének hajói
+> A fajnak nem lenne PVR-e
+
+Hibrid:
+> Egy olyan faj aminek egy-egy osztályban lennének más fajokra jellemző tulajdonságú hajói.
+> A hajói nem lennének erősek egyetlen osztályban sem viszont a flotta összetétel variálhatósága stratégiai előnyt jelenthetne.
+> Minden hajóosztályban lennének lopóhajói, viszont az adott osztályra jellemzőknél valamivel gyengébbek.
+> A flották variálhatósága érdekében hatékonyabb hajóbontás.
+> A fejlesztéseknél a többi fajjal ellentétes irányban a csatahajótól a vadászig fejleszthetné a hajóit.
+> A PVR-ek is fordított irányban fejlődnének és a kisebb PVR-ek összességében hatékonyabbak lennének mint a nagyobb hajosztályba tartozók.
+> Az egyik flotta a nomádra jellemző telepíthető űrállomás viszont ez csak jelentős fejlesztések után elérhető. A nomádok űrállomásától sebezhetőbb, mivel ez csatahajó osztályú.
 
 +++SZÖVETSÉGEK RENDSZERE+++
 > Szövetséget alapítani bárki tud.
