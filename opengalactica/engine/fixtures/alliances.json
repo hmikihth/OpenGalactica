@@ -1,0 +1,14 @@
+[
+  {
+    "model": "engine.alliance", 
+    "pk": 1,
+    "fields": {
+        "name": "Test Alliance 1", 
+        "identifier": "TA01",
+        "metal": 0, 
+        "crystal": 0, 
+        "narion": 0, 
+        "credit": 0
+    }
+  }
+]

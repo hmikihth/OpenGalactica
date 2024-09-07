@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from ._battle import Battle
 from ._fleet_movements import FleetMovements
 from ._point_calculations import PointCalculations
 from ._developments import Developments
@@ -8,7 +7,7 @@ from ._productions import Productions
 from ._resources import Resources
 from ._moving_planets import MovingPlanets
 
-from engine.models import Fleet, Round
+from engine.models import Fleet, Round, Planet
 
 
 class Command(BaseCommand):
@@ -18,12 +17,9 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS('Execute battles...')
         )
-        under_attack = {*Fleet.objects.filter(distance=0, role="Attackers").values("target")}
-        for planet in under_attack:
-            attackers = Fleet.objects.filter(distance=0, role="Attackers", target=planet)
-            defenders = Fleet.objects.filter(distance=0, role="Defenders", target=planet)
-            battle = Battle(attackers, defenders)
-            battle.calculate()
+        for planet in Planet.objects.all():
+            if planet.attackers:
+                planet.battle()
 
     def end_turn(self):
         current_round = Round.objects.order_by("number").last()

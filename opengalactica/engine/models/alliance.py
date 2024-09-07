@@ -17,18 +17,38 @@ class Alliance(models.Model):
     metal = models.IntegerField(default=0)
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
+    credit = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return f"#{self.identifier} - {self.name}"
+
+    @property
+    def members(self):
+        return Planet.objects.filter(alliance=self)
 
     def pay_tax(self, planet, metal, crystal, narion):
+        if planet is None:
+            raise ValueError("Only existing planets can pay tax")
+
+        if planet.alliance != self:
+            raise ValueError("Planet must be part of the alliance to pay tax")
+
+        if metal < 0 or crystal < 0 or narion < 0:
+            raise ValueError("Tax amounts must be positive")
+
         self.metal += metal 
         self.crystal += crystal
         self.narion += narion
+        self.save()
 
-        turn = Round.objects.last().turn
+        round = Round.objects.order_by("number").last()
+        if round is None:
+            raise ValueError("At least one round must exist")
 
         AllianceTreasuryLog.objects.create(
             alliance=self, 
             planet=planet, 
-            turn=turn,
+            turn=round.turn,
             type="tax",
             metal=metal, 
             crystal=crystal, 

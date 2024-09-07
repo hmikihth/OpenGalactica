@@ -95,6 +95,12 @@ class FleetTestCase(TestCase):
         fleet = Fleet.objects.get(name="Fleet 1")
         target_planet = Planet.objects.get(name="Test Planet 1")
         
+        # To be sure the fleet is at home
+        fleet.distance = 0
+        fleet.target = None
+        fleet.task = "stand"
+        fleet.role = "Defenders"
+
         # Ensure attack fails when no ships
         Ship.objects.filter(fleet=fleet).delete()
         with self.assertRaises(ValueError, msg="Fleet has no ships"):
@@ -119,7 +125,8 @@ class FleetTestCase(TestCase):
 
         # Verify attack
         fleet.attack(2, target_planet)
-        self.assertEqual(fleet.task, "attack")
+        self.assertEqual(fleet.task, "move")
+        self.assertEqual(fleet.role, "Attackers")
         self.assertEqual(fleet.target, target_planet)
         self.assertEqual(fleet.distance, target_planet.get_distance(fleet), "Must set the distance")
         
@@ -128,6 +135,12 @@ class FleetTestCase(TestCase):
     def test_defend(self):
         fleet = Fleet.objects.get(name="Fleet 1")
         target_planet = Planet.objects.get(name="Test Planet 1")
+        
+        # To be sure the fleet is at home
+        fleet.distance = 0
+        fleet.target = None
+        fleet.task = "stand"
+        fleet.role = "Defenders"
         
         # Ensure defense fails when no ships
         Ship.objects.filter(fleet=fleet).delete()
@@ -142,7 +155,7 @@ class FleetTestCase(TestCase):
         round = Round.objects.last()
         round.start_calculations()
         
-        with self.assertRaises(ValueError, msg="Turn calculation is running"):
+        with self.assertRaises(ValueError, msg="Must raise an error if turn calculation is running"):
             fleet.defend(2, target_planet)
         
         round.end_calculations()
@@ -153,7 +166,8 @@ class FleetTestCase(TestCase):
 
         # Verify defend
         fleet.defend(2, target_planet)
-        self.assertEqual(fleet.task, "defend")
+        self.assertEqual(fleet.task, "move")
+        self.assertEqual(fleet.role, "Defenders")
         self.assertEqual(fleet.target, target_planet)
         self.assertEqual(fleet.distance, target_planet.get_distance(fleet), "Must set the distance")
 
@@ -169,8 +183,16 @@ class FleetTestCase(TestCase):
             fleet.callback()
         
         # Simulate fleet moving and callback to return home
-        fleet.task = "move"
         target_planet = Planet.objects.get(name="Test Planet 1")
+        fleet.task = "move"
+        fleet.target = target_planet
+        fleet.distance = target_planet.get_distance(fleet)
+        fleet.save()
+
+        fleet.callback()
+        self.assertEqual(fleet.task, "stand", "Task should be set to stand after recall a recently started fleet")
+
+        fleet.task = "move"
         fleet.target = target_planet
         fleet.distance = target_planet.get_distance(fleet)
         fleet.save()
@@ -185,6 +207,7 @@ class FleetTestCase(TestCase):
         self.assertEqual(fleet.task, "return", "Fleet should be in return mode after callback")
         self.assertEqual(fleet.target, target_planet, "Fleet should keep the target after callback")
         self.assertEqual(fleet.distance, 1, "Must recount the distance")
+
         
     def test_tick(self):
         """ Test tick() method """
@@ -253,3 +276,84 @@ class FleetTestCase(TestCase):
         self.assertEqual(fleet.distance, 0, "Fleet should return home instantly if no ships remain")
         self.assertEqual(fleet.task, "stand", "Task should be set to stand")
         self.assertIsNone(fleet.target, "Target should be reset")
+
+    def test_already_moving_fleet(self):
+        fleet = Fleet.objects.get(name="Fleet 1")
+        target_planet = Planet.objects.get(name="Test Planet 1")
+
+        # To be sure the fleet is at home
+        fleet.distance = 0
+        fleet.target = None
+        fleet.task = "stand"
+        fleet.role = "Defenders"
+
+        # Add ships to ensure the fleet can move
+        ship_model = Ship.objects.first().ship_model
+        fleet.add_ship(ship_model, 10)
+        
+        fleet.attack(2, target_planet)
+        with self.assertRaises(ValueError, msg="Already moving fleets soud raise an error"):
+            fleet.defend(2, target_planet)
+            
+        fleet.callback()
+        
+        fleet.defend(2, target_planet)
+        with self.assertRaises(ValueError, msg="Already moving fleets soud raise an error"):
+            fleet.attack(2, target_planet)
+
+        fleet.callback()
+        
+    def test_protected_planet_cannot_attack_or_defend(self):
+        fleet = Fleet.objects.get(name="Fleet 1")
+        target_planet = Planet.objects.get(name="Test Planet 1")
+
+        # To be sure the fleet is at home
+        fleet.distance = 0
+        fleet.target = None
+        fleet.task = "stand"
+        fleet.role = "Defenders"
+
+        # Add ships to ensure the fleet can move
+        ship_model = Ship.objects.first().ship_model
+        fleet.add_ship(ship_model, 10)
+
+        # To ensure that the fleet is able to attack
+        fleet.attack(2, target_planet)
+        fleet.callback()
+        fleet.defend(2, target_planet)
+        fleet.callback()
+        
+        fleet.owner.protection = True
+        with self.assertRaises(ValueError, msg="Protected planets should not attack"):
+            fleet.attack(2, target_planet)
+        with self.assertRaises(ValueError, msg="Protected planets should not defend"):
+            fleet.defend(2, target_planet)
+            
+    def test_fuel(self):
+        fleet = Fleet.objects.get(name="Fleet 1")
+        target_planet = Planet.objects.get(name="Test Planet 1")
+
+        # To be sure the fleet is at home
+        fleet.distance = 0
+        fleet.target = None
+        fleet.task = "stand"
+        fleet.role = "Defenders"
+
+        # Delete ships from fleet to ensure the fuel calculations will use the exact amount of ships
+        Ship.objects.filter(fleet=fleet).delete() 
+
+        # Add ships to ensure the fleet can move
+        ship_model = ShipModel.objects.first()
+        fleet.add_ship(ship_model, 10)
+       
+        fleet.owner.narion = 0
+        
+        with self.assertRaises(ValueError, msg="Must raise an error if the owner has no fuel"):
+            fleet.defend(2, target_planet)
+
+        with self.assertRaises(ValueError, msg="Must raise an error if the owner has no fuel"):
+            fleet.attack(2, target_planet)
+
+        # test by distance
+        
+        # test by amount

@@ -1,5 +1,17 @@
 [
   {
+    "model": "engine.alliance", 
+    "pk": 1,
+    "fields": {
+        "name": "Test Alliance 1", 
+        "identifier": "TA01",
+        "metal": 0, 
+        "crystal": 0, 
+        "narion": 0, 
+        "credit": 0
+    }
+  },
+  {
     "model": "engine.planet", 
     "pk": 1,
     "fields": {
@@ -10,11 +22,11 @@
         "z": 0, 
         "tp": 0, 
         "point": 0, 
-        "metal": 0, 
-        "crystal": 0, 
-        "narion": 0, 
+        "metal": 1000000, 
+        "crystal": 1000000, 
+        "narion": 1000000, 
         "credit": 0, 
-        "alliance": null, 
+        "alliance": 1, 
         "protection": 0
     }
   }, 
@@ -30,9 +42,9 @@
         "z": 0, 
         "tp": 0, 
         "point": 0, 
-        "metal": 0, 
-        "crystal": 0, 
-        "narion": 0, 
+        "metal": 1000000, 
+        "crystal": 1000000, 
+        "narion": 1000000, 
         "credit": 0, 
         "alliance": null, 
         "protection": 0

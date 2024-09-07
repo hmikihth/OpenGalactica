@@ -219,4 +219,8 @@ class Ship(models.Model, ShipProto):
     fleet =  models.ForeignKey("Fleet", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
     
+    @property
+    def fuel_cost(self):
+        return self.ship_model.fuel * self.quantity
+    
     

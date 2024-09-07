@@ -76,6 +76,14 @@ class Fleet(models.Model):
         other_ship.save()
         
     def attack(self, turns, target):
+        # Must raise ValueError when the fleet is already moving
+        if self.task != "stand":
+            raise ValueError("Fleet is already moving")
+
+        # Must raise ValueError when the fleet's owner is protected
+        if self.owner.is_protected:
+            raise ValueError("The fleet's owner is protected")
+
         # Must raise ValueError when the turn calculations are running
         round = Round.objects.last()
         if round.calculate:
@@ -86,21 +94,35 @@ class Fleet(models.Model):
             raise ValueError("Fleet has no ships")
         
         # The target must be unprotected (define your logic here)
-        if target.is_protected():
+        if target.is_protected:
             raise ValueError("Target is protected and cannot be attacked")
 
         # The target cannot be an ally
         if target.is_ally(self.owner):
             raise ValueError("Target cannot be ally")
 
+        # Must raise ValueError when the fleet's owner has no enough fuel
+        fuel_cost = target.get_fuel_cost(self)
+        if self.owner.narion < fuel_cost:
+            raise ValueError("The fleet's owner has no enough fuel")            
+
         # Set the fleet's task to attack and assign the target
-        self.task = "attack"
+        self.task = "move"
+        self.role = "Attackers"
         self.distance = target.get_distance(self)
         self.turns = turns
         self.target = target
         self.save()
         
     def defend(self, turns, target):
+        # Must raise ValueError when the fleet is already moving
+        if self.task != "stand":
+            raise ValueError("Fleet is already moving")
+            
+        # Must raise ValueError when the fleet's owner is protected
+        if self.owner.is_protected:
+            raise ValueError("The fleet's owner is protected")
+
         # Must raise ValueError when the turn calculations are running
         round = Round.objects.last()
         if round.calculate:
@@ -110,14 +132,24 @@ class Fleet(models.Model):
         if not self.ships.exists():
             raise ValueError("Fleet has no ships")
         
-        # Set the fleet's task to defend and assign the target
-        self.task = "defend"
+        # Must raise ValueError when the fleet's owner has no enough fuel
+        fuel_cost = target.get_fuel_cost(self)
+        if self.owner.narion < fuel_cost:
+            raise ValueError("The fleet's owner has no enough fuel")            
+
+        # Set the fleet's role to defend and assign the target
+        self.task = "move"
+        self.role = "Defenders"
         self.distance = target.get_distance(self)
         self.turns = turns
         self.target = target
         self.save()
         
     def callback(self):
+        # Prevent multiple use of callback
+        if self.task == "return":
+            raise ValueError("Fleet is already called back")
+        
         # Must raise ValueError if the fleet is already at home
         if not self.target and self.task == "stand":
             raise ValueError("Fleet is already at home")
@@ -129,12 +161,14 @@ class Fleet(models.Model):
         # Set the fleet's task to "return" and recount the distance
         self.task = "return"
         self.distance = self.target.get_distance(self) - self.distance
-        self.save()
 
-#    def tick(self):
-#        # Must raise ValueError if the fleet is a base
-#        if self.base:
-#            raise ValueError("Base fleets cannot move")
+        # Recently started fleets has to return instantly
+        if self.distance == 0:
+            self.task = "stand"
+            self.target = None
+            self.distance = 0
+            self.role = "Defenders"
+        self.save()
             
     def tick(self):
         # Ensure the turn calculation is running
