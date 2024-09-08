@@ -368,4 +368,22 @@ class FleetTestCase(TestCase):
         self.assertNotEqual(fleet.owner.narion, 100, "Fleet owner's fuel must decrease")
 
         # test by distance
+        fleet.callback()
+        fleet.owner.narion = 100
+        target_planet.y += 1
+        with self.assertRaises(ValueError, msg="Must raise an error if the owner has no enough fuel"):
+            fleet.defend(2, target_planet)
+        fleet.owner.narion = 200
+        fleet.defend(2, target_planet)
+        self.assertEqual(fleet.task, "move", "Task should be set to move when has enough fuel")
+        
+        fleet.callback()
+        fleet.owner.narion = 100
+        target_planet.x += 1
+        with self.assertRaises(ValueError, msg="Must raise an error if the owner has no enough fuel"):
+            fleet.defend(2, target_planet)
+        fleet.owner.narion = 300
+        fleet.defend(2, target_planet)
+        self.assertEqual(fleet.task, "move", "Task should be set to move when has enough fuel")
+        
         
