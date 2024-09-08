@@ -2,7 +2,7 @@ from django.test import TestCase
 from engine.models import Fleet, Ship, ShipModel, Planet, Round
 
 class FleetTestCase(TestCase):
-    fixtures = ["planets", "fleets", "piraati_ships", "round"]
+    fixtures = ["planets", "fleets", "piraati_ships", "round", "extra_ships"]
     
     def test_add_ship(self):
         """Test add_ship() method"""
@@ -343,7 +343,7 @@ class FleetTestCase(TestCase):
         Ship.objects.filter(fleet=fleet).delete() 
 
         # Add ships to ensure the fleet can move
-        ship_model = ShipModel.objects.first()
+        ship_model = ShipModel.objects.get(name="Hélium")
         fleet.add_ship(ship_model, 10)
        
         fleet.owner.narion = 0
@@ -354,6 +354,18 @@ class FleetTestCase(TestCase):
         with self.assertRaises(ValueError, msg="Must raise an error if the owner has no fuel"):
             fleet.attack(2, target_planet)
 
+        fleet.owner.narion = 1
+
+        with self.assertRaises(ValueError, msg="Must raise an error if the owner has no enough fuel"):
+            fleet.defend(2, target_planet)
+
+        fleet.owner.narion = 100
+        target_planet.r = fleet.owner.r
+        target_planet.x = fleet.owner.x
+        target_planet.y = fleet.owner.y
+        fleet.defend(2, target_planet)
+        self.assertEqual(fleet.task, "move", "Task should be set to move when has enough fuel")
+        self.assertNotEqual(fleet.owner.narion, 100, "Fleet owner's fuel must decrease")
+
         # test by distance
         
-        # test by amount

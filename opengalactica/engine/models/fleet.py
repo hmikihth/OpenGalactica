@@ -112,6 +112,7 @@ class Fleet(models.Model):
         self.distance = target.get_distance(self)
         self.turns = turns
         self.target = target
+        self.owner.narion -= fuel_cost
         self.save()
         
     def defend(self, turns, target):
@@ -143,6 +144,7 @@ class Fleet(models.Model):
         self.distance = target.get_distance(self)
         self.turns = turns
         self.target = target
+        self.owner.narion -= fuel_cost
         self.save()
         
     def callback(self):
