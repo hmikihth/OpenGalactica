@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from .round import Round
 
@@ -18,6 +19,13 @@ class Alliance(models.Model):
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
     credit = models.IntegerField(default=0)
+    tax = models.IntegerField(
+        default=20,         
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(0)
+        ]
+    )
     
     def __str__(self):
         return f"#{self.identifier} - {self.name}"
@@ -25,6 +33,10 @@ class Alliance(models.Model):
     @property
     def members(self):
         return Planet.objects.filter(alliance=self)
+        
+    @property
+    def tax_rate(self):
+        return max(0, min(100, self.tax/100))
 
     def pay_tax(self, planet, metal, crystal, narion):
         if planet is None:

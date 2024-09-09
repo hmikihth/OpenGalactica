@@ -6,6 +6,7 @@ from .round import Round
 
 class Fleet(models.Model):
     name = models.CharField(max_length=128)
+    active = models.BooleanField(default=True)
     base = models.BooleanField(default=False)
     owner = models.ForeignKey("Planet", on_delete=models.CASCADE, related_name="owner")
     formation = models.CharField(max_length=16, default="wall") # wedge, wall, sphere

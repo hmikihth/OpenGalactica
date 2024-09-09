@@ -3,7 +3,7 @@ from django.db import models
 from .planet import Planet
 
 class Galaxy(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, default="-")
     commander = models.ForeignKey("Planet", related_name="commander", on_delete=models.SET_NULL, null=True, blank=True)
     minister_of_war = models.ForeignKey("Planet", related_name="minister_of_war", on_delete=models.SET_NULL, null=True, blank=True)
     r = models.IntegerField(default=0)
