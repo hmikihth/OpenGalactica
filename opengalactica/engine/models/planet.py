@@ -1,3 +1,5 @@
+MAX_FLEETS = 4
+
 import random
 
 from django.db import models
@@ -6,7 +8,7 @@ from django.conf import settings
 from .ship import Ship, ShipModel
 from .fleet import Fleet
 
-class Market:
+class Market(models.Model):
     metal = models.IntegerField(default=1000000)
     crystal = models.IntegerField(default=1000000)
     narion = models.IntegerField(default=1000000)
@@ -45,17 +47,17 @@ class PlanetEconomy:
 
     @property
     def metal_capacity(self):
-        # NOTE: Later implement resource based capacity
+        # NOTE: Later implement research based capacity
         return 30000000
 
     @property
     def crystal_capacity(self):
-        # NOTE: Later implement resource based capacity
+        # NOTE: Later implement research based capacity
         return 30000000
 
     @property
     def narion_capacity(self):
-        # NOTE: Later implement resource based capacity
+        # NOTE: Later implement research based capacity
         return 30000000
 
     @property
@@ -121,8 +123,8 @@ class PlanetEconomy:
         self.narion = min(self.narion_capacity, self.narion + self.net_narion_production)
         self.pay_taxes()
         
-    def pay_taxes(self, metal, crystal, narion):
-        self.alliance.pay_taxes(self, self.metal_tax, self.crystal_tax, self.narion_tax)
+    def pay_taxes(self):
+        self.alliance.pay_tax(self, self.metal_tax, self.crystal_tax, self.narion_tax)
         
     def exchange(self, input, output, amount):
         market = Market.objects.first()
@@ -134,8 +136,9 @@ class PlanetEconomy:
             raise ValueError("Output resource type does not exist!")
         
         amount = min(amount, self.__dict__[input])
+        amount = min(amount, market.__dict__[output] / rate[input])
         output_amount = min(amount * rate[input], market.__dict__[output])
-        
+                
         market.__dict__[input] += amount
         market.__dict__[output] -= output_amount
         market.save()
@@ -143,8 +146,7 @@ class PlanetEconomy:
         self.__dict__[input] -= amount
         self.__dict__[output] += output_amount        
         self.save()
-
-
+        
 
 class PlanetWarfare:
     @property
@@ -212,7 +214,8 @@ class PlanetPolitics:
     @property
     def galaxy(self):
         from .galaxy import Galaxy
-        return Galaxy.objects.get(r=self.r, x=self.x, y=self.y)
+        galaxy, created = Galaxy.objects.get_or_create(r=self.r, x=self.x, y=self.y)
+        return galaxy
     
     @property
     def is_minister(self):
@@ -248,6 +251,17 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
 
     def __str__(self):
         return f"{self.name} ({self.coordinates})"
+        
+    def save(self, *args, **kwargs):
+        is_new = self._state.adding  # Check if the object is being created
+
+        obj = super().save(*args, **kwargs)
+        if is_new:  # If it was a create call
+            Fleet.objects.create(owner=self, name="Base", base=True)
+            for i in range(MAX_FLEETS-1):
+                Fleet.objects.create(owner=self, name=f"Fleet {i+1}")
+            Fleet.objects.create(owner=self, name=f"Fleet {MAX_FLEETS}")
+        return obj
 
     @property
     def coordinates(self):
