@@ -221,8 +221,14 @@ class PlanetPolitics:
     def is_minister(self):
         return self in (self.galaxy.commander, self.galaxy.minister_of_war)
                                 
-    def relocation(self):
-        pass
+    def relocation(self, turn):
+        rl = None
+        try:
+            rl = PlanetRelocation.objects.filter(planet=self, turn__lte=turn).last()
+        except:
+            pass
+        if rl:
+            rl.execute()
 
 
 class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
@@ -271,13 +277,30 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
 class PlanetRelocation(models.Model):
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE, null=True, blank=True)
     turn = models.IntegerField(default=0)
-    r = models.IntegerField(default=None, null=True, blank=True)
-    x = models.IntegerField(default=None, null=True, blank=True)
-    y = models.IntegerField(default=None, null=True, blank=True)
-    z = models.IntegerField(default=None, null=True, blank=True)
+    galaxy = models.ForeignKey("Galaxy", on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     def execute(self):
-        if self.r == None:
-            pass
-        if self.x == None:
-            pass
+        if self.galaxy == None:
+            self.galaxy.add_planet(self.planet)
+        else:
+            from .galaxy import Galaxy
+            galaxies = Galaxy.objects.all()
+            not_full_galaxies = sorted(filter(lambda e:not e.full, galaxies), key=lambda e: e.n_planets)
+            if not_full_galaxies:
+                self.galaxy = not_full_galaxies[0]
+            else:
+                for r in range(10):
+                    for x in range(10):
+                        for y in range(10):
+                            try:
+                                galaxy = Galaxy.objects.get(r=r, x=x, y=y)
+                            except:
+                                self.galaxy = Galaxy.objects.create(r=r, x=x, y=y)
+                                self.galaxy.add_planet(self.planet)
+                                self.galaxy.save()
+                                self.delete()
+                                return None
+                                
+            self.galaxy.add_planet(self.planet)
+        self.galaxy.save()        
+        self.delete()

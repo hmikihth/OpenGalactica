@@ -1,5 +1,6 @@
 from django.test import TestCase
 from engine.models import Planet, Fleet, Alliance, Market, MAX_FLEETS
+from engine.models import Galaxy, PlanetRelocation, Round
 
 class PlanetTestCase(TestCase):
     def setUp(self):
@@ -227,3 +228,56 @@ class PlanetEconomyTestCase(TestCase):
 
         # Assert that the market's narion has been reduced to 0 after the exchange
         self.assertEqual(self.market.narion, 0)
+        
+
+
+class PlanetPoliticsTestCase(TestCase):
+    def setUp(self):
+        # Create a basic planet for testing
+        self.planet = Planet.objects.create(
+            name="TestPlanet",
+            r=1,
+            x=2,
+            y=3,
+            z=4
+        )
+        # Create a galaxy for relocation
+        self.galaxy = Galaxy.objects.create(r=1, x=2, y=3)
+        self.round = Round.objects.create(number=1, turn=5)
+        
+
+    def test_relocation_with_valid_relocation(self):
+        """Test relocation method with a valid PlanetRelocation entry."""
+        # Create a relocation entry for the planet
+        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=5, galaxy=self.galaxy)
+
+        # Call the relocation method with the same turn
+        self.planet.relocation(5)
+
+        # Check if the relocation was executed (i.e., relocation object should be deleted)
+        self.assertFalse(PlanetRelocation.objects.filter(pk=relocation.pk).exists(), "Relocation should be executed and deleted.")
+
+    def test_relocation_no_valid_entry(self):
+        """Test relocation method when no valid relocation entry exists for the turn."""
+        # Create a relocation entry for a later turn
+        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=6, galaxy=self.galaxy)
+
+        # Call the relocation method with a different turn
+        self.planet.relocation(5)
+
+        # The relocation entry should still exist as the turn didn't match
+        self.assertTrue(PlanetRelocation.objects.filter(pk=relocation.pk).exists(), "Relocation should not be executed as the turn doesn't match.")
+
+    def test_relocation_no_relocation_entry(self):
+        """Test relocation method when no relocation entry exists."""
+        # Ensure there are no relocation entries
+        PlanetRelocation.objects.all().delete()
+
+        # Call the relocation method without any relocation entry
+        try:
+            self.planet.relocation(5)  # No relocation should exist
+        except Exception:
+            self.fail("relocation() raised an exception unexpectedly!")
+
+        # Since no relocation exists, the method should execute without error
+        self.assertTrue(True)  # Simply ensure no exception was raised
