@@ -1,6 +1,6 @@
 from django.test import TestCase
 from engine.models import Planet, Fleet, Alliance, Market, MAX_FLEETS
-from engine.models import Galaxy, PlanetRelocation, Round
+from engine.models import Galaxy, PlanetRelocation, Round, Ship, ShipModel
 
 class PlanetTestCase(TestCase):
     def setUp(self):
@@ -281,3 +281,113 @@ class PlanetPoliticsTestCase(TestCase):
 
         # Since no relocation exists, the method should execute without error
         self.assertTrue(True)  # Simply ensure no exception was raised
+
+
+class PlanetWarfareTestCase(TestCase):
+    def setUp(self):
+        # Create planet and fleets for testing
+        self.planet = Planet.objects.create(r=0, x=0, y=0, z=0, protection=5, on_holiday=False)
+        self.ally_planet = Planet.objects.create(r=0, x=0, y=0, z=9, protection=0, on_holiday=False)
+        self.enemy_planet = Planet.objects.create(r=0, x=1, y=0, z=0)
+        self.alliance = Alliance.objects.create(name="Test Alliance")
+
+        # Create ship models
+        self.ship_model = ShipModel.objects.create(
+            name="Fighter", fuel=10, travel_g=1, travel_s=5, travel_u=10
+        )
+
+        # Create fleets for defense and attack
+        self.defender_fleet = Fleet.objects.create(target=self.planet, distance=0, role="Defenders", owner=self.ally_planet, task="move")
+        self.attacker_fleet = Fleet.objects.create(target=self.planet, distance=0, role="Attackers", owner=self.enemy_planet, task="move")
+        self.home_fleet = Fleet.objects.create(target=None, distance=0, role="Defenders", owner=self.planet, task="stand")
+
+        # Assign ships to fleets
+        Ship.objects.create(ship_model=self.ship_model, fleet=self.defender_fleet, quantity=10)
+        Ship.objects.create(ship_model=self.ship_model, fleet=self.attacker_fleet, quantity=5)
+        Ship.objects.create(ship_model=self.ship_model, fleet=self.home_fleet, quantity=2)
+
+    def test_is_protected(self):
+        # Test the is_protected property when protection is active
+        self.assertTrue(self.planet.is_protected)
+
+        # Test after protection wears off
+        self.planet.protection = 0
+        self.assertFalse(self.planet.is_protected)
+
+    def test_defenders(self):
+        # Test defenders property returns the correct fleets
+        defenders = self.planet.defenders
+        self.assertEqual(len(defenders), 1)
+        self.assertEqual(defenders[0], self.defender_fleet)
+
+    def test_attackers(self):
+        # Test attackers property returns the correct fleets
+        attackers = self.planet.attackers
+        self.assertEqual(len(attackers), 1)
+        self.assertEqual(attackers[0], self.attacker_fleet)
+
+    def test_fleets_on_base(self):
+        # Test fleets_on_base property
+        fleets_on_base = self.planet.fleets_on_base
+        self.assertEqual(len(fleets_on_base), 1)
+        self.assertEqual(fleets_on_base[0], self.home_fleet)
+
+    def test_incoming_fleets(self):
+        Fleet.objects.all().delete()
+        # Create an incoming fleet for testing
+        incoming_fleet = Fleet.objects.create(target=self.planet, distance=5, role="Attackers", task="move", owner=self.enemy_planet)
+        incoming_fleets = self.planet.incoming_fleets
+        self.assertEqual(len(incoming_fleets), 1)
+        self.assertEqual(incoming_fleets[0], incoming_fleet)
+
+    def test_outgoing_fleets(self):
+        Fleet.objects.all().delete()
+        # Create an outgoing fleet for testing
+        outgoing_fleet = Fleet.objects.create(owner=self.planet, distance=5, role="Defenders", task="move", target=self.enemy_planet)
+        outgoing_fleets = self.planet.outgoing_fleets
+        self.assertEqual(len(outgoing_fleets), 1)
+        self.assertEqual(outgoing_fleets[0], outgoing_fleet)
+
+    def test_returning_fleets(self):
+        Fleet.objects.all().delete()
+        # Create a returning fleet for testing
+        returning_fleet = Fleet.objects.create(owner=self.planet, distance=0, role="Defenders", task="return")
+        returning_fleets = self.planet.returning_fleets
+        self.assertEqual(len(returning_fleets), 1)
+        self.assertEqual(returning_fleets[0], returning_fleet)
+
+    def test_is_ally(self):
+        # Test is_ally when planets are in the same galaxy or alliance
+        self.enemy_planet.r = self.planet.r
+        self.enemy_planet.x = self.planet.x
+        self.enemy_planet.y = self.planet.x
+        self.enemy_planet.save()
+
+        self.assertTrue(self.planet.is_ally(self.enemy_planet))
+
+        self.enemy_planet.y = self.planet.y+1
+        self.enemy_planet.save()
+        self.assertFalse(self.planet.is_ally(self.enemy_planet))
+        
+        self.planet.alliance = self.alliance
+        self.planet.save()
+        self.enemy_planet.alliance = self.alliance
+        self.enemy_planet.save()
+        self.assertTrue(self.planet.is_ally(self.enemy_planet))
+
+    def test_get_distance(self):
+        self.enemy_planet.r = self.planet.r
+        self.enemy_planet.x = self.planet.x+1
+
+        # Test get_distance based on fleet's location
+        fleet = Fleet.objects.create(owner=self.enemy_planet)
+        Ship.objects.create(ship_model=self.ship_model, fleet=fleet, quantity=5)
+        distance = self.planet.get_distance(fleet)
+        self.assertEqual(distance, self.ship_model.travel_u)
+
+    def test_get_fuel_cost(self):
+        # Test get_fuel_cost based on fleet's distance and ships
+        fleet = Fleet.objects.create(owner=self.enemy_planet, distance=0, task="move", target=self.planet)
+        ships = Ship.objects.create(ship_model=self.ship_model, fleet=fleet, quantity=3)
+        fuel_cost = self.planet.get_fuel_cost(fleet)
+        self.assertEqual(fuel_cost, 3 * self.ship_model.fuel * ships.quantity)

@@ -191,7 +191,8 @@ class PlanetWarfare:
                 travel = "travel_g"
                     
         ships = Ship.objects.filter(fleet=fleet)
-        return max(map(lambda e:e.ship_model.__dict__[travel], ships))
+        if ships:
+            return max(map(lambda e:e.ship_model.__dict__[travel], ships))
 
     def get_fuel_cost(self, fleet):
         other = fleet.owner
