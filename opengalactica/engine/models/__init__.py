@@ -6,3 +6,4 @@ from .galaxy import *
 from .planet import *
 from .ship import *
 from .round import *
+from .research import *

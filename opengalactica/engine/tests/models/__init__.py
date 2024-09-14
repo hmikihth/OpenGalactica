@@ -5,3 +5,4 @@ from .planet import *
 from .round import *
 from .ship import *
 from .turn import *
+from .research import *
