@@ -68,6 +68,14 @@ class PlanetEconomyTestCase(TestCase):
         Market.objects.all().delete()
         self.market = Market.objects.create()
 
+        self.planet_sender = Planet.objects.create(
+            name="SenderPlanet", r=4, x=3, y=2, z=1, metal=1000, crystal=1000, narion=1000)
+        self.planet_receiver = Planet.objects.create(
+            name="ReceiverPlanet", r=4, x=3, y=2, z=2, metal=100, crystal=100, narion=100)
+        self.planet_different_galaxy = Planet.objects.create(
+            name="DifferentGalaxyPlanet", r=4, x=3, y=5, z=5, metal=100, crystal=100, narion=100)
+
+
     def test_active_plasmators(self):
         """Test active_plasmators property."""
         self.assertEqual(self.planet.active_plasmators, 150)
@@ -229,7 +237,28 @@ class PlanetEconomyTestCase(TestCase):
         # Assert that the market's narion has been reduced to 0 after the exchange
         self.assertEqual(self.market.narion, 0)
         
+    def test_send_resources_success(self):
+        """Test successful resource transfer between planets in the same galaxy."""
+        self.planet_sender.send_resources(self.planet_receiver, 500, 300, 200)
 
+        # Verify that resources were transferred correctly
+        self.assertEqual(self.planet_sender.metal, 500)
+        self.assertEqual(self.planet_sender.crystal, 700)
+        self.assertEqual(self.planet_sender.narion, 800)
+
+        self.assertEqual(self.planet_receiver.metal, 600)
+        self.assertEqual(self.planet_receiver.crystal, 400)
+        self.assertEqual(self.planet_receiver.narion, 300)
+
+    def test_send_resources_different_galaxy(self):
+        """Test that resource transfer fails if planets are in different galaxies."""
+        with self.assertRaises(ValueError, msg="Both planets must be in the same galaxy to send resources."):
+            self.planet_sender.send_resources(self.planet_different_galaxy, 500, 300, 200)
+
+    def test_send_resources_insufficient_resources(self):
+        """Test that resource transfer fails if sender doesn't have enough resources."""
+        with self.assertRaises(ValueError, msg="Not enough resources to send."):
+            self.planet_sender.send_resources(self.planet_receiver, 1500, 300, 200)
 
 class PlanetPoliticsTestCase(TestCase):
     def setUp(self):

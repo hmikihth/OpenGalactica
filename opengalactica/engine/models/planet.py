@@ -147,6 +147,29 @@ class PlanetEconomy:
         self.__dict__[output] += output_amount        
         self.save()
         
+    def send_resources(self, receiver_planet, metal, crystal, narion):
+        """Send resources to another planet in the same galaxy."""
+        if self.galaxy != receiver_planet.galaxy:
+            raise ValueError("Both planets must be in the same galaxy to send resources.")
+
+        # Check if the sender has enough resources
+        if metal > self.metal or crystal > self.crystal or narion > self.narion:
+            raise ValueError("Not enough resources to send.")
+
+        # Deduct resources from sender
+        self.metal -= metal
+        self.crystal -= crystal
+        self.narion -= narion
+
+        # Add resources to receiver
+        receiver_planet.metal += metal
+        receiver_planet.crystal += crystal
+        receiver_planet.narion += narion
+
+        # Save both planets
+        self.save()
+        receiver_planet.save()
+
 
 class PlanetWarfare:
     @property
