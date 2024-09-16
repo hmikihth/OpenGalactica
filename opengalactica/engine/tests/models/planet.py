@@ -420,3 +420,48 @@ class PlanetWarfareTestCase(TestCase):
         ships = Ship.objects.create(ship_model=self.ship_model, fleet=fleet, quantity=3)
         fuel_cost = self.planet.get_fuel_cost(fleet)
         self.assertEqual(fuel_cost, 3 * self.ship_model.fuel * ships.quantity)
+
+class PlanetRelocationTestCase(TestCase):
+    def setUp(self):
+        """Set up a test with a planet relocation and galaxy."""
+        self.planet = Planet.objects.create(name="PlanetRelocationTest")
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=0, x=0, y=0)
+        self.relocation = PlanetRelocation.objects.create(planet=self.planet, galaxy=self.galaxy, invitation=True)
+
+    def test_accept_invitation(self):
+        """Test accepting an invitation for planet relocation."""
+        self.relocation.accept_invitation()
+        self.assertEqual(self.planet.galaxy, self.galaxy)
+
+    def test_accept_invitation_no_invite(self):
+        """Test that an error is raised if there is no invitation to accept."""
+        self.relocation.invitation = False
+        self.relocation.save()
+
+        with self.assertRaises(ValueError, msg="There is no active invitation"):
+            self.relocation.accept_invitation()
+
+    def test_execute_relocation(self):
+        """Test execution of a relocation based on turns."""
+        # Set the current turn and make sure it's valid for relocation
+        from .round import Round
+        current_round = Round.objects.create(number=1, turn=50)
+        self.relocation.turn = 49
+        self.relocation.execute()
+
+        # The planet should now be relocated
+        self.assertEqual(self.planet.galaxy, self.galaxy)
+
+    def test_delete_related_votes(self):
+        """Test that related votes are deleted when relocation happens."""
+        from engine.models import OutVote, CommanderVote
+        
+        # Create outvotes and commander votes to be deleted
+        OutVote.objects.create(galaxy=self.galaxy, planet=self.planet)
+        CommanderVote.objects.create(galaxy=self.galaxy, planet=self.planet)
+        
+        self.relocation.delete_related_votes()
+
+        # Check that votes are deleted
+        self.assertEqual(OutVote.objects.count(), 0)
+        self.assertEqual(CommanderVote.objects.count(), 0)

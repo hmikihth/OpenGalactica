@@ -18,30 +18,92 @@ class Galaxy(models.Model):
     @property
     def n_planets(self):
         return len(self.planets)
+        
+    @property
+    def n_relocations(self):
+        from .planet import PlanetRelocation
+        return len(PlanetRelocation.objects.filter(galaxy=self))
 
     @property
     def full(self):
-        return self.n_planets > 9        
+        return self.n_planets + self.n_relocations > 9        
+            
+    @property
+    def current_outvotes(self):
+        from .planet import PlanetRelocation
+        return PlanetRelocation.objects.filter(galaxy=self, outvote=True)
             
     def add_planet(self, planet):
         if not self.full:
             busy = Planet.objects.filter(r=self.r, x=self.x, y=self.y).values_list("z", flat=True)
             z = random.choice([*filter(lambda e: e not in busy, range(1,11))])
+            planet.r = self.r
+            planet.x = self.x
+            planet.y = self.y
+            planet.z = z
+            planet.save()
         else:
             raise ValueError("The galaxy is full")
+
+    def invite(self, planet):
+        if self.full:
+            raise ValueError("The galaxy is full")
+        else:
+            from .planet import PlanetRelocation
+            PlanetRelocation.objects.create(planet=planet, galaxy=self, invitation=True)
         
-    def relocate_into(self, r_req):
-        if not self.full:
-            existing_planet = Planet.objects.filter(r=self.r, x=self.x, y=self.y, z=r_req.z)
-            if existing_planet:
-                raise ValueError("There is a planet on the given coordinates")
-            else:
-                planet = r_req.planet
-                planet.r = self.r
-                planet.x = self.x
-                planet.y = self.y
-                planet.z = r_req.z
-                planet.save()
-                r_req.delete()
-        else:
-            raise ValueError("The galaxy is full")
+    def start_outvote(self, planet):
+        from .planet import PlanetRelocation
+        from .round import Round
+        round = Round.objects.sorted("number").last()
+        PlanetRelocation.objects.create(planet=planet, galaxy=self, turn=round.turn+72, outvote=True)
+
+    def cancel_outvote(self, planet):
+        from .planet import PlanetRelocation
+        PlanetRelocation.objects.filter(planet=planet, galaxy=self, outvote=True).delete()
+        OutVote.objects.filter(planet=planet).delete()
+
+    def send_vote_outvote(self, planet, voter, value):
+        if planet.galaxy != voter.galaxy or voter.galaxy != self:
+            raise ValueError("The the target planet and the voter have to be in the galaxy")
+        obj, created = OutVote.objects.get_or_create(planet=planet, voter=voter, galaxy=self)
+        obj.value = value
+        obj.save()
+
+    def is_outvoted(self, planet):
+        return len(OutVote.objects.filter(value=True)) > (self.n_planets-1)//2
+        
+    def set_commander(self):
+        commander = None
+        votes = CommanderVote.objects.filter(galaxy=self).exclude(planet=None)
+        if len(votes):
+            vl = votes.values_list("planet", flat=True)
+            planets = {*Planet.objects.filter(id__in=vl)}
+            planet_votes = {e:len(votes.filter(planet=e)) for e in planets}
+            sorted_votes = sorted(planets, key=lambda e:-planet_votes[e])
+            if len(sorted_votes) == 1 or planet_votes[sorted_votes[0]] != planet_votes[sorted_votes[1]]:
+                commander = sorted_votes[0]
+        self.commander = commander
+        self.save()
+            
+        
+    def send_vote_commander(self, planet, voter):
+        if planet.galaxy != voter.galaxy or voter.galaxy != self:
+            raise ValueError("The the target planet and the voter have to be in the galaxy")
+        obj, created = CommanderVote.objects.get_or_create(voter=voter, galaxy=self)
+        obj.planet = planet
+        obj.save()
+        self.set_commander()
+
+        
+class CommanderVote(models.Model):
+    galaxy = models.ForeignKey("Galaxy", on_delete=models.CASCADE, default=None, null=True, blank=True)
+    planet = models.ForeignKey("Planet", related_name="commander_votes", on_delete=models.CASCADE, null=True, blank=True)
+    voter = models.ForeignKey("Planet", related_name="voted_for_commander", on_delete=models.CASCADE, null=True, blank=True)
+
+
+class OutVote(models.Model):
+    galaxy = models.ForeignKey("Galaxy", on_delete=models.CASCADE, default=None, null=True, blank=True)
+    planet = models.ForeignKey("Planet", related_name="outvotes", on_delete=models.CASCADE, null=True, blank=True)
+    voter = models.ForeignKey("Planet", related_name="voted_for_outvotes", on_delete=models.CASCADE, null=True, blank=True)
+    value = models.BooleanField(default=None, null=True, blank=True)
