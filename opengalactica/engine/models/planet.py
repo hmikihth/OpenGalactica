@@ -260,8 +260,8 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     z = models.IntegerField(default=0)
-    tp = models.IntegerField(default=0)
-    point = models.IntegerField(default=0)
+    xp = models.IntegerField(default=0)
+    points = models.IntegerField(default=0)
 
     metal_plasmator = models.IntegerField(default=1)
     crystal_plasmator = models.IntegerField(default=1)

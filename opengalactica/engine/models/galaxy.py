@@ -32,7 +32,15 @@ class Galaxy(models.Model):
     def current_outvotes(self):
         from .planet import PlanetRelocation
         return PlanetRelocation.objects.filter(galaxy=self, outvote=True)
+
+    @property
+    def xp(self):
+        return sum(map(lambda e:e.xp, self.planets))
             
+    @property
+    def points(self):
+        return sum(map(lambda e:e.points, self.planets))
+
     def add_planet(self, planet):
         if not self.full:
             busy = Planet.objects.filter(r=self.r, x=self.x, y=self.y).values_list("z", flat=True)
