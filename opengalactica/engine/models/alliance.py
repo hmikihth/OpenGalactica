@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from .round import Round
+from .planet import Planet
 
 class AllianceTreasuryLog(models.Model):
     turn = models.IntegerField(default=0)
@@ -15,6 +16,7 @@ class AllianceTreasuryLog(models.Model):
 class Alliance(models.Model):
     name = models.CharField(max_length=128)
     identifier = models.CharField(max_length=6)
+    alliance_type = models.CharField(max_length=64, default="standard")
     metal = models.IntegerField(default=0)
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
@@ -35,8 +37,21 @@ class Alliance(models.Model):
         return Planet.objects.filter(alliance=self)
         
     @property
+    def n_members(self):
+        return len(self.members)
+        
+    @property
     def tax_rate(self):
         return max(0, min(100, self.tax/100))
+
+    @property
+    def xp(self):
+        return sum(map(lambda e:e.xp, self.members))
+
+    @property
+    def points(self):
+        return sum(map(lambda e:e.points, self.members))
+
 
     def pay_tax(self, planet, metal, crystal, narion):
         if planet is None:

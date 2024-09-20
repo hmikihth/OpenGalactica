@@ -1,0 +1,42 @@
+[
+  {
+    "model": "engine.AllianceRank",
+    "pk" : 1,
+    "fields": {
+        "name" : "Commander",
+        "alliance_type" : "standard",
+        "is_founder" : false,
+        "can_invite_members" : true,
+        "can_remove_members" : true,
+        "can_distribute_resources" : true,
+        "can_manage_forum" : true,
+        "can_set_tax" : true,
+        "can_set_ranks" : true,
+        "can_set_attack" : true,
+        "can_set_defense" : true,
+        "can_set_diplomacy" : true,
+        "can_set_research" : true,
+        "can_set_voting" : true
+    }
+  },
+  {
+    "model": "engine.AllianceRank",
+    "pk" : 2,
+    "fields": {
+        "name" : "Treasurer",
+        "alliance_type" : "standard",
+        "is_founder" : false,
+        "can_invite_members" : false,
+        "can_remove_members" : false,
+        "can_distribute_resources" : true,
+        "can_manage_forum" : false,
+        "can_set_tax" : true,
+        "can_set_ranks" : false,
+        "can_set_attack" : false,
+        "can_set_defense" : false,
+        "can_set_diplomacy" : false,
+        "can_set_research" : false,
+        "can_set_voting" : false
+    }
+  }
+]

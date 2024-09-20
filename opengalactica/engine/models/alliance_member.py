@@ -1,0 +1,109 @@
+from django.db import models
+from django.core.exceptions import PermissionDenied
+from .alliance_rank import AllianceRank
+from .alliance_invitation import AllianceInvitation
+from .round import Round
+
+class AllianceMember(models.Model):
+    planet = models.OneToOneField("Planet", on_delete=models.CASCADE)
+    alliance = models.ForeignKey("Alliance", on_delete=models.CASCADE)
+    rank = models.ForeignKey(AllianceRank, on_delete=models.SET_NULL, null=True)
+    
+    def invite_member(self, new_planet):
+        if not self.rank.can_invite_members:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to invite members.")
+        
+        # Get the current game turn
+        current_turn = Round.objects.all().order_by("number").last().turn
+        
+        # Logic to send an invitation to the planet
+        if AllianceInvitation.objects.filter(planet=new_planet, alliance=self.alliance).exists():
+            raise ValueError(f"{new_planet.name} already has an invitation from this alliance.")
+        
+        AllianceInvitation.objects.create(
+            planet=new_planet, 
+            alliance=self.alliance, 
+            invited_by=self.planet,
+            sent_turn=current_turn
+        )
+
+    def remove_member(self, target_member):
+        if not self.rank.can_remove_members:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to remove members.")
+        target_member.planet.alliance = None
+        target_member.planet.save()
+
+    def distribute_resources(self, target_member, metal, crystal, narion, credits):
+        if not self.rank.can_distribute_resources:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to distribute resources.")
+        
+        if self.alliance.metal < metal or self.alliance.crystal < crystal or self.alliance.narion < narion or self.alliance.credit < credits:
+            raise ValueError("Not enough resources in the alliance treasury.")
+        
+        self.alliance.metal -= metal
+        self.alliance.crystal -= crystal
+        self.alliance.narion -= narion
+        self.alliance.credit -= credits
+        self.alliance.save()
+
+        target_member.planet.metal += metal
+        target_member.planet.crystal += crystal
+        target_member.planet.narion += narion
+        target_member.planet.credit += credits
+        target_member.planet.save()
+
+    def manage_forum(self, related_post, action, value):
+        if not self.rank.can_manage_forum:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to manage the forum.")
+        # Logic for managing the forum, such as editing or deleting posts
+
+    def set_tax(self, new_tax_rate):
+        if not self.rank.can_set_tax:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set the tax rate.")
+        self.alliance.tax = new_tax_rate
+        self.alliance.save()
+        
+    def rename_alliance(self, name, identifier):
+        if not self.rank.is_founder:
+            raise PermissionDenied(f"{self.planet.name} is not allowed to rename the alliance.")
+        self.alliance.name = name
+        self.alliance.identifier = identifier
+        self.alliance.save()
+        
+    def delete_alliance(self):
+        if not self.rank.is_founder:
+            raise PermissionDenied(f"{self.planet.name} is not allowed to delete the alliance.")
+        self.alliance.members.update(alliance=None)
+        self.alliance.delete()
+
+    def set_rank(self, member, rank):
+        if not self.rank.can_set_ranks:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set ranks.")
+        member.rank = rank
+        member.save()
+
+    def set_attack(self, target, start_turn, short_description, description):
+        if not self.rank.can_set_attack:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set an attack.")
+        # Logic for planning the attack, possibly creating an attack object
+    
+    def set_defense(self, target, arrival_turn, short_description, description):
+        if not self.rank.can_set_defense:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set defense.")
+        # Logic for setting up a defense, creating a defense object
+
+    def set_diplomacy(self, alliance, diplo_type, expiration, termination_time):
+        if not self.rank.can_set_diplomacy:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set diplomacy.")
+        # Logic for setting diplomacy agreements
+    
+    def set_research(self, research):
+        if not self.rank.can_set_research:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set research.")
+        # Logic for setting alliance-wide research
+
+    def set_voting(self, title, description, expiration):
+        if not self.rank.can_set_voting:
+            raise PermissionDenied(f"{self.planet.name} does not have permission to set voting.")
+        # Logic for creating a vote in the alliance
+

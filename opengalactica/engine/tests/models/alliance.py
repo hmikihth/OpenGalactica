@@ -106,3 +106,86 @@ class AllianceTestCase(TestCase):
 
         with self.assertRaises(ValueError, msg="Planet without alliance should raise an error"):
             self.alliance.pay_tax(self.planet, 10, 10, 10)
+
+
+class AlliancePropertyTests(TestCase):
+    fixtures = ["planets", "alliances"]
+
+    def setUp(self):
+        """Set up test data."""
+        self.alliance = Alliance.objects.get(name="Test Alliance 1")
+        self.planet1 = Planet.objects.get(name="Test Planet 1")
+        self.planet2 = Planet.objects.get(name="Test Planet 2")
+
+        # Assign the planets to the alliance
+        self.planet1.alliance = self.alliance
+        self.planet1.save()
+        self.planet2.alliance = self.alliance
+        self.planet2.save()
+
+    def test_members_property(self):
+        """Test that the members property returns the correct planets."""
+        members = self.alliance.members
+        # Check that the returned members are correct
+        self.assertIn(self.planet1, members, "Planet 1 should be part of the alliance members.")
+        self.assertIn(self.planet2, members, "Planet 2 should be part of the alliance members.")
+
+    def test_n_members_property(self):
+        """Test that n_members returns the correct number of planets."""
+        self.assertEqual(self.alliance.n_members, 2, "n_members should return the correct number of planets.")
+
+    def test_tax_rate_property(self):
+        """Test that the tax_rate property returns the correct tax rate."""
+        # Check that the tax rate is calculated correctly (tax/100)
+        expected_tax_rate = self.alliance.tax / 100
+        self.assertEqual(self.alliance.tax_rate, expected_tax_rate, "The tax rate should be calculated correctly.")
+        
+        # Test with a tax of 0
+        self.alliance.tax = 0
+        self.assertEqual(self.alliance.tax_rate, 0, "The tax rate should be 0 when tax is 0.")
+        
+        # Test with a tax of 100
+        self.alliance.tax = 100
+        self.assertEqual(self.alliance.tax_rate, 1, "The tax rate should be 1 when tax is 100.")
+
+    def test_xp_property(self):
+        """Test that the xp property returns the total xp of all members."""
+        # Assume some XP values for the planets
+        self.planet1.xp = 100
+        self.planet1.save()
+        self.planet2.xp = 200
+        self.planet2.save()
+
+        total_xp = self.planet1.xp + self.planet2.xp
+        self.assertEqual(self.alliance.xp, total_xp, "xp should return the correct sum of xp from all planets.")
+
+    def test_points_property(self):
+        """Test that the points property returns the total points of all members."""
+        # Assume some point values for the planets
+        self.planet1.points = 500
+        self.planet1.save()
+        self.planet2.points = 700
+        self.planet2.save()
+
+        total_points = self.planet1.points + self.planet2.points
+        self.assertEqual(self.alliance.points, total_points, "points should return the correct sum of points from all planets.")
+
+    def test_members_with_no_planets(self):
+        """Test that members property returns an empty queryset if no planets belong to the alliance."""
+        empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA1")
+        self.assertEqual(empty_alliance.members.count(), 0, "Members should return an empty queryset if no planets belong to the alliance.")
+        
+    def test_n_members_with_no_planets(self):
+        """Test that n_members property returns 0 if no planets belong to the alliance."""
+        empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA1")
+        self.assertEqual(empty_alliance.n_members, 0, "n_members should return 0 if no planets belong to the alliance.")
+
+    def test_xp_with_no_planets(self):
+        """Test that xp property returns 0 if the alliance has no planets."""
+        empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA1")
+        self.assertEqual(empty_alliance.xp, 0, "xp should return 0 if the alliance has no planets.")
+
+    def test_points_with_no_planets(self):
+        """Test that points property returns 0 if the alliance has no planets."""
+        empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA1")
+        self.assertEqual(empty_alliance.points, 0, "points should return 0 if the alliance has no planets.")

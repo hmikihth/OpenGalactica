@@ -1,4 +1,7 @@
 from .alliance import *
+from .alliance_invitation import *
+from .alliance_member import *
+from .alliance_rank import *
 from .archived_player import *
 from .battlereport import *
 from .fleet import *
