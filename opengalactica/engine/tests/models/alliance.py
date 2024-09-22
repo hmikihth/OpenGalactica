@@ -1,14 +1,21 @@
 from django.test import TestCase
-from engine.models import Alliance, Planet, Round, AllianceTreasuryLog
+from engine.models import Alliance, Planet, Round, AllianceTreasuryLog, AllianceRank
 
 class AllianceTestCase(TestCase):
-    fixtures = ["planets", "round"]
+    fixtures = ["planets", "round", "ranks"]
 
     def setUp(self):
         """Set up test data."""
         self.alliance = Alliance.objects.get(name="Test Alliance 1")
         self.planet = Planet.objects.get(name="Test Planet 1")
         self.round = Round.objects.first()
+        
+    def test_creation_with_founder(self):
+        planet = Planet.objects.get(name="Test Planet 2")
+        alliance = Alliance.objects.create(name="Founded Alliance", identifier="FA", founder=planet)
+        self.assertEqual(planet.alliance, alliance, "The planet should be a member of the alliance")
+        self.assertEqual(alliance.founder, planet, "The planet should be the founder of the alliance")
+        self.assertTrue(planet.rank.is_founder, "The planet sould have a founder rank in the alliance")
 
     def test_pay_tax_updates_alliance_resources(self):
         """Test that pay_tax() correctly updates the alliance's resources."""
@@ -189,3 +196,110 @@ class AlliancePropertyTests(TestCase):
         """Test that points property returns 0 if the alliance has no planets."""
         empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA1")
         self.assertEqual(empty_alliance.points, 0, "points should return 0 if the alliance has no planets.")
+        
+        
+class AllianceFounderTestCase(TestCase):
+    fixtures = ["ranks", "round"]
+
+    def setUp(self):
+        """Set up test data for planets, alliances, ranks, and members."""
+        self.planet1 = Planet.objects.create(name="Planet 1")
+        self.planet2 = Planet.objects.create(name="Planet 2")
+        self.planet3 = Planet.objects.create(name="Planet 3")
+        
+        self.rank_founder = AllianceRank.objects.get(alliance_type="standard", is_founder=True)
+        self.rank_treasurer = AllianceRank.objects.get(name="Treasurer")
+
+        self.alliance = Alliance.objects.create(
+            name="Test Alliance",
+            identifier="TST01",
+            founder=self.planet1,
+        )
+
+        self.planet1.alliance=self.alliance
+        self.planet1.rank=self.rank_founder
+        self.planet2.alliance=self.alliance
+        self.planet2.rank=self.rank_treasurer
+        self.planet3.alliance=self.alliance
+        self.planet3.rank=None
+        self.planet1.save()
+        self.planet2.save()
+        self.planet3.save()
+
+    def test_set_new_founder(self):
+        """Test the set_new_founder method assigns a new founder when the current one leaves."""
+        
+        # Simulate the current founder (planet1) leaving the alliance
+        self.planet1.leave_alliance()
+        
+        self.planet1.refresh_from_db()
+        self.alliance.refresh_from_db()
+        
+
+        # Check if a new founder was set based on the sorting criteria
+        self.assertEqual(self.alliance.founder, self.planet2, "Planet 2 should become the new founder as it meets the criteria.")
+
+        # Ensure the new founder has the founder rank
+        self.assertEqual(self.alliance.founder.rank, self.rank_founder, "The new founder should have the 'founder' rank.")
+
+    def test_save_method_with_founder(self):
+        """Test the save method assigns a founder and member on alliance creation."""
+
+
+        # Create a new alliance with a specific founder        
+        new_alliance = Alliance.objects.create(
+            name="New Alliance",
+            identifier="NEW01",
+            founder=self.planet3
+        )
+        self.planet3.refresh_from_db()
+
+        # Verify that the founder is correctly assigned
+        self.assertEqual(new_alliance.founder, self.planet3, "The founder should be Planet 3.")
+        
+        # Verify the new founder is a member with the correct rank
+        self.assertEqual(self.planet3.alliance, new_alliance, "Planet 3 should be a member of the new alliance.")
+        self.assertEqual(self.planet3.rank, self.rank_founder, "Planet 3 should have the founder rank in the new alliance.")
+
+    def test_save_method_without_founder(self):
+        """Test the save method when no founder is provided."""
+        # Create a new alliance without specifying a founder
+        new_alliance = Alliance(
+            name="No Founder Alliance",
+            identifier="NF001",
+        )
+        new_alliance.save()
+
+        # Ensure that the alliance is saved without errors
+        self.assertIsNotNone(new_alliance.pk, "Alliance should be saved without a founder.")
+
+    def test_set_new_founder_with_no_members(self):
+        """Test that set_new_founder does nothing if there are no members."""
+        # Create an empty alliance with no members
+        empty_alliance = Alliance.objects.create(name="Empty Alliance", identifier="EA001")
+
+        # Set new founder on an alliance with no members
+        new_founder = empty_alliance.set_new_founder()
+
+        # Ensure that no founder is set and no errors occur
+        self.assertIsNone(new_founder, "No founder should be assigned when there are no members in the alliance.")
+
+    def test_save_method_updates_existing_member(self):
+        """Test that the save method updates the rank of an existing member when setting as founder."""
+        # Change the founder of the alliance to another member
+        self.alliance.set_new_founder(self.planet2)
+        self.alliance.save()
+
+        # Check that Planet 2 is now the founder
+        self.assertEqual(self.alliance.founder, self.planet2, "Planet 2 should now be the founder.")
+
+        # Ensure Planet 2's rank was updated to 'founder'
+        self.assertEqual(self.planet2.rank, self.rank_founder, "Planet 2's rank should be updated to founder.")
+
+    def test_founder_is_not_overwritten_on_save(self):
+        """Test that the founder is not overwritten during a regular save operation."""
+        # Call save without passing a new founder
+        self.alliance.save()
+
+        # Ensure the founder hasn't changed
+        self.assertEqual(self.alliance.founder, self.planet1, "The founder should not be overwritten if not explicitly changed.")

@@ -17,20 +17,63 @@ class Alliance(models.Model):
     name = models.CharField(max_length=128)
     identifier = models.CharField(max_length=6)
     alliance_type = models.CharField(max_length=64, default="standard")
+    founder = models.ForeignKey("Planet", related_name="founder", on_delete=models.SET_NULL, null=True, blank=True)
     metal = models.IntegerField(default=0)
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
     credit = models.IntegerField(default=0)
     tax = models.IntegerField(
-        default=20,         
+        default=20,
         validators=[
             MaxValueValidator(100),
             MinValueValidator(0)
         ]
     )
     
+    def save(self, *args, **kwargs):
+        is_new = self._state.adding  # Check if the object is being created
+
+        if is_new and not self.alliance_type:
+            self.alliance_type = "standard"
+
+        # Save the Alliance instance first
+        super().save(*args, **kwargs)
+        
+        if is_new and self.founder:  # Check if it's a new instance and there's a founder
+            self.set_new_founder(member=self.founder)
+
     def __str__(self):
         return f"#{self.identifier} - {self.name}"
+    
+    def set_new_founder(self, member=None):
+        from .alliance_rank import AllianceRank
+        forced_save = False
+
+        if not member:
+            def f(planet):
+                if not planet.rank:
+                    return (False, False, False, planet.points, planet.xp)
+                return (planet.rank.can_set_ranks, planet.rank.can_invite_members, planet.rank != None, planet.points, planet.xp)
+
+            ordered_members = sorted(self.members, key=f)
+
+            if ordered_members:
+                member = ordered_members[-1]
+        else:
+            forced_save = True
+        if member:
+            member.rank = self.founder_rank
+            member.alliance = self
+            member.save()
+            if forced_save:
+                self.founder = member
+                self.save()
+        return member
+        
+    @property
+    def founder_rank(self):
+        from .alliance_rank import AllianceRank
+        return AllianceRank.objects.get(alliance_type=self.alliance_type, is_founder=True)
 
     @property
     def members(self):

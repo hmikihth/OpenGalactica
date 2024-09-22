@@ -7,7 +7,7 @@ class RankTestCase(TestCase):
     def setUp(self):
         """Set up some default ranks for testing."""
         self.founder_rank = AllianceRank.objects.create(
-            name="Founder",
+            name="Founder Rank",
             is_founder=True,
             can_invite_members=True,
             can_remove_members=True,
@@ -22,21 +22,21 @@ class RankTestCase(TestCase):
             can_set_voting=True
         )
         self.commander_rank = AllianceRank.objects.create(
-            name="Commander",
+            name="Commander Rank",
             can_invite_members=True,
             can_remove_members=True,
             can_set_attack=True,
             can_set_defense=True
         )
         self.treasurer_rank = AllianceRank.objects.create(
-            name="Treasurer",
+            name="Treasurer Rank",
             can_distribute_resources=True,
             can_set_tax=True
         )
     
     def test_rank_creation(self):
         """Test if ranks are created correctly."""
-        self.assertEqual(self.founder_rank.name, "Founder")
+        self.assertEqual(self.founder_rank.name, "Founder Rank")
         self.assertTrue(self.founder_rank.is_founder)
         self.assertTrue(self.commander_rank.can_invite_members)
         self.assertFalse(self.commander_rank.can_distribute_resources)
@@ -59,8 +59,8 @@ class RankTestCase(TestCase):
 
     def test_str_method(self):
         """Test the string representation of the rank."""
-        self.assertEqual(str(self.founder_rank), "Founder")
-        self.assertEqual(str(self.commander_rank), "Commander")
+        self.assertEqual(str(self.founder_rank), "Founder Rank")
+        self.assertEqual(str(self.commander_rank), "Commander Rank")
 
     def test_rank_default_permissions(self):
         """Test that default permissions are set to False for a new rank."""

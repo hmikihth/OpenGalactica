@@ -3,8 +3,9 @@ MAX_FLEETS = 4
 from django.db import models
 from django.conf import settings
 
-from .ship import Ship, ShipModel
+from .ship import Ship
 from .fleet import Fleet
+from .alliance_member import AllianceMember
 
 class Market(models.Model):
     metal = models.IntegerField(default=1000000)
@@ -253,7 +254,7 @@ class PlanetPolitics:
             rl.execute()
 
 
-class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
+class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, AllianceMember):
     name = models.CharField(max_length=128)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     r = models.IntegerField(default=0)
@@ -274,6 +275,7 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics):
 
     credit = models.IntegerField(default=0)
     alliance = models.ForeignKey("Alliance", on_delete=models.SET_NULL, null=True, blank=True)
+    rank = models.ForeignKey("AllianceRank", on_delete=models.SET_NULL, null=True, blank=True)
     protection = models.IntegerField(default=72)
     on_holiday = models.BooleanField(default=False)
 
@@ -340,7 +342,7 @@ class PlanetRelocation(models.Model):
                         for x in range(10):
                             for y in range(10):
                                 try:
-                                    galaxy = Galaxy.objects.get(r=r, x=x, y=y)
+                                    Galaxy.objects.get(r=r, x=x, y=y)
                                 except:
                                     self.galaxy = Galaxy.objects.create(r=r, x=x, y=y)
                                     self.galaxy.add_planet(self.planet)

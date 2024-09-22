@@ -1,7 +1,6 @@
 from django.db import models
-from django.core.exceptions import PermissionDenied
 
-from engine.models import Round
+from .round import Round
 
 class AllianceInvitation(models.Model):
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE)
@@ -25,6 +24,11 @@ class AllianceInvitation(models.Model):
         self.accepted = True
         self.accepted_turn = current_turn
         self.save()
+
+        self.planet.alliance = self.alliance
+        self.planet.rank = None
+        self.planet.save()
+
 
     def reject(self):
         if self.accepted:

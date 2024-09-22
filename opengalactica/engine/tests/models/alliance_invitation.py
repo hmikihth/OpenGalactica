@@ -49,6 +49,10 @@ class AllianceInvitationTestCase(TestCase):
         self.assertTrue(invitation.accepted, "Invitation should be marked as accepted.")
         self.assertEqual(invitation.accepted_turn, self.round.turn, "Accepted turn should match the current game turn.")
 
+        self.assertEqual(self.new_planet.alliance, self.alliance, "Planet should be part of the alliance after accepting.")
+        self.assertIsNone(self.new_planet.rank, "Planet rank should be None after accepting.")
+
+
     def test_invitation_already_accepted(self):
         """Test that accepting an already accepted invitation does not reassign the planet."""
         # Create and accept an invitation

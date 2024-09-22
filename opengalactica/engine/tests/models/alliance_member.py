@@ -7,12 +7,16 @@ class AllianceMemberTestCase(TestCase):
 
     def setUp(self):
         self.alliance = Alliance.objects.get(name="Test Alliance 1")
-        self.planet1 = Planet.objects.get(name="Test Planet 1")
-        self.planet2 = Planet.objects.get(name="Test Planet 2")
+        self.member1 = Planet.objects.get(name="Test Planet 1")
+        self.member2 = Planet.objects.get(name="Test Planet 2")
         self.rank_commander = AllianceRank.objects.get(name="Commander")
         self.rank_treasurer = AllianceRank.objects.get(name="Treasurer")
-        self.member1 = AllianceMember.objects.create(planet=self.planet1, alliance=self.alliance, rank=self.rank_commander)
-        self.member2 = AllianceMember.objects.create(planet=self.planet2, alliance=self.alliance, rank=self.rank_treasurer)
+        self.member1.rank=self.rank_commander
+        self.member2.rank=self.rank_treasurer
+        self.member1.alliance=self.alliance
+        self.member2.alliance=self.alliance
+        self.member1.save()
+        self.member2.save()
         self.round = Round.objects.all().order_by("number").last()
         
     def test_invite_member_success(self):
@@ -22,7 +26,7 @@ class AllianceMemberTestCase(TestCase):
         invitation = AllianceInvitation.objects.get(planet=new_planet, alliance=self.alliance)
 
         self.assertIsNotNone(invitation)
-        self.assertEqual(invitation.invited_by, self.planet1)
+        self.assertEqual(invitation.invited_by, self.member1)
         self.assertEqual(invitation.alliance, self.alliance)
         self.assertEqual(invitation.sent_turn, self.round.turn)
 
@@ -34,8 +38,15 @@ class AllianceMemberTestCase(TestCase):
 
     def test_remove_member(self):
         self.member1.remove_member(self.member2)
-        self.member2.planet.refresh_from_db()
-        self.assertIsNone(self.member2.planet.alliance, "Removed member should have no alliance.")
+        self.member2.refresh_from_db()
+        self.assertIsNone(self.member2.alliance, "Removed member should have no alliance.")
+        self.assertIsNone(self.member2.rank, "Removed member should have no rank.")
+
+    def test_leave_alliance(self):
+        self.member2.leave_alliance()
+        self.member2.refresh_from_db()
+        self.assertIsNone(self.member2.alliance, "Leaving member should have no alliance.")
+        self.assertIsNone(self.member2.rank, "Leaving member should have no rank.")
 
     def test_remove_member_no_permission(self):
         self.member2.rank.can_remove_members = False
@@ -49,26 +60,26 @@ class AllianceMemberTestCase(TestCase):
         self.alliance.credit = 500
         self.alliance.save()
 
-        self.member1.planet.metal = 0
-        self.member1.planet.crystal = 0
-        self.member1.planet.narion = 0
-        self.member1.planet.credit = 0
-        self.member1.planet.save()
+        self.member1.metal = 0
+        self.member1.crystal = 0
+        self.member1.narion = 0
+        self.member1.credit = 0
+        self.member1.save()
         
         self.member2.distribute_resources(self.member1, 100, 50, 25, 10)
         
-        self.member1.planet.refresh_from_db()
+        self.member1.refresh_from_db()
 
-        self.assertEqual(self.member1.planet.metal, 100, "Metal should be added to member1's planet.")
+        self.assertEqual(self.member1.metal, 100, "Metal should be added to member1's planet.")
         self.assertEqual(self.alliance.metal, 900, "Metal should be deducted from alliance.")
 
-        self.assertEqual(self.member1.planet.crystal, 50, "Crystal should be added to member1's planet.")
+        self.assertEqual(self.member1.crystal, 50, "Crystal should be added to member1's planet.")
         self.assertEqual(self.alliance.crystal, 950, "Crystal should be deducted from alliance.")
 
-        self.assertEqual(self.member1.planet.narion, 25, "Narion should be added to member1's planet.")
+        self.assertEqual(self.member1.narion, 25, "Narion should be added to member1's planet.")
         self.assertEqual(self.alliance.narion, 975, "Narion should be deducted from alliance.")
 
-        self.assertEqual(self.member1.planet.credit, 10, "Credit should be added to member1's planet.")
+        self.assertEqual(self.member1.credit, 10, "Credit should be added to member1's planet.")
         self.assertEqual(self.alliance.credit, 490, "Credit should be deducted from alliance.")
 
 
