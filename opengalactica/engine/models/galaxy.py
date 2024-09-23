@@ -7,13 +7,12 @@ class Galaxy(models.Model):
     name = models.CharField(max_length=128, default="-")
     commander = models.ForeignKey("Planet", related_name="commander", on_delete=models.SET_NULL, null=True, blank=True)
     minister_of_war = models.ForeignKey("Planet", related_name="minister_of_war", on_delete=models.SET_NULL, null=True, blank=True)
-    r = models.IntegerField(default=0)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
 
     @property
     def planets(self):
-        return Planet.objects.filter(r=self.r, x=self.x, y=self.y).order_by("z")
+        return Planet.objects.filter(x=self.x, y=self.y).order_by("z")
         
     @property
     def n_planets(self):
@@ -43,9 +42,8 @@ class Galaxy(models.Model):
 
     def add_planet(self, planet):
         if not self.full:
-            busy = Planet.objects.filter(r=self.r, x=self.x, y=self.y).values_list("z", flat=True)
+            busy = Planet.objects.filter(x=self.x, y=self.y).values_list("z", flat=True)
             z = random.choice([*filter(lambda e: e not in busy, range(1,11))])
-            planet.r = self.r
             planet.x = self.x
             planet.y = self.y
             planet.z = z

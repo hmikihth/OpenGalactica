@@ -360,7 +360,6 @@ class FleetTestCase(TestCase):
             fleet.defend(2, target_planet)
 
         fleet.owner.narion = 100
-        target_planet.r = fleet.owner.r
         target_planet.x = fleet.owner.x
         target_planet.y = fleet.owner.y
         fleet.defend(2, target_planet)

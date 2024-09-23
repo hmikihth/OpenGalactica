@@ -7,20 +7,20 @@ class GalaxyTestCase(TestCase):
         self.planet1 = Planet.objects.create(name="Planet1")
         self.planet2 = Planet.objects.create(name="Planet2")
         self.planet3 = Planet.objects.create(name="Planet3")
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=5, x=4, y=3)
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=4, y=3)
         self.galaxy.add_planet(self.planet1)
         self.galaxy.add_planet(self.planet2)
         self.galaxy.add_planet(self.planet3)
 
     def test_add_planet(self):
         """Test that a planet can be added to a galaxy if it is not full."""
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=5, x=4, y=2)
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=4, y=2)
         self.galaxy.add_planet(self.planet1)
         self.assertEqual(self.planet1.galaxy, self.galaxy)
 
     def test_add_planet_galaxy_full(self):
         """Test that an error is raised if the galaxy is full."""
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=5, x=4, y=1)
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=4, y=1)
         for i in range(1, 11):  # Fill up the galaxy with 10 planets
             planet = Planet.objects.create(name=f"Planet{i}")
             self.galaxy.add_planet(planet)
@@ -49,12 +49,12 @@ class GalaxyXPAndPointsTests(TestCase):
     
     def setUp(self):
         # Create a Galaxy instance
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=1, x=2, y=3)
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=2, y=3)
         
         # Create some Planet instances and associate them with the Galaxy
-        self.planet1 = Planet.objects.create(name="Planet 1", r=1, x=2, y=3, z=1, xp=100, points=200)
-        self.planet2 = Planet.objects.create(name="Planet 2", r=1, x=2, y=3, z=2, xp=150, points=250)
-        self.planet3 = Planet.objects.create(name="Planet 3", r=1, x=2, y=3, z=3, xp=200, points=300)
+        self.planet1 = Planet.objects.create(name="Planet 1", x=2, y=3, z=1, xp=100, points=200)
+        self.planet2 = Planet.objects.create(name="Planet 2", x=2, y=3, z=2, xp=150, points=250)
+        self.planet3 = Planet.objects.create(name="Planet 3", x=2, y=3, z=3, xp=200, points=300)
 
     def test_xp_property(self):
         # Check that the galaxy's xp is the sum of its planets' xp
@@ -68,19 +68,19 @@ class GalaxyXPAndPointsTests(TestCase):
 
     def test_xp_property_no_planets(self):
         # Create a new galaxy with no planets
-        empty_galaxy = Galaxy.objects.create(name="Empty Galaxy", r=2, x=3, y=4)
+        empty_galaxy = Galaxy.objects.create(name="Empty Galaxy", x=3, y=4)
         self.assertEqual(empty_galaxy.xp, 0)
 
     def test_points_property_no_planets(self):
         # Create a new galaxy with no planets
-        empty_galaxy = Galaxy.objects.create(name="Empty Galaxy", r=2, x=3, y=4)
+        empty_galaxy = Galaxy.objects.create(name="Empty Galaxy", x=3, y=4)
         self.assertEqual(empty_galaxy.points, 0)
         
         
 class CommanderVoteTestCase(TestCase):
     def setUp(self):
         """Set up a commander vote test with a galaxy and planets."""
-        self.galaxy = Galaxy.objects.create(name="Galaxy Vote", r=4, x=3, y=2)
+        self.galaxy = Galaxy.objects.create(name="Galaxy Vote", x=3, y=2)
         self.planet1 = Planet.objects.create(name="Planet1")
         self.planet2 = Planet.objects.create(name="Planet2")
         self.galaxy.add_planet(self.planet1)
@@ -101,7 +101,7 @@ class CommanderVoteTestCase(TestCase):
 class OutVoteTestCase(TestCase):
     def setUp(self):
         """Set up outvote test with a galaxy and planets."""
-        self.galaxy = Galaxy.objects.create(name="OutVote Galaxy", r=3, x=2, y=1)
+        self.galaxy = Galaxy.objects.create(name="OutVote Galaxy", x=2, y=1)
         self.planet1 = Planet.objects.create(name="Planet1")
         self.planet2 = Planet.objects.create(name="Planet2")
         self.galaxy.add_planet(self.planet1)

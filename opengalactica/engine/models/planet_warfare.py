@@ -31,14 +31,14 @@ class PlanetWarfare:
         return [*Fleet.objects.filter(owner=self, task="return")]
 
     def is_ally(self, other):
-        same_galaxy = (self.r == other.r and self.x == other.x and self.y == other.y)
+        same_galaxy = (self.x == other.x and self.y == other.y)
         same_alliance = self.alliance and (self.alliance == other.alliance)
         return same_galaxy or same_alliance
 
     def get_distance(self, fleet):
         other = fleet.owner
         travel = "travel_u"
-        if self.r == other.r and self.x == other.x:
+        if self.x == other.x:
             travel = "travel_s"
             if self.y == other.y:
                 travel = "travel_g"
@@ -50,7 +50,7 @@ class PlanetWarfare:
     def get_fuel_cost(self, fleet):
         other = fleet.owner
         multiplier = 3
-        if self.r == other.r and self.x == other.x:
+        if self.x == other.x:
             multiplier = 2
             if self.y == other.y:
                 multiplier = 1

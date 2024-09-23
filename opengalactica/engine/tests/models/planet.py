@@ -6,7 +6,6 @@ class PlanetTestCase(TestCase):
     def setUp(self):
         self.planet = Planet.objects.create(
             name="TestPlanet",
-            r=0,
             x=1,
             y=2,
             z=3,
@@ -14,11 +13,11 @@ class PlanetTestCase(TestCase):
         
     def test_coordinates(self):
         """Test coordinates property"""
-        self.assertEqual(self.planet.coordinates, "0:1:2:3")
+        self.assertEqual(self.planet.coordinates, "1:2:3")
 
     def test_str_method(self):
         """Test __str__ method"""
-        self.assertEqual(str(self.planet), "TestPlanet (0:1:2:3)")
+        self.assertEqual(str(self.planet), "TestPlanet (1:2:3)")
 
     def test_fleet_creation_on_save(self):
         """Test that the save() method creates the base fleet and additional fleets"""
@@ -69,11 +68,11 @@ class PlanetEconomyTestCase(TestCase):
         self.market = Market.objects.create()
 
         self.planet_sender = Planet.objects.create(
-            name="SenderPlanet", r=4, x=3, y=2, z=1, metal=1000, crystal=1000, narion=1000)
+            name="SenderPlanet", x=3, y=2, z=1, metal=1000, crystal=1000, narion=1000)
         self.planet_receiver = Planet.objects.create(
-            name="ReceiverPlanet", r=4, x=3, y=2, z=2, metal=100, crystal=100, narion=100)
+            name="ReceiverPlanet", x=3, y=2, z=2, metal=100, crystal=100, narion=100)
         self.planet_different_galaxy = Planet.objects.create(
-            name="DifferentGalaxyPlanet", r=4, x=3, y=5, z=5, metal=100, crystal=100, narion=100)
+            name="DifferentGalaxyPlanet", x=3, y=5, z=5, metal=100, crystal=100, narion=100)
 
 
     def test_active_plasmators(self):
@@ -265,13 +264,12 @@ class PlanetPoliticsTestCase(TestCase):
         # Create a basic planet for testing
         self.planet = Planet.objects.create(
             name="TestPlanet",
-            r=1,
             x=2,
             y=3,
             z=4
         )
         # Create a galaxy for relocation
-        self.galaxy = Galaxy.objects.create(r=1, x=2, y=3)
+        self.galaxy = Galaxy.objects.create(x=2, y=3)
         self.round = Round.objects.create(number=1, turn=5)
         
 
@@ -315,9 +313,9 @@ class PlanetPoliticsTestCase(TestCase):
 class PlanetWarfareTestCase(TestCase):
     def setUp(self):
         # Create planet and fleets for testing
-        self.planet = Planet.objects.create(r=0, x=0, y=0, z=0, protection=5, on_holiday=False)
-        self.ally_planet = Planet.objects.create(r=0, x=0, y=0, z=9, protection=0, on_holiday=False)
-        self.enemy_planet = Planet.objects.create(r=0, x=1, y=0, z=0)
+        self.planet = Planet.objects.create(x=0, y=0, z=0, protection=5, on_holiday=False)
+        self.ally_planet = Planet.objects.create(x=0, y=0, z=9, protection=0, on_holiday=False)
+        self.enemy_planet = Planet.objects.create(x=1, y=0, z=0)
         self.alliance = Alliance.objects.create(name="Test Alliance")
 
         # Create ship models
@@ -387,7 +385,6 @@ class PlanetWarfareTestCase(TestCase):
 
     def test_is_ally(self):
         # Test is_ally when planets are in the same galaxy or alliance
-        self.enemy_planet.r = self.planet.r
         self.enemy_planet.x = self.planet.x
         self.enemy_planet.y = self.planet.x
         self.enemy_planet.save()
@@ -405,7 +402,6 @@ class PlanetWarfareTestCase(TestCase):
         self.assertTrue(self.planet.is_ally(self.enemy_planet))
 
     def test_get_distance(self):
-        self.enemy_planet.r = self.planet.r
         self.enemy_planet.x = self.planet.x+1
 
         # Test get_distance based on fleet's location
@@ -425,7 +421,7 @@ class PlanetRelocationTestCase(TestCase):
     def setUp(self):
         """Set up a test with a planet relocation and galaxy."""
         self.planet = Planet.objects.create(name="PlanetRelocationTest")
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", r=0, x=0, y=0)
+        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=0, y=0)
         self.relocation = PlanetRelocation.objects.create(planet=self.planet, galaxy=self.galaxy, invitation=True)
 
     def test_accept_invitation(self):

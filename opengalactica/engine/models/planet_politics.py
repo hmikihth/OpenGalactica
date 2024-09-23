@@ -4,7 +4,7 @@ class PlanetPolitics:
     @property
     def galaxy(self):
         from .galaxy import Galaxy
-        galaxy, created = Galaxy.objects.get_or_create(r=self.r, x=self.x, y=self.y)
+        galaxy, created = Galaxy.objects.get_or_create(x=self.x, y=self.y)
         return galaxy
     
     @property

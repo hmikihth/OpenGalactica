@@ -78,7 +78,7 @@ class PlanetResearchTestCase(TestCase):
 
         # Create a mock planet
         self.planet = Planet.objects.create(
-            name="Test Planet", r=0, x=0, y=0, z=0
+            name="Test Planet", x=0, y=0, z=0
         )
 
         # Create PlanetResearch objects

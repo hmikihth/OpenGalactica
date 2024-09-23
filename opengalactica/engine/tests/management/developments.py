@@ -21,7 +21,7 @@ class DevelopmentsTestCase(TestCase):
 
 
         self.planet = Planet.objects.create(
-            name="Test Planet", r=0, x=0, y=0, z=0
+            name="Test Planet", x=0, y=0, z=5
         )
         self.research1 = PlanetResearch.objects.create(planet=self.planet, research=self.research, turns_remaining=3, completed=False)
         self.research2 = PlanetResearch.objects.create(planet=self.planet, research=self.research, turns_remaining=1, completed=False)

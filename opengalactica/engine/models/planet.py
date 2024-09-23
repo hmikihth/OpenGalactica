@@ -13,7 +13,6 @@ from .planet_politics import PlanetPolitics
 class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, AllianceMember):
     name = models.CharField(max_length=128)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
-    r = models.IntegerField(default=0)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     z = models.IntegerField(default=0)
@@ -51,6 +50,6 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, Allianc
 
     @property
     def coordinates(self):
-        return f"{self.r}:{self.x}:{self.y}:{self.z}"
+        return f"{self.x}:{self.y}:{self.z}"
                 
 
