@@ -7,6 +7,8 @@ from .battlereport import *
 from .fleet import *
 from .galaxy import *
 from .planet import *
+from .planet_economy import Market
+from .planet_relocation import *
 from .ship import *
 from .round import *
 from .research import *

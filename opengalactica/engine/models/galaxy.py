@@ -21,7 +21,7 @@ class Galaxy(models.Model):
         
     @property
     def n_relocations(self):
-        from .planet import PlanetRelocation
+        from .planet_relocation import PlanetRelocation
         return len(PlanetRelocation.objects.filter(galaxy=self))
 
     @property
@@ -30,7 +30,7 @@ class Galaxy(models.Model):
             
     @property
     def current_outvotes(self):
-        from .planet import PlanetRelocation
+        from .planet_relocation import PlanetRelocation
         return PlanetRelocation.objects.filter(galaxy=self, outvote=True)
 
     @property
@@ -57,7 +57,7 @@ class Galaxy(models.Model):
         if self.full:
             raise ValueError("The galaxy is full")
         else:
-            from .planet import PlanetRelocation
+            from .planet_relocation import PlanetRelocation
             PlanetRelocation.objects.create(planet=planet, galaxy=self, invitation=True)
         
     def start_outvote(self, planet):
@@ -67,7 +67,7 @@ class Galaxy(models.Model):
         PlanetRelocation.objects.create(planet=planet, galaxy=self, turn=round.turn+72, outvote=True)
 
     def cancel_outvote(self, planet):
-        from .planet import PlanetRelocation
+        from .planet_relocation import PlanetRelocation
         PlanetRelocation.objects.filter(planet=planet, galaxy=self, outvote=True).delete()
         OutVote.objects.filter(planet=planet).delete()
 

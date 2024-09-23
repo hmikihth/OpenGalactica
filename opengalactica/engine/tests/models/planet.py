@@ -445,7 +445,7 @@ class PlanetRelocationTestCase(TestCase):
         """Test execution of a relocation based on turns."""
         # Set the current turn and make sure it's valid for relocation
         from .round import Round
-        current_round = Round.objects.create(number=1, turn=50)
+        Round.objects.create(number=1, turn=50)
         self.relocation.turn = 49
         self.relocation.execute()
 
