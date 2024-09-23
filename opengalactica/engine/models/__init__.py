@@ -5,7 +5,7 @@ from .alliance_rank import *
 from .archived_player import *
 from .battlereport import *
 from .fleet import *
-from .galaxy import *
+from .sol import *
 from .planet import *
 from .planet_economy import Market
 from .planet_relocation import *

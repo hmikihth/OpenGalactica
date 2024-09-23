@@ -31,9 +31,9 @@ class PlanetWarfare:
         return [*Fleet.objects.filter(owner=self, task="return")]
 
     def is_ally(self, other):
-        same_galaxy = (self.x == other.x and self.y == other.y)
+        same_sol = (self.x == other.x and self.y == other.y)
         same_alliance = self.alliance and (self.alliance == other.alliance)
-        return same_galaxy or same_alliance
+        return same_sol or same_alliance
 
     def get_distance(self, fleet):
         other = fleet.owner

@@ -140,9 +140,9 @@ class PlanetEconomy:
         self.save()
         
     def send_resources(self, receiver_planet, metal, crystal, narion):
-        """Send resources to another planet in the same galaxy."""
-        if self.galaxy != receiver_planet.galaxy:
-            raise ValueError("Both planets must be in the same galaxy to send resources.")
+        """Send resources to another planet in the same sol."""
+        if self.sol != receiver_planet.sol:
+            raise ValueError("Both planets must be in the same sol to send resources.")
 
         # Check if the sender has enough resources
         if metal > self.metal or crystal > self.crystal or narion > self.narion:

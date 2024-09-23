@@ -3,7 +3,7 @@ from .alliance_invitation import *
 from .alliance_member import *
 from .alliance_rank import *
 from .fleet import *
-from .galaxy import *
+from .sol import *
 from .planet import *
 from .round import *
 from .ship import *

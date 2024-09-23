@@ -1,6 +1,6 @@
 from django.test import TestCase
 from engine.models import Planet, Fleet, Alliance, Market, MAX_FLEETS
-from engine.models import Galaxy, PlanetRelocation, Round, Ship, ShipModel
+from engine.models import Sol, PlanetRelocation, Round, Ship, ShipModel
 
 class PlanetTestCase(TestCase):
     def setUp(self):
@@ -71,8 +71,8 @@ class PlanetEconomyTestCase(TestCase):
             name="SenderPlanet", x=3, y=2, z=1, metal=1000, crystal=1000, narion=1000)
         self.planet_receiver = Planet.objects.create(
             name="ReceiverPlanet", x=3, y=2, z=2, metal=100, crystal=100, narion=100)
-        self.planet_different_galaxy = Planet.objects.create(
-            name="DifferentGalaxyPlanet", x=3, y=5, z=5, metal=100, crystal=100, narion=100)
+        self.planet_different_sol = Planet.objects.create(
+            name="DifferentSolPlanet", x=3, y=5, z=5, metal=100, crystal=100, narion=100)
 
 
     def test_active_plasmators(self):
@@ -237,7 +237,7 @@ class PlanetEconomyTestCase(TestCase):
         self.assertEqual(self.market.narion, 0)
         
     def test_send_resources_success(self):
-        """Test successful resource transfer between planets in the same galaxy."""
+        """Test successful resource transfer between planets in the same sol."""
         self.planet_sender.send_resources(self.planet_receiver, 500, 300, 200)
 
         # Verify that resources were transferred correctly
@@ -249,10 +249,10 @@ class PlanetEconomyTestCase(TestCase):
         self.assertEqual(self.planet_receiver.crystal, 400)
         self.assertEqual(self.planet_receiver.narion, 300)
 
-    def test_send_resources_different_galaxy(self):
+    def test_send_resources_different_sol(self):
         """Test that resource transfer fails if planets are in different galaxies."""
-        with self.assertRaises(ValueError, msg="Both planets must be in the same galaxy to send resources."):
-            self.planet_sender.send_resources(self.planet_different_galaxy, 500, 300, 200)
+        with self.assertRaises(ValueError, msg="Both planets must be in the same sol to send resources."):
+            self.planet_sender.send_resources(self.planet_different_sol, 500, 300, 200)
 
     def test_send_resources_insufficient_resources(self):
         """Test that resource transfer fails if sender doesn't have enough resources."""
@@ -268,15 +268,15 @@ class PlanetPoliticsTestCase(TestCase):
             y=3,
             z=4
         )
-        # Create a galaxy for relocation
-        self.galaxy = Galaxy.objects.create(x=2, y=3)
+        # Create a sol for relocation
+        self.sol = Sol.objects.create(x=2, y=3)
         self.round = Round.objects.create(number=1, turn=5)
         
 
     def test_relocation_with_valid_relocation(self):
         """Test relocation method with a valid PlanetRelocation entry."""
         # Create a relocation entry for the planet
-        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=5, galaxy=self.galaxy)
+        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=5, sol=self.sol)
 
         # Call the relocation method with the same turn
         self.planet.relocation(5)
@@ -287,7 +287,7 @@ class PlanetPoliticsTestCase(TestCase):
     def test_relocation_no_valid_entry(self):
         """Test relocation method when no valid relocation entry exists for the turn."""
         # Create a relocation entry for a later turn
-        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=6, galaxy=self.galaxy)
+        relocation = PlanetRelocation.objects.create(planet=self.planet, turn=6, sol=self.sol)
 
         # Call the relocation method with a different turn
         self.planet.relocation(5)
@@ -384,7 +384,7 @@ class PlanetWarfareTestCase(TestCase):
         self.assertEqual(returning_fleets[0], returning_fleet)
 
     def test_is_ally(self):
-        # Test is_ally when planets are in the same galaxy or alliance
+        # Test is_ally when planets are in the same sol or alliance
         self.enemy_planet.x = self.planet.x
         self.enemy_planet.y = self.planet.x
         self.enemy_planet.save()
@@ -419,15 +419,15 @@ class PlanetWarfareTestCase(TestCase):
 
 class PlanetRelocationTestCase(TestCase):
     def setUp(self):
-        """Set up a test with a planet relocation and galaxy."""
+        """Set up a test with a planet relocation and sol."""
         self.planet = Planet.objects.create(name="PlanetRelocationTest")
-        self.galaxy = Galaxy.objects.create(name="Test Galaxy", x=0, y=0)
-        self.relocation = PlanetRelocation.objects.create(planet=self.planet, galaxy=self.galaxy, invitation=True)
+        self.sol = Sol.objects.create(name="Test Sol", x=0, y=0)
+        self.relocation = PlanetRelocation.objects.create(planet=self.planet, sol=self.sol, invitation=True)
 
     def test_accept_invitation(self):
         """Test accepting an invitation for planet relocation."""
         self.relocation.accept_invitation()
-        self.assertEqual(self.planet.galaxy, self.galaxy)
+        self.assertEqual(self.planet.sol, self.sol)
 
     def test_accept_invitation_no_invite(self):
         """Test that an error is raised if there is no invitation to accept."""
@@ -446,15 +446,15 @@ class PlanetRelocationTestCase(TestCase):
         self.relocation.execute()
 
         # The planet should now be relocated
-        self.assertEqual(self.planet.galaxy, self.galaxy)
+        self.assertEqual(self.planet.sol, self.sol)
 
     def test_delete_related_votes(self):
         """Test that related votes are deleted when relocation happens."""
         from engine.models import OutVote, CommanderVote
         
         # Create outvotes and commander votes to be deleted
-        OutVote.objects.create(galaxy=self.galaxy, planet=self.planet)
-        CommanderVote.objects.create(galaxy=self.galaxy, planet=self.planet)
+        OutVote.objects.create(sol=self.sol, planet=self.planet)
+        CommanderVote.objects.create(sol=self.sol, planet=self.planet)
         
         self.relocation.delete_related_votes()
 
