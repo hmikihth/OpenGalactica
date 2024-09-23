@@ -26,8 +26,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r opengalactica/requirements.txt
         python opengalactica/manage.py makemigrations
+        python opengalactica/manage.py migrate
         python opengalactica/manage.py makemigrations engine
         python opengalactica/manage.py migrate
     - name: Run Tests
       run: |
-        python opengalactica/manage.py test
+        cd opengalactica
+        python manage.py test
