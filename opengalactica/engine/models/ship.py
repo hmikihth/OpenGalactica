@@ -27,9 +27,9 @@ class ShipModel(models.Model):
     narion = models.IntegerField(default=0)
     fuel = models.IntegerField(default=0)
     production_time = models.IntegerField(default=0)
-    travel_g = models.IntegerField(default=0)
-    travel_s = models.IntegerField(default=0)
-    travel_u = models.IntegerField(default=0)
+    travel_sol = models.IntegerField(default=0)
+    travel_gal = models.IntegerField(default=0)
+    travel_uni = models.IntegerField(default=0)
     
     def __str__(self):
         return self.name

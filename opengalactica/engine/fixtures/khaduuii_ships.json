@@ -20,9 +20,9 @@
         "narion" : 100,
         "fuel" : 10,
         "production_time" : 4,
-        "travel_g" : 5,
-        "travel_s" : 8,
-        "travel_u" : 11
+        "travel_sol" : 5,
+        "travel_gal" : 8,
+        "travel_uni" : 11
     }
   },
   {
@@ -46,9 +46,9 @@
         "narion" : 200,
         "fuel" : 10,
         "production_time" : 4,
-        "travel_g" : 5,
-        "travel_s" : 8,
-        "travel_u" : 11
+        "travel_sol" : 5,
+        "travel_gal" : 8,
+        "travel_uni" : 11
     }
   },
   {
@@ -72,9 +72,9 @@
         "narion" : 200,
         "fuel" : 10,
         "production_time" : 5,
-        "travel_g" : 5,
-        "travel_s" : 8,
-        "travel_u" : 11
+        "travel_sol" : 5,
+        "travel_gal" : 8,
+        "travel_uni" : 11
     }
   },
   {
@@ -98,9 +98,9 @@
         "narion" : 400,
         "fuel" : 30,
         "production_time" : 6,
-        "travel_g" : 6,
-        "travel_s" : 9,
-        "travel_u" : 12
+        "travel_sol" : 6,
+        "travel_gal" : 9,
+        "travel_uni" : 12
     }
   },
   {
@@ -124,9 +124,9 @@
         "narion" : 600,
         "fuel" : 30,
         "production_time" : 7,
-        "travel_g" : 6,
-        "travel_s" : 9,
-        "travel_u" : 12
+        "travel_sol" : 6,
+        "travel_gal" : 9,
+        "travel_uni" : 12
     }
   },
   {
@@ -150,9 +150,9 @@
         "narion" : 100,
         "fuel" : 10,
         "production_time" : 8,
-        "travel_g" : 7,
-        "travel_s" : 10,
-        "travel_u" : 13
+        "travel_sol" : 7,
+        "travel_gal" : 10,
+        "travel_uni" : 13
     }
   },
   {
@@ -176,9 +176,9 @@
         "narion" : 900,
         "fuel" : 100,
         "production_time" : 8,
-        "travel_g" : 7,
-        "travel_s" : 10,
-        "travel_u" : 13
+        "travel_sol" : 7,
+        "travel_gal" : 10,
+        "travel_uni" : 13
     }
   },
   {
@@ -202,9 +202,9 @@
         "narion" : 2400,
         "fuel" : 300,
         "production_time" : 10,
-        "travel_g" : 8,
-        "travel_s" : 11,
-        "travel_u" : 14
+        "travel_sol" : 8,
+        "travel_gal" : 11,
+        "travel_uni" : 14
     }
   },
   {
@@ -228,9 +228,9 @@
         "narion" : 1300,
         "fuel" : 300,
         "production_time" : 11,
-        "travel_g" : 8,
-        "travel_s" : 11,
-        "travel_u" : 14
+        "travel_sol" : 8,
+        "travel_gal" : 11,
+        "travel_uni" : 14
     }
   },
   {
@@ -254,9 +254,9 @@
         "narion" : 3300,
         "fuel" : 800,
         "production_time" : 12,
-        "travel_g" : 9,
-        "travel_s" : 12,
-        "travel_u" : 15
+        "travel_sol" : 9,
+        "travel_gal" : 12,
+        "travel_uni" : 15
     }
   },
   {
@@ -280,9 +280,9 @@
         "narion" : 1900,
         "fuel" : 800,
         "production_time" : 13,
-        "travel_g" : 9,
-        "travel_s" : 12,
-        "travel_u" : 15
+        "travel_sol" : 9,
+        "travel_gal" : 12,
+        "travel_uni" : 15
     }
   },
   {
@@ -306,9 +306,9 @@
         "narion" : 5500,
         "fuel" : 1500,
         "production_time" : 14,
-        "travel_g" : 10,
-        "travel_s" : 13,
-        "travel_u" : 16
+        "travel_sol" : 10,
+        "travel_gal" : 13,
+        "travel_uni" : 16
     }
   },
   {
@@ -332,9 +332,9 @@
         "narion" : 2700,
         "fuel" : 1500,
         "production_time" : 15,
-        "travel_g" : 10,
-        "travel_s" : 13,
-        "travel_u" : 16
+        "travel_sol" : 10,
+        "travel_gal" : 13,
+        "travel_uni" : 16
     }
   },
   {
@@ -358,9 +358,9 @@
         "narion" : 300,
         "fuel" : 30,
         "production_time" : 5,
-        "travel_g" : 6,
-        "travel_s" : 9,
-        "travel_u" : 12
+        "travel_sol" : 6,
+        "travel_gal" : 9,
+        "travel_uni" : 12
     }
   }
 ]

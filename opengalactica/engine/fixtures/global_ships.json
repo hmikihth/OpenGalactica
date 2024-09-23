@@ -20,9 +20,9 @@
         "narion" : 100,
         "fuel" : 10,
         "production_time" : 4,
-        "travel_g" : 6,
-        "travel_s" : 7,
-        "travel_u" : 8
+        "travel_sol" : 6,
+        "travel_gal" : 7,
+        "travel_uni" : 8
     }
   },
 
@@ -47,9 +47,9 @@
         "narion" : 600,
         "fuel" : 10,
         "production_time" : 5,
-        "travel_g" : 5,
-        "travel_s" : 8,
-        "travel_u" : 11
+        "travel_sol" : 5,
+        "travel_gal" : 8,
+        "travel_uni" : 11
     }
   },
 
@@ -74,9 +74,9 @@
         "narion" : 7500,
         "fuel" : 1500,
         "production_time" : 14,
-        "travel_g" : 10,
-        "travel_s" : 13,
-        "travel_u" : 16
+        "travel_sol" : 10,
+        "travel_gal" : 13,
+        "travel_uni" : 16
     }
   }
 ]

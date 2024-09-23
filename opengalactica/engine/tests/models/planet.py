@@ -320,7 +320,7 @@ class PlanetWarfareTestCase(TestCase):
 
         # Create ship models
         self.ship_model = ShipModel.objects.create(
-            name="Fighter", fuel=10, travel_g=1, travel_s=5, travel_u=10
+            name="Fighter", fuel=10, travel_sol=1, travel_gal=5, travel_uni=10
         )
 
         # Create fleets for defense and attack
@@ -408,7 +408,7 @@ class PlanetWarfareTestCase(TestCase):
         fleet = Fleet.objects.create(owner=self.enemy_planet)
         Ship.objects.create(ship_model=self.ship_model, fleet=fleet, quantity=5)
         distance = self.planet.get_distance(fleet)
-        self.assertEqual(distance, self.ship_model.travel_u)
+        self.assertEqual(distance, self.ship_model.travel_uni)
 
     def test_get_fuel_cost(self):
         # Test get_fuel_cost based on fleet's distance and ships

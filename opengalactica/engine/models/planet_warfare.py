@@ -37,11 +37,11 @@ class PlanetWarfare:
 
     def get_distance(self, fleet):
         other = fleet.owner
-        travel = "travel_u"
+        travel = "travel_uni"
         if self.x == other.x:
-            travel = "travel_s"
+            travel = "travel_gal"
             if self.y == other.y:
-                travel = "travel_g"
+                travel = "travel_sol"
                     
         ships = Ship.objects.filter(fleet=fleet)
         if ships:

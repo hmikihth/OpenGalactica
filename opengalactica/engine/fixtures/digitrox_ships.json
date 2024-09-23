@@ -20,9 +20,9 @@
         "narion" : 200,
         "fuel" : 10,
         "production_time" : 5,
-        "travel_g" : 6,
-        "travel_s" : 9,
-        "travel_u" : 12
+        "travel_sol" : 6,
+        "travel_gal" : 9,
+        "travel_uni" : 12
     }
   },
   {
@@ -46,9 +46,9 @@
         "narion" : 400,
         "fuel" : 30,
         "production_time" : 7,
-        "travel_g" : 7,
-        "travel_s" : 10,
-        "travel_u" : 13
+        "travel_sol" : 7,
+        "travel_gal" : 10,
+        "travel_uni" : 13
     }
   },
   {
@@ -72,9 +72,9 @@
         "narion" : 1000,
         "fuel" : 100,
         "production_time" : 9,
-        "travel_g" : 8,
-        "travel_s" : 11,
-        "travel_u" : 14
+        "travel_sol" : 8,
+        "travel_gal" : 11,
+        "travel_uni" : 14
     }
   },
   {
@@ -98,9 +98,9 @@
         "narion" : 1800,
         "fuel" : 300,
         "production_time" : 11,
-        "travel_g" : 9,
-        "travel_s" : 12,
-        "travel_u" : 15
+        "travel_sol" : 9,
+        "travel_gal" : 12,
+        "travel_uni" : 15
     }
   },
   {
@@ -124,9 +124,9 @@
         "narion" : 3000,
         "fuel" : 800,
         "production_time" : 14,
-        "travel_g" : 10,
-        "travel_s" : 13,
-        "travel_u" : 16
+        "travel_sol" : 10,
+        "travel_gal" : 13,
+        "travel_uni" : 16
     }
   },
   {
@@ -150,9 +150,9 @@
         "narion" : 5400,
         "fuel" : 1500,
         "production_time" : 16,
-        "travel_g" : 11,
-        "travel_s" : 14,
-        "travel_u" : 17
+        "travel_sol" : 11,
+        "travel_gal" : 14,
+        "travel_uni" : 17
     }
   },
   {
@@ -176,9 +176,9 @@
         "narion" : 1200,
         "fuel" : 300,
         "production_time" : 12,
-        "travel_g" : 9,
-        "travel_s" : 12,
-        "travel_u" : 15
+        "travel_sol" : 9,
+        "travel_gal" : 12,
+        "travel_uni" : 15
     }
   }
 ]

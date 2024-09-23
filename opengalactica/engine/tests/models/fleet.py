@@ -195,9 +195,6 @@ class FleetTestCase(TestCase):
         fleet.task = "move"
         fleet.target = target_planet
         fleet.distance = target_planet.get_distance(fleet)
-        fleet.save()
-
-        old_distance = fleet.distance
         fleet.distance -= 1
         fleet.save()
 
