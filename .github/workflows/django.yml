@@ -27,4 +27,4 @@ jobs:
         pip install -r opengalactica/requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python opengalactica/manage.py test
