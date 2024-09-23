@@ -13,11 +13,26 @@ class AllianceTreasuryLog(models.Model):
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)
 
+def set_new_founder_on_delete(collector,  **kwargs):
+    planet = collector.origin
+    alliance = planet.alliance
+    planet.alliance = None
+    planet.save()
+    new_founder = alliance.set_new_founder()
+    alliance.founder = new_founder 
+    alliance.save()
+
 class Alliance(models.Model):
     name = models.CharField(max_length=128)
     identifier = models.CharField(max_length=6)
     alliance_type = models.CharField(max_length=64, default="standard")
-    founder = models.ForeignKey("Planet", related_name="founder", on_delete=models.SET_NULL, null=True, blank=True)
+    founder = models.ForeignKey(
+        "Planet", 
+        related_name="founder", 
+        on_delete=lambda instance, *args, **kwargs: set_new_founder_on_delete(instance),
+        null=True, 
+        blank=True
+    )
     metal = models.IntegerField(default=0)
     crystal = models.IntegerField(default=0)
     narion = models.IntegerField(default=0)

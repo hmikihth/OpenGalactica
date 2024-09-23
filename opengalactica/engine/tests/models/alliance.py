@@ -242,6 +242,21 @@ class AllianceFounderTestCase(TestCase):
         # Ensure the new founder has the founder rank
         self.assertEqual(self.alliance.founder.rank, self.rank_founder, "The new founder should have the 'founder' rank.")
 
+    def test_deleted_founder(self):
+        """Test the set_new_founder method assigns a new founder when the current one leaves."""
+        
+        # Simulate the current founder (planet1) leaving the alliance
+        self.planet1.delete()
+        
+        self.alliance.refresh_from_db()
+        
+
+        # Check if a new founder was set based on the sorting criteria
+        self.assertEqual(self.alliance.founder, self.planet2, "Planet 2 should become the new founder as it meets the criteria.")
+
+        # Ensure the new founder has the founder rank
+        self.assertEqual(self.alliance.founder.rank, self.rank_founder, "The new founder should have the 'founder' rank.")
+
     def test_save_method_with_founder(self):
         """Test the save method assigns a founder and member on alliance creation."""
 
