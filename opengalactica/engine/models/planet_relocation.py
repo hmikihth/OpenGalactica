@@ -40,8 +40,11 @@ class PlanetRelocation(models.Model):
                 if not_full_sols:
                     self.sol = not_full_sols[0]
                 else:
-                    for x in range(10):
-                        for y in range(10):
+                    # The galaxies on 0:y:z coordinates are reserved for new planets
+                    # The galaxies on 1:y:z are reserved for developers, admins and AI controlled planets
+                    # Maximum ~9800 planets
+                    for x in range(2,100):
+                        for y in range(1,11):
                             try:
                                 Sol.objects.get(x=x, y=y)
                             except:

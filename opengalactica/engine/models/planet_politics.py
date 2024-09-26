@@ -14,8 +14,11 @@ class PlanetPolitics:
     def relocation(self, turn):
         rl = None
         try:
-            rl = PlanetRelocation.objects.filter(planet=self, turn__lte=turn).last()
+            rl = PlanetRelocation.objects.filter(planet=self).last()
+            if rl == None and self.x == self.y == 0:
+                PlanetRelocation.objects.create(planet=self, turn=turn+self.protection)
         except:
-            pass
+            if self.x == self.y == 0:
+                PlanetRelocation.objects.create(planet=self, turn=turn+self.protection)
         if rl:
             rl.execute()

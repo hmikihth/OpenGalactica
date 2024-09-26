@@ -309,6 +309,17 @@ class PlanetPoliticsTestCase(TestCase):
         # Since no relocation exists, the method should execute without error
         self.assertTrue(True)  # Simply ensure no exception was raised
 
+    def test_new_planets_in_starting_galaxy(self):
+        # Delete all existing planets
+        Planet.objects.all().delete()
+        
+        # Generate planets
+        for i in range(20):
+            planet = Planet.objects.create(name=f"Test Planet {i}")
+            
+            # Planets should be in the same starting point but with different coordinates (0:0:Z)
+            self.assertEqual(planet.coordinates, f"0:0:{i+1}")
+            
 
 class PlanetWarfareTestCase(TestCase):
     def setUp(self):
@@ -416,6 +427,7 @@ class PlanetWarfareTestCase(TestCase):
         ships = Ship.objects.create(ship_model=self.ship_model, fleet=fleet, quantity=3)
         fuel_cost = self.planet.get_fuel_cost(fleet)
         self.assertEqual(fuel_cost, 3 * self.ship_model.fuel * ships.quantity)
+        
 
 class PlanetRelocationTestCase(TestCase):
     def setUp(self):

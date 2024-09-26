@@ -40,6 +40,21 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, Allianc
     def save(self, *args, **kwargs):
         is_new = self._state.adding  # Check if the object is being created
 
+        if is_new:
+            if self.x == self.y == self.z == 0:
+                planets = Planet.objects.filter(x=0, y=0).values_list("z", flat=True)
+                len_z = len(planets)
+                if len_z:
+                    max_z = max(planets)
+                    if max_z == 9999:
+                        self.z = [*filter(lambda e: e not in planets, range(1,10000))][0]
+                    else:
+                        self.z = max_z + 1
+                else:
+                    self.z = 1
+                if len_z == 9999 and self.z == 0:
+                    raise ValueError("The universe is full with planets")
+
         obj = super().save(*args, **kwargs)
         if is_new:  # If it was a create call
             Fleet.objects.create(owner=self, name="Base", base=True)
