@@ -11,10 +11,14 @@ class Research(models.Model):
     development_time = models.IntegerField()  # in turns
     requirement = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='dependent_research')
 
-    # Bonus or effects provided by the research (e.g., better accuracy, increased production)
+    # Bonus provided by the research (e.g., better accuracy, increased production)
     bonus_type = models.CharField(max_length=64, null=True, blank=True)
     bonus_value = models.FloatField(default=0, null=True, blank=True)
     
+    # Fine provided by the research (e.g., decreased accuracy, slower ships, etc)
+    fine_type = models.CharField(max_length=64, null=True, blank=True)
+    fine_value = models.FloatField(default=0, null=True, blank=True)
+
     # Mutually exclusive research group
     exclusive_group = models.CharField(max_length=64, null=True, blank=True)
 
@@ -25,6 +29,12 @@ class Research(models.Model):
     def bonus(self):
         if self.bonus_type:
             return {self.bonus_type : self.bonus_value}
+        return {}
+
+    @property
+    def fine(self):
+        if self.fine_type:
+            return {self.fine_type : self.fine_value}
         return {}
 
     @property
@@ -74,6 +84,11 @@ class PlanetResearch(models.Model):
     def bonus(self):
         """Returns with the related bonus"""
         return self.research.bonus
+        
+    @property
+    def fine(self):
+        """Returns with the related fine"""
+        return self.research.fine
         
     @property
     def points(self):

@@ -14,7 +14,9 @@ class ResearchTestCase(TestCase):
             narion=20,
             development_time=5,
             bonus_type="accuracy",
-            bonus_value=0.05
+            bonus_value=0.05,
+            fine_type="universe speed",
+            fine_value=-1
         )
 
         self.research2 = Research.objects.create(
@@ -28,22 +30,26 @@ class ResearchTestCase(TestCase):
             development_time=10,
             requirement=self.research1,
             bonus_type="accuracy",
-            bonus_value=0.1
+            bonus_value=0.1,
+            fine_type="universe speed",
+            fine_value=-2
         )
 
     def test_research_creation(self):
         """Test if research objects are correctly created."""
         self.assertEqual(self.research1.name, "Basic Weaponry")
-        self.assertEqual(self.research1.metal, 100)
-        self.assertEqual(self.research1.bonus, {"accuracy": 0.05})
-
+        self.assertEqual(self.research2.name, "Advanced Weaponry")
         self.assertEqual(self.research2.requirement, self.research1)
-        self.assertEqual(self.research2.bonus, {"accuracy": 0.1})
 
     def test_bonus_property(self):
         """Test the bonus property of Research."""
         self.assertEqual(self.research1.bonus, {"accuracy": 0.05})
         self.assertEqual(self.research2.bonus, {"accuracy": 0.1})
+        
+    def test_fine_property(self):
+        """Test the fine property of Research."""
+        self.assertEqual(self.research1.fine, {"universe speed": -1})
+        self.assertEqual(self.research2.fine, {"universe speed": -2})
         
     def test_research_points(self):
         """Test the points property of the Research model."""        
@@ -132,6 +138,14 @@ class PlanetResearchTestCase(TestCase):
         self.research1.bonus_value = 0.05
         self.research1.save()
         self.assertEqual(self.planet_research1.bonus, {"evasion": 0.05})
+
+    def test_fine_property(self):
+        """Test the fine property of PlanetResearch."""
+        self.assertEqual(self.planet_research1.fine, {})
+        self.research1.fine_type = "damage"
+        self.research1.fine_value = -1
+        self.research1.save()
+        self.assertEqual(self.planet_research1.fine, {"damage": -1})
 
     def test_planet_research_points(self):
         """Test the points property of the PlanetResearch model."""
