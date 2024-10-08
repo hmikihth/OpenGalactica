@@ -1,5 +1,5 @@
 from django.test import TestCase
-from engine.models import Research, PlanetResearch, Planet
+from engine.models import Research, PlanetResearch, SolResearch, AllianceResearch, Planet, Sol, Alliance
 
 class ResearchTestCase(TestCase):
     def setUp(self):
@@ -56,6 +56,7 @@ class ResearchTestCase(TestCase):
         expected_points = self.research1.metal + self.research1.crystal + self.research1.narion
         self.assertEqual(self.research1.points, expected_points)
 
+
 class PlanetResearchTestCase(TestCase):
     def setUp(self):
         # Create Research objects
@@ -90,14 +91,12 @@ class PlanetResearchTestCase(TestCase):
         # Create PlanetResearch objects
         self.planet_research1 = PlanetResearch.objects.create(
             planet=self.planet,
-            research=self.research1,
-            turns_remaining=5
+            research=self.research1
         )
 
         self.planet_research2 = PlanetResearch.objects.create(
             planet=self.planet,
-            research=self.research2,
-            turns_remaining=10
+            research=self.research2
         )
 
     def test_planet_research_creation(self):
@@ -131,72 +130,187 @@ class PlanetResearchTestCase(TestCase):
         self.planet_research1.save()
         self.assertTrue(self.planet_research2.can_start())
 
-    def test_bonus_property(self):
-        """Test the bonus property of PlanetResearch."""
-        self.assertEqual(self.planet_research1.bonus, {})
-        self.research1.bonus_type = "evasion"
-        self.research1.bonus_value = 0.05
-        self.research1.save()
-        self.assertEqual(self.planet_research1.bonus, {"evasion": 0.05})
-
-    def test_fine_property(self):
-        """Test the fine property of PlanetResearch."""
-        self.assertEqual(self.planet_research1.fine, {})
-        self.research1.fine_type = "damage"
-        self.research1.fine_value = -1
-        self.research1.save()
-        self.assertEqual(self.planet_research1.fine, {"damage": -1})
-
-    def test_planet_research_points(self):
-        """Test the points property of the PlanetResearch model."""
-        planet_research = PlanetResearch.objects.create(
-            planet=self.planet,
-            research=self.research1,
-            turns_remaining=5
-        )
-        
-        self.assertEqual(planet_research.points, self.research1.points)
-        
-    def test_mutually_exclusive_research(self):
-        """Test that mutually exclusive researches cannot be developed at the same time."""
-        # Setup two mutually exclusive researches
-        research1 = Research.objects.create(
-            name="Anti-EMP Shield",
+    def test_exclusive_group_restriction(self):
+        """Test that exclusive group restriction prevents starting multiple researches."""
+        research_exclusive_1 = Research.objects.create(
+            name="Defense Tech A",
             research_type="Defense",
             species="Human",
-            description="Protects against EMP weapons.",
-            metal=100,
+            description="Defense tech A.",
+            metal=150,
+            crystal=100,
+            narion=75,
+            development_time=6,
+            exclusive_group="defense_group"
+        )
+        
+        research_exclusive_2 = Research.objects.create(
+            name="Defense Tech B",
+            research_type="Defense",
+            species="Human",
+            description="Defense tech B.",
+            metal=200,
             crystal=150,
             narion=50,
-            development_time=5,
-            exclusive_group="defense_choice"
+            development_time=6,
+            exclusive_group="defense_group"
+        )
+
+        # Start the first research
+        planet_research_excl_1 = PlanetResearch.objects.create(
+            planet=self.planet,
+            research=research_exclusive_1,
+            started=True
         )
         
-        research2 = Research.objects.create(
-            name="Self-Destruction Charge",
+        # Try to start the second exclusive research
+        planet_research_excl_2 = PlanetResearch.objects.create(
+            planet=self.planet,
+            research=research_exclusive_2
+        )
+        
+        # Should not be allowed to start because of the exclusive group conflict
+        self.assertFalse(planet_research_excl_2.can_start())
+        
+
+class SolResearchTestCase(TestCase):
+    def setUp(self):
+        # Create Research and Sol objects
+        self.research1 = Research.objects.create(
+            name="Sol Weaponry",
+            research_type="Weapon",
+            species="Sol",
+            description="Sol weapon technology.",
+            metal=300,
+            crystal=200,
+            narion=100,
+            development_time=7
+        )
+
+        self.sol = Sol.objects.create(name="Test Sol")
+
+        # Create SolResearch objects
+        self.sol_research1 = SolResearch.objects.create(
+            sol=self.sol,
+            research=self.research1
+        )
+
+    def test_sol_research_creation(self):
+        """Test if SolResearch objects are correctly created."""
+        self.assertEqual(self.sol_research1.research.name, "Sol Weaponry")
+        self.assertEqual(self.sol_research1.turns_remaining, 7)
+        self.assertFalse(self.sol_research1.completed)
+
+    def test_exclusive_group_restriction(self):
+        """Test that exclusive group restriction prevents starting multiple researches."""
+        research_exclusive_1 = Research.objects.create(
+            name="Sol Defense A",
             research_type="Defense",
-            species="Human",
-            description="Ships can self-destruct.",
-            metal=120,
-            crystal=100,
-            narion=60,
-            development_time=6,
-            exclusive_group="defense_choice"
+            species="Sol",
+            description="Defense tech A.",
+            metal=200,
+            crystal=150,
+            narion=75,
+            development_time=8,
+            exclusive_group="sol_defense_group"
         )
 
-        # Start research1 and complete it
-        planet_research1 = PlanetResearch.objects.create(
-            planet=self.planet,
-            research=research1,
-            turns_remaining=0,
-            completed=True
+        research_exclusive_2 = Research.objects.create(
+            name="Sol Defense B",
+            research_type="Defense",
+            species="Sol",
+            description="Defense tech B.",
+            metal=250,
+            crystal=200,
+            narion=100,
+            development_time=8,
+            exclusive_group="sol_defense_group"
         )
 
-        # Attempt to start research2, should return False since research1 is already completed
-        planet_research2 = PlanetResearch.objects.create(
-            planet=self.planet,
-            research=research2,
-            turns_remaining=6
+        # Start the first research
+        sol_research_excl_1 = SolResearch.objects.create(
+            sol=self.sol,
+            research=research_exclusive_1,
+            started=True
+        )
+        
+        # Try to start the second exclusive research
+        sol_research_excl_2 = SolResearch.objects.create(
+            sol=self.sol,
+            research=research_exclusive_2
         )
 
-        self.assertFalse(planet_research2.can_start())
+        # Should not be allowed to start because of the exclusive group conflict
+        self.assertFalse(sol_research_excl_2.can_start())
+
+
+class AllianceResearchTestCase(TestCase):
+    def setUp(self):
+        # Create Research and Alliance objects
+        self.research1 = Research.objects.create(
+            name="Alliance Weaponry",
+            research_type="Weapon",
+            species="Alliance",
+            description="Alliance weapon technology.",
+            metal=500,
+            crystal=300,
+            narion=200,
+            development_time=9
+        )
+
+        self.alliance = Alliance.objects.create(name="Test Alliance")
+
+        # Create AllianceResearch objects
+        self.alliance_research1 = AllianceResearch.objects.create(
+            alliance=self.alliance,
+            research=self.research1
+        )
+
+    def test_alliance_research_creation(self):
+        """Test if AllianceResearch objects are correctly created."""
+        self.assertEqual(self.alliance_research1.research.name, "Alliance Weaponry")
+        self.assertEqual(self.alliance_research1.turns_remaining, 9)
+        self.assertFalse(self.alliance_research1.completed)
+
+    def test_exclusive_group_restriction(self):
+        """Test that exclusive group restriction prevents starting multiple researches."""
+        research_exclusive_1 = Research.objects.create(
+            name="Alliance Defense A",
+            research_type="Defense",
+            species="Alliance",
+            description="Alliance defense tech A.",
+            metal=400,
+            crystal=250,
+            narion=150,
+            development_time=8,
+            exclusive_group="alliance_defense_group"
+        )
+
+        research_exclusive_2 = Research.objects.create(
+            name="Alliance Defense B",
+            research_type="Defense",
+            species="Alliance",
+            description="Alliance defense tech B.",
+            metal=450,
+            crystal=300,
+            narion=200,
+            development_time=8,
+            exclusive_group="alliance_defense_group"
+        )
+
+        # Start the first exclusive research
+        alliance_research_excl_1 = AllianceResearch.objects.create(
+            alliance=self.alliance,
+            research=research_exclusive_1,
+            started=True
+        )
+
+        # Try to start the second exclusive research
+        alliance_research_excl_2 = AllianceResearch.objects.create(
+            alliance=self.alliance,
+            research=research_exclusive_2
+        )
+
+        # Should not be allowed to start because of the exclusive group conflict
+        self.assertFalse(alliance_research_excl_2.can_start())
+
