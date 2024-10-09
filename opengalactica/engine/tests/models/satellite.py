@@ -91,8 +91,7 @@ class SatelliteProductionTestCase(TestCase):
             planet=self.planet,
             satellite_type=self.satellite_type,
             quantity=1,
-            turns_remaining=self.satellite_type.production_time,
-            started=True
+            turns_remaining=self.satellite_type.production_time
         )
 
         # Call start_production to reduce turns by 1
@@ -108,8 +107,7 @@ class SatelliteProductionTestCase(TestCase):
             planet=self.planet,
             satellite_type=self.satellite_type,
             quantity=2,
-            turns_remaining=1,  # Set turns remaining to 1 to simulate production near completion
-            started=True
+            turns_remaining=1  # Set turns remaining to 1 to simulate production near completion
         )
 
         # Call start_production to complete production
