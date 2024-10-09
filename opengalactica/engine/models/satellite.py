@@ -42,6 +42,22 @@ class SatelliteProduction(models.Model):
     turns_remaining = models.IntegerField()  # Production time remaining
 
     def save(self, *args, **kwargs):
+        total_metal_cost = self.satellite_type.metal * self.quantity
+        total_crystal_cost = self.satellite_type.crystal * self.quantity
+        total_narion_cost = self.satellite_type.narion * self.quantity
+
+        # Check if the planet has enough resources
+        if (self.planet.metal < total_metal_cost or 
+            self.planet.crystal < total_crystal_cost or 
+            self.planet.narion < total_narion_cost):
+            raise ValueError("Not enough resources to produce the satellites.")
+        else:
+            # Deduct the resources from the planet
+            self.planet.metal -= total_metal_cost
+            self.planet.crystal -= total_crystal_cost
+            self.planet.narion -= total_narion_cost
+            self.planet.save()  # Save the planet after deducting resources
+
         if self.turns_remaining is None:
             self.turns_remaining = self.satellite_type.production_time
         return super().save(*args, **kwargs)

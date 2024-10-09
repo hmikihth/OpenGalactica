@@ -54,42 +54,71 @@ class StockedSatelliteTestCase(TestCase):
         self.assertEqual(self.stocked_satellite.points, 450)
 
 class SatelliteProductionTestCase(TestCase):
+
     def setUp(self):
-        self.planet = Planet.objects.create(name="Mars")
+        # Create a planet and satellite type
+        self.planet = Planet.objects.create(name="Test Planet", metal=200, crystal=200, narion=200)
         self.satellite_type = SatelliteType.objects.create(
-            name="Interceptor Probe", 
-            description="Destroys enemy probes trying to gather information.",
-            metal=300, 
-            crystal=200, 
-            narion=150, 
-            production_time=5, 
-            requires_rocket=False,
-            rocket_required_count=0
-        )
-        self.production = SatelliteProduction.objects.create(
-            planet=self.planet, 
-            satellite_type=self.satellite_type, 
-            quantity=2, 
-            turns_remaining=None, 
+            name="Rocket", metal_cost=50, crystal_cost=50, narion_cost=50, production_time=5
         )
 
-    def test_satellite_production_creation(self):
-        self.assertEqual(self.production.planet, self.planet)
-        self.assertEqual(self.production.satellite_type, self.satellite_type)
-        self.assertEqual(self.production.quantity, 2)
-        self.assertEqual(self.production.turns_remaining, 5)  # Defaults to production time
+    def test_insufficient_resources(self):
+        # Test when the planet doesn't have enough resources
+        with self.assertRaises(ValueError):
+            SatelliteProduction.objects.create(
+                planet=self.planet,
+                satellite_type=self.satellite_type,
+                quantity=3  # Requires 150 metal, crystal, and narion
+            )
+
+    def test_sufficient_resources(self):
+        # Test when the planet has enough resources
+        production = SatelliteProduction.objects.create(
+            planet=self.planet,
+            satellite_type=self.satellite_type,
+            quantity=2  # Requires 100 metal, crystal, and narion
+        )
+
+        self.planet.refresh_from_db()  # Reload planet data after production
+        # Check if resources were deducted correctly
+        self.assertEqual(self.planet.metal, 100)
+        self.assertEqual(self.planet.crystal, 100)
+        self.assertEqual(self.planet.narion, 100)
 
     def test_start_production(self):
-        self.production.start_production()
-        self.assertEqual(self.production.turns_remaining, 4)
-        self.production.start_production()
-        self.assertEqual(self.production.turns_remaining, 3)
+        # Test starting satellite production and reducing turns
+        production = SatelliteProduction.objects.create(
+            planet=self.planet,
+            satellite_type=self.satellite_type,
+            quantity=1,
+            turns_remaining=self.satellite_type.production_time,
+            started=True
+        )
+
+        # Call start_production to reduce turns by 1
+        production.start_production()
+
+        # Reload production to check updated turns
+        production.refresh_from_db()
+        self.assertEqual(production.turns_remaining, 4)
 
     def test_complete_production(self):
-        for _ in range(5):
-            self.production.start_production()
+        # Test the completion of satellite production
+        production = SatelliteProduction.objects.create(
+            planet=self.planet,
+            satellite_type=self.satellite_type,
+            quantity=2,
+            turns_remaining=1,  # Set turns remaining to 1 to simulate production near completion
+            started=True
+        )
 
-        # Check that the production is deleted and satellites are stocked
-        self.assertFalse(SatelliteProduction.objects.filter(id=self.production.id).exists())
+        # Call start_production to complete production
+        production.start_production()
+
+        # Check if the production is deleted after completion
+        with self.assertRaises(SatelliteProduction.DoesNotExist):
+            SatelliteProduction.objects.get(id=production.id)
+
+        # Check if the quantity is correctly added to StockedSatellite
         stock = StockedSatellite.objects.get(planet=self.planet, satellite_type=self.satellite_type)
         self.assertEqual(stock.quantity, 2)
