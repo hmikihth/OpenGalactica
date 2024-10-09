@@ -59,7 +59,7 @@ class SatelliteProductionTestCase(TestCase):
         # Create a planet and satellite type
         self.planet = Planet.objects.create(name="Test Planet", metal=200, crystal=200, narion=200)
         self.satellite_type = SatelliteType.objects.create(
-            name="Rocket", metal_cost=50, crystal_cost=50, narion_cost=50, production_time=5
+            name="Rocket", metal=50, crystal=50, narion=50, production_time=5
         )
 
     def test_insufficient_resources(self):
