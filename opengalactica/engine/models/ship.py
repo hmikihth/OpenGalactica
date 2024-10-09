@@ -76,27 +76,35 @@ class ShipProto():
     @property
     def weapon_type(self):
         return self.ship_model.weapon_type
+        
     @property
     def evasion(self):
         return self.ship_model.evasion
+        
     @property
     def weapon_count(self):
         return self.ship_model.weapon_count
+        
     @property
     def accuracy_points(self):
         return self.ship_model.accuracy_points
+        
     @property
     def damage(self):
         return self.ship_model.damage
+        
     @property
     def hp(self):
         return self.ship_model.hp
+        
     @property
     def metal(self):
         return self.ship_model.metal
+        
     @property
     def crystal(self):
         return self.ship_model.crystal
+        
     @property
     def narion(self):
         return self.ship_model.narion

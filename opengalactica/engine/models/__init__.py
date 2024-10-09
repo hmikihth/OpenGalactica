@@ -12,3 +12,4 @@ from .planet_relocation import *
 from .ship import *
 from .round import *
 from .research import *
+from .satellite import *
