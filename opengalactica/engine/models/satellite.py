@@ -38,7 +38,7 @@ class StockedSatellite(models.Model):
 class SatelliteProduction(models.Model):
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE)
     satellite_type = models.ForeignKey(SatelliteType, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
     turns_remaining = models.IntegerField()  # Production time remaining
 
     def save(self, *args, **kwargs):

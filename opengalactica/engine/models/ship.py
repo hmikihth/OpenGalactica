@@ -201,8 +201,8 @@ class ShipProto():
             total_damage -= d
             if firing_ship.weapon_type == "thief":
                 d = self.hit_steal(int(d*accuracy))
-        print(  self.name, "Evasion:", self.evasion, "HP:", self.hp, "Ratio:", round(ratio,2), "Quantity:", self.quantity, "R:", self.remaining, 
-                "C:", self.combat_ready, "NL:",self.new_loss,"NB:", self.new_blocked)
+#        print(  self.name, "Evasion:", self.evasion, "HP:", self.hp, "Ratio:", round(ratio,2), "Quantity:", self.quantity, "R:", self.remaining, 
+#                "C:", self.combat_ready, "NL:",self.new_loss,"NB:", self.new_blocked)
         return total_damage
 
     def select_target(self, target, ships):
@@ -231,4 +231,47 @@ class Ship(models.Model, ShipProto):
     def fuel_cost(self):
         return self.ship_model.fuel * self.quantity
     
+class ShipProduction(models.Model):
+    planet = models.ForeignKey("Planet", on_delete=models.CASCADE)
+    ship_model = models.ForeignKey("ShipModel", on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    turns_remaining = models.IntegerField()  # Production time remaining
+
+    def save(self, *args, **kwargs):
+        total_metal_cost = self.ship_model.metal * self.quantity
+        total_crystal_cost = self.ship_model.crystal * self.quantity
+        total_narion_cost = self.ship_model.narion * self.quantity
+
+        # Check if the planet has enough resources
+        if (self.planet.metal < total_metal_cost or 
+            self.planet.crystal < total_crystal_cost or 
+            self.planet.narion < total_narion_cost):
+            raise ValueError("Not enough resources to produce the ships.")
+        else:
+            # Deduct the resources from the planet
+            self.planet.metal -= total_metal_cost
+            self.planet.crystal -= total_crystal_cost
+            self.planet.narion -= total_narion_cost
+            self.planet.save()  # Save the planet after deducting resources
+
+        if self.turns_remaining is None:
+            self.turns_remaining = self.ship_model.production_time
+        return super().save(*args, **kwargs)
+
+    def start_production(self):
+        """Start or continue ship production."""
+        if self.turns_remaining > 0:
+            self.turns_remaining -= 1
+            if self.turns_remaining <= 0:
+                from .fleet import Fleet
+                fleet, _ = Fleet.objects.get_or_create(owner=self.planet, base=True)
+                stock, _ = Ship.objects.get_or_create(fleet=fleet, ship_model=self.ship_model)
+                stock.quantity += self.quantity
+                stock.save()
+                self.delete()
+                return True
+            self.save()
+
+    def __str__(self):
+        return f"{self.planet} - {self.ship_model.name} (Turns left: {self.turns_remaining})"
     

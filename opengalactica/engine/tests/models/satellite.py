@@ -68,7 +68,7 @@ class SatelliteProductionTestCase(TestCase):
             SatelliteProduction.objects.create(
                 planet=self.planet,
                 satellite_type=self.satellite_type,
-                quantity=30  # Requires 150 metal, crystal, and narion
+                quantity=30  # Requires 1500 metal, crystal, and narion
             )
 
     def test_sufficient_resources(self):
