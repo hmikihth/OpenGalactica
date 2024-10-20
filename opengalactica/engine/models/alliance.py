@@ -45,6 +45,11 @@ class Alliance(models.Model):
             MinValueValidator(0)
         ]
     )
+
+    xp = models.IntegerField(default=0)
+    xp_before = models.IntegerField(default=0)
+    points = models.IntegerField(default=0)
+    points_before = models.IntegerField(default=0)
     
     def save(self, *args, **kwargs):
         is_new = self._state.adding  # Check if the object is being created
@@ -103,14 +108,15 @@ class Alliance(models.Model):
     def tax_rate(self):
         return max(0, min(100, self.tax/100))
 
-    @property
-    def xp(self):
-        return sum(map(lambda e:e.xp, self.members))
+    def recount_xp(self):
+        self.xp_before = self.xp
+        self.xp = sum(map(lambda e:e.xp, self.members))
+        self.save()
 
-    @property
-    def points(self):
-        return sum(map(lambda e:e.points, self.members))
-
+    def recount_points(self):
+        self.points_before = self.points
+        self.points = sum(map(lambda e:e.points, self.members))
+        self.save()
 
     def pay_tax(self, planet, metal, crystal, narion):
         if planet is None:

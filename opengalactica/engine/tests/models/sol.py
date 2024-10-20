@@ -56,24 +56,40 @@ class SolXPAndPointsTests(TestCase):
         self.planet2 = Planet.objects.create(name="Planet 2", x=2, y=3, z=2, xp=150, points=250)
         self.planet3 = Planet.objects.create(name="Planet 3", x=2, y=3, z=3, xp=200, points=300)
 
-    def test_xp_property(self):
+    def test_xp(self):
         # Check that the sol's xp is the sum of its planets' xp
         total_xp = self.planet1.xp + self.planet2.xp + self.planet3.xp
+        self.sol.recount_xp()
         self.assertEqual(self.sol.xp, total_xp)
 
-    def test_points_property(self):
+        self.planet1.xp += 100
+        self.planet1.save()
+        self.sol.recount_xp()
+        self.assertEqual(self.sol.xp, total_xp+100)
+        self.assertEqual(self.sol.xp_before, total_xp)
+
+    def test_points(self):
         # Check that the sol's points is the sum of its planets' points
         total_points = self.planet1.points + self.planet2.points + self.planet3.points
+        self.sol.recount_points()
         self.assertEqual(self.sol.points, total_points)
 
-    def test_xp_property_no_planets(self):
+        self.planet1.points += 100
+        self.planet1.save()
+        self.sol.recount_points()
+        self.assertEqual(self.sol.points, total_points+100)
+        self.assertEqual(self.sol.points_before, total_points)
+
+    def test_xp_no_planets(self):
         # Create a new sol with no planets
         empty_sol = Sol.objects.create(name="Empty Sol", x=3, y=4)
+        self.sol.recount_xp()
         self.assertEqual(empty_sol.xp, 0)
 
-    def test_points_property_no_planets(self):
+    def test_points_no_planets(self):
         # Create a new sol with no planets
         empty_sol = Sol.objects.create(name="Empty Sol", x=3, y=4)
+        self.sol.recount_points()
         self.assertEqual(empty_sol.points, 0)
         
         

@@ -13,6 +13,11 @@ class SatelliteType(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def points(self):
+        return sum((self.metal, self.crystal, self.narion)) * 0.01
+
+
 class StockedSatellite(models.Model):
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE)
     satellite_type = models.ForeignKey(SatelliteType, on_delete=models.CASCADE)
@@ -32,7 +37,7 @@ class StockedSatellite(models.Model):
 
     @property
     def points(self):
-        return sum((self.metal, self.crystal, self.narion))
+        return self.satellite_type.points * self.quantity
 
 
 class SatelliteProduction(models.Model):

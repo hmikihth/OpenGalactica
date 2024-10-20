@@ -3,6 +3,10 @@ from .fleet import Fleet
 
 class PlanetWarfare:
     @property
+    def fleets(self):
+        return Fleet.objects.filter(owner=self)
+    
+    @property
     def is_protected(self):
         return self.protection > 0 or self.on_holiday
 

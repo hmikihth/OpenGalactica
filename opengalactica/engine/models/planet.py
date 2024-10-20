@@ -17,7 +17,9 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, Allianc
     y = models.IntegerField(default=0)
     z = models.IntegerField(default=0)
     xp = models.IntegerField(default=0)
+    xp_before = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
+    points_before = models.IntegerField(default=0)
 
     metal_plasmator = models.IntegerField(default=1)
     crystal_plasmator = models.IntegerField(default=1)
@@ -66,5 +68,24 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, Allianc
     @property
     def coordinates(self):
         return f"{self.x}:{self.y}:{self.z}"
-                
+        
+    @property
+    def completed_researches(self):
+        from .research import PlanetResearch
+        return PlanetResearch.objects.filter(planet=self, completed=True)
 
+    @property
+    def satellites(self):
+        from .satellite import StockedSatellite
+        return StockedSatellite.objects.filter(planet=self)
+                
+    def recount_points(self):
+        resource_points = (self.metal + self.crystal + self.narion) * 0.01
+        plasmator_points = self.plasmators * 2500
+        research_points = sum(map(lambda e:e.points, self.completed_researches))
+        ship_points = sum(map(lambda e:e.points, self.fleets))
+        satellite_points = sum(map(lambda e:e.points, self.satellites))
+        
+        self.points_before = self.points
+        self.points = resource_points + plasmator_points + research_points + ship_points + satellite_points
+        self.save()

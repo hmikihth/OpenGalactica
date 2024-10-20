@@ -19,6 +19,10 @@ class Fleet(models.Model):
     @property
     def ships(self):
         return Ship.objects.filter(fleet=self)
+        
+    @property
+    def points(self):
+        return sum(map(lambda e:e.points, self.ships))
 
     def __str__(self):
         return f"{self.name} - {self.owner.name} ({self.owner.coordinates})"

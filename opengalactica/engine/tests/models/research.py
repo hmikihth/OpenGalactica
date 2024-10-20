@@ -53,7 +53,7 @@ class ResearchTestCase(TestCase):
         
     def test_research_points(self):
         """Test the points property of the Research model."""        
-        expected_points = self.research1.metal + self.research1.crystal + self.research1.narion
+        expected_points = (self.research1.metal + self.research1.crystal + self.research1.narion) * 0.05
         self.assertEqual(self.research1.points, expected_points)
 
 

@@ -49,6 +49,107 @@ class PlanetTestCase(TestCase):
         self.assertFalse(self.planet.on_holiday, "Default value for on_holiday should be False")
         
         
+from django.contrib.auth import get_user_model
+from engine.models import Planet, SatelliteType, StockedSatellite, Fleet, PlanetResearch, Research
+
+class PlanetRecountPointsTest(TestCase):
+
+    def setUp(self):
+        # Create a planet
+        self.planet = Planet.objects.create(name="Test Planet", metal=10000, crystal=8000, narion=5000)
+
+        # Create ship models
+        self.ship_model_1 = ShipModel.objects.create(
+            name="Destroyer", metal=200, crystal=100, narion=50, production_time=1
+        )
+        self.ship_model_2 = ShipModel.objects.create(
+            name="Cruiser", metal=500, crystal=300, narion=200, production_time=2
+        )
+
+        # Create satellite types
+        self.satellite_type_1 = SatelliteType.objects.create(
+            name="Interceptor Probe", metal=50, crystal=30, narion=20, production_time=1, requires_rocket=False, rocket_required_count=0
+        )
+        self.satellite_type_2 = SatelliteType.objects.create(
+            name="Planet Probe", metal=100, crystal=70, narion=50, production_time=2, requires_rocket=True, rocket_required_count=1
+        )
+
+        # Add ships to the planet's fleet
+        self.ship_1 = Ship.objects.create(fleet=self.planet.fleets[0], ship_model=self.ship_model_1, quantity=10)  # 10 Destroyers
+        self.ship_2 = Ship.objects.create(fleet=self.planet.fleets[0], ship_model=self.ship_model_2, quantity=5)   # 5 Cruisers
+
+        # Add satellites to the planet
+        self.stocked_satellite_1 = StockedSatellite.objects.create(planet=self.planet, satellite_type=self.satellite_type_1, quantity=20)  # 20 Interceptor Probes
+        self.stocked_satellite_2 = StockedSatellite.objects.create(planet=self.planet, satellite_type=self.satellite_type_2, quantity=10)  # 10 Planet Probes
+
+        # Create Research objects
+        self.research1 = Research.objects.create(
+            name="Basic Weaponry",
+            research_type="Weapon",
+            species="Human",
+            description="Basic weapons technology.",
+            metal=1000,
+            crystal=1000,
+            narion=500,
+            development_time=5
+        )
+
+        self.research2 = Research.objects.create(
+            name="Advanced Weaponry",
+            research_type="Weapon",
+            species="Human",
+            description="Advanced weapons technology.",
+            metal=2000,
+            crystal=1000,
+            narion=1000,
+            development_time=10,
+            requirement=self.research1
+        )
+
+        # Create PlanetResearch objects
+        self.planet_research1 = PlanetResearch.objects.create(
+            planet=self.planet,
+            research=self.research1,
+            completed=True
+        )
+
+        self.planet_research2 = PlanetResearch.objects.create(
+            planet=self.planet,
+            research=self.research2,
+            completed=True
+        )
+
+        
+    def test_recount_points(self):
+        # Calculate expected ship points
+        ship_1_points = self.ship_1.ship_model.points * self.ship_1.quantity  # Destroyers
+        ship_2_points = self.ship_2.ship_model.points * self.ship_2.quantity  # Cruisers
+
+        # Calculate expected satellite points
+        sat_1_points = self.stocked_satellite_1.satellite_type.points * self.stocked_satellite_1.quantity  # Interceptor Probes
+        sat_2_points = self.stocked_satellite_2.satellite_type.points * self.stocked_satellite_2.quantity  # Planet Probes
+
+        # Calculate the expected points
+        expected_resource_points = (self.planet.metal + self.planet.crystal + self.planet.narion) * 0.01
+        expected_plasmator_points = self.planet.plasmators * 2500
+        expected_research_points = self.planet_research1.points + self.planet_research2.points
+        expected_ship_points = ship_1_points + ship_2_points
+        expected_satellite_points = sat_1_points + sat_2_points
+        
+        total_expected_points = (
+            expected_resource_points
+            + expected_plasmator_points
+            + expected_research_points
+            + expected_ship_points
+            + expected_satellite_points
+        )
+
+        # Recount the planet's points
+        self.planet.recount_points()
+
+        # Check if the planet's points match the expected total points
+        self.assertEqual(self.planet.points, total_expected_points)
+        
 class PlanetEconomyTestCase(TestCase):
     fixtures = ["round"]
     def setUp(self):

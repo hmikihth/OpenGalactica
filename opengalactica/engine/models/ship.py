@@ -33,6 +33,14 @@ class ShipModel(models.Model):
     
     def __str__(self):
         return self.name
+
+    @property
+    def cost(self):
+        return self.metal + self.crystal + self.narion
+        
+    @property
+    def points(self):
+        return self.cost * 0.1
     
 
 class ShipProto():
@@ -111,8 +119,12 @@ class ShipProto():
 
     @property
     def cost(self):
-        return self.ship_model.metal + self.ship_model.crystal + self.ship_model.narion
-    
+        return self.ship_model.cost 
+
+    @property
+    def points(self):
+        return self.ship_model.points * self.quantity
+        
     @property
     def target_order(self):
         return (self.target1, self.target2, self.target3)
@@ -226,7 +238,7 @@ class Ship(models.Model, ShipProto):
     ship_model = models.ForeignKey("ShipModel", on_delete=models.CASCADE)
     fleet =  models.ForeignKey("Fleet", on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
-    
+        
     @property
     def fuel_cost(self):
         return self.ship_model.fuel * self.quantity

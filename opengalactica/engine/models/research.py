@@ -39,7 +39,7 @@ class Research(models.Model):
 
     @property
     def points(self):
-        return sum((self.metal, self.crystal, self.narion))
+        return sum((self.metal, self.crystal, self.narion)) * 0.05
 
 
 class PlanetResearch(models.Model):

@@ -155,27 +155,41 @@ class AlliancePropertyTests(TestCase):
         self.alliance.tax = 100
         self.assertEqual(self.alliance.tax_rate, 1, "The tax rate should be 1 when tax is 100.")
 
-    def test_xp_property(self):
-        """Test that the xp property returns the total xp of all members."""
+    def test_xp(self):
+        """Test that the xp field contains the total xp of all members after recount."""
         # Assume some XP values for the planets
         self.planet1.xp = 100
         self.planet1.save()
         self.planet2.xp = 200
         self.planet2.save()
 
+        self.alliance.recount_xp()
         total_xp = self.planet1.xp + self.planet2.xp
-        self.assertEqual(self.alliance.xp, total_xp, "xp should return the correct sum of xp from all planets.")
+        self.assertEqual(self.alliance.xp, total_xp, "xp should be the correct sum of xp from all planets.")
 
-    def test_points_property(self):
-        """Test that the points property returns the total points of all members."""
+        self.planet1.xp += 100
+        self.planet1.save()
+        self.alliance.recount_xp()
+        self.assertEqual(self.alliance.xp, total_xp+100, "xp should be the correct sum of xp from all planets.")
+        self.assertEqual(self.alliance.xp_before, total_xp, "xp_before should be the exactly the previous xp before the recount.")
+
+    def test_points(self):
+        """Test that the points field contains the total points of all members after recount."""
         # Assume some point values for the planets
         self.planet1.points = 500
         self.planet1.save()
         self.planet2.points = 700
         self.planet2.save()
 
+        self.alliance.recount_points()
         total_points = self.planet1.points + self.planet2.points
         self.assertEqual(self.alliance.points, total_points, "points should return the correct sum of points from all planets.")
+
+        self.planet1.points += 100
+        self.planet1.save()
+        self.alliance.recount_points()
+        self.assertEqual(self.alliance.points, total_points+100, "points should return the correct sum of points from all planets.")
+        self.assertEqual(self.alliance.points_before, total_points, "points should be the exactly the previous xpoints before the recount.")
 
     def test_members_with_no_planets(self):
         """Test that members property returns an empty queryset if no planets belong to the alliance."""

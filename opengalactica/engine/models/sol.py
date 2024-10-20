@@ -9,6 +9,10 @@ class Sol(models.Model):
     minister_of_war = models.ForeignKey("Planet", related_name="minister_of_war", on_delete=models.SET_NULL, null=True, blank=True)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
+    xp = models.IntegerField(default=0)
+    xp_before = models.IntegerField(default=0)
+    points = models.IntegerField(default=0)
+    points_before = models.IntegerField(default=0)
 
     @property
     def planets(self):
@@ -32,13 +36,15 @@ class Sol(models.Model):
         from .planet_relocation import PlanetRelocation
         return PlanetRelocation.objects.filter(sol=self, outvote=True)
 
-    @property
-    def xp(self):
-        return sum(map(lambda e:e.xp, self.planets))
+    def recount_xp(self):
+        self.xp_before = self.xp
+        self.xp = sum(map(lambda e:e.xp, self.planets))
+        self.save()
             
-    @property
-    def points(self):
-        return sum(map(lambda e:e.points, self.planets))
+    def recount_points(self):
+        self.points_before = self.points
+        self.points = sum(map(lambda e:e.points, self.planets))
+        self.save()
 
     def add_planet(self, planet):
         if not self.full:

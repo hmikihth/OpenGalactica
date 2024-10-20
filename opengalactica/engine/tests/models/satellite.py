@@ -29,9 +29,9 @@ class StockedSatelliteTestCase(TestCase):
         self.satellite_type = SatelliteType.objects.create(
             name="Planet Probe", 
             description="Used to gather planet information.",
-            metal=200, 
-            crystal=150, 
-            narion=100, 
+            metal=2000, 
+            crystal=1500, 
+            narion=1000, 
             production_time=3, 
             requires_rocket=True,
             rocket_required_count=2
@@ -48,10 +48,10 @@ class StockedSatelliteTestCase(TestCase):
         self.assertEqual(self.stocked_satellite.quantity, 5)
 
     def test_stocked_satellite_costs(self):
-        self.assertEqual(self.stocked_satellite.metal, 200)
-        self.assertEqual(self.stocked_satellite.crystal, 150)
-        self.assertEqual(self.stocked_satellite.narion, 100)
-        self.assertEqual(self.stocked_satellite.points, 450)
+        self.assertEqual(self.stocked_satellite.metal, 2000)
+        self.assertEqual(self.stocked_satellite.crystal, 1500)
+        self.assertEqual(self.stocked_satellite.narion, 1000)
+        self.assertEqual(self.stocked_satellite.points, 45*5)
 
 class SatelliteProductionTestCase(TestCase):
 
