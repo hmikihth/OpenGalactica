@@ -30,6 +30,7 @@ class ShipModel(models.Model):
     travel_sol = models.IntegerField(default=0)
     travel_gal = models.IntegerField(default=0)
     travel_uni = models.IntegerField(default=0)
+    requirement = models.ForeignKey('Research', on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
         return self.name

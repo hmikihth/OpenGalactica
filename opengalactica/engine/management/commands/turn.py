@@ -56,9 +56,6 @@ class Command(BaseCommand):
         # Developments
         self.run_developments()
         
-        # Point and XP recounting
-        self.calculate_points()
-
         # Fleet movements
         self.move_fleets()
 
@@ -67,6 +64,9 @@ class Command(BaseCommand):
 
        # Moving new planets
         self.moving_planets()
+
+        # Point recounting
+        self.calculate_points()
  
         # Increase turn counter
         current_turn = self.end_turn()

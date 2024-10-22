@@ -9,6 +9,7 @@ class SatelliteType(models.Model):
     production_time = models.IntegerField()  # in turns
     requires_rocket = models.BooleanField(default=True)  # Indicates if rockets are needed for activation
     rocket_required_count = models.IntegerField(default=0)  # Number of rockets required, 0 if not applicable
+    requirement = models.ForeignKey('Research', on_delete=models.SET_NULL, null=True, blank=True)
     
     def __str__(self):
         return self.name

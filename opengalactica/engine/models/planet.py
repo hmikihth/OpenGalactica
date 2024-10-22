@@ -13,6 +13,7 @@ from .planet_politics import PlanetPolitics
 class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, AllianceMember):
     name = models.CharField(max_length=128)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    species =  models.CharField(max_length=32, null=True, blank=True, default=None)
     x = models.IntegerField(default=0)
     y = models.IntegerField(default=0)
     z = models.IntegerField(default=0)

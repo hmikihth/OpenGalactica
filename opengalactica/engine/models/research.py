@@ -10,6 +10,7 @@ class Research(models.Model):
     narion = models.IntegerField()
     development_time = models.IntegerField()  # in turns
     requirement = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='dependent_research')
+    building = models.BooleanField(default=False)
 
     # Bonus provided by the research (e.g., better accuracy, increased production)
     bonus_type = models.CharField(max_length=64, null=True, blank=True)
@@ -57,6 +58,7 @@ class PlanetResearch(models.Model):
     def start_research(self):
         """Start or continue research."""
         if not self.completed and self.turns_remaining > 0:
+            self.started = True
             self.turns_remaining -= 1
             if self.turns_remaining == 0:
                 self.completed = True

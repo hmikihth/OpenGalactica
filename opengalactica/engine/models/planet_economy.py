@@ -114,9 +114,11 @@ class PlanetEconomy:
         self.crystal = min(self.crystal_capacity, self.crystal + self.net_crystal_production)
         self.narion = min(self.narion_capacity, self.narion + self.net_narion_production)
         self.pay_taxes()
+        self.save()
         
     def pay_taxes(self):
-        self.alliance.pay_tax(self, self.metal_tax, self.crystal_tax, self.narion_tax)
+        if self.alliance:
+            self.alliance.pay_tax(self, self.metal_tax, self.crystal_tax, self.narion_tax)
         
     def exchange(self, input, output, amount):
         market = Market.objects.first()

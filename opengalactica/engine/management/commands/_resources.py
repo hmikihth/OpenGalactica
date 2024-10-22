@@ -1,3 +1,6 @@
+from engine.models import Planet
+
 class Resources:
     def run(self):
-        pass
+        for planet in Planet.objects.all():
+            planet.generate_resources()

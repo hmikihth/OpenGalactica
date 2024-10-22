@@ -1,6 +1,7 @@
 from django.test import TestCase
 from engine.models import Planet, Fleet, Alliance, Market, MAX_FLEETS
 from engine.models import Sol, PlanetRelocation, Round, Ship, ShipModel
+from engine.models import SatelliteType, StockedSatellite, PlanetResearch, Research
 
 class PlanetTestCase(TestCase):
     def setUp(self):
@@ -49,9 +50,6 @@ class PlanetTestCase(TestCase):
         self.assertFalse(self.planet.on_holiday, "Default value for on_holiday should be False")
         
         
-from django.contrib.auth import get_user_model
-from engine.models import Planet, SatelliteType, StockedSatellite, Fleet, PlanetResearch, Research
-
 class PlanetRecountPointsTest(TestCase):
 
     def setUp(self):
