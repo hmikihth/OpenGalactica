@@ -1,17 +1,23 @@
+from django.utils.timezone import now
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.permissions import IsAdminUser, SAFE_METHODS
 
-from django.utils.timezone import now
-from engine.models import Species, ShipModel, Alliance, Sol, Planet#, News, Encyclopedia
+from engine.models import Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia
 from engine.models import StockedSatellite, SatelliteType, Ship, Fleet, Research, Round
 from engine.models import PlanetResearch, SolResearch, AllianceResearch
 
+from game.permissions import NewsAuthorOrReadOnly
+from game.serializers import EncyclopediaSerializer
+
+
 from game.serializers import (
     TimeSerializer, SpeciesSerializer, ShipModelSerializer, AllianceToplistSerializer, 
-    SolToplistSerializer, PlanetToplistSerializer, #NewsSerializer, EncyclopediaSerializer,
+    SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
     ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer
 )
@@ -85,17 +91,32 @@ class PlanetToplistViewSet(viewsets.ViewSet):
             e["rank"] = i+1
         serializer = PlanetToplistSerializer(data, many=True)
         return Response(serializer.data)
+        
 
-"""
-class NewsViewSet(viewsets.ReadOnlyModelViewSet):
+class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    permission_classes = [NewsAuthorOrReadOnly]  # Custom permission class
+    lookup_field = 'slug'
+
+    def perform_create(self, serializer):
+        # Automatically associate the news author with the user's planet
+        planet = Planet.objects.get(user=self.request.user)
+        round = Round.objects.all().order_by("number").last()
+        serializer.save(author=planet, round=round.number, turn=round.turn)
 
 
-class EncyclopediaViewSet(viewsets.ReadOnlyModelViewSet):
+class EncyclopediaViewSet(viewsets.ModelViewSet):
     queryset = Encyclopedia.objects.all()
     serializer_class = EncyclopediaSerializer
-"""
+    lookup_field = 'slug'
+    
+    def get_permissions(self):
+        # Apply different permissions based on the request method
+        if self.request.method not in SAFE_METHODS:
+            return [IsAdminUser()]
+        else:
+            return [AllowAny()]
 
 # Private Viewsets
 

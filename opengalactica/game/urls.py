@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from game.views import (
     TimeViewSet, SpeciesViewSet, ShipModelViewSet, AllianceToplistViewSet, 
-    SolToplistViewSet, PlanetToplistViewSet, #NewsViewSet, EncyclopediaViewSet,
+    SolToplistViewSet, PlanetToplistViewSet, NewsViewSet, EncyclopediaViewSet,
     PlanetDataViewSet, PDSViewSet, AvailablePDSViewSet, SatelliteViewSet, AvailableSatelliteViewSet,
     ShipViewSet, AvailableShipViewSet, FleetViewSet, ResearchViewSet
 )
@@ -15,8 +15,8 @@ router.register(r'ship-models', ShipModelViewSet, basename='ship-models')
 router.register(r'toplist/alliance', AllianceToplistViewSet, basename='alliance-toplist')
 router.register(r'toplist/sol', SolToplistViewSet, basename='sol-toplist')
 router.register(r'toplist/planet', PlanetToplistViewSet, basename='planet-toplist')
-#router.register(r'news', NewsViewSet, basename='news')
-#router.register(r'encyclopedia', EncyclopediaViewSet, basename='encyclopedia')
+router.register(r'news', NewsViewSet, basename='news')
+router.register(r'encyclopedia', EncyclopediaViewSet, basename='encyclopedia')
 
 # Private Endpoints
 router.register(r'planet', PlanetDataViewSet, basename='planet')

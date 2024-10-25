@@ -13,3 +13,5 @@ from .research import *
 from .ship import *
 from .round import *
 from .satellite import *
+from .encyclopedia import *
+from .news import *

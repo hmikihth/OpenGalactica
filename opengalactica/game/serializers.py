@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from engine.models import (
-    Species, ShipModel, Alliance, Sol, Planet, #News, Encyclopedia,
+    Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia,
     StockedSatellite, Ship, Fleet, PlanetResearch
 )
 
@@ -37,17 +37,23 @@ class PlanetToplistSerializer(serializers.Serializer):
     alliance = serializers.CharField()
     points = serializers.IntegerField()
 
-"""
+
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = ['id', 'title', 'content']
+        fields = ['id', 'author', 'round', 'turn', 'server_time', 'title', 'content', 'slug']
+        read_only_fields = ['id', 'author', 'round', 'turn', 'server_time', 'slug']  # author and slug will be set automatically
+
+    def create(self, validated_data):
+        # Slug generation will be handled in the News model's save method
+        return super().create(validated_data)
+
 
 class EncyclopediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Encyclopedia
-        fields = ['id', 'title', 'content']
-"""
+        fields = ['title', 'content', 'slug']
+        read_only_fields = ['slug']
 
 # Private Serializers
 class PlanetDataSerializer(serializers.ModelSerializer):
