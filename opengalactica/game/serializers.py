@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from engine.models import (
     Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia,
-    StockedSatellite, Ship, Fleet, PlanetResearch
+    StockedSatellite, Ship, Fleet, PlanetResearch, Message
 )
 
 # Public Serializers
@@ -109,20 +109,47 @@ class AvailableShipSerializer(serializers.Serializer):
 
 class FleetSerializer(serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
+    target = serializers.SerializerMethodField()
+    task = serializers.SerializerMethodField()
+
     class Meta:
         model = Fleet
-        fields = ['name', 'active', 'status', 'distance', 'turns']
+        fields = ['name', 'active', 'task', 'status', 'distance', 'turns', 'target']
+        
+    def get_task(self, obj):
+        if obj.role == "Attackers" and obj.task == "move":
+            return f"Attack ({obj.turns} turns)" 
+        elif obj.role == "Defenders" and obj.task == "move":
+            return f"Defend ({obj.turns} turns)"
+        else: 
+            return "-"
+        
+    def get_target(self, obj):
+        return str(obj.target)
 
     def get_status(self, obj):
-        status = "Base"
         if obj.task == "move":
-            status = obj.role[:-3]
+            if obj.distance == 0:
+                return f"Fighting ({obj.turns} turns)"
+            return f"On the way ({obj.distance} turns)"
         elif obj.task == "return":
-            status = obj.task
-        return status
+            return f"Returning ({obj.distance} turns)"
+        return "On base"
 
 
 class ResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetResearch
         fields = "__all__"
+        
+# Serializer for listing received/sent messages (excluding content)
+class MessageListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        exclude = ['content']
+
+# Serializer for reading a message (full data)
+class MessageDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = '__all__'

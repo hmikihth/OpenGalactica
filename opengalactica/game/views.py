@@ -6,10 +6,13 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.permissions import IsAdminUser, SAFE_METHODS
+from rest_framework import generics, permissions
+from rest_framework.exceptions import PermissionDenied
 
 from engine.models import Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia
 from engine.models import StockedSatellite, SatelliteType, Ship, Fleet, Research, Round
 from engine.models import PlanetResearch, SolResearch, AllianceResearch
+from engine.models import Message
 
 from game.permissions import NewsAuthorOrReadOnly
 from game.serializers import EncyclopediaSerializer
@@ -19,7 +22,8 @@ from game.serializers import (
     TimeSerializer, SpeciesSerializer, ShipModelSerializer, AllianceToplistSerializer, 
     SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
-    ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer
+    ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer, 
+    MessageListSerializer, MessageDetailSerializer
 )
 
 # Public Viewsets
@@ -333,3 +337,41 @@ class ResearchViewSet(viewsets.ViewSet):
         serializer = ResearchSerializer(research, many=True)
         return Response(serializer.data)
 
+
+# Permissions to ensure user can only access their own messages
+class IsMessageOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.sender.user == request.user or obj.receiver.user == request.user
+
+# View for received messages
+class ReceivedMessagesView(generics.ListAPIView):
+    serializer_class = MessageListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Message.objects.filter(receiver__user=self.request.user)
+
+# View for sent messages
+class SentMessagesView(generics.ListAPIView):
+    serializer_class = MessageListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Message.objects.filter(sender__user=self.request.user)
+
+# View for reading a message
+class ReadMessageView(generics.RetrieveUpdateAPIView):
+    serializer_class = MessageDetailSerializer
+    permission_classes = [permissions.IsAuthenticated, IsMessageOwner]
+
+    def get_queryset(self):
+        return Message.objects.filter(
+            sender__user=self.request.user
+        ) | Message.objects.filter(
+            receiver__user=self.request.user
+        )
+
+    def perform_update(self, serializer):
+        # Mark the message as read when accessed
+        serializer.instance.read = True
+        serializer.save()

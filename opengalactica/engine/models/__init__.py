@@ -15,3 +15,4 @@ from .round import *
 from .satellite import *
 from .encyclopedia import *
 from .news import *
+from .message import *
