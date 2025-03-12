@@ -9,7 +9,7 @@ class Message(models.Model):
     server_time = models.DateTimeField(default=timezone.now)  # Automatically set to current server time
     title = models.CharField(max_length=255)  # Title of the message
     content = models.TextField()
-    alliance = models.ForeignKey("Alliance", on_delete=models.SET_NULL, null=True)
+    alliance = models.ForeignKey("Alliance", on_delete=models.SET_NULL, null=True, blank=True)
     read = models.BooleanField(default=False)
 
     def __str__(self):
