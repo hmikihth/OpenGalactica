@@ -117,3 +117,8 @@ class AllianceMember:
             raise PermissionDenied(f"{self.name} does not have permission to set voting.")
         # Logic for creating a vote in the alliance
 
+    def set_news(self, content):
+        if not self.rank.can_set_news:
+            raise PermissionDenied(f"{self.name} does not have permission to set alliance news.")
+        else:
+            self.alliance.set_news(content)

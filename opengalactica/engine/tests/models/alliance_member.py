@@ -117,6 +117,20 @@ class AllianceMemberTestCase(TestCase):
         self.member2.rank.can_set_ranks = False
         with self.assertRaises(PermissionDenied):
             self.member2.set_rank(self.member1, self.rank_treasurer)
+            
+    def test_set_news(self):
+        """Test that an alliance member with permission can set news."""
+        self.member1.rank.can_set_news = True
+        self.member1.alliance.set_news = lambda content: setattr(self.alliance, 'news', content)  # Mock method
+
+        self.member1.set_news("New alliance announcement")
+        self.assertEqual(self.alliance.news, "New alliance announcement", "Alliance news should be updated.")
+
+    def test_set_news_no_permission(self):
+        """Test that an alliance member without permission cannot set news."""
+        self.member2.rank.can_set_news = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_news("Unauthorized news update")
 
     # Additional tests for attack, defense, diplomacy, research, and voting can follow the same pattern.
     
