@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
-
 from django.template.defaultfilters import slugify
     
 class News(models.Model):
+    class Meta:
+        verbose_name_plural = "News"
+    
     author = models.ForeignKey("Planet", on_delete=models.CASCADE)  # Link to the Planet model
     round = models.IntegerField()  # Game round when the news was created
     turn = models.IntegerField()   # Game turn when the news was created
@@ -25,3 +27,14 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+        
+
+    @property
+    def description(self):
+        return self.content if len(self.content) < 255 else self.content[:255] + "..."
+
+    @property
+    def timestamp(self):
+        """Returns a string in the format round:turn:minutes (e.g., 5:120:42)"""
+        return f"{self.round}:{self.turn}:{self.server_time.minute}"
+        
