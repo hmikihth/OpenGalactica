@@ -50,6 +50,7 @@ class Alliance(models.Model):
     xp_before = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
     points_before = models.IntegerField(default=0)
+    news = models.TextField(blank=True, null=True)
     
     def save(self, *args, **kwargs):
         is_new = self._state.adding  # Check if the object is being created
@@ -146,3 +147,7 @@ class Alliance(models.Model):
             crystal=crystal, 
             narion=narion
         )
+        
+    def set_news(self, content):
+        self.news = content
+        self.save()
