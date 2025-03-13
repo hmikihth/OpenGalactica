@@ -15,6 +15,7 @@ class AllianceRank(models.Model):
     can_set_diplomacy = models.BooleanField(default=False)
     can_set_research = models.BooleanField(default=False)
     can_set_voting = models.BooleanField(default=False)
+    can_set_news = models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
