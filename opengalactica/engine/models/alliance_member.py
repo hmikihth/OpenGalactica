@@ -85,40 +85,48 @@ class AllianceMember:
             raise PermissionDenied(f"{self.name} is not allowed to delete the alliance.")
         self.alliance.members.update(alliance=None)
         self.alliance.delete()
+        return True
 
     def set_rank(self, member, rank):
         if not self.rank.can_set_ranks:
             raise PermissionDenied(f"{self.name} does not have permission to set ranks.")
         member.rank = rank
         member.save()
+        return True
 
     def set_attack(self, target, start_turn, short_description, description):
         if not self.rank.can_set_attack:
             raise PermissionDenied(f"{self.name} does not have permission to set an attack.")
         # Logic for planning the attack, possibly creating an attack object
+        return True
     
     def set_defense(self, target, arrival_turn, short_description, description):
         if not self.rank.can_set_defense:
             raise PermissionDenied(f"{self.name} does not have permission to set defense.")
         # Logic for setting up a defense, creating a defense object
+        return True
 
     def set_diplomacy(self, alliance, diplo_type, expiration, termination_time):
         if not self.rank.can_set_diplomacy:
             raise PermissionDenied(f"{self.name} does not have permission to set diplomacy.")
         # Logic for setting diplomacy agreements
+        return True
     
     def set_research(self, research):
         if not self.rank.can_set_research:
             raise PermissionDenied(f"{self.name} does not have permission to set research.")
         # Logic for setting alliance-wide research
+        return True
 
     def set_voting(self, title, description, expiration):
         if not self.rank.can_set_voting:
             raise PermissionDenied(f"{self.name} does not have permission to set voting.")
         # Logic for creating a vote in the alliance
+        return True
 
     def set_news(self, content):
         if not self.rank.can_set_news:
             raise PermissionDenied(f"{self.name} does not have permission to set alliance news.")
         else:
             self.alliance.set_news(content)
+        return True

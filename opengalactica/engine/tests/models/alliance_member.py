@@ -7,8 +7,10 @@ class AllianceMemberTestCase(TestCase):
 
     def setUp(self):
         self.alliance = Alliance.objects.get(name="Test Alliance 1")
+        self.target_alliance = Alliance.objects.get(name="Test Alliance 2")
         self.member1 = Planet.objects.get(name="Test Planet 1")
         self.member2 = Planet.objects.get(name="Test Planet 2")
+        self.target= Planet.objects.get(name="Test Planet 3")
         self.rank_commander = AllianceRank.objects.get(name="Commander")
         self.rank_treasurer = AllianceRank.objects.get(name="Treasurer")
         self.member1.rank=self.rank_commander
@@ -102,7 +104,14 @@ class AllianceMemberTestCase(TestCase):
     def test_delete_alliance(self):
         self.member1.rank.is_founder = True
         self.member1.delete_alliance()
-        self.assertEqual(Alliance.objects.count(), 0, "Alliance should be deleted.")
+        self.alliance = Alliance.objects.filter(name="Test Alliance 1").first()
+        self.assertEqual(self.alliance, None, "Alliance should be deleted.")
+
+        self.member1.refresh_from_db()
+        self.member2.refresh_from_db()
+        self.assertEqual(self.member1.alliance, None, "Member1's alliance must be None")
+        self.assertEqual(self.member2.alliance, None, "Member2's alliance must be None")
+        
 
     def test_delete_alliance_no_permission(self):
         with self.assertRaises(PermissionDenied):
@@ -132,5 +141,72 @@ class AllianceMemberTestCase(TestCase):
         with self.assertRaises(PermissionDenied):
             self.member2.set_news("Unauthorized news update")
 
-    # Additional tests for attack, defense, diplomacy, research, and voting can follow the same pattern.
+    def test_set_attack(self):
+        self.member1.rank.can_set_attack = True
+        
+        response = self.member1.set_attack(target=self.target, start_turn=10, short_description="Surprise attack", description="A large-scale surprise attack on enemy planets.")
+        self.assertTrue(response, "The set_attack method must to return True")
+
+    def test_set_attack_no_permission(self):
+        self.member2.rank.can_set_attack = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_attack(target=self.target, start_turn=10, short_description="Surprise attack", description="A large-scale surprise attack on enemy planets.")
+
+    def test_set_defense(self):
+        self.member1.rank.can_set_defense = True
+        
+        response = self.member1.set_defense(target=self.target, arrival_turn=12, short_description="Defense initiative", description="Mobilizing fleets for planetary defense.")
+        self.assertTrue(response, "The set_defense method must to return True")
+
+    def test_set_defense_no_permission(self):
+        self.member2.rank.can_set_defense = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_defense(target=self.target, arrival_turn=12, short_description="Defense initiative", description="Mobilizing fleets for planetary defense.")
+
+    def test_set_diplomacy(self):
+        self.member1.rank.can_set_diplomacy = True
+        
+        response = self.member1.set_diplomacy(self.target_alliance, "Neutral", expiration=150, termination_time=20)
+        self.assertTrue(response, "The set_diplomacy method must to return True")
+
+    def test_set_diplomacy_no_permission(self):
+        self.member2.rank.can_set_diplomacy = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_diplomacy(self.target_alliance, "Ally", expiration=150, termination_time=20)
+
+    def test_set_research(self):
+        self.member1.rank.can_set_research = True
+        response = self.member1.set_research("Hyperdrive")
+        
+        self.assertTrue(response, "The set_research method must to return True")
+
+    def test_set_research_no_permission(self):
+        self.member2.rank.can_set_research = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_research("Hyperdrive")
+
+    def test_set_tax(self):
+        self.member1.rank.can_set_tax = True
+        self.member1.alliance.set_tax = lambda tax: setattr(self.alliance, 'tax_rate', tax)  # Mock method
+        
+        self.member1.set_tax(15)
+        self.assertEqual(self.alliance.tax, 15, "Alliance tax rate should be updated.")
+        self.assertEqual(self.alliance.tax_rate, 0.15, "Alliance tax rate should be updated.")
+
+    def test_set_tax_no_permission(self):
+        self.member2.rank.can_set_tax = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_tax(20)
+
+    def test_set_rank(self):
+        self.member1.rank.can_set_ranks = True
+        self.member1.set_rank(self.member2, self.rank_commander)
+        self.member2.refresh_from_db()
+        self.assertEqual(self.member2.rank, self.rank_commander, "Member's rank should be updated.")
+
+    def test_set_rank_no_permission(self):
+        self.member2.rank.can_set_ranks = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.set_rank(self.member1, self.rank_treasurer)
+
     
