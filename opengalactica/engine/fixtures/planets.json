@@ -12,6 +12,18 @@
     }
   },
   {
+    "model": "engine.alliance", 
+    "pk": 2,
+    "fields": {
+        "name": "Test Alliance 2", 
+        "identifier": "TA02",
+        "metal": 0, 
+        "crystal": 0, 
+        "narion": 0, 
+        "credit": 0
+    }
+  },
+  {
     "model": "engine.planet", 
     "pk": 1,
     "fields": {
@@ -39,6 +51,25 @@
         "x": 1, 
         "y": 0, 
         "z": 2, 
+        "xp": 0, 
+        "points": 1200, 
+        "metal": 1000000, 
+        "crystal": 1000000, 
+        "narion": 1000000, 
+        "credit": 0, 
+        "alliance": null, 
+        "protection": 0
+    }
+  },
+  {
+    "model": "engine.planet", 
+    "pk": 3, 
+    "fields": {
+        "name": "Test Planet 3", 
+        "user": null, 
+        "x": 2, 
+        "y": 1, 
+        "z": 1, 
         "xp": 0, 
         "points": 1200, 
         "metal": 1000000, 
