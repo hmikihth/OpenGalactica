@@ -16,3 +16,5 @@ from .satellite import *
 from .encyclopedia import *
 from .news import *
 from .message import *
+from .notification import *
+from .attack import *
