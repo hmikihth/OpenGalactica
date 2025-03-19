@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-#from engine.models import Planet, Alliance
 
 class Attack(models.Model):
     organizer = models.ForeignKey("engine.Planet", on_delete=models.CASCADE)

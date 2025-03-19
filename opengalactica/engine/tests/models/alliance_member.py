@@ -1,5 +1,5 @@
 from django.core.exceptions import PermissionDenied
-from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round
+from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round, Attack
 from django.test import TestCase
 
 class AllianceMemberTestCase(TestCase):
@@ -146,6 +146,9 @@ class AllianceMemberTestCase(TestCase):
         
         response = self.member1.set_attack(target=self.target, start_turn=10, short_description="Surprise attack", description="A large-scale surprise attack on enemy planets.")
         self.assertTrue(response, "The set_attack method must to return True")
+        
+        attacks = len(Attack.objects.filter(organizer=self.member1))
+        self.assertEqual(attacks, 1, "The set_attack method must create exactly one Attack object")
 
     def test_set_attack_no_permission(self):
         self.member2.rank.can_set_attack = False

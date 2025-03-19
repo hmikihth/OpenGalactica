@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from .alliance_invitation import AllianceInvitation
 from .round import Round
+from .attack import Attack
 
 class AllianceMember:
     """ A parent class of the Planet model. Implements alliance membership methods"""
@@ -97,7 +98,8 @@ class AllianceMember:
     def set_attack(self, target, start_turn, short_description, description):
         if not self.rank.can_set_attack:
             raise PermissionDenied(f"{self.name} does not have permission to set an attack.")
-        # Logic for planning the attack, possibly creating an attack object
+        Attack.objects.create(  organizer=self, alliance=self.alliance, start=start_turn, 
+                                short_description=short_description, description=description)
         return True
     
     def set_defense(self, target, arrival_turn, short_description, description):
