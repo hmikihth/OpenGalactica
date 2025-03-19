@@ -13,6 +13,7 @@ class Sol(models.Model):
     xp_before = models.IntegerField(default=0)
     points = models.IntegerField(default=0)
     points_before = models.IntegerField(default=0)
+    ministers_message = models.TextField(blank=True, null=True)
 
     @property
     def planets(self):
@@ -106,6 +107,16 @@ class Sol(models.Model):
         obj.planet = planet
         obj.save()
         self.set_commander()
+        
+    @property
+    def ministers_message_content(self):
+        return self.ministers_message
+
+    def set_ministers_message(self, planet, message):
+        if planet != self.commander and planet != self.minister_of_war:
+            raise PermissionError("You don't have permission to update the ministers' message.")
+        self.ministers_message = message
+        self.save()
 
         
 class CommanderVote(models.Model):

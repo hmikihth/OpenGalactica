@@ -132,3 +132,40 @@ class OutVoteTestCase(TestCase):
         """Test sending an outvote and checking if a planet is outvoted."""
         self.sol.send_vote_outvote(self.planet1, self.planet2, value=True)
         self.assertTrue(self.sol.is_outvoted(self.planet1))
+
+
+class SolMinistersMessageTest(TestCase):
+    def setUp(self):
+        # Create Sol instance
+        self.sol = Sol.objects.create(name="Test Sol", ministers_message="Initial Message", x=3, y=3)
+
+        # Create a commander planet
+        self.commander = Planet.objects.create(name="Commander Planet")
+        self.sol.add_planet(self.commander)
+        self.sol.commander = self.commander
+        
+        # Create a minister of war planet
+        self.minister_of_war = Planet.objects.create(name="Minister Planet")
+        self.sol.add_planet(self.minister_of_war)
+        self.sol.minister_of_war = self.minister_of_war
+        
+        # Create an unauthorized planet
+        self.unauthorized_planet = Planet.objects.create(name="Unauthorized Planet")
+        
+    
+    def test_commander_can_set_ministers_message(self):
+        self.sol.set_ministers_message(self.commander, "New Message from Commander")
+        self.assertEqual(self.sol.ministers_message, "New Message from Commander")
+    
+    def test_minister_of_war_can_set_ministers_message(self):
+        self.sol.set_ministers_message(self.minister_of_war, "New Message from Minister")
+        self.assertEqual(self.sol.ministers_message, "New Message from Minister")
+    
+    def test_unauthorized_planet_cannot_set_ministers_message(self):
+        with self.assertRaises(PermissionError):
+            self.sol.set_ministers_message(self.unauthorized_planet, "Unauthorized Message")
+    
+    def test_ministers_message_persistence(self):
+        self.sol.set_ministers_message(self.commander, "Persistent Message")
+        self.sol.refresh_from_db()
+        self.assertEqual(self.sol.ministers_message, "Persistent Message")
