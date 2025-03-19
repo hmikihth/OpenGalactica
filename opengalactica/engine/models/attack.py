@@ -11,6 +11,9 @@ class Attack(models.Model):
 
     def __str__(self):
         return f"{self.short_description} (Start: {self.start})"
+        
+    def add_target(self, target, description):
+        AttackTarget.objects.create(attack=self, target=target, description=description)
 
 
 class AttackTarget(models.Model):
@@ -20,7 +23,9 @@ class AttackTarget(models.Model):
 
     def __str__(self):
         return f"Target: {self.target} for Attack: {self.attack.short_description}"
-
+        
+    def subscribe(self, subscriber, note):
+        AttackSubscription.objects.create(attack_target=self, subscriber=subscriber, note=note)
 
 class AttackSubscription(models.Model):
     attack_target = models.ForeignKey(AttackTarget, on_delete=models.CASCADE)

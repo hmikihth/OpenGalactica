@@ -1,5 +1,6 @@
 from django.core.exceptions import PermissionDenied
-from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round, Attack
+from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round
+from engine.models import Attack, AttackTarget, AttackSubscription
 from django.test import TestCase
 
 class AllianceMemberTestCase(TestCase):
@@ -147,13 +148,47 @@ class AllianceMemberTestCase(TestCase):
         response = self.member1.set_attack(target=self.target, start_turn=10, short_description="Surprise attack", description="A large-scale surprise attack on enemy planets.")
         self.assertTrue(response, "The set_attack method must to return True")
         
-        attacks = len(Attack.objects.filter(organizer=self.member1))
+        attacks = Attack.objects.filter(organizer=self.member1).count()
         self.assertEqual(attacks, 1, "The set_attack method must create exactly one Attack object")
 
     def test_set_attack_no_permission(self):
         self.member2.rank.can_set_attack = False
         with self.assertRaises(PermissionDenied):
             self.member2.set_attack(target=self.target, start_turn=10, short_description="Surprise attack", description="A large-scale surprise attack on enemy planets.")
+
+    def test_add_attack_target(self):
+        self.member1.rank.can_set_attack = True
+        attack = self.member1.set_attack(
+            target=self.target,
+            start_turn=10,
+            short_description="Surprise attack",
+            description="A large-scale surprise attack on enemy planets."
+        )
+        
+        attack_instance = Attack.objects.get(organizer=self.member1)
+        attack_instance.add_target(self.target, "Primary objective")
+        
+        attack_targets = AttackTarget.objects.filter(attack=attack_instance)
+        self.assertEqual(attack_targets.count(), 1, "The add_target method must create exactly one AttackTarget object")
+        self.assertEqual(attack_targets.first().description, "Primary objective", "The AttackTarget description must match the input description")
+    
+    def test_subscribe_to_attack(self):
+        self.member1.rank.can_set_attack = True
+        attack = self.member1.set_attack(
+            target=self.target,
+            start_turn=10,
+            short_description="Surprise attack",
+            description="A large-scale surprise attack on enemy planets."
+        )
+        
+        attack_instance = Attack.objects.get(organizer=self.member1)
+        attack_target = AttackTarget.objects.create(attack=attack_instance, target=self.target, description="Primary objective")
+        attack_target.subscribe(self.member2, "Joining the attack")
+        
+        subscriptions = AttackSubscription.objects.filter(attack_target=attack_target)
+        self.assertEqual(subscriptions.count(), 1, "The subscribe method must create exactly one AttackSubscription object")
+        self.assertEqual(subscriptions.first().note, "Joining the attack", "The AttackSubscription note must match the input note")
+
 
     def test_set_defense(self):
         self.member1.rank.can_set_defense = True
