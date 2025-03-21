@@ -1,6 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round
-from engine.models import Attack, AttackTarget, AttackSubscription
+from engine.models import Attack, AttackTarget, AttackSubscription, Defense, DefenseTarget
 from django.test import TestCase
 
 class AllianceMemberTestCase(TestCase):
@@ -193,13 +193,42 @@ class AllianceMemberTestCase(TestCase):
     def test_set_defense(self):
         self.member1.rank.can_set_defense = True
         
-        response = self.member1.set_defense(target=self.target, arrival_turn=12, short_description="Defense initiative", description="Mobilizing fleets for planetary defense.")
-        self.assertTrue(response, "The set_defense method must to return True")
+        response = self.member1.set_defense(
+            target=self.target,
+            arrival_turn=12,
+            short_description="Defense initiative",
+            description="Mobilizing fleets for planetary defense."
+        )
+        self.assertTrue(response, "The set_defense method must return True")
+        
+        defenses = Defense.objects.filter(organizer=self.member1).count()
+        self.assertEqual(defenses, 1, "The set_defense method must create exactly one Defense object")
 
     def test_set_defense_no_permission(self):
         self.member2.rank.can_set_defense = False
         with self.assertRaises(PermissionDenied):
-            self.member2.set_defense(target=self.target, arrival_turn=12, short_description="Defense initiative", description="Mobilizing fleets for planetary defense.")
+            self.member2.set_defense(
+                target=self.target,
+                arrival_turn=12,
+                short_description="Defense initiative",
+                description="Mobilizing fleets for planetary defense."
+            )
+
+    def test_add_defense_target(self):
+        self.member1.rank.can_set_defense = True
+        defense = self.member1.set_defense(
+            target=self.target,
+            arrival_turn=12,
+            short_description="Defense initiative",
+            description="Mobilizing fleets for planetary defense."
+        )
+        
+        defense_instance = Defense.objects.get(organizer=self.member1)
+        defense_instance.add_target(self.target, "Protecting key installations")
+        
+        defense_targets = DefenseTarget.objects.filter(defense=defense_instance)
+        self.assertEqual(defense_targets.count(), 1, "The add_target method must create exactly one DefenseTarget object")
+        self.assertEqual(defense_targets.first().description, "Protecting key installations", "The DefenseTarget description must match the input description")
 
     def test_set_diplomacy(self):
         self.member1.rank.can_set_diplomacy = True

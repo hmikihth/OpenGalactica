@@ -15,3 +15,4 @@ from .news import *
 from .message import *
 from .notification import *
 from .attack import *
+from .defense import *
