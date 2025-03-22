@@ -3,6 +3,7 @@ from .alliance_invitation import AllianceInvitation
 from .round import Round
 from .attack import Attack
 from .defense import Defense
+from .diplomacy import Diplomacy
 
 class AllianceMember:
     """ A parent class of the Planet model. Implements alliance membership methods"""
@@ -110,10 +111,35 @@ class AllianceMember:
                                 short_description=short_description, description=description)
         return True
 
-    def set_diplomacy(self, alliance, diplo_type, expiration, termination_time):
+    def set_diplomacy(self, alliance, diplo_type, expiration, termination, description=""):
+        """Creates a new Diplomacy agreement if the member has the necessary permission."""
         if not self.rank.can_set_diplomacy:
             raise PermissionDenied(f"{self.name} does not have permission to set diplomacy.")
-        # Logic for setting diplomacy agreements
+
+        # Ensure a diplomacy agreement of the same type does not already exist
+        existing_diplomacy = Diplomacy.objects.filter(sender=self.alliance, receiver=alliance, diplo_type=diplo_type)
+        if existing_diplomacy.exists():
+            raise ValueError(f"A diplomacy of type '{diplo_type}' already exists between these alliances.")
+
+        Diplomacy.objects.create(
+            sender=self.alliance,
+            receiver=alliance,
+            diplo_type=diplo_type,
+            expiration=expiration,
+            termination=termination,
+            description=description
+        )
+        return True
+
+    def accept_diplomacy(self, diplomacy):
+        """Allows a member to accept a diplomacy agreement if they have permission."""
+        if not self.rank.can_set_diplomacy:
+            raise PermissionDenied(f"{self.name} does not have permission to accept diplomacy.")
+
+        if diplomacy.receiver != self.alliance:
+            raise ValueError(f"This diplomacy is not directed at {self.alliance.name}.")
+
+        diplomacy.accept()
         return True
     
     def set_research(self, research):

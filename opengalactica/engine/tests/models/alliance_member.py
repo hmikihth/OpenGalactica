@@ -1,6 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round
-from engine.models import Attack, AttackTarget, AttackSubscription, Defense, DefenseTarget
+from engine.models import Attack, AttackTarget, AttackSubscription, Defense, DefenseTarget, Diplomacy
 from django.test import TestCase
 
 class AllianceMemberTestCase(TestCase):
@@ -232,14 +232,75 @@ class AllianceMemberTestCase(TestCase):
 
     def test_set_diplomacy(self):
         self.member1.rank.can_set_diplomacy = True
-        
-        response = self.member1.set_diplomacy(self.target_alliance, "Neutral", expiration=150, termination_time=20)
-        self.assertTrue(response, "The set_diplomacy method must to return True")
+
+        response = self.member1.set_diplomacy(
+            alliance=self.target_alliance,
+            diplo_type="Neutral",
+            expiration=150,
+            termination=20,
+            description="Temporary neutrality pact."
+        )
+        self.assertTrue(response, "The set_diplomacy method must return True")
+
+        diplomacies = Diplomacy.objects.filter(sender=self.member1.alliance, receiver=self.target_alliance)
+        self.assertEqual(diplomacies.count(), 1, "The set_diplomacy method must create exactly one Diplomacy object")
+        self.assertFalse(diplomacies.first().accepted, "Diplomacy must not be accepted by default")
 
     def test_set_diplomacy_no_permission(self):
         self.member2.rank.can_set_diplomacy = False
         with self.assertRaises(PermissionDenied):
-            self.member2.set_diplomacy(self.target_alliance, "Ally", expiration=150, termination_time=20)
+            self.member2.set_diplomacy(
+                alliance=self.target_alliance,
+                diplo_type="Ally",
+                expiration=150,
+                termination=20,
+                description="Strategic alliance."
+            )
+
+    def test_accept_diplomacy(self):
+        diplomacy = Diplomacy.objects.create(
+            sender=self.target_alliance,
+            receiver=self.member1.alliance,
+            diplo_type="Trade",
+            expiration=120,
+            termination=15,
+            description="Trade agreement"
+        )
+
+        self.assertFalse(diplomacy.accepted, "Diplomacy should not be accepted by default")
+
+        self.member1.rank.can_set_diplomacy = True
+        response = self.member1.accept_diplomacy(diplomacy)
+
+        self.assertTrue(response, "The accept_diplomacy method must return True")
+        self.assertTrue(diplomacy.accepted, "Diplomacy should be accepted after calling accept_diplomacy")
+
+    def test_accept_diplomacy_no_permission(self):
+        diplomacy = Diplomacy.objects.create(
+            sender=self.target_alliance,
+            receiver=self.member2.alliance,
+            diplo_type="War",
+            expiration=180,
+            termination=30
+        )
+
+        self.member2.rank.can_set_diplomacy = False
+        with self.assertRaises(PermissionDenied):
+            self.member2.accept_diplomacy(diplomacy)
+
+    def test_accept_diplomacy_wrong_receiver(self):
+        diplomacy = Diplomacy.objects.create(
+            sender=self.member1.alliance,
+            receiver=self.target_alliance,
+            diplo_type="Non-Aggression Pact",
+            expiration=200,
+            termination=25
+        )
+
+        self.member1.rank.can_set_diplomacy = True
+        with self.assertRaises(ValueError):
+            self.member1.accept_diplomacy(diplomacy)  # The receiver is the target_alliance, not member1's alliance
+
 
     def test_set_research(self):
         self.member1.rank.can_set_research = True
