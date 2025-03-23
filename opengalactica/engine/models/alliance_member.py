@@ -1,5 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from .alliance_invitation import AllianceInvitation
+from .alliance_voting import AllianceVoting
 from .round import Round
 from .attack import Attack
 from .defense import Defense
@@ -148,11 +149,10 @@ class AllianceMember:
         # Logic for setting alliance-wide research
         return True
 
-    def set_voting(self, title, description, expiration):
+    def set_voting(self, title, description, end, public):
         if not self.rank.can_set_voting:
             raise PermissionDenied(f"{self.name} does not have permission to set voting.")
-        # Logic for creating a vote in the alliance
-        return True
+        return AllianceVoting.objects.create(title=title, description=description, end=end, public=public)
 
     def set_news(self, content):
         if not self.rank.can_set_news:
