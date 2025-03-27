@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.test import TestCase
 from engine.models import Planet, Alliance, Attack, AttackTarget, AttackSubscription
 
@@ -52,3 +53,11 @@ class AttackModelsTest(TestCase):
         subscription = AttackSubscription.objects.get(attack_target=self.attack_target, subscriber=new_subscriber)
         self.assertIsNotNone(subscription)
         self.assertEqual(subscription.note, "Ready to join")
+
+    def test_attack_target_unique_together(self):
+        with self.assertRaises(IntegrityError):
+            AttackTarget.objects.create(attack=self.attack, target=self.planet2, description="Duplicate Target")
+
+    def test_attack_subscription_unique_together(self):
+        with self.assertRaises(IntegrityError):
+            AttackSubscription.objects.create(attack_target=self.attack_target, subscriber=self.planet1, note="Duplicate Subscription")

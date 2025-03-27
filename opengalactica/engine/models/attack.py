@@ -21,6 +21,9 @@ class AttackTarget(models.Model):
     target = models.ForeignKey("engine.Planet", on_delete=models.CASCADE)
     description = models.TextField()
 
+    class Meta:
+        unique_together = ("attack", "target")
+
     def __str__(self):
         return f"Target: {self.target} for Attack: {self.attack.short_description}"
         
@@ -32,6 +35,9 @@ class AttackSubscription(models.Model):
     subscriber = models.ForeignKey("engine.Planet", on_delete=models.CASCADE)
     note = models.TextField(blank=True, null=True)
 
+    class Meta:
+        unique_together = ("attack_target", "subscriber")
+        
     def __str__(self):
         return f"{self.subscriber} subscribed to {self.attack_target}"
 

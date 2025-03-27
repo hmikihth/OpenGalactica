@@ -1,3 +1,4 @@
+from django.db.utils import IntegrityError
 from django.test import TestCase
 from engine.models import Planet, Alliance, Defense, DefenseTarget
 
@@ -33,3 +34,10 @@ class DefenseModelsTest(TestCase):
         defense_target = DefenseTarget.objects.get(defense=self.defense, target=new_target)
         self.assertIsNotNone(defense_target)
         self.assertEqual(defense_target.description, "New defense target")
+
+    def test_unique_defense_target_constraint(self):
+        """Test that a DefenseTarget cannot be created with the same defense and target"""
+        with self.assertRaises(IntegrityError):
+            DefenseTarget.objects.create(
+                defense=self.defense, target=self.planet2, description="Duplicate defense target"
+            )

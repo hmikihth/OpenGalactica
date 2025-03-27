@@ -19,5 +19,8 @@ class DefenseTarget(models.Model):
     target = models.ForeignKey("engine.Planet", on_delete=models.CASCADE)
     description = models.TextField()
 
+    class Meta:
+        unique_together = ("defense", "target")
+        
     def __str__(self):
         return f"Target: {self.target} for Defense: {self.defense.short_description}"
