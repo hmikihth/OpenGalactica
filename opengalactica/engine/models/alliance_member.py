@@ -5,6 +5,7 @@ from .round import Round
 from .attack import Attack
 from .defense import Defense
 from .diplomacy import Diplomacy
+from .research import AllianceResearch
 
 class AllianceMember:
     """ A parent class of the Planet model. Implements alliance membership methods"""
@@ -146,7 +147,8 @@ class AllianceMember:
     def set_research(self, research):
         if not self.rank.can_set_research:
             raise PermissionDenied(f"{self.name} does not have permission to set research.")
-        # Logic for setting alliance-wide research
+        o, created = AllianceResearch.objects.get_or_create(alliance=self.alliance, research=research)
+        o.start_research()
         return True
 
     def set_voting(self, title, description, end, public):

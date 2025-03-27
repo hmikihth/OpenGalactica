@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from engine.models import Planet, Alliance, AllianceRank, AllianceMember, AllianceInvitation, Round
-from engine.models import Attack, AttackTarget, AttackSubscription, Defense, DefenseTarget, Diplomacy
+from engine.models import Attack, AttackTarget, AttackSubscription, Defense, DefenseTarget, Diplomacy 
+from engine.models import Research, AllianceResearch
 from django.test import TestCase
 
 class AllianceMemberTestCase(TestCase):
@@ -21,6 +22,15 @@ class AllianceMemberTestCase(TestCase):
         self.member1.save()
         self.member2.save()
         self.round = Round.objects.all().order_by("number").last()
+        self.research = Research.objects.create(
+            name="Hyperdrive", 
+            species="alliance", 
+            metal = 11,
+            crystal = 12,
+            narion = 13,
+            development_time = 14
+        )
+
         
     def test_invite_member_success(self):
         """Test that an alliance member with invite permissions can send an invitation."""
@@ -304,14 +314,17 @@ class AllianceMemberTestCase(TestCase):
 
     def test_set_research(self):
         self.member1.rank.can_set_research = True
-        response = self.member1.set_research("Hyperdrive")
+        response = self.member1.set_research(self.research)
         
         self.assertTrue(response, "The set_research method must to return True")
+        
+        n = AllianceResearch.objects.filter(alliance=self.alliance, research=self.research).count()
+        self.assertEqual(n, 1, "The set create method must create exactly one AllianceResearch object")
 
     def test_set_research_no_permission(self):
         self.member2.rank.can_set_research = False
         with self.assertRaises(PermissionDenied):
-            self.member2.set_research("Hyperdrive")
+            self.member2.set_research(self.research)
 
     def test_set_tax(self):
         self.member1.rank.can_set_tax = True

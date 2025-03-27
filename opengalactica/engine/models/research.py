@@ -1,6 +1,9 @@
 from django.db import models
 
 class Research(models.Model):
+    class Meta:
+        verbose_name_plural = "Researches"
+        
     name = models.CharField(max_length=128)
     research_type = models.CharField(max_length=128)
     species = models.CharField(max_length=128)
@@ -44,6 +47,9 @@ class Research(models.Model):
 
 
 class PlanetResearch(models.Model):
+    class Meta:
+        verbose_name_plural = "Planet Researches"
+        
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE)
     research = models.ForeignKey(Research, on_delete=models.CASCADE)
     turns_remaining = models.IntegerField()  # How many turns are left for development
@@ -104,6 +110,9 @@ class PlanetResearch(models.Model):
 
 
 class SolResearch(models.Model):
+    class Meta:
+        verbose_name_plural = "Sol Researches"
+        
     sol = models.ForeignKey("Sol", on_delete=models.CASCADE)
     research = models.ForeignKey(Research, on_delete=models.CASCADE)
     turns_remaining = models.IntegerField()  # How many turns are left for development
@@ -161,6 +170,10 @@ class SolResearch(models.Model):
         
 
 class AllianceResearch(models.Model):
+    class Meta:
+        verbose_name_plural = "Alliance Researches"
+        unique_together = ("alliance", "research")
+        
     alliance = models.ForeignKey("Alliance", on_delete=models.CASCADE)
     research = models.ForeignKey(Research, on_delete=models.CASCADE)
     turns_remaining = models.IntegerField()  # How many turns are left for development
@@ -174,7 +187,7 @@ class AllianceResearch(models.Model):
 
     def start_research(self):
         """Start or continue research."""
-        if not self.completed and self.turns_remaining > 0:
+        if not self.completed and self.turns_remaining > 0 and self.can_start():
             self.turns_remaining -= 1
             if self.turns_remaining == 0:
                 self.completed = True
