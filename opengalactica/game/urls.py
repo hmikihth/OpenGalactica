@@ -3,7 +3,10 @@ from game.views import (
     TimeViewSet, SpeciesViewSet, ShipModelViewSet, AllianceToplistViewSet, 
     SolToplistViewSet, PlanetToplistViewSet, NewsViewSet, EncyclopediaViewSet,
     PlanetDataViewSet, PDSViewSet, AvailablePDSViewSet, SatelliteViewSet, AvailableSatelliteViewSet,
-    ShipViewSet, AvailableShipViewSet, FleetViewSet, ResearchViewSet
+    ShipViewSet, AvailableShipViewSet, FleetViewSet, ResearchViewSet,
+    ReceivedMessagesViewSet, SentMessagesViewSet, ReadMessageViewSet,
+    CommunicationViewSet, MinistersMessageViewSet, AllianceNewsViewSet, LatestNewsViewSet,
+    HomeTechnologyViewSet,PlasmatorViewSet
 )
 
 router = DefaultRouter()
@@ -28,5 +31,17 @@ router.register(r'ships', ShipViewSet, basename='ships')
 router.register(r'avships', AvailableShipViewSet, basename='avships')
 router.register(r'fleets', FleetViewSet, basename='fleets')
 router.register(r'research', ResearchViewSet, basename='research')
+
+# Message Endpoints
+router.register(r'messages/received', ReceivedMessagesViewSet, basename='received-messages')
+router.register(r'messages/sent', SentMessagesViewSet, basename='sent-messages')
+router.register(r'messages/read', ReadMessageViewSet, basename='read-message')
+
+router.register(r'communication', CommunicationViewSet, basename='communication')
+router.register(r'ministers-message', MinistersMessageViewSet, basename='ministers-message')
+router.register(r'alliance-news', AllianceNewsViewSet, basename='alliance-news')
+router.register(r'latest-news', LatestNewsViewSet, basename='latest-news')
+router.register(r'home-technology', HomeTechnologyViewSet, basename='home-technology')
+router.register(r'plasmators', PlasmatorViewSet, basename='plasmators')
 
 urlpatterns = router.urls

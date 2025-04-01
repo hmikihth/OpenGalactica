@@ -153,3 +153,47 @@ class MessageDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = '__all__'
+
+
+class CommunicationSerializer(serializers.Serializer):
+    new_events = serializers.IntegerField()
+    new_messages = serializers.IntegerField()
+    
+
+class MinistersMessageSerializer(serializers.ModelSerializer):
+    ministers_message = serializers.CharField(required=False, allow_blank=True)
+
+    class Meta:
+        model = Sol
+        fields = ["id", "ministers_message"]
+
+class AllianceNewsSerializer(serializers.ModelSerializer):
+    news = serializers.CharField(required=False, allow_blank=True)
+
+    class Meta:
+        model = Alliance
+        fields = ["id", "news"]
+
+class LatestNewsSerializer(serializers.ModelSerializer):
+    timestamp = serializers.CharField(required=False, allow_blank=True)
+    description = serializers.CharField(required=False, allow_blank=True)
+
+    class Meta:
+        model = News
+        fields = ["id", "slug","title","timestamp","description"]
+
+class HomeTechnologySerializer(serializers.Serializer):
+    research = serializers.CharField(required=False, allow_blank=True)
+    research_turns = serializers.IntegerField()
+    building = serializers.CharField(required=False, allow_blank=True)
+    building_turns = serializers.IntegerField()
+
+class PlasmatorSerializer(serializers.ModelSerializer):
+    total_plasmators = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Planet
+        fields = ["metal_plasmator", "crystal_plasmator", "narion_plasmator", "neutral_plasmator", "total_plasmators"]
+        
+    def get_total_plasmators(self, obj):
+        return obj.metal_plasmator + obj.crystal_plasmator + obj.narion_plasmator + obj.neutral_plasmator

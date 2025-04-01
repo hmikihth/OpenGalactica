@@ -1,0 +1,14 @@
+{
+  "app_title": "OpenGalactica",
+  "app_description": "Explore the universe with OpenGalactica",
+  "welcome_message": "Welcome to the Game",
+  "planet_name": "Planet",
+  "coordinates": "Coordinates",
+  "points": "Points",
+  "xp": "XP",
+  "loading": "Loading...",
+  "null": "None",
+  "top": "Top",
+  "rank": "Rank",
+  "credits": "Credits"
+}

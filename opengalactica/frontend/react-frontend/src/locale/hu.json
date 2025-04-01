@@ -1,0 +1,14 @@
+{
+  "app_title": "OpenGalactica",
+  "app_description": "Fedezd fel az univerzumot az OpenGalactica-val",
+  "welcome_message": "Üdv a játékban!",
+  "planet_name": "Planéta",
+  "coordinates": "Koordináták",
+  "points": "Pontok",
+  "xp": "TP",
+  "loading": "Betöltés...",
+  "null": "Semmi",
+  "top": "Top",
+  "rank": "Rang",
+  "credits": "Kredit"
+}

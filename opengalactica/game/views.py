@@ -6,13 +6,13 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.permissions import IsAdminUser, SAFE_METHODS
-from rest_framework import generics, permissions
+from rest_framework import permissions
 from rest_framework.exceptions import PermissionDenied
 
 from engine.models import Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia
-from engine.models import StockedSatellite, SatelliteType, Ship, Fleet, Research, Round
+from engine.models import StockedSatellite, SatelliteType, Ship, Fleet, Round
 from engine.models import PlanetResearch, SolResearch, AllianceResearch
-from engine.models import Message
+from engine.models import Message, Notification
 
 from game.permissions import NewsAuthorOrReadOnly
 from game.serializers import EncyclopediaSerializer
@@ -23,7 +23,7 @@ from game.serializers import (
     SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
     ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer, 
-    MessageListSerializer, MessageDetailSerializer
+    MessageListSerializer, MessageDetailSerializer, CommunicationSerializer
 )
 
 # Public Viewsets
@@ -205,8 +205,6 @@ class SatelliteViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        planet = Planet.objects.get(user=request.user)
-
         stocked_satellites = StockedSatellite.objects.filter(planet__user=request.user)
                 
         data = []
@@ -286,8 +284,6 @@ class AvailableShipViewSet(viewsets.ViewSet):
         planet = Planet.objects.get(user=request.user)
 
         fleets = Fleet.objects.filter(owner=planet)
-
-        ships = Ship.objects.filter(fleet__in=fleets, ship_model__pds=False)
         
         species = [planet.species, "Global", "Extra"]
         
@@ -343,35 +339,208 @@ class IsMessageOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         return obj.sender.user == request.user or obj.receiver.user == request.user
 
-# View for received messages
-class ReceivedMessagesView(generics.ListAPIView):
-    serializer_class = MessageListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class ReceivedMessagesViewSet(ViewSet):
+    """
+    A ViewSet for listing received messages.
+    """
+    permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return Message.objects.filter(receiver__user=self.request.user)
+    def list(self, request):
+        # Retrieve received messages for the authenticated user
+        messages = Message.objects.filter(receiver=request.user.planet).order_by('-created_at')
+        serializer = MessageListSerializer(messages, many=True)
+        return Response(serializer.data)
 
-# View for sent messages
-class SentMessagesView(generics.ListAPIView):
-    serializer_class = MessageListSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class SentMessagesViewSet(ViewSet):
+    """
+    A ViewSet for listing sent messages.
+    """
+    permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return Message.objects.filter(sender__user=self.request.user)
+    def list(self, request):
+        # Retrieve sent messages for the authenticated user
+        messages = Message.objects.filter(sender=request.user.planet).order_by('-created_at')
+        serializer = MessageListSerializer(messages, many=True)
+        return Response(serializer.data)
 
-# View for reading a message
-class ReadMessageView(generics.RetrieveUpdateAPIView):
-    serializer_class = MessageDetailSerializer
-    permission_classes = [permissions.IsAuthenticated, IsMessageOwner]
 
-    def get_queryset(self):
-        return Message.objects.filter(
-            sender__user=self.request.user
-        ) | Message.objects.filter(
-            receiver__user=self.request.user
-        )
+class ReadMessageViewSet(ViewSet):
+    """
+    A ViewSet for retrieving and marking a message as read.
+    """
+    permission_classes = [IsAuthenticated, IsMessageOwner]
 
-    def perform_update(self, serializer):
-        # Mark the message as read when accessed
-        serializer.instance.read = True
-        serializer.save()
+    def retrieve(self, request, pk=None):
+        """
+        Retrieve a single message by its ID and mark it as read.
+        """
+        try:
+            # Get the message by ID and ensure the user is the sender or receiver
+            message = Message.objects.get(pk=pk)
+            if not (message.sender.user == request.user or message.receiver.user == request.user):
+                raise PermissionDenied("You do not have permission to view this message.")
+            
+            # Mark the message as read
+            if not message.read:
+                message.read = True
+                message.save()
+
+            # Serialize the message details
+            serializer = MessageDetailSerializer(message)
+            return Response(serializer.data)
+        except Message.DoesNotExist:
+            return Response({"detail": "Message not found."}, status=404)
+
+
+class CommunicationViewSet(ViewSet):
+    """
+    A ViewSet for fetching unread notifications and messages counts.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        Returns the count of unread notifications and messages for the authenticated user.
+        """
+        planet = Planet.objects.get(user=request.user)
+
+        # Count unread notifications and messages
+        new_events = Notification.objects.filter(planet=planet, read=False).count()
+        new_messages = Message.objects.filter(receiver=planet, read=False).count()
+
+        # Serialize and return the response
+        data = {
+            "new_events": new_events,
+            "new_messages": new_messages,
+        }
+        serializer = CommunicationSerializer(data)
+        return Response(serializer.data)
+        
+
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from .serializers import MinistersMessageSerializer
+
+class MinistersMessageViewSet(viewsets.ViewSet):
+    """
+    ViewSet for managing the ministers' message in a Sol.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        GET /api/v1/ministers-message/
+        Returns the ministers' message of the authenticated user's Sol.
+        """
+        try:
+            planet = Planet.objects.get(user=request.user)
+            sol = planet.sol
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if not sol:
+            return Response({"detail": "Sol not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = MinistersMessageSerializer(sol)
+        return Response(serializer.data)
+
+
+from .serializers import AllianceNewsSerializer
+
+class AllianceNewsViewSet(viewsets.ViewSet):
+    """
+    ViewSet for managing the Alliance News.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        GET /api/v1/alliance-news/
+        Returns the news of the authenticated user's Alliance.
+        """
+        try:
+            planet = Planet.objects.get(user=request.user)
+            alliance = planet.alliance
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if not alliance:
+            return Response({"detail": "Alliance not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = AllianceNewsSerializer(alliance)
+        return Response(serializer.data)
+
+
+from .serializers import LatestNewsSerializer
+
+class LatestNewsViewSet(viewsets.ViewSet):
+    """
+    ViewSet for managing the Latest News.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        GET /api/v1/latest-news/
+        Returns the news of the authenticated user's Alliance.
+        """
+        news = News.objects.order_by("server_time").last()
+
+        serializer = LatestNewsSerializer(news)
+        return Response(serializer.data)
+        
+from engine.models import PlanetResearch
+from .serializers import HomeTechnologySerializer
+
+
+class HomeTechnologyViewSet(viewsets.ViewSet):
+    """
+    ViewSet for the home page's technology section. It only list the active researches.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        GET /api/v1/home-technology/
+        Returns the active researches.
+        """
+        try:
+            planet = Planet.objects.get(user=request.user)
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        researches = PlanetResearch.objects.filter(planet=planet, started=True, completed=False) 
+
+        research = researches.filter(research__building=False).last()
+        building = researches.filter(research__building=True).last()
+        
+        # Serialize and return the response
+        data = {
+            "research": None if not research else research.research.name,
+            "research_turns": None if not research else research.turns_remaining,
+            "building": None if not building else building.research.name,
+            "building_turns": None if not building else building_turns.turns_remaining,
+        }
+        serializer = HomeTechnologySerializer(data)
+        return Response(serializer.data)
+        
+from .serializers import PlasmatorSerializer
+
+class PlasmatorViewSet(viewsets.ViewSet):
+    """
+    ViewSet for managing own plasmators.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        """
+        GET /api/v1/plasmators/
+        Returns the plasmators of the authenticated user.
+        """
+        try:
+            planet = Planet.objects.get(user=request.user)
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PlasmatorSerializer(planet)
+        return Response(serializer.data)
