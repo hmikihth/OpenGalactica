@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './navigation/Header';
 import NavAppBar from './navigation/AppBar';
-import NavDrawer from './navigation/Drawer';
 import BottomNav from './navigation/BottomNav';
 import MainMenuModal from './navigation/MainMenuModal';
 
@@ -106,8 +105,6 @@ export default function NavBox() {
 
       <MainMenuModal isMobile={isMobile} isOpen={open} onClose={handleCloseModal} />
    
-      
-      {/* Drawer */}
       
       {isMobile ? (
         <BottomNav isMobile={isMobile} handleOpenModal={handleOpenModal} />

@@ -15,9 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPersonDigging , faIndustry, faShuttleSpace, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 import {
   Forum as ForumIcon,
-  Notes as NotesIcon,
   Science as ScienceIcon,
-  Build as BuildIcon,
   DirectionsBoat as FleetIcon,
   Public as PlanetIcon,
   SolarPower as SolIcon,
@@ -150,6 +148,7 @@ const MainMenuModal = ({isMobile, isOpen, onClose }) => {
           </Box>
         )}
         
+        <List>
         {sections.map(({ name, icon, children }) => (
           <React.Fragment key={name}>
             <Divider />
@@ -170,6 +169,7 @@ const MainMenuModal = ({isMobile, isOpen, onClose }) => {
             </Collapse>
           </React.Fragment>
         ))}
+      </List>
       </Box>
     </Modal>
   );
