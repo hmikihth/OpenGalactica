@@ -32,7 +32,7 @@ const ResourceBox = () => {
     return (
        <Grid container size={12} sx={{ p: 1, m: 1, border: '2px solid black'}}>
             
-            <Grid container size={6} sx={{ p:1, border: '1px solid black', borderLeft:0, borderTop:0, borderBottom:0 }}>
+            <Grid container size={6} sx={{ p:1 }}>
             
                 <Grid size={6}>
                     <Typography align='left' sx={{ fontSize:'0.7em', fontWeight:'bold' }} >
@@ -88,7 +88,7 @@ const ResourceBox = () => {
 
             </Grid>
 
-            <Grid container size={6} sx={{ p:1, border: '1px solid black', borderRight:0, borderTop:0, borderBottom:0}}>
+            <Grid container size={6} sx={{ p:1, borderLeft: '1px solid black'}}>
 
                 <Grid size={9}>
                     <Typography align='left' sx={{ fontSize:'0.7em', fontWeight:'bold' }} >
