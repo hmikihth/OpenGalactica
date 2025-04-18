@@ -3,6 +3,10 @@ from engine.models import Planet, Fleet, Alliance, Market, MAX_FLEETS
 from engine.models import Sol, PlanetRelocation, Round, Ship, ShipModel
 from engine.models import SatelliteType, StockedSatellite, PlanetResearch, Research
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
+import tempfile
+
 class PlanetTestCase(TestCase):
     def setUp(self):
         self.planet = Planet.objects.create(
@@ -49,6 +53,32 @@ class PlanetTestCase(TestCase):
         self.assertEqual(self.planet.protection, 72, "Default protection value should be 72")
         self.assertFalse(self.planet.on_holiday, "Default value for on_holiday should be False")
         
+    def test_profile_image_upload(self):
+        """Test uploading a profile image to a planet"""
+        # Create a temporary image file
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as temp_img:
+            image = Image.new("RGB", (100, 100), color=(255, 0, 0))
+            image.save(temp_img, format="JPEG")
+            temp_img.seek(0)
+
+            uploaded_file = SimpleUploadedFile(
+                name="test.jpg",
+                content=temp_img.read(),
+                content_type="image/jpeg"
+            )
+
+            self.planet.profile_image = uploaded_file
+            self.planet.save()
+
+            # After saving, the profile_image should not be None
+            self.assertTrue(self.planet.profile_image, "Profile image should be saved")
+            self.assertIn("test.jpg", self.planet.profile_image.name)
+
+    def tearDown(self):
+        # Clean up any uploaded images
+        for planet in Planet.objects.all():
+            if planet.profile_image:
+                planet.profile_image.delete()
         
 class PlanetRecountPointsTest(TestCase):
 
