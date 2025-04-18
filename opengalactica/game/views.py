@@ -346,10 +346,16 @@ class ReceivedMessagesViewSet(ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
+        try:
+            planet = Planet.objects.get(user=request.user)
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
         # Retrieve received messages for the authenticated user
-        messages = Message.objects.filter(receiver=request.user.planet).order_by('-created_at')
+        messages = Message.objects.filter(receiver=planet).order_by('-server_time')
         serializer = MessageListSerializer(messages, many=True)
         return Response(serializer.data)
+        
 
 class SentMessagesViewSet(ViewSet):
     """
@@ -358,8 +364,13 @@ class SentMessagesViewSet(ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
+        try:
+            planet = Planet.objects.get(user=request.user)
+        except Planet.DoesNotExist:
+            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+
         # Retrieve sent messages for the authenticated user
-        messages = Message.objects.filter(sender=request.user.planet).order_by('-created_at')
+        messages = Message.objects.filter(sender=planet).order_by('-server_time')
         serializer = MessageListSerializer(messages, many=True)
         return Response(serializer.data)
 

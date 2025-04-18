@@ -62,7 +62,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }} >
-                        {technologyData.research || ''} {technologyData.research_turns != null ? `(${technologyData.research_turns})` : '-'}
+                        {technologyData?.research || ''} {technologyData?.research_turns || '-'}
                     </Typography>
                 </Grid>
                 
@@ -73,7 +73,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }} >
-                        {technologyData.building || ''} {technologyData.building_turns != null ? `(${technologyData.building_turns})` : '-'}
+                        {technologyData?.building || ''} {technologyData?.building_turns || '-'}
                     </Typography>
                 </Grid>
             </Grid>
@@ -88,7 +88,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }}>
-                        {fleets[0].status}
+                        {fleets[0]?.status}
                     </Typography>
                 </Grid>
                 
@@ -99,7 +99,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }}>
-                        {fleets[1].status}
+                        {fleets[1]?.status}
                     </Typography>
                 </Grid>
 
@@ -110,7 +110,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }}>
-                        {fleets[2].status}
+                        {fleets[2]?.status}
                     </Typography>
                 </Grid>
 
@@ -121,7 +121,7 @@ const OperationsBox = () => {
                 </Grid>
                 <Grid size={6}>
                     <Typography align='right' sx={{ fontSize:'0.7em', fontWeight:'bold' }}>
-                        {fleets[3].status}
+                        {fleets[3]?.status || '-' }
                     </Typography>
                 </Grid>
 

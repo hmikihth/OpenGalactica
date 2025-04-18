@@ -144,9 +144,19 @@ class ResearchSerializer(serializers.ModelSerializer):
         
 # Serializer for listing received/sent messages (excluding content)
 class MessageListSerializer(serializers.ModelSerializer):
+    sender = serializers.SerializerMethodField()
+    receiver = serializers.SerializerMethodField()
+    
     class Meta:
         model = Message
         exclude = ['content']
+
+    def get_sender(self, obj):
+        return str(obj.sender)
+
+    def get_receiver(self, obj):
+        return str(obj.receiver)
+
 
 # Serializer for reading a message (full data)
 class MessageDetailSerializer(serializers.ModelSerializer):

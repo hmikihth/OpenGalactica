@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 
-const StatusButton = ({ icon, label, color, isMobile }) => {
+const StatusButton = ({ icon, label, color, isMobile, href }) => {
   return (
     <Button
       color={color}
@@ -13,6 +13,7 @@ const StatusButton = ({ icon, label, color, isMobile }) => {
         justifyContent: isMobile ? 'center' : 'flex-start',
         textAlign: isMobile ? 'center' : 'left',
       }}
+      href={href}
     >
       {React.cloneElement(icon, { style: { marginRight: isMobile ? 0 : 8 } })}
       {!isMobile && label}

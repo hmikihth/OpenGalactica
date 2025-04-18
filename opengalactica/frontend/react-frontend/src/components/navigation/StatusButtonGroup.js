@@ -26,24 +26,28 @@ const StatusButtonGroup = () => {
         label="Notifications"
         color="success"
         isMobile={isMobile}
+        href="/notifications"
       />
       <StatusButton
         icon={<FontAwesomeIcon icon={faEnvelope} />}
         label="Messages"
         color="secondary"
         isMobile={isMobile}
+        href="/messages"
       />
       <StatusButton
         icon={<FontAwesomeIcon icon={faSun} />}
         label="Sol status"
         color="primary"
         isMobile={isMobile}
+        href="/sol/status"
       />
       <StatusButton
         icon={<Diversity3Icon />}
         label="Alliance status"
         color="warning"
         isMobile={isMobile}
+        href="/alliance/status"
       />
     </ButtonGroup>
   );
