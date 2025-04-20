@@ -7,7 +7,7 @@ class Notification(models.Model):
     turn = models.IntegerField()   # Game turn when the notification was created
     server_time = models.DateTimeField(default=timezone.now)  # Automatically set to current server time
     ntype = models.CharField(max_length=255) # Notification type for filtering. Examples: "War", "Research", "Building", "Production", "News", etc... 
-    content = models.TextField()  # HTML-formatted content
+    content = models.JSONField()  # JSON content
     read = models.BooleanField(default=False)
 
     def __str__(self):

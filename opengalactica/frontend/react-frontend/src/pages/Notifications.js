@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import {
   Box,
   Tab,
@@ -13,6 +14,9 @@ import {
   Paper,
   CircularProgress,
 } from '@mui/material';
+
+import NotifContentFormatter from './NotifContentFormatter';
+
 
 const tabLabels = ['All', 'War', 'Research', 'Building', 'Production', 'News'];
 
@@ -44,9 +48,6 @@ const Notifications = () => {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell><strong>Round</strong></TableCell>
-            <TableCell><strong>Turn</strong></TableCell>
-            <TableCell><strong>Time</strong></TableCell>
             <TableCell><strong>Type</strong></TableCell>
             <TableCell><strong>Content</strong></TableCell>
             <TableCell><strong>Read</strong></TableCell>
@@ -55,11 +56,11 @@ const Notifications = () => {
         <TableBody>
           {data.map((notif) => (
             <TableRow key={notif.id}>
-              <TableCell>{notif.round}</TableCell>
-              <TableCell>{notif.turn}</TableCell>
-              <TableCell>{new Date(notif.server_time).toLocaleString()}</TableCell>
+              <TableCell>{notif.round}:{notif.turn}:{new Date(notif.server_time).getSeconds()}</TableCell>
               <TableCell>{notif.ntype}</TableCell>
-              <TableCell dangerouslySetInnerHTML={{ __html: notif.content }} />
+              <TableCell>
+                <NotifContentFormatter ntype={notif.ntype} content={notif.content} />
+              </TableCell>
               <TableCell>{notif.read ? 'Yes' : 'No'}</TableCell>
             </TableRow>
           ))}
