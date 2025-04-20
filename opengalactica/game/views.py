@@ -23,7 +23,7 @@ from game.serializers import (
     SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
     ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer, 
-    MessageListSerializer, MessageDetailSerializer, CommunicationSerializer
+    MessageListSerializer, MessageDetailSerializer, CommunicationSerializer, StatusSerializer
 )
 
 # Public Viewsets
@@ -535,6 +535,7 @@ class HomeTechnologyViewSet(viewsets.ViewSet):
         serializer = HomeTechnologySerializer(data)
         return Response(serializer.data)
         
+        
 from .serializers import PlasmatorSerializer
 
 class PlasmatorViewSet(viewsets.ViewSet):
@@ -554,4 +555,24 @@ class PlasmatorViewSet(viewsets.ViewSet):
             return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = PlasmatorSerializer(planet)
+        return Response(serializer.data)
+        
+        
+class SolIncomingViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        planet = Planet.objects.get(user=request.user)
+
+        serializer = StatusSerializer(planet.sol.incoming_fleets, many=True)
+        return Response(serializer.data)
+
+        
+class SolOutgoingViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        planet = Planet.objects.get(user=request.user)
+
+        serializer = StatusSerializer(planet.sol.outgoing_fleets, many=True)
         return Response(serializer.data)

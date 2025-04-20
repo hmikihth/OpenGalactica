@@ -117,6 +117,16 @@ class Sol(models.Model):
             raise PermissionError("You don't have permission to update the ministers' message.")
         self.ministers_message = message
         self.save()
+    
+    @property
+    def incoming_fleets(self):
+        from .fleet import Fleet
+        return Fleet.objects.filter(target__in=self.planets)
+
+    @property
+    def outgoing_fleets(self):
+        from .fleet import Fleet
+        return Fleet.objects.filter(owner__in=self.planets).exclude(target__isnull=True)
 
         
 class CommanderVote(models.Model):

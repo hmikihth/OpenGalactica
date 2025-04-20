@@ -137,6 +137,21 @@ class FleetSerializer(serializers.ModelSerializer):
         return "On base"
 
 
+class StatusSerializer(serializers.ModelSerializer):
+    target = serializers.SerializerMethodField()
+    owner = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Fleet
+        fields = ['task', 'distance', 'target', 'owner', 'role']
+
+    def get_target(self, obj):
+        return str(obj.target)
+        
+    def get_owner(self, obj):
+        return str(obj.owner)
+        
+
 class ResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetResearch

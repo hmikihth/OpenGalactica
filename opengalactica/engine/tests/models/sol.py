@@ -169,3 +169,27 @@ class SolMinistersMessageTest(TestCase):
         self.sol.set_ministers_message(self.commander, "Persistent Message")
         self.sol.refresh_from_db()
         self.assertEqual(self.sol.ministers_message, "Persistent Message")
+        
+from engine.models import Fleet
+
+class SolFleetMovementTestCase(TestCase):
+    def setUp(self):
+        self.sol = Sol.objects.create(name="Fleet Sol", x=1, y=1)
+        self.planet1 = Planet.objects.create(name="P1")
+        self.planet2 = Planet.objects.create(name="P2")
+        self.planet3 = Planet.objects.create(name="P3")
+        self.sol.add_planet(self.planet1)
+        self.sol.add_planet(self.planet2)
+
+    def test_incoming_and_outgoing_fleets(self):
+        # Create a fleet from planet1 (owner) to planet3 (target)
+        fleet1 = Fleet.objects.create(owner=self.planet1, target=self.planet3)
+        # Create a fleet from planet3 (owner) to planet2 (target)
+        fleet2 = Fleet.objects.create(owner=self.planet3, target=self.planet2)
+        # Create a fleet from planet1 with no target
+        fleet3 = Fleet.objects.create(owner=self.planet1)
+
+        self.assertIn(fleet1, self.sol.outgoing_fleets)
+        self.assertIn(fleet2, self.sol.incoming_fleets)
+        self.assertNotIn(fleet3, self.sol.outgoing_fleets)
+        self.assertNotIn(fleet3, self.sol.incoming_fleets)
