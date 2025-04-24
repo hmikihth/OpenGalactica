@@ -60,7 +60,6 @@ const headerHeight = 180;
 const MainContent = styled('main')(({ theme, isMobile, open }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
-  marginLeft: isMobile ? 0: drawerIconsWidth,
   marginTop: isMobile ? appBarHeight : headerHeight + appBarHeight,
 }));
 
