@@ -183,9 +183,9 @@ class SolFleetMovementTestCase(TestCase):
 
     def test_incoming_and_outgoing_fleets(self):
         # Create a fleet from planet1 (owner) to planet3 (target)
-        fleet1 = Fleet.objects.create(owner=self.planet1, target=self.planet3)
+        fleet1 = Fleet.objects.create(owner=self.planet1, task="move", target=self.planet3)
         # Create a fleet from planet3 (owner) to planet2 (target)
-        fleet2 = Fleet.objects.create(owner=self.planet3, target=self.planet2)
+        fleet2 = Fleet.objects.create(owner=self.planet3, task="move", target=self.planet2)
         # Create a fleet from planet1 with no target
         fleet3 = Fleet.objects.create(owner=self.planet1)
 
