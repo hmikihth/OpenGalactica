@@ -6,7 +6,8 @@ from game.views import (
     ShipViewSet, AvailableShipViewSet, FleetViewSet, ResearchViewSet,
     ReceivedMessagesViewSet, SentMessagesViewSet, ReadMessageViewSet,
     CommunicationViewSet, MinistersMessageViewSet, AllianceNewsViewSet, LatestNewsViewSet,
-    HomeTechnologyViewSet, PlasmatorViewSet, SolIncomingViewSet, SolOutgoingViewSet
+    HomeTechnologyViewSet, PlasmatorViewSet, 
+    SolIncomingViewSet, SolOutgoingViewSet, AllianceIncomingViewSet, AllianceOutgoingViewSet
 )
 
 router = DefaultRouter()
@@ -46,6 +47,9 @@ router.register(r'plasmators', PlasmatorViewSet, basename='plasmators')
 
 router.register(r'sol/incoming', SolIncomingViewSet, basename='sol-incoming')
 router.register(r'sol/outgoing', SolOutgoingViewSet, basename='sol-outgoing')
+
+router.register(r'alliance/incoming', AllianceIncomingViewSet, basename='alliance-incoming')
+router.register(r'alliance/outgoing', AllianceOutgoingViewSet, basename='alliance-outgoing')
 
 
 urlpatterns = router.urls

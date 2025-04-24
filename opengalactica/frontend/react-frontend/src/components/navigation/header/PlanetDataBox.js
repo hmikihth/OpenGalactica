@@ -39,18 +39,18 @@ const PlanetDataBox = () => {
 
             <Grid container size={6} sx={{ p:1, borderLeft: '1px solid black'}}>    
     
-                    <Grid size={12}>
-                        <Typography align='center' sx={{ fontSize:'0.8em', fontWeight:'bold' }} >
-                            {planetData.name} 
-                        </Typography>
-                    </Grid>
-                    <Grid size={12}>
-                        <Typography align='center' sx={{ fontSize:'0.8em', fontWeight:'bold' }} >
-                            <FontAwesomeIcon icon={faGlobe} />
-                            &nbsp;
-                            ( {planetData.coordinates} )
-                        </Typography>
-                    </Grid>
+                <Grid size={12}>
+                    <Typography align='center' sx={{ fontSize:'0.8em', fontWeight:'bold' }} >
+                        {planetData.name} 
+                    </Typography>
+                </Grid>
+                <Grid size={12} sx={{ paddingBottom:'0.8em' }}>
+                    <Typography align='center' sx={{ fontSize:'0.8em', fontWeight:'bold' }} >
+                        <FontAwesomeIcon icon={faGlobe} />
+                        &nbsp;
+                        ( {planetData.coordinates} )
+                    </Typography>
+                </Grid>
     
                 <Grid size={6}>
                     <Typography align='left' sx={{ fontSize:'0.7em', fontWeight:'bold' }} >

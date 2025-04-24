@@ -121,12 +121,12 @@ class Sol(models.Model):
     @property
     def incoming_fleets(self):
         from .fleet import Fleet
-        return Fleet.objects.filter(target__in=self.planets)
+        return Fleet.objects.filter(target__in=self.planets, task="move")
 
     @property
     def outgoing_fleets(self):
         from .fleet import Fleet
-        return Fleet.objects.filter(owner__in=self.planets).exclude(target__isnull=True)
+        return Fleet.objects.filter(owner__in=self.planets, task="move").exclude(target__isnull=True)
 
         
 class CommanderVote(models.Model):

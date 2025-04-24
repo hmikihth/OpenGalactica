@@ -137,19 +137,78 @@ class FleetSerializer(serializers.ModelSerializer):
         return "On base"
 
 
-class StatusSerializer(serializers.ModelSerializer):
+class IncomingSerializer(serializers.ModelSerializer):
     target = serializers.SerializerMethodField()
     owner = serializers.SerializerMethodField()
+    species = serializers.SerializerMethodField()
+    alliance = serializers.SerializerMethodField()
+    points = serializers.SerializerMethodField()
+    ships = serializers.SerializerMethodField()
+    arrival = serializers.SerializerMethodField()
 
     class Meta:
         model = Fleet
-        fields = ['task', 'distance', 'target', 'owner', 'role']
+        fields = ['role', 'species', 'owner', 'alliance', 'points', 'ships', 'distance', 'arrival', 'target']
 
     def get_target(self, obj):
         return str(obj.target)
         
     def get_owner(self, obj):
         return str(obj.owner)
+        
+    def get_species(self, obj):
+        return obj.owner.species
+        
+    def get_alliance(self, obj):
+        return f"#{obj.owner.alliance.identifier}"
+        
+    def get_points(self, obj):
+        return obj.owner.points
+        
+    def get_ships(self, obj):
+        return obj.n_ships
+        
+    def get_arrival(self, obj):
+        from engine.models import Round
+        round = Round.objects.filter(active=True).order_by("number").last()
+        return  round.turn + obj.distance
+        
+        
+class OutgoingSerializer(serializers.ModelSerializer):
+    target = serializers.SerializerMethodField()
+    owner = serializers.SerializerMethodField()
+    species = serializers.SerializerMethodField()
+    alliance = serializers.SerializerMethodField()
+    points = serializers.SerializerMethodField()
+    ships = serializers.SerializerMethodField()
+    arrival = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Fleet
+        fields = ['role', 'owner', 'ships', 'distance', 'arrival', 'species', 'target', 'alliance', 'points']
+
+    def get_target(self, obj):
+        return str(obj.target)
+        
+    def get_owner(self, obj):
+        return str(obj.owner)
+        
+    def get_species(self, obj):
+        return obj.target.species
+        
+    def get_alliance(self, obj):
+        return f"#{obj.target.alliance.identifier}"
+        
+    def get_points(self, obj):
+        return obj.target.points
+        
+    def get_ships(self, obj):
+        return obj.n_ships
+        
+    def get_arrival(self, obj):
+        from engine.models import Round
+        round = Round.objects.filter(active=True).order_by("number").last()
+        return  round.turn + obj.distance
         
 
 class ResearchSerializer(serializers.ModelSerializer):

@@ -23,7 +23,7 @@ from game.serializers import (
     SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
     ShipSerializer, AvailableShipSerializer, FleetSerializer, ResearchSerializer, 
-    MessageListSerializer, MessageDetailSerializer, CommunicationSerializer, StatusSerializer
+    MessageListSerializer, MessageDetailSerializer, CommunicationSerializer, IncomingSerializer, OutgoingSerializer
 )
 
 # Public Viewsets
@@ -564,7 +564,7 @@ class SolIncomingViewSet(viewsets.ViewSet):
     def list(self, request):
         planet = Planet.objects.get(user=request.user)
 
-        serializer = StatusSerializer(planet.sol.incoming_fleets, many=True)
+        serializer = IncomingSerializer(planet.sol.incoming_fleets, many=True)
         return Response(serializer.data)
 
         
@@ -574,5 +574,25 @@ class SolOutgoingViewSet(viewsets.ViewSet):
     def list(self, request):
         planet = Planet.objects.get(user=request.user)
 
-        serializer = StatusSerializer(planet.sol.outgoing_fleets, many=True)
+        serializer = OutgoingSerializer(planet.sol.outgoing_fleets, many=True)
+        return Response(serializer.data)
+
+
+class AllianceIncomingViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        planet = Planet.objects.get(user=request.user)
+
+        serializer = IncomingSerializer(planet.alliance.incoming_fleets, many=True)
+        return Response(serializer.data)
+
+        
+class AllianceOutgoingViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        planet = Planet.objects.get(user=request.user)
+
+        serializer = OutgoingSerializer(planet.alliance.outgoing_fleets, many=True)
         return Response(serializer.data)

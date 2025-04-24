@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 
 from .ship import Ship
 from .round import Round
@@ -19,6 +20,13 @@ class Fleet(models.Model):
     @property
     def ships(self):
         return Ship.objects.filter(fleet=self)
+
+    @property
+    def n_ships(self):
+        """ Number of ships """
+#        return sum(map(lambda e:e.quantity, self.ships))
+#        return self.ships.aggregate(Sum("quantity"))
+        return sum(self.ships.values_list("quantity", flat=True))
         
     @property
     def points(self):

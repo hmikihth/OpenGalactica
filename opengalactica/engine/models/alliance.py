@@ -151,3 +151,13 @@ class Alliance(models.Model):
     def set_news(self, content):
         self.news = content
         self.save()
+
+    @property
+    def incoming_fleets(self):
+        from .fleet import Fleet
+        return Fleet.objects.filter(target__in=self.members, task="move")
+
+    @property
+    def outgoing_fleets(self):
+        from .fleet import Fleet
+        return Fleet.objects.filter(owner__in=self.members, task="move").exclude(target__isnull=True)
