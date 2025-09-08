@@ -1,6 +1,6 @@
 asgiref==3.9.1
 Django==5.1.7
-django-cors-headers==4.7.0
+django-cors-headers==4.8.0
 djangorestframework==3.16.0
 pillow==11.3.0
 sqlparse==0.5.3
