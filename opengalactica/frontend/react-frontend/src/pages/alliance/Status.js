@@ -231,7 +231,7 @@ const AllianceStatus = () => {
   }
 
   return (
-    <Box p={2}>
+    <Box p={2} sx={{ backgroundColor: '#222222' }}>
       <IncomingTable title="Alliance Incoming Fleets" fleets={incoming} />
       <OutgoingTable title="Alliance Outgoing Fleets" fleets={outgoing} />
     </Box>

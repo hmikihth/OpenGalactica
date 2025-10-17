@@ -15,7 +15,7 @@ class ShipModel(models.Model):
     target1 = models.CharField(max_length=8, default="-")
     target2 = models.CharField(max_length=8, default="-")
     target3 = models.CharField(max_length=8, default="-")
-    weapon_type = models.CharField(max_length=8, default="std")
+    weapon_type = models.CharField(max_length=16, default="std")
     initiative = models.IntegerField(default=0)
     evasion = models.IntegerField(default=0)
     weapon_count = models.IntegerField(default=0)
@@ -42,7 +42,12 @@ class ShipModel(models.Model):
     @property
     def points(self):
         return self.cost * 0.1
-    
+        
+    def can_produce(self, planet):
+        if self.species == "Extra":
+            return True #TODO: check active extra
+        # TODO: check tech requirements
+        return self.species == planet.species
 
 class ShipProto():
     loss = 0
@@ -131,6 +136,18 @@ class ShipProto():
         return (self.target1, self.target2, self.target3)
 
     @property
+    def travel_sol(self):
+        return self.ship_model.travel_sol
+
+    @property
+    def travel_gal(self):
+        return self.ship_model.travel_gal
+
+    @property
+    def travel_uni(self):
+        return self.ship_model.travel_uni
+
+    @property
     def quantity(self):
         return self._quantity
 
@@ -214,8 +231,6 @@ class ShipProto():
             total_damage -= d
             if firing_ship.weapon_type == "thief":
                 d = self.hit_steal(int(d*accuracy))
-#        print(  self.name, "Evasion:", self.evasion, "HP:", self.hp, "Ratio:", round(ratio,2), "Quantity:", self.quantity, "R:", self.remaining, 
-#                "C:", self.combat_ready, "NL:",self.new_loss,"NB:", self.new_blocked)
         return total_damage
 
     def select_target(self, target, ships):
@@ -243,6 +258,31 @@ class Ship(models.Model, ShipProto):
     @property
     def fuel_cost(self):
         return self.ship_model.fuel * self.quantity
+
+    def scrap(self, quantity):
+        if quantity > self.quantity:
+            raise ValueError("Not enough ships to scrap")
+
+        self.quantity -= quantity
+        self.save(update_fields=['quantity'])
+
+        ship_model = self.ship_model
+        planet = self.fleet.owner
+
+        metal = int(ship_model.metal * quantity * 0.5)
+        crystal = int(ship_model.crystal * quantity * 0.5)
+        narion = int(ship_model.narion * quantity * 0.5)
+        
+        planet.metal += metal
+        planet.crystal += crystal
+        planet.narion += narion
+        planet.save(update_fields=['metal', 'crystal', 'narion'])
+
+        return {
+            'metal': metal,
+            'crystal': crystal,
+            'narion': narion,
+        }
     
 class ShipProduction(models.Model):
     planet = models.ForeignKey("Planet", on_delete=models.CASCADE)

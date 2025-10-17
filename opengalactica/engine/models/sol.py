@@ -15,6 +15,9 @@ class Sol(models.Model):
     points_before = models.IntegerField(default=0)
     ministers_message = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.name} ({self.x}:{self.y})"
+        
     @property
     def planets(self):
         return Planet.objects.filter(x=self.x, y=self.y).order_by("z")

@@ -89,10 +89,14 @@ class PlanetResearch(models.Model):
                 research=self.research.requirement, 
                 completed=True
             ).exists()
-        return True
+        return not self.started
 
     def __str__(self):
         return f"{self.planet} - {self.research.name} (Turns left: {self.turns_remaining})"
+
+    @property
+    def name(self):
+        return self.research.name
        
     @property
     def bonus(self):
@@ -107,6 +111,30 @@ class PlanetResearch(models.Model):
     @property
     def points(self):
         return self.research.points
+        
+    @property
+    def research_type(self):
+        return self.research.research_type
+        
+    @property
+    def metal(self):
+        return self.research.metal
+
+    @property
+    def crystal(self):
+        return self.research.crystal
+
+    @property
+    def narion(self):
+        return self.research.narion
+
+    @property
+    def building(self):
+        return self.research.building
+
+    @property
+    def development_time(self):
+        return self.research.development_time
 
 
 class SolResearch(models.Model):

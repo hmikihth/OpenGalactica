@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box, Table, TableBody, TableRow, TableCell, Link, CircularProgress } from '@mui/material';
-import axios from 'axios';
+import api from '../../utils/api';
 
 const Communication = () => {
   const [data, setData] = useState(null);
@@ -10,7 +10,7 @@ const Communication = () => {
   useEffect(() => {
     const fetchCommunicationData = async () => {
       try {
-        const response = await axios.get('/api/v1/communication');
+        const response = await api.get('communication');
         setData(response.data);
       } catch (err) {
         setError('Failed to load communication data.');

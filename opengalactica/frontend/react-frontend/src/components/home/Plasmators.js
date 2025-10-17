@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 import MobileTableCell from "../../components/MobileTableCell";
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
+
+import api from '../../utils/api';
 
 const Plasmators = () => {
   const [plasmatorsData, setPlasmatorsData] = useState([]);
   const [totalPlasmators, setTotalPlasmators] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPlasmatorsData = async () => {
       try {
-        const response = await fetch("/api/v1/plasmators/");
-        if (response.ok) {
-          const data = await response.json();
-          setPlasmatorsData(data);
-          
-          console.log(data);
-          
-        } else {
-          console.error("Failed to fetch plasmators data");
-        }
+        const response = await api.get("plasmators/");
+        setPlasmatorsData(response.data);
       } catch (error) {
         console.error("Error fetching plasmators data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPlasmatorsData();
   }, []);
 
+  
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
+
+  
   return (
     <Box>
       <Typography variant="h6" component="div" gutterBottom>

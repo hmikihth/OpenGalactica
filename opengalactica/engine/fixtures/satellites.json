@@ -1,0 +1,112 @@
+[
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Rocket",
+        "code": "rocket",
+        "description": "Necessary to launch probes",
+        "metal": 250,
+        "crystal": 500,
+        "narion": 250,
+        "production_time": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Plasmator Probe",
+        "code": "plasmator",
+        "description": "Searches for extractable plasmators in unexplored space",
+        "metal": 500,
+        "crystal": 1000,
+        "narion": 500,
+        "production_time": 4,
+        "requires_rocket": true,
+        "rocket_required_count": 1
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Planet Probe",
+        "code": "planet",
+        "description": "Scans target planet's resources, constructions, fleet, and defenses",
+        "metal": 750,
+        "crystal": 1500,
+        "narion": 750,
+        "production_time": 5,
+        "requires_rocket": true,
+        "rocket_required_count": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Ship Probe",
+        "code": "ship",
+        "description": "Scans target planet's ships by type and quantity",
+        "metal": 1000,
+        "crystal": 2000,
+        "narion": 1000,
+        "production_time": 6,
+        "requires_rocket": true,
+        "rocket_required_count": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Defense Probe",
+        "code": "defense",
+        "description": "Scans the target planet's defense system (PDS)",
+        "metal": 1250,
+        "crystal": 2500,
+        "narion": 1250,
+        "production_time": 7,
+        "requires_rocket": true,
+        "rocket_required_count": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Military Probe",
+        "code": "military",
+        "description": "Reports on fleets: composition and activity",
+        "metal": 1500,
+        "crystal": 3000,
+        "narion": 1500,
+        "production_time": 8,
+        "requires_rocket": true,
+        "rocket_required_count": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Information Probe",
+        "code": "information",
+        "description": "Hacks target's communications for recent events, battle history",
+        "metal": 2000,
+        "crystal": 4000,
+        "narion": 2000,
+        "production_time": 10,
+        "requires_rocket": true,
+        "rocket_required_count": 2
+    }
+  },
+  {
+    "model": "engine.SatelliteType",
+    "fields": {
+        "name": "Interceptor Satellite",
+        "code": "interceptor",
+        "description": "Suicide satellite that destroys incoming probes",
+        "metal": 1500,
+        "crystal": 1500,
+        "narion": 2250,
+        "production_time": 6,
+        "requires_rocket": false,
+        "rocket_required_count": 0
+    }
+  }
+]

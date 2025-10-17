@@ -11,6 +11,14 @@ class Market(models.Model):
 
 class PlanetEconomy:
     @property
+    def construction_count(self):
+        return len(self.completed_researches.filter(research__building=False))
+
+    @property
+    def development_count(self):
+        return len(self.completed_researches.filter(research__building=True))
+
+    @property
     def active_plasmators(self):
         return self.metal_plasmator + self.crystal_plasmator + self.narion_plasmator
         
@@ -71,19 +79,19 @@ class PlanetEconomy:
     def gross_metal_production(self):
         metal = self.planet_metal_production + self.metal_plasmator * self.plasmator_production
         metal *= self.production_minister_bonus
-        return metal
+        return int(metal)
 
     @property
     def gross_crystal_production(self):
         crystal = self.planet_crystal_production + self.crystal_plasmator * self.plasmator_production
         crystal *= self.production_minister_bonus
-        return crystal
+        return int(crystal)
 
     @property
     def gross_narion_production(self):
         narion = self.planet_narion_production + self.narion_plasmator * self.plasmator_production
         narion *= self.production_minister_bonus
-        return narion
+        return int(narion)
 
     @property
     def metal_tax(self):

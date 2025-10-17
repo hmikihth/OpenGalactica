@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 import MobileTableCell from "../../components/MobileTableCell";
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
+import api from '../../utils/api';
 
 const PDS = () => {
   const [pdsData, setPdsData] = useState([]);
   const [totalPDS, setTotalPDS] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPDSData = async () => {
       try {
-        const response = await fetch("/api/v1/pds/");
-        if (response.ok) {
-          const data = await response.json();
-          setPdsData(data);
+        const response = await api.get("pds/");
+        setPdsData(response.data);
 
-          // Calculate the total number of PDS
-          const total = data.reduce((sum, item) => sum + item.quantity, 0);
-          setTotalPDS(total);
-        } else {
-          console.error("Failed to fetch PDS data");
-        }
+        // Calculate the total number of PDS
+        const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
+        setTotalPDS(total);
       } catch (error) {
         console.error("Error fetching PDS data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPDSData();
   }, []);
+
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
 
   return (
     <Box>

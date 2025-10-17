@@ -1,7 +1,9 @@
 from django.db import models
+from django.utils import timezone
 
 class SatelliteType(models.Model):
     name = models.CharField(max_length=128)
+    code = models.CharField(max_length=128, null=True, blank=True)
     description = models.TextField()
     metal = models.IntegerField()
     crystal = models.IntegerField()
@@ -82,3 +84,27 @@ class SatelliteProduction(models.Model):
 
     def __str__(self):
         return f"{self.planet} - {self.satellite_type.name} (Turns left: {self.turns_remaining})"
+        
+
+class ProbeReport(models.Model):
+    PROBE_TYPE_CHOICES = [
+        ('plasmator', 'Plasmator Probe'),
+        ('planet', 'Planet Probe'),
+        ('ship', 'Ship Probe'),
+        ('defense', 'Defense Probe'),
+        ('military', 'Military Probe'),
+        ('information', 'Information Probe'),
+    ]
+
+    probe_type = models.CharField(max_length=32, choices=PROBE_TYPE_CHOICES)
+    sender_planet = models.ForeignKey('Planet', on_delete=models.CASCADE, related_name='sent_probes')
+    target_planet = models.ForeignKey('Planet', on_delete=models.CASCADE, related_name='probe_reports')
+
+    round = models.IntegerField()
+    turn = models.IntegerField()
+    server_time = models.DateTimeField(default=timezone.now)
+
+    result_json = models.JSONField()
+
+    def __str__(self):
+        return f"{self.get_probe_type_display()} to {self.target_planet} at {self.round}:{self.turn}"

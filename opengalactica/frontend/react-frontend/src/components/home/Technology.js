@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress, Table, TableBody, TableRow } from '@mui/material';
 import MobileTableCell from '../../components/MobileTableCell';
-import axios from 'axios';
+
+import api from '../../utils/api';
 
 const Technology = () => {
     const [technologyData, setTechnologyData] = useState(null);
@@ -11,7 +12,7 @@ const Technology = () => {
     useEffect(() => {
         const fetchTechnology = async () => {
             try {
-                const response = await axios.get('/api/v1/home-technology');
+                const response = await api.get('home-technology');
                 setTechnologyData(response.data);
             } catch (err) {
                 setError('Failed to fetch technology data.');

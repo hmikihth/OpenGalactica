@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from engine.models import (
     Species, ShipModel, Alliance, Sol, Planet, News, Encyclopedia,
-    StockedSatellite, Ship, Fleet, PlanetResearch, Message
+    SatelliteType, Ship, Fleet, PlanetResearch, Message
 )
 
 # Public Serializers
@@ -60,6 +60,10 @@ class PlanetDataSerializer(serializers.ModelSerializer):
     point_diff = serializers.SerializerMethodField()
     xp_diff = serializers.SerializerMethodField()
     coordinates = serializers.SerializerMethodField()
+    is_own = serializers.SerializerMethodField()
+    sol = serializers.SerializerMethodField()
+    alliance = serializers.SerializerMethodField()
+    plasmators = serializers.SerializerMethodField()
 
     class Meta:
         model = Planet
@@ -74,6 +78,20 @@ class PlanetDataSerializer(serializers.ModelSerializer):
     def get_coordinates(self, obj):
         return obj.coordinates
 
+    def get_is_own(self, obj):
+        request = self.context.get('request', None)
+        if request:
+            return obj.user == request.user
+        return False
+
+    def get_sol(self, obj):
+        return str(obj.sol)
+
+    def get_alliance(self, obj):
+        return str(obj.alliance)
+
+    def get_plasmators(self, obj):
+        return str(obj.plasmators)
 
 class PDSSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -211,7 +229,7 @@ class OutgoingSerializer(serializers.ModelSerializer):
         return  round.turn + obj.distance
         
 
-class ResearchSerializer(serializers.ModelSerializer):
+class PlanetResearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlanetResearch
         fields = "__all__"
@@ -281,3 +299,220 @@ class PlasmatorSerializer(serializers.ModelSerializer):
         
     def get_total_plasmators(self, obj):
         return obj.metal_plasmator + obj.crystal_plasmator + obj.narion_plasmator + obj.neutral_plasmator
+
+class TechTreeSerializer(serializers.ModelSerializer):
+    name = serializers.CharField()
+    research_type = serializers.CharField()
+    development_time = serializers.IntegerField()
+    metal = serializers.IntegerField()
+    crystal = serializers.IntegerField()
+    narion = serializers.IntegerField()
+    building = serializers.BooleanField()
+    can_start = serializers.BooleanField()
+
+    class Meta:
+        model = PlanetResearch
+        fields = "__all__"
+
+
+class SingleResourceProductionSerializer(serializers.Serializer):
+    amount = serializers.FloatField()
+    plasmator_income = serializers.FloatField()
+    planet_income = serializers.FloatField()
+    minister = serializers.FloatField()
+    tax = serializers.FloatField()
+    net_income = serializers.FloatField()
+    gross_income = serializers.FloatField()
+
+
+class ResourceProductionSerializer(serializers.Serializer):
+    metal = SingleResourceProductionSerializer()
+    crystal = SingleResourceProductionSerializer()
+    narion = SingleResourceProductionSerializer()
+    neutral = SingleResourceProductionSerializer()
+        
+from engine.models import ShipModel
+
+class ProductionShipModelSerializer(serializers.ModelSerializer):
+    produced = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ShipModel
+        fields = [
+            'id', 'name', 'ship_class',
+            'target1', 'target2', 'target3',
+            'metal', 'crystal', 'narion',
+            'production_time', 'produced'
+        ]
+
+    def get_produced(self, obj):
+        request = self.context.get('request', None)
+        planet = Planet.objects.get(user=request.user)
+        fleets = Fleet.objects.filter(owner=planet)
+        qty = sum(map(lambda e:e.quantity, Ship.objects.filter(ship_model=obj, fleet__in=fleets)))
+        return qty or 0
+
+class ProduceSerializer(serializers.Serializer):
+    ship_model = serializers.IntegerField()
+    quantity = serializers.IntegerField(min_value=1)
+
+
+from rest_framework import serializers
+
+class ShipScrapSerializer(serializers.Serializer):
+    ship_model = serializers.IntegerField()
+    quantity = serializers.IntegerField(min_value=1)
+
+class ShipOwnedSerializer(serializers.ModelSerializer):
+    ship_model_name = serializers.CharField(source='ship_model.name')
+
+    class Meta:
+        model = Ship
+        fields = ['id', 'ship_model', 'ship_model_name', 'quantity', 'metal', 'crystal', 'narion']
+
+class SatelliteTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SatelliteType
+        fields = [
+            'id', 'name', 'code', 'description',
+            'metal', 'crystal', 'narion',
+            'production_time', 'requires_rocket', 'rocket_required_count'
+        ]
+
+class ProduceSatelliteSerializer(serializers.Serializer):
+    satellite_type = serializers.PrimaryKeyRelatedField(queryset=SatelliteType.objects.all())
+    quantity = serializers.IntegerField(min_value=1)
+
+class FleetNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fleet
+        fields = ['id', 'name']
+
+class FleetFormationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fleet
+        fields = ['id', 'name', 'formation']
+
+
+class FleetControlSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fleet
+        fields = [
+            'id', 'name', 'task', 'status_display',
+            'task_display', 'role', 'distance', 'turns',
+            'target', 'base', 'x', 'y', 'z'
+        ]
+
+    status_display = serializers.SerializerMethodField()
+    task_display = serializers.SerializerMethodField()
+    x = serializers.SerializerMethodField()
+    y = serializers.SerializerMethodField()
+    z = serializers.SerializerMethodField()
+
+    def get_status_display(self, obj):
+        if obj.task == "move" and obj.role == "Attackers":
+            return f"on the way to {obj.target} (distance: {obj.distance} turns)"
+        elif obj.task == "move" and obj.role == "Defenders":
+            return f"on the way to {obj.target} (distance: {obj.distance} turns)"
+        elif obj.task == "return":
+            return f"returning from {obj.target} (distance: {obj.distance} turns)"
+        elif obj.task == "stand":
+            return "on base"
+        return "unknown"
+
+    def get_task_display(self, obj):
+        if obj.task == "move" and obj.role == "Attackers":
+            return f"attack - {obj.turns} turns"
+        elif obj.task == "move" and obj.role == "Attackers":
+            return f"attack - {obj.turns} turns"
+        return "-"
+        
+    def get_x(self, obj):
+        if obj.target:
+            return obj.target.x
+        return None
+
+    def get_y(self, obj):
+        if obj.target:
+            return obj.target.y
+        return None
+
+    def get_z(self, obj):
+        if obj.target:
+            return obj.target.z
+        return None
+
+class FleetsShipModelSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField(required=True, allow_blank=False)
+    ship_class = serializers.CharField(required=False, allow_blank=True)
+    target1 = serializers.CharField(required=False, allow_blank=True)
+    target2 = serializers.CharField(required=False, allow_blank=True)
+    target3 = serializers.CharField(required=False, allow_blank=True)
+    base = serializers.IntegerField()
+    fleet1 = serializers.IntegerField()
+    fleet2 = serializers.IntegerField()
+    fleet3 = serializers.IntegerField()
+    fleet4 = serializers.IntegerField()
+
+    base_id = serializers.IntegerField()
+    fleet1_id = serializers.IntegerField()
+    fleet2_id = serializers.IntegerField()
+    fleet3_id = serializers.IntegerField()
+    fleet4_id = serializers.IntegerField()
+
+    class Meta:
+        fields = "__all__"
+
+class FleetsFuelCostSerializer(serializers.Serializer):
+    name = serializers.CharField(required=True, allow_blank=False)
+
+    fleet1_fuel = serializers.IntegerField()
+    fleet2_fuel = serializers.IntegerField()
+    fleet3_fuel = serializers.IntegerField()
+    fleet4_fuel = serializers.IntegerField()
+
+    fleet1_distance = serializers.IntegerField()
+    fleet2_distance = serializers.IntegerField()
+    fleet3_distance = serializers.IntegerField()
+    fleet4_distance = serializers.IntegerField()
+
+class FcFleetListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fleet
+        fields = ['id', 'name']
+
+        
+from engine.models import ProbeReport
+
+class ProbeReportSerializer(serializers.ModelSerializer):
+    alliance_identifier = serializers.SerializerMethodField()
+    target_planet_name = serializers.SerializerMethodField()
+    coordinates = serializers.SerializerMethodField()
+    points = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ProbeReport
+        fields = '__all__'
+
+    def get_alliance_identifier(self, obj):
+        if obj.target_planet.alliance:
+            return obj.target_planet.alliance.identifier
+
+    def get_target_planet_name(self, obj):
+        if obj.target_planet.name:
+            return obj.target_planet.name
+
+    def get_coordinates(self, obj):
+        return obj.target_planet.coordinates
+
+    def get_points(self, obj):
+        return obj.target_planet.points
+        
+        
+from engine.models import Notification
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'
+

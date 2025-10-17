@@ -4,7 +4,19 @@ from .fleet import Fleet
 class PlanetWarfare:
     @property
     def fleets(self):
-        return Fleet.objects.filter(owner=self)
+        return Fleet.objects.filter(owner=self).order_by("-base","id")
+
+    @property
+    def base(self):
+        return Fleet.objects.get(owner=self, base=True)
+
+    @property
+    def n_ships(self):
+        return sum(map(lambda e:e.n_ships, self.fleets))
+    
+    @property
+    def n_pds(self):
+        return self.base.n_pds
     
     @property
     def is_protected(self):
@@ -58,10 +70,8 @@ class PlanetWarfare:
             multiplier = 2
             if self.y == other.y:
                 multiplier = 1
+        return fleet.fuel_cost * multiplier
                     
-        ships = Ship.objects.filter(fleet=fleet)
-        return sum(map(lambda e: e.fuel_cost * multiplier,  ships))
-
     def battle(self):
         from engine.common import Battle
         battle = Battle(self.attackers, self.defenders + self.fleets_on_base)

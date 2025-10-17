@@ -17,8 +17,10 @@ import {
 
 import NotifContentFormatter from './NotifContentFormatter';
 
+import api from '../utils/api';
 
-const tabLabels = ['All', 'War', 'Research', 'Building', 'Production', 'News'];
+
+const tabLabels = ['All', 'War', 'Probe', 'Research', 'Building', 'Production', 'News'];
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -26,11 +28,9 @@ const Notifications = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/v1/notifications/')
-      .then((response) => response.json())
-      .then((data) => setNotifications(data))
-      .catch((error) => console.error('Error fetching notifications:', error))
-      .finally(() => setLoading(false));
+    api.get('notifications/').then(res => {
+      setNotifications(res.data.results || []);
+    }).finally(() => setLoading(false));
   }, []);
 
   const handleTabChange = (event, newValue) => {

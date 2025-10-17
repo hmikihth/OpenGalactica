@@ -20,12 +20,18 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from engine.views import auth_status, get_csrf_token, CustomLoginView, CustomLogoutView
+
 from game.urls import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include((router.urls, 'game'), namespace='v1')),
+    path('api/v1/auth/login/', CustomLoginView.as_view(), name='login'),
+    path('api/v1/auth/logout/', CustomLogoutView.as_view(), name='logout'),
+    path('api/v1/auth/status/', auth_status, name='auth-status'),
+    path('api/v1/auth/csrf/', get_csrf_token, name='get-csrf-token'),
     path('', TemplateView.as_view(template_name='index.html')),
 ]
 

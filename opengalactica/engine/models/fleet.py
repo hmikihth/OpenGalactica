@@ -19,14 +19,34 @@ class Fleet(models.Model):
 
     @property
     def ships(self):
-        return Ship.objects.filter(fleet=self)
+        return Ship.objects.filter(fleet=self, ship_model__pds=False)
+
+    @property
+    def pds(self):
+        return Ship.objects.filter(fleet=self, ship_model__pds=True)
+
+    @property
+    def fuel_cost(self):
+        return sum(map(lambda e:e.fuel_cost, self.ships))
+        
+    @property
+    def distances(self):
+        return {
+            'travel_sol':max([0, *map(lambda e:e.travel_sol, self.ships) ]),
+            'travel_gal':max([0, *map(lambda e:e.travel_gal, self.ships) ]),
+            'travel_uni':max([0, *map(lambda e:e.travel_uni, self.ships) ]),
+        }
+        
 
     @property
     def n_ships(self):
         """ Number of ships """
-#        return sum(map(lambda e:e.quantity, self.ships))
-#        return self.ships.aggregate(Sum("quantity"))
         return sum(self.ships.values_list("quantity", flat=True))
+        
+    @property
+    def n_pds(self):
+        """ Number of PDS """
+        return sum(self.pds.values_list("quantity", flat=True))
         
     @property
     def points(self):
@@ -64,11 +84,11 @@ class Fleet(models.Model):
             raise ValueError("Quantity must be a positive integer")
 
         # Check if the current fleet is moving
-        if self.task != "stand":
+        if self.task in ["move", "return"]:
             raise ValueError("Cannot swap ships from a moving fleet")
 
         # Check if the other fleet is moving
-        if other_fleet.task == "stand":
+        if other_fleet.task in ["move", "return"]:
             raise ValueError("Cannot swap ships to a moving fleet")
 
         # Get the ship from the current fleet
@@ -90,7 +110,7 @@ class Fleet(models.Model):
         
     def attack(self, turns, target):
         # Must raise ValueError when the fleet is already moving
-        if self.task != "stand":
+        if self.task and self.task != "stand":
             raise ValueError("Fleet is already moving")
 
         # Must raise ValueError when the fleet's owner is protected
@@ -126,11 +146,12 @@ class Fleet(models.Model):
         self.turns = turns
         self.target = target
         self.owner.narion -= fuel_cost
+        self.owner.save()
         self.save()
         
     def defend(self, turns, target):
         # Must raise ValueError when the fleet is already moving
-        if self.task != "stand":
+        if self.task and self.task != "stand":
             raise ValueError("Fleet is already moving")
             
         # Must raise ValueError when the fleet's owner is protected
@@ -158,6 +179,7 @@ class Fleet(models.Model):
         self.turns = turns
         self.target = target
         self.owner.narion -= fuel_cost
+        self.owner.save()
         self.save()
         
     def callback(self):

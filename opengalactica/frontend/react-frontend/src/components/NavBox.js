@@ -3,6 +3,8 @@ import { Box, CssBaseline, useMediaQuery, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
 import { Routes, Route } from 'react-router-dom';
 
+import protectedRoute from './navigation/ProtectedRoute';
+
 import Header from './navigation/Header';
 import NavAppBar from './navigation/AppBar';
 import BottomNav from './navigation/BottomNav';
@@ -22,6 +24,8 @@ import Messages from '../pages/Messages';
 import News from '../pages/News';
 import Notifications from '../pages/Notifications';
 import Notes from '../pages/Notes';
+import Login from '../pages/Login';
+
 
 import SolProfile from '../pages/sol/Profile';
 import SolPolitics from '../pages/sol/Politics';
@@ -48,6 +52,7 @@ import CreditsExtra from '../pages/credits/Extra';
 import CreditsAlliance from '../pages/credits/Alliance';
 import CreditsReminders from '../pages/credits/Reminders';
 
+import PortalHome from '../pages/portal/PortalHome';
 import Toplist from '../pages/portal/Toplist';
 import Encyklopedia from '../pages/portal/Encyklopedia';
 import Support from '../pages/portal/Support';
@@ -63,7 +68,7 @@ const MainContent = styled('main')(({ theme, isMobile, open }) => ({
   marginTop: isMobile ? appBarHeight : headerHeight + appBarHeight,
 }));
 
-export default function NavBox() {
+export default function NavBox({ isAuthenticated, setIsAuthenticated }) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpenModal = () => setOpen(true);
@@ -75,7 +80,7 @@ export default function NavBox() {
   const toggleModal = () => {
     setOpen(!open);
   };
-
+  
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -92,7 +97,9 @@ export default function NavBox() {
             bgcolor: '#888888',
           }}
         >
+          {isAuthenticated && (
           <Header />
+          )}
         </Box>
       )}
 
@@ -100,12 +107,17 @@ export default function NavBox() {
       <Box sx={{ height: isMobile ? 0 : headerHeight }} />
 
       {/* AppBar */}
-      <NavAppBar toggleModal={toggleModal} isMobile={isMobile} />
+      <NavAppBar 
+        toggleModal={toggleModal} 
+        isMobile={isMobile}   
+        isAuthenticated={isAuthenticated} 
+        setIsAuthenticated={setIsAuthenticated} 
+      />
 
       <MainMenuModal isMobile={isMobile} isOpen={open} onClose={handleCloseModal} />
    
       
-      {isMobile ? (
+      {isMobile & isAuthenticated ? (
         <BottomNav isMobile={isMobile} handleOpenModal={handleOpenModal} />
       ) : (
         <br />
@@ -114,50 +126,63 @@ export default function NavBox() {
 
       
       {/* Main Content */}
-      <MainContent isMobile={isMobile} open={open}>
+      <MainContent isMobile={isMobile} open={open} sx={{p:0}}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/research" element={<Research />} />
-          <Route path="/ships" element={<Ships />} />
-          <Route path="/pds" element={<PDS />} />
-          <Route path="/satellites" element={<Satellites />} />
-          <Route path="/fleet/control" element={<FleetControl />} />
-          <Route path="/fleet/exploring" element={<Exploring />} />
-          <Route path="/planet" element={<Planet />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/notes" element={<Notes />} />
-          
-          <Route path="/sol/profile" element={<SolProfile />} />
-          <Route path="/sol/politics" element={<SolPolitics />} />
-          <Route path="/sol/forum" element={<SolForum />} />
-          <Route path="/sol/status" element={<SolStatus />} />
-          <Route path="/sol/temp" element={<TempSol />} />
-          
-          <Route path="/alliance/profile" element={<AllianceProfile />} />
-          <Route path="/alliance/members" element={<AllianceMembers />} />
-          <Route path="/alliance/forum" element={<AllianceForum />} />
-          <Route path="/alliance/status" element={<AllianceStatus />} />
-          <Route path="/alliance/attack" element={<AllianceAttack />} />
-          <Route path="/alliance/defense" element={<AllianceDefense />} />
-          <Route path="/alliance/diplomacy" element={<AllianceDiplomacy />} />
-          <Route path="/alliance/exploring" element={<AllianceExploring />} />
-          <Route path="/alliance/research" element={<AllianceResearch />} />
-          <Route path="/alliance/treasury" element={<AllianceTreasury />} />
-          <Route path="/alliance/voting" element={<AllianceVoting />} />
-          
-          <Route path="/credits/info" element={<CreditsInfo />} />
-          <Route path="/credits/charge" element={<CreditsCharge />} />
-          <Route path="/credits/history" element={<CreditsHistory />} />
-          <Route path="/credits/extra" element={<CreditsExtra />} />
-          <Route path="/credits/alliance-extra" element={<CreditsAlliance />} />
-          <Route path="/credits/reminders" element={<CreditsReminders />} />
+            
+            /* PUBLIC ROUTES */
 
-          <Route path="/portal/toplist" element={<Toplist />} />
-          <Route path="/portal/news" element={<News />} />
-          <Route path="/portal/encyklopedia" element={<Encyklopedia />} />
-          <Route path="/portal/support" element={<Support />} />
+            <Route
+              path="/login"
+              element={<Login onLoginSuccess={() => setIsAuthenticated(true)} />}
+            />
+                        
+            <Route path="/portal/" element={<PortalHome />} />
+            <Route path="/portal/toplist" element={<Toplist />} />
+            <Route path="/portal/news" element={<News />} />
+            <Route path="/portal/encyklopedia" element={<Encyklopedia />} />
+            <Route path="/portal/support" element={<Support />} />
+
+            
+            /* PROTECTED ROUTES */
+       
+            {protectedRoute("/", <Home />, isAuthenticated)}
+
+            {protectedRoute("/resources", <Resources />, isAuthenticated)}
+            {protectedRoute("/research", <Research />, isAuthenticated)}
+            {protectedRoute("/ships", <Ships />, isAuthenticated)}
+            {protectedRoute("/pds", <PDS />, isAuthenticated)}
+            {protectedRoute("/satellites", <Satellites />, isAuthenticated)}
+            {protectedRoute("/fleet/control", <FleetControl />, isAuthenticated)}
+            {protectedRoute("/fleet/exploring", <Exploring />, isAuthenticated)}
+            {protectedRoute("/planet", <Planet />, isAuthenticated)}
+            {protectedRoute("/messages", <Messages />, isAuthenticated)}
+            {protectedRoute("/notifications", <Notifications />, isAuthenticated)}
+            {protectedRoute("/notes", <Notes />, isAuthenticated)}
+          
+            {protectedRoute("/sol/profile", <SolProfile />, isAuthenticated)}
+            {protectedRoute("/sol/politics", <SolPolitics />, isAuthenticated)}
+            {protectedRoute("/sol/forum", <SolForum />, isAuthenticated)}
+            {protectedRoute("/sol/status", <SolStatus />, isAuthenticated)}
+            {protectedRoute("/sol/temp", <TempSol />, isAuthenticated)}
+          
+            {protectedRoute("/alliance/profile", <AllianceProfile />, isAuthenticated)}
+            {protectedRoute("/alliance/members", <AllianceMembers />, isAuthenticated)}
+            {protectedRoute("/alliance/forum", <AllianceForum />, isAuthenticated)}
+            {protectedRoute("/alliance/status", <AllianceStatus />, isAuthenticated)}
+            {protectedRoute("/alliance/attack", <AllianceAttack />, isAuthenticated)}
+            {protectedRoute("/alliance/defense", <AllianceDefense />, isAuthenticated)}
+            {protectedRoute("/alliance/diplomacy", <AllianceDiplomacy />, isAuthenticated)}
+            {protectedRoute("/alliance/exploring", <AllianceExploring />, isAuthenticated)}
+            {protectedRoute("/alliance/research", <AllianceResearch />, isAuthenticated)}
+            {protectedRoute("/alliance/treasury", <AllianceTreasury />, isAuthenticated)}
+            {protectedRoute("/alliance/voting", <AllianceVoting />, isAuthenticated)}
+          
+            {protectedRoute("/credits/info", <CreditsInfo />, isAuthenticated)}
+            {protectedRoute("/credits/charge", <CreditsCharge />, isAuthenticated)}
+            {protectedRoute("/credits/history", <CreditsHistory />, isAuthenticated)}
+            {protectedRoute("/credits/extra", <CreditsExtra />, isAuthenticated)}
+            {protectedRoute("/credits/alliance-extra", <CreditsAlliance />, isAuthenticated)}
+            {protectedRoute("/credits/reminders", <CreditsReminders />, isAuthenticated)}
 
           </Routes>
       </MainContent>

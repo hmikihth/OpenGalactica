@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box, Link, CircularProgress } from '@mui/material';
-import axios from 'axios';
+import api from '../../utils/api';
 
 const News = () => {
   const [news, setNews] = useState(null);
@@ -10,7 +10,7 @@ const News = () => {
   useEffect(() => {
     const fetchLatestNews = async () => {
       try {
-        const response = await axios.get('/api/v1/latest-news');
+        const response = await api.get('latest-news');
         setNews(response.data);
       } catch (err) {
         setError('Failed to load the latest news.');

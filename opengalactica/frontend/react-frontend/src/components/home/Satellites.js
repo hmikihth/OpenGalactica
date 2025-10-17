@@ -1,33 +1,42 @@
 import React, { useEffect, useState } from "react";
 import MobileTableCell from "../../components/MobileTableCell";
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
+
+import api from '../../utils/api';
 
 const Satellites = () => {
   const [satelliteData, setSatelliteData] = useState([]);
   const [totalSatellites, setTotalSatellites] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSatelliteData = async () => {
       try {
-        const response = await fetch("/api/v1/satellites/");
-        if (response.ok) {
-          const data = await response.json();
-          setSatelliteData(data);
+        const response = await api.get("satellites/");
+        setSatelliteData(response.data);
 
-          // Calculate the total number of satellites
-          const total = data.reduce((sum, item) => sum + item.quantity, 0);
-          setTotalSatellites(total);
-        } else {
-          console.error("Failed to fetch satellites data");
-        }
+        // Calculate the total number of satellites
+        const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
+        setTotalSatellites(total);
       } catch (error) {
         console.error("Error fetching satellites data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSatelliteData();
   }, []);
 
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }  
+  
   return (
     <Box>
       <Typography variant="h6" component="div" gutterBottom>

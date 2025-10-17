@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import CardWrapper from './CardWrapper';
+import CardWrapper from '../CardWrapper';
 
 import News from './News';
 import Communication from './Communication';

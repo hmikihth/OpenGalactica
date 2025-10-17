@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box, CircularProgress, Card, CardContent } from '@mui/material';
-import axios from 'axios';
+
+import api from '../../utils/api';
 
 const AllianceNews = () => {
   const [news, setNews] = useState(null);
@@ -10,7 +11,7 @@ const AllianceNews = () => {
   useEffect(() => {
     const fetchAllianceNews = async () => {
       try {
-        const response = await axios.get('/api/v1/alliance-news');
+        const response = await api.get('alliance-news');
         setNews(response.data.news);
       } catch (err) {
         setError('Failed to load alliance news.');

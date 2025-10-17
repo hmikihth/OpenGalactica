@@ -1,3 +1,4 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from game.views import (
     TimeViewSet, SpeciesViewSet, ShipModelViewSet, AllianceToplistViewSet, 
@@ -7,8 +8,12 @@ from game.views import (
     ReceivedMessagesViewSet, SentMessagesViewSet, ReadMessageViewSet,
     CommunicationViewSet, MinistersMessageViewSet, AllianceNewsViewSet, LatestNewsViewSet,
     HomeTechnologyViewSet, PlasmatorViewSet, 
-    SolIncomingViewSet, SolOutgoingViewSet, AllianceIncomingViewSet, AllianceOutgoingViewSet
+    SolIncomingViewSet, SolOutgoingViewSet, AllianceIncomingViewSet, AllianceOutgoingViewSet,
+    TechTreeViewSet, ResourceProductionViewSet, ShipProductionViewSet, ShipScrapViewSet, 
+    SatelliteProductionViewSet, FleetSettingsViewSet, FleetStrategyViewSet, FleetControlViewSet,
+    ExploringViewSet, NotificationViewSet
 )
+
 
 router = DefaultRouter()
 
@@ -51,5 +56,19 @@ router.register(r'sol/outgoing', SolOutgoingViewSet, basename='sol-outgoing')
 router.register(r'alliance/incoming', AllianceIncomingViewSet, basename='alliance-incoming')
 router.register(r'alliance/outgoing', AllianceOutgoingViewSet, basename='alliance-outgoing')
 
+router.register(r'techtree', TechTreeViewSet, basename='techtree')
+router.register(r'resource-production', ResourceProductionViewSet, basename='resource-production')
+router.register(r'ship-production', ShipProductionViewSet, basename='ship-production')
+router.register(r'ship-scrap', ShipScrapViewSet, basename='ship-scrap')
+router.register(r'satellite-production', SatelliteProductionViewSet, basename='satellite-production')
 
-urlpatterns = router.urls
+router.register(r'fleet-settings', FleetSettingsViewSet, basename='fleet-settings')
+router.register(r'fleet-strategy', FleetStrategyViewSet, basename='fleet-strategy')
+router.register(r'fleet-control', FleetControlViewSet, basename='fleet-control')
+router.register(r'exploring', ExploringViewSet, basename='exploring')
+router.register(r'notifications', NotificationViewSet, basename='notifications')
+
+
+urlpatterns = [
+    *router.urls,
+]

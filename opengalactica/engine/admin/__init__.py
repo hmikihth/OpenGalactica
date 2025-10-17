@@ -7,3 +7,4 @@ from .alliances import *
 from .news import *
 from .planet_researches import *
 from .researches import *
+from .satellites import *

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Box, CircularProgress, Card, CardContent } from '@mui/material';
-import axios from 'axios';
+import api from '../../utils/api';
 
 const MinistersMessage = () => {
   const [message, setMessage] = useState(null);
@@ -10,7 +10,7 @@ const MinistersMessage = () => {
   useEffect(() => {
     const fetchMinistersMessage = async () => {
       try {
-        const response = await axios.get('/api/v1/ministers-message');
+        const response = await api.get('ministers-message');
         setMessage(response.data.ministers_message);
       } catch (err) {
         setError('Failed to load minister\'s message.');

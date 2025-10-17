@@ -1,33 +1,42 @@
 import React, { useEffect, useState } from "react";
 import MobileTableCell from "../../components/MobileTableCell";
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
+
+import api from '../../utils/api';
 
 const Ships = () => {
   const [shipsData, setShipsData] = useState([]);
   const [totalShips, setTotalShips] = useState(0);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     const fetchShipsData = async () => {
       try {
-        const response = await fetch("/api/v1/ships/");
-        if (response.ok) {
-          const data = await response.json();
-          setShipsData(data);
+        const response = await api.get("ships/");
+        setShipsData(response.data);
 
-          // Calculate the total number of ships
-          const total = data.reduce((sum, item) => sum + item.quantity, 0);
-          setTotalShips(total);
-        } else {
-          console.error("Failed to fetch ships data");
-        }
+        // Calculate the total number of ships
+        const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
+        setTotalShips(total);
       } catch (error) {
         console.error("Error fetching ships data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchShipsData();
   }, []);
 
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
+  
   return (
     <Box>
       <Typography variant="h6" component="div" gutterBottom>

@@ -12,6 +12,7 @@ const StatusButton = ({ icon, label, color, isMobile, href }) => {
         alignItems: 'center',
         justifyContent: isMobile ? 'center' : 'flex-start',
         textAlign: isMobile ? 'center' : 'left',
+        fontSize: '0.7em',
       }}
       href={href}
     >

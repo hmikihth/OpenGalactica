@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faCirclePlus, faChartSimple, faRectangleList, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import Grid from '@mui/material/Grid2';
-import {Typography} from '@mui/material';
+import {Typography, Avatar, Box} from '@mui/material';
 
 import NumberWithSpaces from '../../NumberWithSpaces'
 
@@ -33,11 +33,31 @@ const PlanetDataBox = () => {
        <Grid container size={12} sx={{ p: 1, m: 1, border: '2px solid black'}}>
 
             
-            <Grid container size={6} sx={{ p:1 }}>
-            PROFILE IMAGE
+            <Grid container 
+                size={4} 
+                sx={{ p:1 }}   
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+            >
+                  {planetData.profile_image ? (
+                    <Avatar
+                      src={planetData.profile_image}
+                      variant="square"
+                      alt="Planet Profile"
+                      sx={{ width:'auto', minWidth:120, maxWidth: 160, height: 120,}}
+                    />
+                  ) : (
+                    <Avatar
+                      variant="square"
+                      sx={{ width:'auto', minWidth:120, maxWidth: 160, height: 120, bgcolor: 'grey.300' }}
+                    >
+                      N/A
+                    </Avatar>
+                  )}
             </Grid>
 
-            <Grid container size={6} sx={{ p:1, borderLeft: '1px solid black'}}>    
+            <Grid container size={8} sx={{ p:1, borderLeft: '1px solid black'}}>    
     
                 <Grid size={12}>
                     <Typography align='center' sx={{ fontSize:'0.8em', fontWeight:'bold' }} >

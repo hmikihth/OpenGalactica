@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Table, TableBody, TableRow, Typography } from '@mui/material';
+import { Box, Table, TableBody, TableRow, Typography, CircularProgress } from '@mui/material';
 import MobileTableCell from '../../components/MobileTableCell';
+
+import api from '../../utils/api';
 
 const FleetsStatus = () => {
   const [fleets, setFleets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/v1/fleets')
-      .then((response) => response.json())
-      .then((data) => setFleets(data))
-      .catch((error) => console.error('Error fetching fleet data:', error));
+
+    const fetchFleets = async () => {
+      try {
+        const response = await api.get('fleets');
+        setFleets(response.data);
+      } catch (err) {
+        setError('Error fetching fleet data.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFleets();    
+  
   }, []);
 
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
+  
   return (
     <Box sx={{ overflowX: 'auto' }}>
       <Typography variant="h6" component="div" gutterBottom>

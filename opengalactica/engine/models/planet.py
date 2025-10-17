@@ -9,6 +9,7 @@ from .alliance_member import AllianceMember
 from .planet_economy import PlanetEconomy
 from .planet_warfare import PlanetWarfare
 from .planet_politics import PlanetPolitics
+from .planet_probing import PlanetProbing
 
 import os
 import re
@@ -24,7 +25,7 @@ def planet_profile_upload_path(instance, filename):
     filename = sanitize_filename(filename)
     return f"profiles/planet/{instance.id}/{filename}"
 
-class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, AllianceMember):
+class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, AllianceMember, PlanetProbing):
     name = models.CharField(max_length=128)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     species =  models.CharField(max_length=32, null=True, blank=True, default=None)
@@ -52,6 +53,8 @@ class Planet(models.Model, PlanetEconomy, PlanetWarfare, PlanetPolitics, Allianc
     on_holiday = models.BooleanField(default=False)
     
     profile_image = models.ImageField(upload_to=planet_profile_upload_path, blank=True, null=True)
+    slogan =  models.CharField(max_length=256, null=True, blank=True, default=None)
+
 
     def __str__(self):
         return f"{self.name} ({self.coordinates})"
