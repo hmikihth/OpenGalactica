@@ -879,11 +879,7 @@ class ShipScrapViewSet(viewsets.ViewSet):
 
         ship = get_object_or_404(Ship, fleet=base_fleet, ship_model_id=serializer.validated_data['ship_model'])
         quantity = serializer.validated_data['quantity']
-
-        try:
-            materials = ship.scrap(quantity)
-        except ValueError as e:
-            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        materials = ship.scrap(quantity)
 
         return Response({'message': 'Scrapped successfully', 'gained': materials})
 
@@ -897,10 +893,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'], url_path='available')
     def available(self, request):
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         qs = SatelliteType.objects.all()
         serializer = SatelliteTypeSerializer(qs, many=True, context={'planet': planet})
@@ -911,10 +904,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
         serializer = ProduceSatelliteSerializer(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
 
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         for item in serializer.validated_data:
             SatelliteProduction.objects.create(
@@ -928,10 +918,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'], url_path='line')
     def line(self, request):
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         productions = (
             SatelliteProduction.objects
