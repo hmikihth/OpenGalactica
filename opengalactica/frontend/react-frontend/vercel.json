@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "PUPPETEER_SKIP_DOWNLOAD": "true",
+      "PUPPETEER_EXECUTABLE_PATH": "/dev/null"
+    }
+  }
+}
