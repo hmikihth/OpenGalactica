@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Typography, CircularProgress } from '@mui/material';
 
