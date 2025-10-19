@@ -879,11 +879,7 @@ class ShipScrapViewSet(viewsets.ViewSet):
 
         ship = get_object_or_404(Ship, fleet=base_fleet, ship_model_id=serializer.validated_data['ship_model'])
         quantity = serializer.validated_data['quantity']
-
-        try:
-            materials = ship.scrap(quantity)
-        except ValueError as e:
-            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        materials = ship.scrap(quantity)
 
         return Response({'message': 'Scrapped successfully', 'gained': materials})
 
@@ -897,10 +893,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'], url_path='available')
     def available(self, request):
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         qs = SatelliteType.objects.all()
         serializer = SatelliteTypeSerializer(qs, many=True, context={'planet': planet})
@@ -911,10 +904,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
         serializer = ProduceSatelliteSerializer(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
 
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         for item in serializer.validated_data:
             SatelliteProduction.objects.create(
@@ -928,10 +918,7 @@ class SatelliteProductionViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'], url_path='line')
     def line(self, request):
-        try:
-            planet = Planet.objects.get(user=request.user)
-        except Planet.DoesNotExist:
-            return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
+        planet = Planet.objects.get(user=request.user)
 
         productions = (
             SatelliteProduction.objects
@@ -1071,25 +1058,19 @@ class FleetControlViewSet(viewsets.ViewSet):
         except Planet.DoesNotExist:
             return Response({'detail': 'Target planet not found.'}, status=404)
 
-        try:
-            if action_type == "attack":
-                fleet.attack(turns, target)
-            elif action_type == "defend":
-                fleet.defend(turns, target)
-            else:
-                return Response({'detail': 'Invalid action.'}, status=400)
-        except ValueError as e:
-            return Response({'detail': str(e)}, status=400)
+        if action_type == "attack":
+            fleet.attack(turns, target)
+        elif action_type == "defend":
+            fleet.defend(turns, target)
+        else:
+            return Response({'detail': 'Invalid action.'}, status=400)
 
         return Response({'message': 'Fleet task assigned.'})
 
     @action(detail=True, methods=['post'])
     def callback(self, request, pk=None):
         fleet = Fleet.objects.get(id=pk, owner__user=request.user)
-        try:
-            fleet.callback()
-        except ValueError as e:
-            return Response({'detail': str(e)}, status=400)
+        fleet.callback()
         return Response({'message': 'Fleet recalled.'})
 
 
@@ -1165,10 +1146,7 @@ class FleetControlViewSet(viewsets.ViewSet):
         except (Fleet.DoesNotExist, ShipModel.DoesNotExist):
             return Response({'detail': 'Fleet or ship model not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-        try:
-            source_fleet.swap_ship(target_fleet, ship_model, quantity)
-        except ValueError as e:
-            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        source_fleet.swap_ship(target_fleet, ship_model, quantity)
 
         return Response({'message': 'Ship transfer successful.'})
 
@@ -1221,38 +1199,33 @@ class ExploringViewSet(viewsets.ReadOnlyModelViewSet):
         except Planet.DoesNotExist:
             return Response({"detail": "Planet not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        try:
+        probe = SatelliteType.objects.get(code=data["probe_type"])
+        result = target_planet.probing(sender=sender_planet, probe=probe, quantity=data["quantity"])
+        if result:
+            current_round = Round.objects.all().order_by("number").last()
 
-            probe = SatelliteType.objects.get(code=data["probe_type"])
-            result = target_planet.probing(sender=sender_planet, probe=probe, quantity=data["quantity"])
-            if result:
-                current_round = Round.objects.all().order_by("number").last()
-
-                report = ProbeReport.objects.create(
-                    probe_type = data['probe_type'],
-                    sender_planet = sender_planet,
-                    target_planet = target_planet,
-                    round = current_round.number,
-                    turn = current_round.turn,
-                    result_json = result,
-                )
-                
-                Notification.objects.create(
-                    ntype = "Probe",
-                    planet = target_planet,
-                    round = current_round.number,
-                    turn = current_round.turn,
-                    content = {"report" : "The sensors detected probes. The type and origin of the probes are unknown."}
-                )
-                
-                return Response({
-                    "status": "probe launched",
-                    "report_id": report.id
-                }, status=status.HTTP_201_CREATED)
+            report = ProbeReport.objects.create(
+                probe_type = data['probe_type'],
+                sender_planet = sender_planet,
+                target_planet = target_planet,
+                round = current_round.number,
+                turn = current_round.turn,
+                result_json = result,
+            )
+            
+            Notification.objects.create(
+                ntype = "Probe",
+                planet = target_planet,
+                round = current_round.number,
+                turn = current_round.turn,
+                content = {"report" : "The sensors detected probes. The type and origin of the probes are unknown."}
+            )
+            
+            return Response({
+                "status": "probe launched",
+                "report_id": report.id
+            }, status=status.HTTP_201_CREATED)
         
-        except ValueError as e:
-            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
 from .serializers import NotificationSerializer
 
 class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
