@@ -1,8 +1,12 @@
 {
+  "env": {
+    "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true",
+    "PUPPETEER_SKIP_DOWNLOAD": "true",
+    "CI": "true"
+  },
   "build": {
     "env": {
-      "PUPPETEER_SKIP_DOWNLOAD": "true",
-      "PUPPETEER_EXECUTABLE_PATH": "/dev/null"
+      "REACT_APP_DISABLE_SSR": "true"
     }
   }
 }
