@@ -40,6 +40,7 @@ const App = ({ t }) => {
     <Router>
       <div className="App">
         <Helmet>
+            <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/43861621.js"></script>
           <title>{t('app_title')}</title>
           <meta name="description" content={t('app_description')} />
         </Helmet>
