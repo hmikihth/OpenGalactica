@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '@mui/material';
 
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ProbeLaunching from '../components/exploring/ProbeLaunching';
 import ProbeDatabase from '../components/exploring/ProbeDatabase';
 

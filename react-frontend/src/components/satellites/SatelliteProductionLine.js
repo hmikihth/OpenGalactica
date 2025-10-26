@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import {
   Card, CardContent, Table, TableHead, TableRow, TableCell, TableContainer,
-  TableBody, TextField, Button, Grid, Select, MenuItem
+  TableBody
 } from '@mui/material';
 import api from '../../utils/api';
-import { getCSRFToken } from '../../utils/csrf';
 
 const SatelliteProductionLine = () => {
   const [lines, setLines] = useState([]);

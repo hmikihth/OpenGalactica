@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faCirclePlus, faChartSimple, faRectangleList, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import Grid from '@mui/material/Grid2';
-import {Typography, Avatar, Box} from '@mui/material';
+import {Typography, Avatar} from '@mui/material';
 
 import NumberWithSpaces from '../../NumberWithSpaces'
 

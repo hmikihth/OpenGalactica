@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, CardHeader, CardContent, Box } from '@mui/material';
+import { Container, Card, CardHeader, CardContent } from '@mui/material';
 
 import ShipProduction from '../components/ships/ShipProduction';
 import ShipProductionLine from '../components/ships/ShipProductionLine';

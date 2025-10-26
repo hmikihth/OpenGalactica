@@ -41,7 +41,7 @@ const ProbeDatabase = ({ refreshTrigger }) => {
   };
 
   const renderPlanetReport = (data) => {
-    if (data?.report_name!="Planet Probe Report") return null;
+    if (data?.report_name!=="Planet Probe Report") return null;
 
     return (
       <>
@@ -162,8 +162,8 @@ const ProbeDatabase = ({ refreshTrigger }) => {
                   <TableCell>{fleet.status}</TableCell>
                   <TableCell>{fleet.formation}</TableCell>
                   <TableCell>{fleet.target || '-'}</TableCell>
-                  <TableCell>{fleet.status=="At home"?'-':fleet.distance}</TableCell>
-                  <TableCell>{(fleet.status=="Defend"||fleet.status=="Attack")?fleet.turns:'-'}</TableCell>
+                  <TableCell>{fleet.status==="At home"?'-':fleet.distance}</TableCell>
+                  <TableCell>{(fleet.status==="Defend"||fleet.status==="Attack")?fleet.turns:'-'}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

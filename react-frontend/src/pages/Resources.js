@@ -1,7 +1,5 @@
 import React from 'react';
-import { Container, Card, CardHeader, CardContent, Box } from '@mui/material';
-import { Grid } from '@mui/material';
-import CardWrapper from '../components/CardWrapper';
+import { Container, Card } from '@mui/material';
 
 import Market from '../components/resources/Market';
 import Probes from '../components/resources/Probes';

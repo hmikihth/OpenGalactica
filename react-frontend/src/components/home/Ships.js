@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MobileTableCell from "../../components/MobileTableCell";
 import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
 
 import api from '../../utils/api';
@@ -19,8 +18,9 @@ const Ships = () => {
         // Calculate the total number of ships
         const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
         setTotalShips(total);
-      } catch (error) {
-        console.error("Error fetching ships data:", error);
+      } catch (e) {
+        setError(e);
+        console.error("Error fetching ships data:", e);
       } finally {
         setLoading(false);
       }

@@ -58,7 +58,6 @@ import Encyklopedia from '../pages/portal/Encyklopedia';
 import Support from '../pages/portal/Support';
 
 
-const drawerIconsWidth = 60;
 const appBarHeight = 64;
 const headerHeight = 180;
 
@@ -129,7 +128,7 @@ export default function NavBox({ isAuthenticated, setIsAuthenticated }) {
       <MainContent isMobile={isMobile} open={open} sx={{p:0}}>
         <Routes>
             
-            /* PUBLIC ROUTES */
+            {/* PUBLIC ROUTES */}
 
             <Route
               path="/login"
@@ -143,7 +142,7 @@ export default function NavBox({ isAuthenticated, setIsAuthenticated }) {
             <Route path="/portal/support" element={<Support />} />
 
             
-            /* PROTECTED ROUTES */
+            {/* PROTECTED ROUTES */}
        
             {protectedRoute("/", <Home />, isAuthenticated)}
 

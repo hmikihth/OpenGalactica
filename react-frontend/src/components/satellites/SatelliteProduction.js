@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Card, CardContent, Table, TableHead, TableRow, TableCell,
-  TableBody, TextField, Button, Grid, Select, MenuItem
+  TableBody, TextField, Button, Grid
 } from '@mui/material';
 import api from '../../utils/api';
 import { getCSRFToken } from '../../utils/csrf';

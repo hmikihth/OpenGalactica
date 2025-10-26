@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  Card, CardContent, Typography, Grid, Button,
+  Card, CardContent, Grid, Button,
   TextField, Select, MenuItem, Table, TableHead, TableRow, TableCell, TableBody
 } from '@mui/material';
 import api from '../../utils/api';
@@ -16,7 +16,7 @@ const ShipScrapping = ({ endpoint = 'ship-scrap/owned' }) => {
 
   useEffect(() => {
     api.get(endpoint).then(res => setShips(res.data));
-  }, []);
+  });
 
   const selectedShip = ships.find(ship => ship.ship_model === selectedId);
   console.log(selectedShip);

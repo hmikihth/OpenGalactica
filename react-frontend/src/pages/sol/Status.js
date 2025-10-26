@@ -9,7 +9,6 @@ import {
   TableRow,
   Paper,
   useMediaQuery,
-  Divider,
 } from '@mui/material';
 
 import api from '../../utils/api';

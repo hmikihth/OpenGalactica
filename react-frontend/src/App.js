@@ -5,9 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Typography, CircularProgress } from '@mui/material';
 
 import NavBox from './components/NavBox';
-import logo from './logo.svg';
 import './App.css';
-import i18n from 'i18next';
 
 import api from './utils/api';
 

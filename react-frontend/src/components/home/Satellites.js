@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MobileTableCell from "../../components/MobileTableCell";
 import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
 
 import api from '../../utils/api';
@@ -19,7 +18,8 @@ const Satellites = () => {
         // Calculate the total number of satellites
         const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
         setTotalSatellites(total);
-      } catch (error) {
+      } catch (e) {
+        setError(e);
         console.error("Error fetching satellites data:", error);
       } finally {
         setLoading(false);
@@ -27,7 +27,7 @@ const Satellites = () => {
     };
 
     fetchSatelliteData();
-  }, []);
+  });
 
   if (loading) {
     return <CircularProgress />;

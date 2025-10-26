@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, CardHeader, CardContent, Box } from '@mui/material';
+import { Container, Card, CardHeader, CardContent} from '@mui/material';
 
 import SatelliteProduction from '../components/satellites/SatelliteProduction';
 import SatelliteProductionLine from '../components/satellites/SatelliteProductionLine';

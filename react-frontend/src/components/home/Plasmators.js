@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import MobileTableCell from "../../components/MobileTableCell";
 import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
 
 import api from '../../utils/api';
 
 const Plasmators = () => {
   const [plasmatorsData, setPlasmatorsData] = useState([]);
-  const [totalPlasmators, setTotalPlasmators] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,7 +13,8 @@ const Plasmators = () => {
       try {
         const response = await api.get("plasmators/");
         setPlasmatorsData(response.data);
-      } catch (error) {
+      } catch (e) {
+        setError(e);
         console.error("Error fetching plasmators data:", error);
       } finally {
         setLoading(false);
@@ -23,7 +22,7 @@ const Plasmators = () => {
     };
 
     fetchPlasmatorsData();
-  }, []);
+  });
 
   
   if (loading) {

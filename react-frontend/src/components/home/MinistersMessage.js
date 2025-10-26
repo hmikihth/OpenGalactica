@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, CircularProgress, Card, CardContent } from '@mui/material';
+import { Typography, Box, CircularProgress } from '@mui/material';
 import api from '../../utils/api';
 
 const MinistersMessage = () => {

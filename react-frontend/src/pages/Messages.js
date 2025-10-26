@@ -53,7 +53,7 @@ const Messages = () => {
         <TableHead>
           <TableRow>
             <TableCell><strong>Time</strong></TableCell>
-            <TableCell><strong>{ttype=='received'?'Sender':'Receiver'}</strong></TableCell>
+            <TableCell><strong>{ttype==='received'?'Sender':'Receiver'}</strong></TableCell>
             <TableCell><strong>Alliance</strong></TableCell>
             <TableCell><strong>Title</strong></TableCell>
             <TableCell><strong>Read</strong></TableCell>
@@ -63,7 +63,7 @@ const Messages = () => {
           {messages.map((msg) => (
             <TableRow key={msg.id}>
               <TableCell>{msg.round}:{msg.turn}:{new Date(msg.server_time).getSeconds()}</TableCell>
-              <TableCell>{ttype=='received'?msg.sender:msg.receiver}</TableCell>
+              <TableCell>{ttype==='received'?msg.sender:msg.receiver}</TableCell>
               <TableCell>{msg.alliance ?? '-'}</TableCell>
               <TableCell>{msg.title}</TableCell>
               <TableCell>{msg.read ? 'Yes' : 'No'}</TableCell>

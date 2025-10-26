@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MobileTableCell from "../../components/MobileTableCell";
 import { Box, Grid, Typography, Paper, CircularProgress } from "@mui/material";
 import api from '../../utils/api';
 
@@ -18,7 +17,8 @@ const PDS = () => {
         // Calculate the total number of PDS
         const total = response.data.reduce((sum, item) => sum + item.quantity, 0);
         setTotalPDS(total);
-      } catch (error) {
+      } catch (e) {
+        setError(e);
         console.error("Error fetching PDS data:", error);
       } finally {
         setLoading(false);
@@ -26,7 +26,7 @@ const PDS = () => {
     };
 
     fetchPDSData();
-  }, []);
+  });
 
   if (loading) {
     return <CircularProgress />;
