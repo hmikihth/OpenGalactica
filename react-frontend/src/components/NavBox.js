@@ -113,8 +113,9 @@ export default function NavBox({ isAuthenticated, setIsAuthenticated }) {
         setIsAuthenticated={setIsAuthenticated} 
       />
 
+      {isAuthenticated && (
       <MainMenuModal isMobile={isMobile} isOpen={open} onClose={handleCloseModal} />
-   
+      )}
       
       {isMobile & isAuthenticated ? (
         <BottomNav isMobile={isMobile} handleOpenModal={handleOpenModal} />

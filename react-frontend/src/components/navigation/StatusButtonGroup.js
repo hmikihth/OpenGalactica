@@ -1,14 +1,13 @@
 import React from 'react';
-import { ButtonGroup, useMediaQuery } from '@mui/material';
+import { ButtonGroup } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper, faEnvelope, faSun } from '@fortawesome/free-solid-svg-icons';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import { useTheme } from '@mui/system';
 import StatusButton from './StatusButton';
 
-const StatusButtonGroup = () => {
+const StatusButtonGroup = ( { isMobile }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <ButtonGroup
@@ -21,6 +20,7 @@ const StatusButtonGroup = () => {
         gap: 1,
       }}
     >
+    
       <StatusButton
         icon={<FontAwesomeIcon icon={faNewspaper} />}
         label="Notifications"
@@ -49,6 +49,7 @@ const StatusButtonGroup = () => {
         isMobile={isMobile}
         href="/alliance/status"
       />
+
     </ButtonGroup>
   );
 };

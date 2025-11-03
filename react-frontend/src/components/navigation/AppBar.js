@@ -51,7 +51,7 @@ const NavAppBar = ({ toggleModal, isMobile, isAuthenticated, setIsAuthenticated 
       }}
     >
       <Toolbar>
-        {isMobile ? (
+        {isMobile || !isAuthenticated ? (
           <div></div>
         ) : (
           <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={toggleModal} sx={{ mr: 2 }}>
@@ -60,7 +60,11 @@ const NavAppBar = ({ toggleModal, isMobile, isAuthenticated, setIsAuthenticated 
         )}
         <Grid container sx={{ minWidth: '80vw', margin: 'auto' }}>
           <Grid size={10}>
-            <StatusButtonGroup />
+          {isAuthenticated && (  
+            <StatusButtonGroup 
+                isMobile={isMobile}   
+            />
+          )}
           </Grid>
           <Grid size={2} display="flex" justifyContent="flex-end" alignItems="center">
             {isAuthenticated ? (

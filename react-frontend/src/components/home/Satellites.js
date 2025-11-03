@@ -27,7 +27,7 @@ const Satellites = () => {
     };
 
     fetchSatelliteData();
-  });
+  }, []);
 
   if (loading) {
     return <CircularProgress />;

@@ -26,7 +26,7 @@ const PDS = () => {
     };
 
     fetchPDSData();
-  });
+  }, []);
 
   if (loading) {
     return <CircularProgress />;

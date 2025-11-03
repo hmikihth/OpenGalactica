@@ -24,7 +24,7 @@ const ShipProduction = ({ endpoint = 'ship-production/available' }) => {
   useEffect(() => {
     api.get(endpoint).then(res => setShips(res.data));
     api.get('planet').then(res => setResources(res.data));
-  });
+  },[]);
 
   const handleQuantityChange = (shipId, value) => {
     const q = parseInt(value || 0);

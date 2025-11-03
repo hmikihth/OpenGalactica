@@ -22,7 +22,7 @@ const Plasmators = () => {
     };
 
     fetchPlasmatorsData();
-  });
+  }, []);
 
   
   if (loading) {

@@ -16,7 +16,7 @@ const ShipScrapping = ({ endpoint = 'ship-scrap/owned' }) => {
 
   useEffect(() => {
     api.get(endpoint).then(res => setShips(res.data));
-  });
+  }, []);
 
   const selectedShip = ships.find(ship => ship.ship_model === selectedId);
   console.log(selectedShip);

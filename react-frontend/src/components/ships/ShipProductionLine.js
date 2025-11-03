@@ -16,7 +16,7 @@ const ShipProductionLine = ({ endpoint = 'ship-production/line/' }) => {
 
   useEffect(() => {
     api.get(endpoint).then(res => setLines(res.data));
-  });
+  }, []);
 
   const turns = Array.from({ length: 16 }, (_, i) => i + 1);
 
