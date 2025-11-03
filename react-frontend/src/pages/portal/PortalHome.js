@@ -1,7 +1,37 @@
-import React from 'react';
+import React from "react";
+import { Grid, Box } from "@mui/material";
+
+import Intro from "../../components/portal/home/Intro";
+import SocialMedia from "../../components/portal/home/SocialMedia";
+import News from "../../components/portal/home/News";
+import Registration from "../../components/portal/home/Registration";
+import Toplists from "../../components/portal/home/Toplists";
+import History from "../../components/portal/home/History";
+import ScoreChanges from "../../components/portal/home/ScoreChanges";
 
 const PortalHome = () => {
-  return <h1>Portal Home</h1>;
+  return (
+    <Box sx={{ p: 3 }}>
+      <Intro />
+
+      <Grid container spacing={3}>
+        {/* Left Column */}
+        <Grid item xs={12} md={6}>
+          <SocialMedia />
+          <News />
+        </Grid>
+
+        {/* Right Column */}
+        <Grid item xs={12} md={6}>
+          <Registration />
+          <Toplists />
+          <History />
+        </Grid>
+      </Grid>
+
+      <ScoreChanges />
+    </Box>
+  );
 };
 
 export default PortalHome;
