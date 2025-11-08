@@ -16,13 +16,13 @@ const PortalHome = () => {
 
       <Grid container spacing={3}>
         {/* Left Column */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <SocialMedia />
           <News />
         </Grid>
 
         {/* Right Column */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={8}>
           <Registration />
           <Toplists />
           <History />
