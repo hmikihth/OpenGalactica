@@ -21,20 +21,45 @@ class ShipModelSerializer(serializers.ModelSerializer):
         model = ShipModel
         fields = '__all__'
 
+
 class AllianceToplistSerializer(serializers.Serializer):
     rank = serializers.IntegerField()
     name = serializers.CharField()
     points = serializers.IntegerField()
+
 
 class SolToplistSerializer(serializers.Serializer):
     rank = serializers.IntegerField()
     name = serializers.CharField()
     points = serializers.IntegerField()
 
+
 class PlanetToplistSerializer(serializers.Serializer):
     rank = serializers.IntegerField()
+    species = serializers.CharField()
     name = serializers.CharField()
     alliance = serializers.CharField()
+    points = serializers.IntegerField()
+
+
+class XpToplistSerializer(serializers.Serializer):
+    rank = serializers.IntegerField()
+    species = serializers.CharField()
+    name = serializers.CharField()
+    xp = serializers.IntegerField()
+
+
+class PlasmatorToplistSerializer(serializers.Serializer):
+    rank = serializers.IntegerField()
+    species = serializers.CharField()
+    name = serializers.CharField()
+    total_plasmators = serializers.IntegerField()
+
+
+class SpeciesToplistSerializer(serializers.Serializer):
+    rank = serializers.IntegerField()
+    species = serializers.CharField()
+    name = serializers.CharField()
     points = serializers.IntegerField()
 
 

@@ -23,7 +23,8 @@ from game.serializers import EncyclopediaSerializer
 
 from game.serializers import (
     TimeSerializer, SpeciesSerializer, ShipModelSerializer, AllianceToplistSerializer, 
-    SolToplistSerializer, PlanetToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
+    SolToplistSerializer, PlanetToplistSerializer, XpToplistSerializer, PlasmatorToplistSerializer, 
+    SpeciesToplistSerializer, NewsSerializer,# EncyclopediaSerializer,
     PlanetDataSerializer, PDSSerializer, AvailablePDSSerializer, SatelliteSerializer, AvailableSatelliteSerializer,
     ShipSerializer, AvailableShipSerializer, FleetSerializer, PlanetResearchSerializer, 
     MessageListSerializer, MessageDetailSerializer, CommunicationSerializer, IncomingSerializer, OutgoingSerializer,
@@ -95,13 +96,80 @@ class PlanetToplistViewSet(viewsets.ViewSet):
 
     def list(self, request):
         planets = Planet.objects.all()
-        data = [{"name": p.name, "alliance": str(p.alliance), "points": p.points} for p in planets]
+        data = [{"name": p.name, "alliance": str(p.alliance), "points": p.points, "species":p.species} for p in planets]
         data = sorted(data, key=lambda e:-e["points"])
         for i, e in enumerate(data):
             e["rank"] = i+1
         serializer = PlanetToplistSerializer(data, many=True)
         return Response(serializer.data)
         
+
+class XpToplistViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def list(self, request):
+        planets = Planet.objects.all()
+        data = [{"name": p.name, "xp": p.xp, "species":p.species} for p in planets]
+        data = sorted(data, key=lambda e: -e["xp"])[:10]
+
+        for i, e in enumerate(data):
+            e["rank"] = i + 1
+
+        serializer = XpToplistSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+class PlasmatorToplistViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def list(self, request):
+        planets = Planet.objects.all()
+        data = [{
+            "name": p.name,
+            "species":p.species,
+            "total_plasmators": p.plasmators
+        } for p in planets]
+
+        data = sorted(data, key=lambda e: -e["total_plasmators"])[:10]
+
+        for i, e in enumerate(data):
+            e["rank"] = i + 1
+
+        serializer = PlasmatorToplistSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+class SpeciesToplistViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def list(self, request):
+        results = []
+
+        for s in Species.objects.all().values_list("name", flat=True):
+            qs = Planet.objects.filter(species=s).order_by("-points")
+            if qs.exists():
+                top = qs.first()
+                results.append({
+                    "species": s,
+                    "name": top.name,
+                    "points": top.points,
+                })
+            else:
+                results.append({
+                    "species": s,
+                    "name": "-",
+                    "points": 0,
+                })
+
+        # Sort species by points but keep them all
+        results = sorted(results, key=lambda e: -e["points"])
+
+        for i, row in enumerate(results):
+            row["rank"] = i + 1
+
+        serializer = SpeciesToplistSerializer(results, many=True)
+        return Response(serializer.data)
+
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
@@ -1160,7 +1228,7 @@ class FleetControlViewSet(viewsets.ViewSet):
     
 from rest_framework import filters
 
-from engine.models import ProbeReport, SatelliteType
+from engine.models import ProbeReport
 from .serializers import ProbeReportSerializer
 
 from rest_framework.pagination import PageNumberPagination
